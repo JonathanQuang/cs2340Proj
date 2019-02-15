@@ -76,24 +76,6 @@
         app:layout_constraintTop_toBottomOf="@+id/traderText"
         app:layout_constraintVertical_bias="0.048" />
 
-    <TextView
-        android:id="@+id/pilotText2"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:text="Stats Sum"
-        android:textSize="75px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/statSum"
-        app:layout_constraintTop_toBottomOf="@+id/pilotText"
-        app:layout_constraintVertical_bias="0.068" />
-
     <EditText
         android:id="@+id/traderStat"
         android:layout_width="60dp"
@@ -164,7 +146,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.04" />
 
-    <android.support.design.widget.TextInputLayout
+    <android.support.design.widget.TextInputEditText
         android:id="@+id/playerNameInput"
         android:layout_width="344dp"
         android:layout_height="66dp"
@@ -172,7 +154,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Name"
+        android:hint="Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.156"
@@ -250,9 +232,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.972"
-        />
-    <!--android:onClick="onPlayPressed"-->
-
+        android:onClick="onPlayPressed"/>
 
     <Button
         android:id="@+id/engineerIncrement"
@@ -368,8 +348,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.858" />
+        app:layout_constraintTop_toBottomOf="@+id/difficultText"
+        app:layout_constraintVertical_bias="0.117" />
 
     <TextView
         android:id="@+id/difficultText"
@@ -385,25 +365,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.793" />
-
-    <TextView
-        android:id="@+id/statSum"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="0"
-        android:textSize="50px"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pilotStat"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintTop_toBottomOf="@+id/pilotDecrement"
+        app:layout_constraintVertical_bias="0.155" />
 
 </android.support.constraint.ConstraintLayout>
