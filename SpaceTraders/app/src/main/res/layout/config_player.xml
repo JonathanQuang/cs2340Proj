@@ -76,6 +76,24 @@
         app:layout_constraintTop_toBottomOf="@+id/traderText"
         app:layout_constraintVertical_bias="0.048" />
 
+    <TextView
+        android:id="@+id/pilotText2"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="Stats Sum"
+        android:textSize="75px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/statSum"
+        app:layout_constraintTop_toBottomOf="@+id/pilotText"
+        app:layout_constraintVertical_bias="0.068" />
+
     <EditText
         android:id="@+id/traderStat"
         android:layout_width="60dp"
@@ -231,7 +249,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.972" />
+        app:layout_constraintVertical_bias="0.972"
+        />
+    <!--android:onClick="onPlayPressed"-->
+
 
     <Button
         android:id="@+id/engineerIncrement"
