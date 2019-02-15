@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import cs2340.spacetraders.entity.Difficulty;
+import cs2340.spacetraders.entity.Player;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         adapter_standing.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(adapter_standing);
 
+        Player testPlayer = new Player("Test Player", 1,2,3,4);
+        Log.d("PlayerTesting",testPlayer.toString());
     }
 
     public void onPlayPressed(View view) {
