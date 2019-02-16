@@ -7,9 +7,31 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+<<<<<<< HEAD:SpaceTraders/app/src/main/java/cs2340/spacetraders/views/ConfigurationActivity.java
 import cs2340.spacetraders.R;
 
 public class ConfigurationActivity extends AppCompatActivity {
+=======
+import cs2340.spacetraders.entity.Difficulty;
+import cs2340.spacetraders.entity.Player;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.config_player);
+
+        Spinner difficultySpinner = findViewById(R.id.difficultySpinner);
+
+        ArrayAdapter<Difficulty> adapter_standing = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Difficulty.values());
+        adapter_standing.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        difficultySpinner.setAdapter(adapter_standing);
+
+        Player testPlayer = new Player("Test Player", 1,2,3,4);
+        Log.d("PlayerTesting",testPlayer.toString());
+    }
+>>>>>>> sandbox:SpaceTraders/app/src/main/java/cs2340/spacetraders/MainActivity.java
 
     public void onPlayPressed(View view) {
         Log.d("Config", "Okay Button Pressed");
