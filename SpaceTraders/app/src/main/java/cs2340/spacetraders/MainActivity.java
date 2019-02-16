@@ -12,11 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cs2340.spacetraders.entity.Difficulty;
+import cs2340.spacetraders.entity.Player;
 
 public class MainActivity extends AppCompatActivity {
 
-    public TextView engineerView, fighterView, traderView, pilotView;
-    public int pointsLeft = 16;
+    private TextView engineerView;
+    private TextView fighterView;
+    private TextView traderView;
+    private TextView pilotView;
+    private int pointsLeft = 16;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         difficultySpinner.setAdapter(adapter_standing);
     }
 
-    public void onPlayPressed(View view) {
+    protected void onPlayPressed(View view) {
         Log.d("Config", "Play Button Pressed");
         TextInputEditText nameInput = findViewById(R.id.playerNameInput);
 
@@ -79,10 +83,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("Config", "Start Game!");
         Toast.makeText(this, "Start Game!", Toast.LENGTH_LONG).show();
+
+        Player testPlayer = new Player("Test Player", engineerStat,fighterStat, traderStat, pilotStat);
+        Log.d("PlayerTesting",testPlayer.toString());
     }
 
 
-    public void setupIncrDecrButtons(Button decrement, Button increment, TextView view) {
+    private void setupIncrDecrButtons(Button decrement, Button increment, TextView view) {
         final TextView viewFinal = view;
         final TextView pointsLeftFinal = findViewById(R.id.PointsLeft);
 

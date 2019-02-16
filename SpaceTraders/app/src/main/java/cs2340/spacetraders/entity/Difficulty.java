@@ -13,7 +13,7 @@ public enum Difficulty {
     /**
      * Constructor for the enumeration
      *
-     * @param difficulty  the difficulty
+     * @param difficulty the difficulty
      */
     Difficulty(String difficulty) {
         this.difficulty = difficulty;
@@ -21,7 +21,7 @@ public enum Difficulty {
 
     /**
      *
-     * @return   the difficulty
+     * @return the difficulty
      */
     public String getDifficulty() { return difficulty; }
 
