@@ -1,4 +1,4 @@
-package cs2340.spacetraders;
+package cs2340.spacetraders.views;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import cs2340.spacetraders.R;
 
 import cs2340.spacetraders.entity.Difficulty;
 import cs2340.spacetraders.entity.Player;
