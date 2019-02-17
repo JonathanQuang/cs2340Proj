@@ -1,6 +1,7 @@
 package cs2340.spacetraders.views;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -13,64 +14,70 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.arch.lifecycle.ViewModelProviders;
+
 import cs2340.spacetraders.R;
 
 import cs2340.spacetraders.entity.Difficulty;
 import cs2340.spacetraders.entity.Player;
+import cs2340.spacetraders.viewmodels.ConfigurationViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ConfigurationViewModel configViewModel;
+    public static final int ADD_PLAYER_REQUEST_ID = 1;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.config_player);
+        setContentView(R.layout.activity_main);
 
-        Spinner difficultySpinner = findViewById(R.id.difficultySpinner);
+        Button add =  findViewById(R.id.new_player);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ConfigurationActivity.class);
+                startActivityForResult(intent, ADD_PLAYER_REQUEST_ID);
+            }
+        });
 
-        ArrayAdapter<Difficulty> adapter_standing = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Difficulty.values());
-        adapter_standing.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        difficultySpinner.setAdapter(adapter_standing);
-
-        Player testPlayer = new Player("Test Player", 1,2,3,4);
-        Log.d("PlayerTesting",testPlayer.toString());
+        //configViewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+        //configViewModel.addPlayer(testPlayer);
     }
 
-    public void onPlayPressed(View view) {
-        Log.d("Config", "Okay Button Pressed");
-
-        TextInputEditText nameInput = findViewById(R.id.playerNameInput);
-        EditText engineerInput = findViewById(R.id.engineerStat);
-        EditText fighterInput = findViewById(R.id.fighterStat);
-        EditText traderInput = findViewById(R.id.traderStat);
-        EditText pilotInput = findViewById(R.id.pilotStat);
-
-
-        String name = nameInput.getText().toString();
-        if (nameInput.getText().toString().length() == 0) {
-            Log.d("Config", "Name is Empty");
-            Toast.makeText(getApplicationContext(), "Name is Empty", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        int engineerStat, fighterStat, traderStat, pilotStat;
-        try {
-            engineerStat = Integer.parseInt(engineerInput.getText().toString());
-            fighterStat = Integer.parseInt(fighterInput.getText().toString());
-            traderStat = Integer.parseInt(traderInput.getText().toString());
-            pilotStat = Integer.parseInt(pilotInput.getText().toString());
-        } catch (Exception E) {
-            Log.d("Config", "Invalid Skill Point Inputs");
-            Toast.makeText(getApplicationContext(), "Invalid Skill Points Input", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if (engineerStat + fighterStat + traderStat + pilotStat != 16) {
-            Log.d("Config", "Skill Point aren't equal to 16");
-            Toast.makeText(this, "Skill Points aren't equal to 16", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        Log.d("Config", "Start Game!");
-        Toast.makeText(this, "Start Game!", Toast.LENGTH_LONG).show();
+    /** Called when the activity is about to become visible. */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d( "onStart","The onStart() event");
     }
+
+    /** Called when the activity has become visible. */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("onResume", "The onResume() event");
+    }
+
+    /** Called when another activity is taking focus. */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("onPause", "The onPause() event");
+    }
+
+    /** Called when the activity is no longer visible. */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("onStop", "The onStop() event");
+    }
+
+    /** Called just before the activity is destroyed. */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("onDestroy", "The onDestroy() event");
+    }
+
 }
