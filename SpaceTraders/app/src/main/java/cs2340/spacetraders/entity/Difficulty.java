@@ -7,12 +7,10 @@ public enum Difficulty {
     Hard("Hard"),
     Impossible("Impossible");
 
-    /** the full string representation of the difficulty */
     private final String difficulty;
 
     /**
-     * Constructor for the enumeration
-     *
+     * Initializes difficulty string of enum
      * @param difficulty  the difficulty
      */
     Difficulty(String difficulty) {
@@ -20,15 +18,15 @@ public enum Difficulty {
     }
 
     /**
-     *
-     * @return   the difficulty
+     * Gets the string representation of the game difficultly
+     * @return the difficulty
      */
     public String getDifficulty() { return difficulty; }
 
 
     /**
-     *
-     * @return the display string representation of the difficulty
+     * Gets the string representation of the game difficultly to print
+     * @return the string representation of the difficulty
      */
     public String toString() { return difficulty; }
 }
