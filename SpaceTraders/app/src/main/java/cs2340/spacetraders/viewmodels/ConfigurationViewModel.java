@@ -27,11 +27,11 @@ public class ConfigurationViewModel extends AndroidViewModel {
         players = model.getAllPlayers();
     }
 
-    public void deleteCourse(Player player) {
+    public void deletePlayer(Player player) {
         model.deletePlayer(player);
     }
 
-    public List<Player> getCourses() {
+    public List<Player> getPlayers() {
         return players;
     }
 }
