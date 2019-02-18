@@ -7,24 +7,22 @@ public enum ShipType {
     private final String shipType;
 
     /**
-     * Constructor for the enumeration
-     *
+     * Initializes string ship type of enum
      * @param shipType the ship type
      */
     ShipType(String shipType) {this.shipType = shipType;}
 
     /**
-     *
+     * Gets the ship type
      * @return the ship type
      */
     public String getShipType() {return shipType;}
 
     /**
-     *
-     * @return the display string representation of the ship type
+     * Gets the string representation of the ship type
+     * @return the string representation of the ship type
      */
     public String toString() {return shipType;}
-
 }
 
 

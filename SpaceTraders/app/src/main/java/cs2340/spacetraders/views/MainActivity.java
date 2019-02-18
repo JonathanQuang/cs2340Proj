@@ -8,13 +8,12 @@ import android.view.View;
 import android.widget.Button;
 
 import cs2340.spacetraders.R;
-import cs2340.spacetraders.viewmodels.ConfigurationViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ConfigurationViewModel configViewModel;
     public static final int ADD_PLAYER_REQUEST_ID = 1;
 
+    /** Called when the application starts. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, ADD_PLAYER_REQUEST_ID);
             }
         });
-
-        //configViewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
-        //configViewModel.addPlayer(testPlayer);
     }
 
     /** Called when the activity is about to become visible. */

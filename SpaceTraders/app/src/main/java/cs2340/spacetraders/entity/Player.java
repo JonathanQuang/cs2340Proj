@@ -12,6 +12,14 @@ public class Player {
     private int credits;
     private Ship ship;
 
+    /**
+     * Makes a player with name, stats, and ship
+     * @param name the name of the player
+     * @param engineerStat the engineer stats of the player
+     * @param fighterStat the fighter stats of the player
+     * @param traderStat the trader stats of the player
+     * @param pilotStat the pilot stats of the player
+     */
     public Player(String name, int engineerStat, int fighterStat, int traderStat, int pilotStat) {
         this.name = name;
         this.engineerStat = engineerStat;
@@ -22,6 +30,10 @@ public class Player {
         this.ship = new Ship();
     }
 
+    /**
+     * Gets a string representation of the player's attributes
+     * @return a string representation of the player's attributes
+     */
     public String toString() {
         String retStr = "";
         retStr += "Player name: " + name;
@@ -33,6 +45,4 @@ public class Player {
         retStr += ", Ship Info: " + ship;
         return retStr;
     }
-
-
 }

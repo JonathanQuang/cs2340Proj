@@ -5,7 +5,7 @@ public class Ship {
     private ShipType shipType;
 
     /**
-     *
+     * Initializes a ship
      * @param shipType the type of ship you want to instantiate
      */
     public Ship(ShipType shipType){
@@ -17,7 +17,7 @@ public class Ship {
     }
 
     /**
-     *
+     * Sets ships type
      * @param shipType the type of ship you want to change this ship to
      */
     public void setShipType(ShipType shipType) {
@@ -25,7 +25,7 @@ public class Ship {
     }
 
     /**
-     *
+     * Gets ship type
      * @return this ship's ship type
      */
     public ShipType getShipType() {
@@ -34,10 +34,9 @@ public class Ship {
 
 
     /**
-     *
-     * @return  this ship's string reperesentaion
+     * Gets string representation of the information about the ship
+     * @return  this ship's string representation
      */
-    @Override
     public String toString() {
         return "(Type) " + shipType;
     }
