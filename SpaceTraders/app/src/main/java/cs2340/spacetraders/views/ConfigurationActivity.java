@@ -25,7 +25,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     private TextView traderView;
     private TextView pilotView;
     private Spinner difficultySpinner;
-    ConfigurationViewModel viewModel;
+    private ConfigurationViewModel viewModel;
     private int pointsLeft = 16;
 
     /** Called when creating new player.*/
@@ -89,10 +89,10 @@ public class ConfigurationActivity extends AppCompatActivity {
     private void setupIncrDecrButtons(Button decrement, Button increment, TextView view) {
         final TextView viewFinal = view;
         final TextView pointsLeftFinal = findViewById(R.id.pointsLeft);
+        final int points = Integer.parseInt(viewFinal.getText().toString());
 
         decrement.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int points = Integer.parseInt(viewFinal.getText().toString());
                 if (points == 0) {return;}
                 viewFinal.setText(String.valueOf(points - 1));
                 pointsLeftFinal.setText("Skill Points Available: " + String.valueOf(++pointsLeft));
@@ -101,7 +101,6 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         increment.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int points = Integer.parseInt(viewFinal.getText().toString());
                 if (pointsLeft == 0) {return;}
                 viewFinal.setText(String.valueOf(points + 1));
                 pointsLeftFinal.setText("Skill Points Available: " + String.valueOf(--pointsLeft));
