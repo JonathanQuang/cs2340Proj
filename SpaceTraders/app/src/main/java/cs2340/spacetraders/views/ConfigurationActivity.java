@@ -26,12 +26,15 @@ public class ConfigurationActivity extends AppCompatActivity {
     private TextView pilotView;
     private Spinner difficultySpinner;
     private ConfigurationViewModel viewModel;
-    private int pointsLeft = 16;
+    private int pointsLeft;
 
     /** Called when creating new player.*/
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_player);
+
+        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+        pointsLeft = viewModel.STARTING_POINTS;
 
         Button engineerDecr = findViewById(R.id.engineerDecrement);
         Button engineerIncr = findViewById(R.id.engineerIncrement);
@@ -59,7 +62,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         difficultySpinner.setAdapter(adapter_standing);
 
         Button playButton = findViewById(R.id.playButton);
-        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
 
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -77,7 +79,6 @@ public class ConfigurationActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     /**
@@ -89,10 +90,10 @@ public class ConfigurationActivity extends AppCompatActivity {
     private void setupIncrDecrButtons(Button decrement, Button increment, TextView view) {
         final TextView viewFinal = view;
         final TextView pointsLeftFinal = findViewById(R.id.pointsLeft);
-        final int points = Integer.parseInt(viewFinal.getText().toString());
 
         decrement.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                int points = Integer.parseInt(viewFinal.getText().toString());
                 if (points == 0) {return;}
                 viewFinal.setText(String.valueOf(points - 1));
                 pointsLeftFinal.setText("Skill Points Available: " + String.valueOf(++pointsLeft));
@@ -101,6 +102,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         increment.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                int points = Integer.parseInt(viewFinal.getText().toString());
                 if (pointsLeft == 0) {return;}
                 viewFinal.setText(String.valueOf(points + 1));
                 pointsLeftFinal.setText("Skill Points Available: " + String.valueOf(--pointsLeft));
