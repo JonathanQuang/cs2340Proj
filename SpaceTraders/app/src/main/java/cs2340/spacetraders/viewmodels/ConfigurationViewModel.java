@@ -15,6 +15,7 @@ import cs2340.spacetraders.model.Model;
 
 public class ConfigurationViewModel extends AndroidViewModel {
 
+    public final int STARTING_POINTS = 16;
 
     /**
      * Default Constructor

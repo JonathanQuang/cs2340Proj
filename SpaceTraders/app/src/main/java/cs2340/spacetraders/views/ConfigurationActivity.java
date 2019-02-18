@@ -25,13 +25,16 @@ public class ConfigurationActivity extends AppCompatActivity {
     private TextView traderView;
     private TextView pilotView;
     private Spinner difficultySpinner;
-    ConfigurationViewModel viewModel;
-    private int pointsLeft = 16;
+    private ConfigurationViewModel viewModel;
+    private int pointsLeft;
 
     /** Called when creating new player.*/
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_player);
+
+        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+        pointsLeft = viewModel.STARTING_POINTS;
 
         Button engineerDecr = findViewById(R.id.engineerDecrement);
         Button engineerIncr = findViewById(R.id.engineerIncrement);
@@ -59,7 +62,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         difficultySpinner.setAdapter(adapter_standing);
 
         Button playButton = findViewById(R.id.playButton);
-        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
 
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -77,7 +79,6 @@ public class ConfigurationActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     /**
