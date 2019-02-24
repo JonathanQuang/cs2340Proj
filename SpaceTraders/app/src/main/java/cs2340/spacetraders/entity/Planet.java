@@ -1,26 +1,29 @@
 package cs2340.spacetraders.entity;
 
 
+import android.util.Log;
+
 public class Planet {
     private CelestialName name;
     private TechLevel techLevel;
     private Resources resources;
     private PoliticalSystem politicalSystem;
-    private Position position;
+    private RelativePosition relativePosition;
     private String size;
     private String policeQuantity;
     private String pirateQuantit;
     private boolean isSpacePort;
 
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
-                  PoliticalSystem politicalSystem, Position position, String size) {
-
+                  PoliticalSystem politicalSystem, RelativePosition relativePosition, String size) {
         this.name = name;
         this.techLevel = techLevel;
         this.resources = resources;
         this.politicalSystem = politicalSystem;
-        this.position = position;
+        this.relativePosition = relativePosition;
         this.size = size;
+        Log.d("Planet ", name.getName() + ", " + techLevel + ", " + resources + ", " + politicalSystem
+            + ", " + relativePosition + ", " + size);
     }
 
     public CelestialName getName() {
@@ -39,8 +42,8 @@ public class Planet {
         return politicalSystem;
     }
 
-    public Position getPosition() {
-        return position;
+    public RelativePosition getRelativePosition() {
+        return relativePosition;
     }
 
     public String getSize() {

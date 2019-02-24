@@ -3,6 +3,7 @@ package cs2340.spacetraders.viewmodels;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,7 +16,7 @@ import cs2340.spacetraders.model.Model;
 
 public class ConfigurationViewModel extends AndroidViewModel {
 
-    public final int STARTING_POINTS = 16;
+    public final int STARTING_POINTS = 16; //16
 
     /**
      * Default Constructor
@@ -45,6 +46,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
                     String.valueOf(pointsLeft) + " Skill Point Remaining", Toast.LENGTH_LONG).show();
             return false;
         }
+        Log.d("debug", "Game Stared");
 
         Toast.makeText(getApplication(), "Starting Game!", Toast.LENGTH_LONG).show();
         Model.getInstance().createPlayer(name, engineerStat,fighterStat, traderStat, pilotStat);
