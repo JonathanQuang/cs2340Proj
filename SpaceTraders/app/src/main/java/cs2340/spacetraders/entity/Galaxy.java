@@ -23,7 +23,7 @@ public class Galaxy {
         wholePlanetList = new HashMap<CelestialName, Planet>();
         systemPositionList = new ArrayList<RelativePosition>();
         usedCelestialNames = new HashSet<CelestialName>();
-        mapSize = new RelativePosition(30, 30);
+        mapSize = new RelativePosition(40, 40);
         galaxyMap = new String[mapSize.getX()][mapSize.getY()];
         for (String[] row: galaxyMap)
             Arrays.fill(row, " ");
@@ -36,8 +36,9 @@ public class Galaxy {
 
     private void makeSolarSystem() {
         int planetNum = rand.nextInt(5) + 1;
-        RelativePosition center = getValidSystemPoint(planetNum);
         CelestialName systemName = getNonRepeatedCelestialName();
+        Log.d("Planet", "Getting new system's center position");
+        RelativePosition center = getValidSystemPoint(planetNum);
         String size = getSystemSize(planetNum);
 
         Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");

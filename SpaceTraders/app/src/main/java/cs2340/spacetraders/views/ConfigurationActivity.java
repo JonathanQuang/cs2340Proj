@@ -72,7 +72,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                 if (viewModel.onOkay(name, engineerStat, fighterStat, traderStat, pilotStat, difficulty, pointsLeft)) {
                     //Go to new Screen
                     Intent intent = new Intent(ConfigurationActivity.this, GameActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent,0);
                 }
             }
         });
