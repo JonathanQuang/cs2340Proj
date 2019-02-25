@@ -33,6 +33,8 @@ public class SolarSystem {
         PoliticalSystem politicalSystem = PoliticalSystem.values()[rand.nextInt(PoliticalSystem.values().length)];
         RelativePosition point = getValidPlanetPoint();
         String size = getPlanetSize();
+        placeSystemOnMap(point);
+
         plantList[i] = new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
     }
 
@@ -41,7 +43,7 @@ public class SolarSystem {
         do {
             int x = rand.nextInt(2 * center.getRectRadius() + 1) + center.getX() - center.getRectRadius();
             int y = rand.nextInt(2 * center.getRectRadius() + 1) + center.getY() - center.getRectRadius();
-            point = new RelativePosition(x, y, 1);
+            point = new RelativePosition(x, y);
         } while (planetPositions.contains(point));
         planetPositions.add(point);
         return point;
@@ -56,6 +58,11 @@ public class SolarSystem {
         return sizeStr;
     }
 
-
-
+    private void placeSystemOnMap(RelativePosition position) {
+        int x = position.getX();
+        int y = position.getY();
+        String[][] galaxyMap = parentGalaxy.getGalaxyMap();
+        galaxyMap[x][y] = "*";
+        parentGalaxy.setGalaxyMap(galaxyMap);
+    }
 }

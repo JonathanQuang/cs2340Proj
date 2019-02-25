@@ -39,9 +39,13 @@ public class RelativePosition {
             return false;
         }
 
-
         RelativePosition that = (RelativePosition) o;
         return isInSquareOfInfluence(that);
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 
     /**
@@ -53,24 +57,24 @@ public class RelativePosition {
      * @return if a point is in the square of influence of another point
      */
     private boolean isInSquareOfInfluence(RelativePosition that) {
-        for (int i = -rectRadius; i <= rectRadius; i++) {
-            for (int j = -rectRadius; j <= rectRadius; j++) {
-                if (compareWithOverlap) {
+        if (compareWithOverlap) {
+            for (int i = -rectRadius; i <= rectRadius; i++) {
+                for (int j = -rectRadius; j <= rectRadius; j++) {
                     for (int k = -that.rectRadius; k <= that.rectRadius; k++) {
                         for (int l = -that.rectRadius; l <= that.rectRadius; l++) {
                             if (x + i == that.x + k && y + j == that.y + l) {
-                                return false;
+                                return true;
                             }
                         }
                     }
-                } else {
-                    if (x + i == that.x && y + j == that.y) {
-                        return false;
-                    }
                 }
             }
+        } else {
+            return x == that.x && y == that.y
+                    || x == that.x && y - 1 == that.y || x == that.x && y + 1 == that.y
+                    || x - 1 == that.x && y == that.y || x + 1 == that.x && y == that.y;
         }
-        return true;
+        return false;
     }
 
     public String toString() {

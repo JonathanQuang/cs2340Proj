@@ -2,26 +2,36 @@ package cs2340.spacetraders.entity;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
 public class Galaxy {
     private Map<CelestialName, Planet> wholePlanetList;
-    private Set<RelativePosition> systemPositionList;
+    private List<RelativePosition> systemPositionList;
     private Set<CelestialName> usedCelestialNames;
     private RelativePosition mapSize;
+    private String[][] galaxyMap;
     private Random rand = new Random();
 
     public Galaxy() {
         wholePlanetList = new HashMap<CelestialName, Planet>();
-        systemPositionList = new HashSet<RelativePosition>();
+        systemPositionList = new ArrayList<RelativePosition>();
         usedCelestialNames = new HashSet<CelestialName>();
-        mapSize = new RelativePosition(1000, 1000);
+        mapSize = new RelativePosition(30, 30);
+        galaxyMap = new String[mapSize.getX()][mapSize.getY()];
+        for (String[] row: galaxyMap)
+            Arrays.fill(row, " ");
 
-        makeSolarSystem();
+        while (usedCelestialNames.size() + 6 < CelestialName.values().length){
+            makeSolarSystem();
+        }
+        printMap();
     }
 
     private void makeSolarSystem() {
@@ -31,18 +41,30 @@ public class Galaxy {
         String size = getSystemSize(planetNum);
 
         Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");
+        placeSystemOnMap(center);
         SolarSystem solarSystem = new SolarSystem(systemName, center, planetNum, size,this);
     }
 
     private RelativePosition getValidSystemPoint(int planetNum) {
-        int toleranceSpaceBetweenPlanets = 2;
+        int toleranceSpaceBetweenPlanets = 0;
         RelativePosition center;
+        int x, y, rectRadius;
+
         do {
-            center = new RelativePosition(rand.nextInt(mapSize.getX()), rand.nextInt(mapSize.getY()),
-                    planetNum + toleranceSpaceBetweenPlanets, true);
-        } while (systemPositionList.contains(center));
+            x = rand.nextInt(mapSize.getX());
+            y = rand.nextInt(mapSize.getY());
+            rectRadius = (planetNum + 2)/3;
+            center = new RelativePosition(x, y, rectRadius, true);
+        } while (systemPositionList.contains(center) || !isValidCornerPoint(center));
         systemPositionList.add(center);
         return center;
+    }
+
+    private boolean isValidCornerPoint(RelativePosition point) {
+        int x = point.getX();
+        int y = point.getY();
+        int r = point.getRectRadius();
+        return 0 <= x - r && x + r < mapSize.getX() && 0 <= y - r && y + r < mapSize.getY();
     }
 
     public CelestialName getNonRepeatedCelestialName() {
@@ -63,5 +85,31 @@ public class Galaxy {
         return sizeStr;
     }
 
+    private void placeSystemOnMap(RelativePosition position) {
+        int rectRadius = position.getRectRadius();
+        int x = position.getX();
+        int y = position.getY();
 
+        for (int i = -rectRadius; i <= rectRadius; galaxyMap[x + i][y + rectRadius] = "#", i++) ;
+        for (int i = -rectRadius; i <= rectRadius; galaxyMap[x + i][y - rectRadius] = "#", i++) ;
+        for (int i = -rectRadius; i <= rectRadius; galaxyMap[x + rectRadius][y + i] = "#", i++) ;
+        for (int i = -rectRadius; i <= rectRadius; galaxyMap[x - rectRadius][y + i] = "#", i++) ;
+
+        galaxyMap[x][y] = "O";
+    }
+
+    private void printMap() {
+        Log.d("Planet", "-----MAP-----");
+        for (int i = 0; i < galaxyMap.length; i++) {
+            Log.d("Planet", Arrays.toString(galaxyMap[i]));
+        }
+    }
+
+    public String[][] getGalaxyMap() {
+        return galaxyMap;
+    }
+
+    public void setGalaxyMap(String[][] galaxyMap) {
+        this.galaxyMap = galaxyMap;
+    }
 }
