@@ -1,6 +1,10 @@
 package cs2340.spacetraders.entity;
 
+import android.util.Log;
+
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -11,13 +15,14 @@ public class SolarSystem {
     private RelativePosition center;
     private String size;
     private Galaxy parentGalaxy;
-    private Random rand = new Random();
+    private Random rand;
 
     public SolarSystem(CelestialName name, RelativePosition center, int planetNum, String size, Galaxy parentGalaxy) {
         this.name = name;
         this.center = center;
         this.size = size;
         this.parentGalaxy = parentGalaxy;
+        rand = new Random();
 
         planetPositions = new HashSet<RelativePosition>();
         plantList = new Planet[planetNum];
@@ -33,9 +38,12 @@ public class SolarSystem {
         PoliticalSystem politicalSystem = PoliticalSystem.values()[rand.nextInt(PoliticalSystem.values().length)];
         RelativePosition point = getValidPlanetPoint();
         String size = getPlanetSize();
-        placeSystemOnMap(point);
+        parentGalaxy.getGalaxyMap()[point.getX()][point.getY()] = "*";
 
         plantList[i] = new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
+        Log.d("Planet ", plantList[i].toString());
+        parentGalaxy.getWholePlanetList().put(celestialName.getName(), plantList[i]);
+
     }
 
     private RelativePosition getValidPlanetPoint() {
@@ -53,16 +61,9 @@ public class SolarSystem {
         int size = rand.nextInt(3);
         String sizeStr = "";
         if (size == 0) {sizeStr = "Small"; }
-        else if (size == 1) { sizeStr = "Moderate"; }
+        else if (size == 1) { sizeStr = "Medium"; }
         else if (size == 2) { sizeStr = "Large"; }
         return sizeStr;
     }
 
-    private void placeSystemOnMap(RelativePosition position) {
-        int x = position.getX();
-        int y = position.getY();
-        String[][] galaxyMap = parentGalaxy.getGalaxyMap();
-        galaxyMap[x][y] = "*";
-        parentGalaxy.setGalaxyMap(galaxyMap);
-    }
 }

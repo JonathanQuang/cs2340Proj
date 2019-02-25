@@ -1,8 +1,6 @@
 package cs2340.spacetraders.entity;
 
 
-import android.util.Log;
-
 public class Planet {
     private CelestialName name;
     private TechLevel techLevel;
@@ -22,8 +20,10 @@ public class Planet {
         this.politicalSystem = politicalSystem;
         this.relativePosition = relativePosition;
         this.size = size;
-        Log.d("Planet ", name.getName() + ", " + techLevel + ", " + resources + ", " + politicalSystem
-            + ", " + relativePosition + ", " + size);
+    }
+
+    public void makeSpaceport() {
+        isSpacePort = true;
     }
 
     public CelestialName getName() {
@@ -60,5 +60,10 @@ public class Planet {
 
     public boolean isSpacePort() {
         return isSpacePort;
+    }
+
+    public String toString() {
+        return name.getName() + " is a " + size  + " planet at " + relativePosition + " with a " + techLevel
+                + " " + politicalSystem + " possessing a " + resources + " environment";
     }
 }
