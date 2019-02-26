@@ -15,6 +15,7 @@ public class Galaxy {
     private Map<String, Planet> wholePlanetList;
     private List<RelativePosition> systemPositionList;
     private Set<CelestialName> usedCelestialNames;
+    private List<SolarSystem> solarSystemList;
     private RelativePosition mapSize;
     private String[][] galaxyMap;
     private Random rand = new Random();
@@ -29,11 +30,12 @@ public class Galaxy {
         usedCelestialNames = new HashSet<CelestialName>();
         mapSize = new RelativePosition(30, 30);
         galaxyMap = new String[mapSize.getX()][mapSize.getY()];
+        solarSystemList = new ArrayList<SolarSystem>();
         for (String[] row: galaxyMap)
             Arrays.fill(row, " ");
 
         while (usedCelestialNames.size() + 5 < CelestialName.values().length){
-            makeSolarSystem();
+            solarSystemList.add(makeSolarSystem());
         }
         printMap();
     }
@@ -41,7 +43,7 @@ public class Galaxy {
     /**
      * Makes a solar system that randomizes all its attributes
      */
-    private void makeSolarSystem() {
+    private SolarSystem makeSolarSystem() {
         int planetNum = rand.nextInt(5) + 1;
         RelativePosition center = getValidSystemPoint(planetNum);
         CelestialName systemName = getNonRepeatedCelestialName();
@@ -49,11 +51,12 @@ public class Galaxy {
 
         Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
-        SolarSystem solarSystem = new SolarSystem(systemName, center, planetNum, size,this);
+        return new SolarSystem(systemName, center, planetNum, size,this);
     }
 
     /**
-     * Gets a valid point within the galaxy to place the system.
+     * Gets a valid point within the galaxy to place the system. Checks location of previously
+     * place systems and if the corners are within the map
      * @param planetNum the number of planets the system has
      * @return the center point for new system which doesn't overlay other systems
      */
@@ -70,7 +73,7 @@ public class Galaxy {
     }
 
     /**
-     * Checks if the system's area is completely within the map
+     * Checks if the system's area/corners is completely within the map
      * @param point the center of a system
      * @return if the system's corners are within the bounds of the map
      */
@@ -107,7 +110,7 @@ public class Galaxy {
     }
 
     /**
-     * Draws the system ont the map
+     * Draws the outline of a system on the map with "#" and the center "0"
      * @param position the center of a system
      */
     private void placeSystemOnMap(RelativePosition position) {

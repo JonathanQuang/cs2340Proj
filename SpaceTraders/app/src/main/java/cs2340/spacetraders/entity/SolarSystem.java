@@ -27,11 +27,17 @@ public class SolarSystem {
         planetPositions = new HashSet<RelativePosition>();
         plantList = new Planet[planetNum];
         for (int i = 0; i < plantList.length; i++) {
-            makePlanet(i);
+            plantList[i] = makePlanet(i);
         }
     }
 
-    private void makePlanet(int i) {
+    /**
+     * Creates random variable for planet's attributes and added planet's info to map
+     * and list of planets
+     * @param i the number of the planet
+     * @return the created planet
+     */
+    private Planet makePlanet(int i) {
         CelestialName celestialName = parentGalaxy.getNonRepeatedCelestialName();
         TechLevel techLevel = TechLevel.values()[rand.nextInt(TechLevel.values().length)];
         Resources resources = Resources.values()[rand.nextInt(Resources.values().length)];
@@ -39,13 +45,16 @@ public class SolarSystem {
         RelativePosition point = getValidPlanetPoint();
         String size = getPlanetSize();
         parentGalaxy.getGalaxyMap()[point.getX()][point.getY()] = "*";
-
-        plantList[i] = new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
-        Log.d("Planet ", plantList[i].toString());
         parentGalaxy.getWholePlanetList().put(celestialName.getName(), plantList[i]);
+        Log.d("Planet ", plantList[i].toString());
+
+        return new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
 
     }
 
+    /**
+     * @return a random point with the system that instead overlapping another planet
+     */
     private RelativePosition getValidPlanetPoint() {
         RelativePosition point;
         do {
