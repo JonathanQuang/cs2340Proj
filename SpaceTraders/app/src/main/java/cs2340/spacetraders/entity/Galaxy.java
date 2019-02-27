@@ -19,12 +19,14 @@ public class Galaxy {
     private String[][] galaxyMap;
     private Random rand = new Random();
     private Set<Wormhole> wormholeSet;
+    private List<SolarSystem> solarSystemList;
 
     /**
      * Initializes Galaxy and creates solarSystem until there are no more names left.
      * Also, creates an prints out map of galaxy.
      */
     public Galaxy() {
+        solarSystemList = new ArrayList<SolarSystem>();
         wholePlanetList = new HashMap<String, Planet>();
         systemPositionList = new ArrayList<RelativePosition>();
         usedCelestialNames = new HashSet<CelestialName>();
@@ -53,58 +55,32 @@ public class Galaxy {
         Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
         SolarSystem solarSystem = new SolarSystem(systemName, center, planetNum, size,this);
+        solarSystemList.add(solarSystem);
     }
 
     /**
      * picks two random systems to place a wormhole in
      */
     private void placeWormhole(){
-        if (systemPositionList.size() <= 2) {
+
+        if (solarSystemList.size() <= 2) {
             return;
         }
-        RelativePosition potentialLocation1;
-        RelativePosition potentialLocation2;
-        int p1 = rand.nextInt(systemPositionList.size());
+        int p1 = rand.nextInt(solarSystemList.size());
         int p2 = p1;
         while (p1 == p2) {
-            p2 = rand.nextInt(systemPositionList.size());
+            p2 = rand.nextInt(solarSystemList.size());
         }
-        potentialLocation1 = systemPositionList.get(p1);
-        potentialLocation2 = systemPositionList.get(p2);
-        potentialLocation1 = getOrthogonalEmpty(potentialLocation1);
-        potentialLocation2 = getOrthogonalEmpty(potentialLocation2);
-        if (potentialLocation1 == null || potentialLocation2 == null) {
-            return;
-        }
-        Wormhole w1 = new Wormhole(potentialLocation1);
-        Wormhole w2 = new Wormhole(potentialLocation2);
-        w1.joinWormholes(w2);
-        galaxyMap[w1.getX()][w1.getY()] = "@";
-        galaxyMap[w2.getX()][w2.getY()] = "@";
-    }
+        RelativePosition relPos1 = solarSystemList.get(p1).getValidUnusedPoint();
+        RelativePosition relPos2 = solarSystemList.get(p2).getValidUnusedPoint();
 
-    /**
-     * Checks a location in the galaxy map for an empty space
-     * Given a position, it checks that position, followed by checking the
-     * position below, above, left and right. Returns the first one it finds.
-     *
-     * @param checkPos  the position to do a search for
-     */
-    private RelativePosition getOrthogonalEmpty(RelativePosition checkPos) {
-        int x = checkPos.getX();
-        int y = checkPos.getY();
-        if (galaxyMap[x][y].equals(" ")) {
-            return checkPos;
-        } else if (galaxyMap[x+1][y].equals(" ")) {
-            return new RelativePosition(x+1,y);
-        } else if (galaxyMap[x-1][y].equals(" ")) {
-            return new RelativePosition(x-1,y);
-        } else if (galaxyMap[x][y+1].equals(" ")) {
-            return new RelativePosition(x,y+1);
-        } else if (galaxyMap[x][y-1].equals(" ")) {
-            return new RelativePosition(x,y-1);
-        }
-        return null;
+        Wormhole w1 = new Wormhole(relPos1);
+        Wormhole w2 = new Wormhole(relPos2);
+        w1.joinWormholes(w2);
+        galaxyMap[relPos1.getX()][relPos1.getY()] = "@";
+        galaxyMap[relPos2.getX()][relPos2.getY()] = "@";
+
+
     }
 
     /**

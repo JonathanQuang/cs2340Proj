@@ -67,4 +67,14 @@ public class Wormhole {
     public int hashCode() {
         return 3 * position.getY() + 7 * position.getX();
     }
+
+    public String toString(){
+        String retStr = "this wormhole is located at " + this.position;
+        if (connectedWormhole == null) {
+            return retStr + " but not connected to another wormhole";
+        }
+        return retStr + " connected to a wormhole located at " + connectedWormhole.connectedWormhole.position;
+    }
+
+
 }
