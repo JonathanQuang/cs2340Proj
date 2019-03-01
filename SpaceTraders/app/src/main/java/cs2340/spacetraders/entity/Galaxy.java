@@ -31,7 +31,7 @@ public class Galaxy {
         systemPositionList = new ArrayList<RelativePosition>();
         usedCelestialNames = new HashSet<CelestialName>();
         wormholeSet = new HashSet<Wormhole>();
-        mapSize = new RelativePosition(30, 30);
+        mapSize = new RelativePosition(40, 40);
         galaxyMap = new String[mapSize.getX()][mapSize.getY()];
         for (String[] row: galaxyMap)
             Arrays.fill(row, " ");
@@ -39,7 +39,10 @@ public class Galaxy {
         while (usedCelestialNames.size() + 5 < CelestialName.values().length){
             makeSolarSystem();
         }
-        placeWormhole();
+        int maxWormmHolePairs = 2;
+        for (int i = 0; i < maxWormmHolePairs; i++) {
+            placeWormholePair();
+        }
         printMap();
     }
 
@@ -61,15 +64,20 @@ public class Galaxy {
     /**
      * picks two random systems to place a wormhole in
      */
-    private void placeWormhole(){
+    private void placeWormholePair(){
 
         if (solarSystemList.size() <= 2) {
             return;
         }
         int p1 = rand.nextInt(solarSystemList.size());
         int p2 = p1;
+        int attempts = 0;
         while (p1 == p2) {
             p2 = rand.nextInt(solarSystemList.size());
+            attempts++;
+            if (attempts > 20) {
+                return;
+            }
         }
         RelativePosition relPos1 = solarSystemList.get(p1).getValidUnusedPoint();
         RelativePosition relPos2 = solarSystemList.get(p2).getValidUnusedPoint();

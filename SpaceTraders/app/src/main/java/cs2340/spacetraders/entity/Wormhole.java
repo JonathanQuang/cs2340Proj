@@ -64,6 +64,17 @@ public class Wormhole {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (!(o instanceof Wormhole)) {
+            return false;
+        }
+        Wormhole targetHole = (Wormhole) o;
+        return this.position.getY() == targetHole.position.getY() && this.position.getX() == targetHole.position.getX();
+    }
+
+    @Override
     public int hashCode() {
         return 3 * position.getY() + 7 * position.getX();
     }
