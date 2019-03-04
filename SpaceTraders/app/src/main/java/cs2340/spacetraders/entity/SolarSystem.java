@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class SolarSystem {
-    private Planet[] plantList;
+    private Planet[] planetList;
     private Set<RelativePosition> planetPositions;
     private CelestialName name;
     private RelativePosition center;
@@ -20,8 +20,8 @@ public class SolarSystem {
         this.parentGalaxy = parentGalaxy;
 
         planetPositions = new HashSet<RelativePosition>();
-        plantList = new Planet[planetNum];
-        for (int i = 0; i < plantList.length; i++) {
+        planetList = new Planet[planetNum];
+        for (int i = 0; i < planetList.length; i++) {
             makePlanet(i);
         }
     }
@@ -35,7 +35,7 @@ public class SolarSystem {
         String size = getPlanetSize();
         placeSystemOnMap(point);
 
-        plantList[i] = new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
+        planetList[i] = new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
     }
 
     private RelativePosition getValidPlanetPoint() {

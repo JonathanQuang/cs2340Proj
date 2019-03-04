@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import cs2340.spacetraders.R;
 
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView imageView = (ImageView) findViewById(R.id.spaceTradersBackground);
+        imageView.setBackgroundResource(R.drawable.background);
+
 
         Button add =  findViewById(R.id.new_player);
         add.setOnClickListener(new View.OnClickListener() {

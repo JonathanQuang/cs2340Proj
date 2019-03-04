@@ -12,19 +12,21 @@ import java.util.Random;
 import java.util.Set;
 
 public class Galaxy {
-    private Map<CelestialName, Planet> wholePlanetList;
+    private Map<CelestialName, String> wholePlanetList;
     private List<RelativePosition> systemPositionList;
     private Set<CelestialName> usedCelestialNames;
     private RelativePosition mapSize;
     private String[][] galaxyMap;
     private Random rand = new Random();
+    private Map<CelestialName, String> solarSystemSizes;
 
     public Galaxy() {
-        wholePlanetList = new HashMap<CelestialName, Planet>();
+        wholePlanetList = new HashMap<CelestialName, String>();
         systemPositionList = new ArrayList<RelativePosition>();
         usedCelestialNames = new HashSet<CelestialName>();
         mapSize = new RelativePosition(40, 40);
         galaxyMap = new String[mapSize.getX()][mapSize.getY()];
+
         for (String[] row: galaxyMap)
             Arrays.fill(row, " ");
 
@@ -44,6 +46,7 @@ public class Galaxy {
         Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
         SolarSystem solarSystem = new SolarSystem(systemName, center, planetNum, size,this);
+        wholePlanetList.put(systemName, size);
     }
 
     private RelativePosition getValidSystemPoint(int planetNum) {
@@ -112,5 +115,9 @@ public class Galaxy {
 
     public void setGalaxyMap(String[][] galaxyMap) {
         this.galaxyMap = galaxyMap;
+    }
+
+    public Map<CelestialName, String> getWholePlanetList() {
+        return wholePlanetList;
     }
 }
