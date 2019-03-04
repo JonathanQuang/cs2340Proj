@@ -43,16 +43,22 @@ public class RelativePosition {
         return isInSquareOfInfluence(that);
     }
 
-    @Override
-    public int hashCode() {
-        return 1;
-    }
-
     /**
      * Checks if any point in OTHER point's surrounding square is equal to THIS
      * point's surrounding square
      * Plants have a padding of 1, for solar system it depends on size
      *
+     * if (compareWithOverlap) checks that area don't overlap as in
+     *  #####
+     *  #   #
+     *  #  ###
+     *  ####0#
+     *     ###
+     *
+     * else check if point is not in the cross around it as in
+     *      -
+     *     -*-
+     *      -*
      * @param that other point being compared
      * @return if a point is in the square of influence of another point
      */

@@ -2,23 +2,61 @@ package cs2340.spacetraders.entity;
 
 public enum PoliticalSystem {
     Anarchy,
-    CapitalistState,
-    CommunistState,
+    Capitalist_State,
+    Communist_State,
     Confederacy,
-    CorporateState,
-    CyberneticState,
+    Corporate_State,
+    Cybernetic_State,
     Democracy,
     Dictatorship,
-    FascistState,
-    FeudalState,
-    MilitaryState,
+    Fascist_State ,
+    Feudal_State,
+    Military_State,
     Monarchy,
-    PacifistState,
-    SocialistState,
-    StateOfSatori,
+    Pacifist_State,
+    Socialist_State,
+    State_Of_Satori,
     Technocracy,
     Theocracy;
 
+    private String pirateQuantiy;
+    private String policeQuantity;
+    private String tradersQuantity;
+    private String policeBriberyAcceptence;
+    private String policeSmugglingAcceptence;
+//    private Good mainDesiredGood
+
     PoliticalSystem() {
+    }
+
+
+    PoliticalSystem(String pirateQuantiy, String policeQuantity, String tradersQuantity, String policeBriberyAcceptence,
+                    String policeSmugglingAcceptence) {
+        this.pirateQuantiy = pirateQuantiy;
+        this.policeQuantity = policeQuantity;
+        this.tradersQuantity = tradersQuantity;
+        this.policeBriberyAcceptence = policeBriberyAcceptence;
+        this.policeSmugglingAcceptence = policeSmugglingAcceptence;
+
+    }
+
+    public String getPirateQuantiy() {
+        return pirateQuantiy;
+    }
+
+    public String getPoliceQuantity() {
+        return policeQuantity;
+    }
+
+    public String getTradersQuantity() {
+        return tradersQuantity;
+    }
+
+    public String getPoliceBriberyAcceptence() {
+        return policeBriberyAcceptence;
+    }
+
+    public String getPoliceSmugglingAcceptence() {
+        return policeSmugglingAcceptence;
     }
 }

@@ -1,6 +1,9 @@
 package cs2340.spacetraders.entity;
 
+import android.util.Log;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -11,33 +14,47 @@ public class SolarSystem {
     private RelativePosition center;
     private String size;
     private Galaxy parentGalaxy;
-    private Random rand = new Random();
+    private Random rand;
 
     public SolarSystem(CelestialName name, RelativePosition center, int planetNum, String size, Galaxy parentGalaxy) {
         this.name = name;
         this.center = center;
         this.size = size;
         this.parentGalaxy = parentGalaxy;
+        rand = new Random();
 
         planetPositions = new HashSet<RelativePosition>();
+
         planetList = new Planet[planetNum];
         for (int i = 0; i < planetList.length; i++) {
-            makePlanet(i);
+            planetList[i] = makePlanet(i);
+            Log.d("Planet ", planetList[i].toString());
+
         }
     }
 
-    private void makePlanet(int i) {
+    /**
+     * Creates random variable for planet's attributes and added planet's info to map
+     * and list of planets
+     * @param i the number of the planet
+     * @return the created planet
+     */
+    private Planet makePlanet(int i) {
         CelestialName celestialName = parentGalaxy.getNonRepeatedCelestialName();
         TechLevel techLevel = TechLevel.values()[rand.nextInt(TechLevel.values().length)];
         Resources resources = Resources.values()[rand.nextInt(Resources.values().length)];
         PoliticalSystem politicalSystem = PoliticalSystem.values()[rand.nextInt(PoliticalSystem.values().length)];
         RelativePosition point = getValidPlanetPoint();
         String size = getPlanetSize();
-        placeSystemOnMap(point);
+        parentGalaxy.getGalaxyMap()[point.getX()][point.getY()] = "*";
+        parentGalaxy.getWholePlanetList().put(celestialName.getName(), planetList[i]);
 
-        planetList[i] = new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
+        return new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
     }
 
+    /**
+     * @return a random point with the system that instead overlapping another planet
+     */
     private RelativePosition getValidPlanetPoint() {
         RelativePosition point;
         do {
@@ -53,16 +70,16 @@ public class SolarSystem {
         int size = rand.nextInt(3);
         String sizeStr = "";
         if (size == 0) {sizeStr = "Small"; }
-        else if (size == 1) { sizeStr = "Moderate"; }
+        else if (size == 1) { sizeStr = "Medium"; }
         else if (size == 2) { sizeStr = "Large"; }
         return sizeStr;
     }
 
-    private void placeSystemOnMap(RelativePosition position) {
-        int x = position.getX();
-        int y = position.getY();
-        String[][] galaxyMap = parentGalaxy.getGalaxyMap();
-        galaxyMap[x][y] = "*";
-        parentGalaxy.setGalaxyMap(galaxyMap);
+    public String getSize() {
+        return size;
+    }
+
+    public Planet[] getPlanetList() {
+        return planetList;
     }
 }

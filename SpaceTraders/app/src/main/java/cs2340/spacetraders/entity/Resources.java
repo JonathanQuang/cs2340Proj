@@ -15,6 +15,9 @@ public enum Resources {
     ARTISTIC,
     WARLIKE;
 
+//        private Good[] favoredGoods;
+//    private Good[] disfavoredGoods;
+
     Resources() {
     }
 }

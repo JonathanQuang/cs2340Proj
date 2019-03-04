@@ -18,7 +18,7 @@ public enum Goods {
     private final int minPrice; //min price offered by trader
     private final int maxPrice; //max price offered by trader
     private final int variance; //how much the price can vary
-    private final int  maxLevel; //tech level which produces most of this item
+    private final int maxLevel; //tech level which produces most of this item
     private final int minProduceLevel; //min tech level to produce this resource
     private final int minUseLevel; //min tech level to use this resource
 

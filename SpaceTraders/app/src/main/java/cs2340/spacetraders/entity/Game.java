@@ -12,6 +12,9 @@ public class Game {
         makeGalaxy();
     }
 
+    /**
+     * Makes a new Galaxy
+     */
     private void makeGalaxy() {
         galaxy = new Galaxy();
     }

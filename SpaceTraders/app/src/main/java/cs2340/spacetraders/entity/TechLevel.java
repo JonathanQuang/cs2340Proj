@@ -11,11 +11,12 @@ public enum TechLevel {
     HiTech("Hi-Tech");
 
     private final String techLevel;
+//    private Good[] interestedGoods;
+//    private Good[] disinterestedGoods;
 
     TechLevel(String techLevel) {
         this.techLevel = techLevel;
     }
-
 
     public String getTechLevel() {
         return techLevel;
