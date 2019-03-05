@@ -71,11 +71,24 @@ public class ConfigurationActivity extends AppCompatActivity {
 
                 if (viewModel.onOkay(name, engineerStat, fighterStat, traderStat, pilotStat, difficulty, pointsLeft)) {
                     //Go to new Screen
+//                    Intent intent = new Intent(ConfigurationActivity.this, GameTemplateActivty.class);
+//                    startActivity(intent);
+
+                        //Intent intent = new Intent(ConfigurationActivity.this, PlayScreenActivity.class);
+                        //startActivity(intent);
+                    //varnika's code underneath here that loads into her work
                     Intent intent = new Intent(ConfigurationActivity.this, GameActivity.class);
                     startActivityForResult(intent,0);
                 }
             }
         });
+
+        Button quickTest = findViewById(R.id.jmacQuickTest);
+        quickTest.setOnClickListener(new View.OnClickListener() {
+                                         public void onClick(View v) {
+            Intent testIntent = new Intent(ConfigurationActivity.this, PlayScreenActivity.class);
+            startActivityForResult(testIntent, 0);
+        }});
     }
 
     /**

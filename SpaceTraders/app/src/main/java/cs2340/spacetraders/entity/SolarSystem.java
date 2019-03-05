@@ -44,7 +44,7 @@ public class SolarSystem {
         TechLevel techLevel = TechLevel.values()[rand.nextInt(TechLevel.values().length)];
         Resources resources = Resources.values()[rand.nextInt(Resources.values().length)];
         PoliticalSystem politicalSystem = PoliticalSystem.values()[rand.nextInt(PoliticalSystem.values().length)];
-        RelativePosition point = getValidPlanetPoint();
+        RelativePosition point = getValidUnusedPoint();
         String size = getPlanetSize();
         parentGalaxy.getGalaxyMap()[point.getX()][point.getY()] = "*";
         parentGalaxy.getWholePlanetList().put(celestialName.getName(), planetList[i]);
@@ -52,10 +52,11 @@ public class SolarSystem {
         return new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
     }
 
+
     /**
      * @return a random point with the system that instead overlapping another planet
      */
-    private RelativePosition getValidPlanetPoint() {
+    public RelativePosition getValidUnusedPoint() {
         RelativePosition point;
         do {
             int x = rand.nextInt(2 * center.getRectRadius() + 1) + center.getX() - center.getRectRadius();
