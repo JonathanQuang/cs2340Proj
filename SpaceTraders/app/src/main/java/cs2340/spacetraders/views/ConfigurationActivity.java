@@ -76,6 +76,9 @@ public class ConfigurationActivity extends AppCompatActivity {
                     //Go to new Screen
 //                    Intent intent = new Intent(ConfigurationActivity.this, GameTemplateActivty.class);
 //                    startActivity(intent);
+
+                        Intent intent = new Intent(ConfigurationActivity.this, PlayScreenActivity.class);
+                        startActivity(intent);
                 }
             }
         });

@@ -19,6 +19,8 @@
         <activity android:name=".views.ConfigurationActivity">
 
         </activity>
+        <activity android:name=".views.PlayScreenActivity">
+        </activity>
     </application>
 
 </manifest>
