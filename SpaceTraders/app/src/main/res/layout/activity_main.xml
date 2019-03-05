@@ -41,7 +41,7 @@
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
             android:background="@android:color/black"
-            android:src="@mipmap/background"
+            android:src="@drawable/background"
             android:visibility="visible" />
     </RelativeLayout>
 

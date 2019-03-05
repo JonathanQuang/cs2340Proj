@@ -5,17 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.Difficulty;
-import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.viewmodels.ConfigurationViewModel;
 
 public class ConfigurationActivity extends AppCompatActivity {
@@ -77,11 +74,21 @@ public class ConfigurationActivity extends AppCompatActivity {
 //                    Intent intent = new Intent(ConfigurationActivity.this, GameTemplateActivty.class);
 //                    startActivity(intent);
 
-                        Intent intent = new Intent(ConfigurationActivity.this, PlayScreenActivity.class);
-                        startActivity(intent);
+                        //Intent intent = new Intent(ConfigurationActivity.this, PlayScreenActivity.class);
+                        //startActivity(intent);
+                    //varnika's code underneath here that loads into her work
+                    Intent intent = new Intent(ConfigurationActivity.this, GameActivity.class);
+                    startActivityForResult(intent,0);
                 }
             }
         });
+
+        Button quickTest = findViewById(R.id.jmacQuickTest);
+        quickTest.setOnClickListener(new View.OnClickListener() {
+                                         public void onClick(View v) {
+            Intent testIntent = new Intent(ConfigurationActivity.this, PlayScreenActivity.class);
+            startActivityForResult(testIntent, 0);
+        }});
     }
 
     /**

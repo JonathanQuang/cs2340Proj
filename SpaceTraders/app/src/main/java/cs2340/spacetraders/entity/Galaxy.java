@@ -12,14 +12,16 @@ import java.util.Random;
 import java.util.Set;
 
 public class Galaxy {
+
     private Map<String, Planet> wholePlanetList;
     private List<RelativePosition> systemPositionList;
     private Set<CelestialName> usedCelestialNames;
+    private List<SolarSystem> solarSystemList;
     private RelativePosition mapSize;
     private String[][] galaxyMap;
     private Random rand = new Random();
     private Set<Wormhole> wormholeSet;
-    private List<SolarSystem> solarSystemList;
+    private Map<CelestialName, String> solarSystemSizes;
 
     /**
      * Initializes Galaxy and creates solarSystem until there are no more names left.
@@ -33,11 +35,12 @@ public class Galaxy {
         wormholeSet = new HashSet<Wormhole>();
         mapSize = new RelativePosition(40, 40);
         galaxyMap = new String[mapSize.getX()][mapSize.getY()];
+
         for (String[] row: galaxyMap)
             Arrays.fill(row, " ");
 
         while (usedCelestialNames.size() + 5 < CelestialName.values().length){
-            makeSolarSystem();
+            solarSystemList.add(makeSolarSystem());
         }
         int maxWormmHolePairs = 2;
         for (int i = 0; i < maxWormmHolePairs; i++) {
@@ -49,16 +52,19 @@ public class Galaxy {
     /**
      * Makes a solar system that randomizes all its attributes
      */
-    private void makeSolarSystem() {
+    private SolarSystem makeSolarSystem() {
         int planetNum = rand.nextInt(5) + 1;
-        RelativePosition center = getValidSystemPoint(planetNum);
         CelestialName systemName = getNonRepeatedCelestialName();
+        Log.d("Planet", "Getting new system's center position");
+        RelativePosition center = getValidSystemPoint(planetNum);
         String size = getSystemSize(planetNum);
 
         Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
-        SolarSystem solarSystem = new SolarSystem(systemName, center, planetNum, size,this);
-        solarSystemList.add(solarSystem);
+
+        //SolarSystem solarSystem = new SolarSystem(systemName, center, planetNum, size,this);
+        //solarSystemList.add(solarSystem);
+        return new SolarSystem(systemName, center, planetNum, size,this);
     }
 
     /**
@@ -87,12 +93,11 @@ public class Galaxy {
         w1.joinWormholes(w2);
         galaxyMap[relPos1.getX()][relPos1.getY()] = "@";
         galaxyMap[relPos2.getX()][relPos2.getY()] = "@";
-
-
     }
 
     /**
-     * Gets a valid point within the galaxy to place the system.
+     * Gets a valid point within the galaxy to place the system. Checks location of previously
+     * place systems and if the corners are within the map
      * @param planetNum the number of planets the system has
      * @return the center point for new system which doesn't overlay other systems
      */
@@ -109,7 +114,7 @@ public class Galaxy {
     }
 
     /**
-     * Checks if the system's area is completely within the map
+     * Checks if the system's area/corners is completely within the map
      * @param point the center of a system
      * @return if the system's corners are within the bounds of the map
      */
@@ -146,7 +151,7 @@ public class Galaxy {
     }
 
     /**
-     * Draws the system ont the map
+     * Draws the outline of a system on the map with "#" and the center "0"
      * @param position the center of a system
      */
     private void placeSystemOnMap(RelativePosition position) {
@@ -190,5 +195,9 @@ public class Galaxy {
 
     public Map<String, Planet> getWholePlanetList() {
         return wholePlanetList;
+    }
+
+    public List<SolarSystem> getSolarSystemList() {
+        return solarSystemList;
     }
 }
