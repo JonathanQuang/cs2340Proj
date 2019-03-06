@@ -1,5 +1,9 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Universe;
 
+import android.util.Log;
+
+import cs2340.spacetraders.entity.Market.Good;
+import cs2340.spacetraders.entity.Market.PlanetInventory;
 
 public class Planet {
     private CelestialName name;
@@ -11,6 +15,9 @@ public class Planet {
     private String policeQuantity;
     private String pirateQuantit;
     private boolean isSpacePort;
+    private PlanetInventory inventory;
+    private PlanetaryEvent event;
+    private double tradersReturnRate;
 
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
                   PoliticalSystem politicalSystem, RelativePosition relativePosition, String size) {
@@ -20,6 +27,12 @@ public class Planet {
         this.politicalSystem = politicalSystem;
         this.relativePosition = relativePosition;
         this.size = size;
+        inventory = new PlanetInventory();
+
+        event = PlanetaryEvent.Nothing;
+        tradersReturnRate = .10;
+
+        makePlanetInvertory();
     }
 
     public void makeSpaceport() {
@@ -65,5 +78,17 @@ public class Planet {
     public String toString() {
         return name.getName() + " is a " + size  + " planet at " + relativePosition + " with a " + techLevel
                 + " " + politicalSystem + " possessing a " + resources + " environment";
+    }
+
+    public void makePlanetInvertory() {
+        for (Good good: Good.values()) {
+            boolean canBuy = good.canBuyFrom(techLevel);
+            boolean canSell = good.canSellTo(techLevel);
+            int buyPrice = good.calcBuyPrice(techLevel, resources, event);
+            int count = good.makeGoodCount(techLevel);
+            int sellPrice = (int) (buyPrice * (1 - tradersReturnRate));
+            inventory.addToPlanetInventory(good, buyPrice, sellPrice, count, canBuy, canSell);
+        }
+        Log.d("Market", techLevel.toString() + "-> " + inventory.toString());
     }
 }

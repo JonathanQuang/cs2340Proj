@@ -3,17 +3,11 @@ package cs2340.spacetraders.views;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ImageButton;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 import cs2340.spacetraders.R;
-import cs2340.spacetraders.entity.CelestialName;
-import cs2340.spacetraders.entity.Galaxy;
-import cs2340.spacetraders.entity.Planet;
-import cs2340.spacetraders.entity.SolarSystem;
+import cs2340.spacetraders.entity.Universe.SolarSystem;
 import cs2340.spacetraders.model.Model;
 
 public class GalaxyMapActivity extends AppCompatActivity {

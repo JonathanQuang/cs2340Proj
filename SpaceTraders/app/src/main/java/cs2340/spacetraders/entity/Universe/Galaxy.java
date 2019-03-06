@@ -1,4 +1,4 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
@@ -33,7 +33,7 @@ public class Galaxy {
         systemPositionList = new ArrayList<RelativePosition>();
         usedCelestialNames = new HashSet<CelestialName>();
         wormholeSet = new HashSet<Wormhole>();
-        mapSize = new RelativePosition(40, 40);
+        mapSize = new RelativePosition(35, 35);
         galaxyMap = new String[mapSize.getX()][mapSize.getY()];
 
         for (String[] row: galaxyMap)
@@ -61,9 +61,6 @@ public class Galaxy {
 
         Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
-
-        //SolarSystem solarSystem = new SolarSystem(systemName, center, planetNum, size,this);
-        //solarSystemList.add(solarSystem);
         return new SolarSystem(systemName, center, planetNum, size,this);
     }
 
@@ -104,9 +101,9 @@ public class Galaxy {
     private RelativePosition getValidSystemPoint(int planetNum) {
         RelativePosition center;
         do {
-            int x = rand.nextInt(mapSize.getX());
-            int y = rand.nextInt(mapSize.getY());
             int r = (planetNum + 2)/3;
+            int x = rand.nextInt(mapSize.getX() - 2 * r) + r;
+            int y = rand.nextInt(mapSize.getY() - 2 * r) + r;
             center = new RelativePosition(x, y, r, true);
         } while (systemPositionList.contains(center) || !isValidCornerPoint(center));
         systemPositionList.add(center);

@@ -387,15 +387,4 @@
         app:layout_constraintVertical_bias="0.473"
         tools:text="Skill Points Available: 16" />
 
-    <Button
-        android:id="@+id/jmacQuickTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="61dp"
-        android:layout_marginBottom="1dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/difficultySpinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="jmacTest" />
-
 </android.support.constraint.ConstraintLayout>

@@ -3,22 +3,15 @@ package cs2340.spacetraders.views;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import cs2340.spacetraders.R;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class PlayScreenActivity extends AppCompatActivity {
+public class MarketScreenActivity extends AppCompatActivity {
 
     private TableRow modelRow;
     private TableLayout table;
@@ -30,7 +23,7 @@ public class PlayScreenActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.play_screen);
+        setContentView(R.layout.market_screen);
         modelRow = findViewById(R.id.modelRow);
         table = findViewById(R.id.table);
         modelRowText = findViewById(R.id.modelRowText);

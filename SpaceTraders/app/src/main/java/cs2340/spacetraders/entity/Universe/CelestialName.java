@@ -1,4 +1,4 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Universe;
 
 public enum CelestialName {
      Acamar("Acamar"),
@@ -127,7 +127,6 @@ public enum CelestialName {
      CelestialName(String name) {
          this.name = name;
      }
-
 
     public String getName() {
         return name;

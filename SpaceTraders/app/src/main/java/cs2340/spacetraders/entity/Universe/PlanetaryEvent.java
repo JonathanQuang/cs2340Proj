@@ -1,6 +1,7 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Universe;
 
-public enum IncreaseEvent {
+public enum PlanetaryEvent {
+    Nothing("Nothing"),
     Drought("Drought"),
     Cold("Cold"),
     Cropfail("Cropfail"),
@@ -11,11 +12,9 @@ public enum IncreaseEvent {
 
     private final String increaseEvent;
 
-
-    IncreaseEvent(String increaseEvent) {
+    PlanetaryEvent(String increaseEvent) {
         this.increaseEvent = increaseEvent;
     }
-
 
     public String getIncreaseEvent() {
         return increaseEvent;

@@ -1,9 +1,8 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
-import java.util.HashMap;
+
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
