@@ -29,7 +29,11 @@ public class Player {
         this.pilotStat = pilotStat;
         this.credits = initialCredits;
         this.ship = new Ship();
-        this.inventory = new Inventory();
+        this.inventory = new Inventory(ship.getCargoCapacity());
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
     /**

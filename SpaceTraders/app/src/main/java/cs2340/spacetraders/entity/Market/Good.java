@@ -105,6 +105,7 @@ public enum Good {
         finalPrice = (planetaryEvent == priceIncreaseEvent) ? finalPrice * 3 : finalPrice;
         finalPrice = (resources == lowPriceEnv) ? (int) (finalPrice * .5) : finalPrice;
         finalPrice = (resources == highPriceEnv) ? (int) (finalPrice * 1.5) : finalPrice;
+        finalPrice = (finalPrice > 0) ? finalPrice : 0;
         return finalPrice;
     }
 

@@ -52,6 +52,10 @@ public class Ship {
         this.fuel = fuel;
     }
 
+    public int getCargoCapacity() {
+        return shipType.getCargoCapacity();
+    }
+
     /**
      * Gets string representation of the information about the ship
      * @return  this ship's string representation

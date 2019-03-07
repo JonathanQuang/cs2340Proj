@@ -28,13 +28,13 @@ public class PlanetInventory {
     }
 
     public void addToPlanetInventory(Good good, int buyPrice, int sellPrice, int count, boolean canBuy, boolean canSell) {
-        if (canBuy) {
+        if (canBuy && buyPrice > 0) {
             goodsBuyPrices.put(good, buyPrice);
             goodsCanBuy.put(good, true);
             goodsCount.put(good, count);
         }
 
-        if (canSell) {
+        if (canSell && sellPrice > 0) {
             goodsSellPrices.put(good, sellPrice);
             goodsCanSell.put(good, true);
         }
