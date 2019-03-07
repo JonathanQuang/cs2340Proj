@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Inventory {
     private Map<Goods, Integer> playerInventory;
+    private Map<Goods, Double> averagePurchasePrice;
     private int capacity;
 
     /**
@@ -12,6 +13,7 @@ public class Inventory {
      */
     public Inventory() {
         playerInventory = new HashMap<>();
+        averagePurchasePrice = new HashMap<>();
         loadDummyData();
     }
 
@@ -19,16 +21,16 @@ public class Inventory {
      * populate the inventory with some dummy data.
      */
     private void loadDummyData() {
-        addGood(Goods.Water, 0);
-        addGood(Goods.Furs, 0);
-        addGood(Goods.Food, 0);
-        addGood(Goods.Ores, 0);
-        addGood(Goods.Games, 0);
-        addGood(Goods.Firearms, 0);
-        addGood(Goods.Medicine, 0);
-        addGood(Goods.Machines, 0);
-        addGood(Goods.Narcotics, 0);
-        addGood(Goods.Robots, 0);
+        addGood(Goods.Water, 0, 0);
+        addGood(Goods.Furs, 0, 0);
+        addGood(Goods.Food, 0, 0);
+        addGood(Goods.Ores, 0, 0);
+        addGood(Goods.Games, 0, 0);
+        addGood(Goods.Firearms, 0, 0);
+        addGood(Goods.Medicine, 0, 0);
+        addGood(Goods.Machines, 0, 0);
+        addGood(Goods.Narcotics, 0, 0);
+        addGood(Goods.Robots, 0, 0);
     }
 
     /**
@@ -53,14 +55,21 @@ public class Inventory {
         return playerInventory.get(good);
     }
 
+    public double getAvePurchasePrice(Goods good) {
+        return averagePurchasePrice.get(good);
+    }
+
     /**
      * Buying/stealing goods
      * @param goods
      * @param amount
      */
-    public void addGood(Goods goods, int amount) {
+    public void addGood(Goods goods, int amount, double price) {
         capacity += amount;
+        double total = averagePurchasePrice.get(goods) * playerInventory.get(goods);
+        total += amount * price;
         playerInventory.put(goods, playerInventory.get(goods) + amount);
+        averagePurchasePrice.put(goods, total/playerInventory.get(goods));
     }
 
     /**
