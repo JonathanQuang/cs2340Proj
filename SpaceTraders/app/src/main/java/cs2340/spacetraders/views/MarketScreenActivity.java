@@ -3,6 +3,7 @@ package cs2340.spacetraders.views;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -10,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -43,7 +46,7 @@ public class MarketScreenActivity extends AppCompatActivity {
     private Button modelSellButton;
     private LinearLayout modelLinearLayout;
     private TextView planetNametext;
-    private MarketScreenViewModel marketScreeVM;
+    private MarketScreenViewModel marketScreenVM;
 
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
@@ -67,7 +70,8 @@ public class MarketScreenActivity extends AppCompatActivity {
         planetInventory = currentPlanet.getInventory();
         playerInventory = Model.getInstance().getPlayer().getInventory();
         planetNametext.setText(currentPlanet.getName().toString());
-        marketScreeVM = new MarketScreenViewModel(planetInventory, playerInventory);
+        marketScreenVM = new MarketScreenViewModel(planetInventory, playerInventory);
+        marketScreenVM.setPlayer(Model.getInstance().getPlayer());
 
         for (Good good: Good.values()) {
             table.addView(generateTableRow(good));
@@ -116,7 +120,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         final Button SELL_BUTTON = sellButton;
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                marketScreeVM.setGood(GOOD);
+                marketScreenVM.setGood(GOOD);
                 onButtonShowBuyPopupWindowClick(view, BUY_BUTTON, SELL_BUTTON);
                 Log.d("Market", Integer.toString(playerInventory.getGoodAmount(GOOD)));
 
@@ -142,7 +146,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         final Button SELL_BUTTON = sellButton;
         sellButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                marketScreeVM.setGood(GOOD);
+                marketScreenVM.setGood(GOOD);
                 onButtonShowSellPopupWindowClick(view);
                 if (PLAYER_INVENTORY.getGoodAmount(GOOD) == 0) {
                     SELL_BUTTON.setEnabled(false);
@@ -166,9 +170,9 @@ public class MarketScreenActivity extends AppCompatActivity {
         mContext = getApplicationContext();
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.buy_popup, null);
+        final View popupView = inflater.inflate(R.layout.buy_popup, null);
         TextView buyTest = popupView.findViewById(R.id.buyButtonText);
-        buyTest.setText(marketScreeVM.popUpBuyStr());
+        buyTest.setText(marketScreenVM.popUpBuyStr());
 
         Button cancel_button = popupView.findViewById(R.id.cancel_button);
         Button purchase_button = popupView.findViewById(R.id.purchase_button);
@@ -195,9 +199,20 @@ public class MarketScreenActivity extends AppCompatActivity {
 
         purchase_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                marketScreeVM.buyGood();
+                EditText numToBuy = popupView.findViewById(R.id.buy);
+                if (marketScreenVM.validQuantityToBuy(numToBuy.getText().toString())) {
+                    marketScreenVM.buyGood(Integer.parseInt(numToBuy.getText().toString()));
+                } else {
+                    easyToast("Invalid Quantity or you are too poor");
+                    return;
+                }
+
+
+                //marketScreenVM.buyGood();
+
+
                 sellButton.setEnabled(true);
-                if (planetInventory.getGoodCount(marketScreeVM.getCurrentGood()) == 0) {
+                if (planetInventory.getGoodCount(marketScreenVM.getCurrentGood()) == 0) {
                     buyButton.setEnabled(false);
                 }
                 popupWindow.dismiss();
@@ -211,7 +226,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.sell_popup, null);
         TextView buyTest = popupView.findViewById(R.id.sellButtonText);
-        buyTest.setText(marketScreeVM.popUpSellStr());
+        buyTest.setText(marketScreenVM.popUpSellStr());
 
         Button cancel_button = popupView.findViewById(R.id.cancel_button);
         Button sell_button = popupView.findViewById(R.id.sell_button);
@@ -242,5 +257,9 @@ public class MarketScreenActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void easyToast(String toastMessage) {
+        Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
     }
 }

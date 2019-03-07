@@ -36,6 +36,10 @@ public class Player {
         return inventory;
     }
 
+    public int getCredits() {return credits;}
+
+    public void changeCredits(int changeNum) {credits += changeNum;}
+
     /**
      * Gets a string representation of the player's attributes
      * @return a string representation of the player's attributes

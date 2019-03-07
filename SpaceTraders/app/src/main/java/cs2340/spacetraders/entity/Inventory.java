@@ -74,8 +74,8 @@ public class Inventory {
         return getGoodAmount(good) != 0;
     }
 
-    public boolean canBuyGood(Good good) {
-        return currCapacity < maxCapacity;
+    public boolean canBuyGood(int numGoods) {
+        return currCapacity + numGoods <= maxCapacity;
     }
 
     /**
