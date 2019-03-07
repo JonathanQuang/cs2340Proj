@@ -1,5 +1,7 @@
 package cs2340.spacetraders.entity;
 
+import android.os.Debug;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,9 +68,18 @@ public class Inventory {
      */
     public void addGood(Goods goods, int amount, double price) {
         capacity += amount;
-        double total = averagePurchasePrice.get(goods) * playerInventory.get(goods);
+        double total;
+        try {
+            total = averagePurchasePrice.get(goods) * playerInventory.get(goods);
+        } catch (NullPointerException e) {
+            total = 0;
+        }
         total += amount * price;
-        playerInventory.put(goods, playerInventory.get(goods) + amount);
+        try {
+            playerInventory.put(goods, playerInventory.get(goods) + amount);
+        } catch (NullPointerException e) {
+            playerInventory.put(goods, amount);
+        }
         averagePurchasePrice.put(goods, total/playerInventory.get(goods));
     }
 

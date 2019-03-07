@@ -1,22 +1,39 @@
 package cs2340.spacetraders.views;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.model.Model;
+import cs2340.spacetraders.viewmodels.MarketScreenViewModel;
 
 public class MarketScreenActivity extends AppCompatActivity {
+
+    private Context mContext;
+    private Activity mActivity;
+
+
+    private Button mButton;
+
+    private PopupWindow mPopupWindow;
 
     private TableRow modelRow;
     private TableLayout table;
@@ -25,6 +42,7 @@ public class MarketScreenActivity extends AppCompatActivity {
     private Button modelSellButton;
     private LinearLayout modelLinearLayout;
     private TextView planetNametext;
+    private MarketScreenViewModel marketScreeVM;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +61,7 @@ public class MarketScreenActivity extends AppCompatActivity {
             currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
         }
         PlanetInventory planetInventory = currentPlanet.getInventory();
+        marketScreeVM = new MarketScreenViewModel(planetInventory);
 
         planetNametext.setText(currentPlanet.getName().toString());
         Good[] goodsList = Good.values();
@@ -89,6 +108,16 @@ public class MarketScreenActivity extends AppCompatActivity {
         buyButton.setLayoutParams(modelBuyButton.getLayoutParams());
         buyButton.setText(buyText);
         buyButton.setTextSize(10);
+
+        final String storageString = new String(resourceName);
+
+        buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                marketScreeVM.setGoodViaString(storageString);
+                onButtonShowBuyPopupWindowClick(view);
+            }
+        });
         ll.addView(buyButton);
         Button sellButton = new Button(this);
         sellButton.setTextSize(10);
@@ -108,6 +137,35 @@ public class MarketScreenActivity extends AppCompatActivity {
         return row.getChildAt(columnNo);
 
     }
+
+    private void onButtonShowBuyPopupWindowClick(View view) {
+
+        mContext = getApplicationContext();
+
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.buy_popup, null);
+        TextView buyTest = popupView.findViewById(R.id.buyButtonText);
+        buyTest.setText(marketScreeVM.retBuyStr());
+
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+
+
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        popupWindow.setElevation(5.0f);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true; }});
+            Log.d("buy experiment","button pressed");
+        }
+
 
 
 }
