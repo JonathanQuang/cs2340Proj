@@ -32,7 +32,8 @@ public class Planet {
         event = PlanetaryEvent.Nothing;
         tradersReturnRate = .10;
 
-        makePlanetInvertory();
+        makePlanetInventory();
+//        Log.d("Mark", "Inverntory Made");
     }
 
     public void makeSpaceport() {
@@ -80,7 +81,7 @@ public class Planet {
                 + " " + politicalSystem + " possessing a " + resources + " environment";
     }
 
-    public void makePlanetInvertory() {
+    public void makePlanetInventory() {
         for (Good good: Good.values()) {
             boolean canBuy = good.canBuyFrom(techLevel);
             boolean canSell = good.canSellTo(techLevel);
@@ -89,6 +90,10 @@ public class Planet {
             int sellPrice = (int) (buyPrice * (1 - tradersReturnRate));
             inventory.addToPlanetInventory(good, buyPrice, sellPrice, count, canBuy, canSell);
         }
-        Log.d("Market", techLevel.toString() + "-> " + inventory.toString());
+//        Log.d("Market", techLevel.toString() + "-> " + inventory.toString());
+    }
+
+    public PlanetInventory getInventory() {
+        return inventory;
     }
 }

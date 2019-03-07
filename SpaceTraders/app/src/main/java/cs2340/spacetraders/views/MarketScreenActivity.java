@@ -2,6 +2,7 @@ package cs2340.spacetraders.views;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -10,6 +11,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import cs2340.spacetraders.R;
+import cs2340.spacetraders.entity.Market.Good;
+import cs2340.spacetraders.entity.Market.PlanetInventory;
+import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.model.Model;
 
 public class MarketScreenActivity extends AppCompatActivity {
 
@@ -19,6 +24,7 @@ public class MarketScreenActivity extends AppCompatActivity {
     private Button modelBuyButton;
     private Button modelSellButton;
     private LinearLayout modelLinearLayout;
+    private TextView planetNametext;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -30,25 +36,33 @@ public class MarketScreenActivity extends AppCompatActivity {
         modelBuyButton = findViewById(R.id.modelBuyButton);
         modelSellButton = findViewById(R.id.modelSellButton);
         modelLinearLayout = findViewById(R.id.modelLinearLayout);
+        planetNametext = findViewById(R.id.planetName);
 
-        String[] testArrayString = new String[] {
-                "Water",
-                "Furs",
-                "Food",
-                "Ores",
-                "Games",
-                "Firearms",
-                "Medicine",
-                "Machines",
-                "Narcotics",
-                "Robots"
-        };
-
-        for (String x: testArrayString) {
-            table.addView(generateTableRow(x, "$15 stored: 100", "13$ stored:100"));
+        Planet currentPlanet = null;
+        while(currentPlanet == null) {
+            currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
         }
+        PlanetInventory planetInventory = currentPlanet.getInventory();
 
-        table.removeView(modelRow);
+        planetNametext.setText(currentPlanet.getName().toString());
+        Good[] goodsList = Good.values();
+
+        int rowCount = 1;
+        for (Good good: goodsList) {
+            rowCount++;
+            table.addView(generateTableRow(good.toString(),
+                    "$" + Integer.toString(planetInventory.getBuyPrice(good)),
+                    "$" + Integer.toString(planetInventory.getSellPrice(good))));
+
+            if (planetInventory.getGoodCount(good) == 0) {
+//                System.out.println("Items 0 for " + good.toString());
+                TableRow row = (TableRow) table.getChildAt(rowCount);
+                LinearLayout linear = (LinearLayout) row.getChildAt(0);
+                Button but = (Button) linear.getChildAt(1);
+                but.setEnabled(false);
+            }
+        }
+        table.removeView(table.getChildAt(1));
 
         /*
         final List<String> strList = new ArrayList<String>(Arrays.asList(testArrayString));
@@ -57,7 +71,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         arrayAdapter.notifyDataSetChanged();
         */
 
-        //table.addView(generateTableRow("Water", "15", "13"));
+//        table.addView(generateTableRow("Water", "15", "13"));
 
     }
 
@@ -82,9 +96,18 @@ public class MarketScreenActivity extends AppCompatActivity {
         sellButton.setText(sellText);
         ll.addView(sellButton);
 
-
         retRow.addView(ll);
         return retRow;
     }
+
+    public View getTableLayoutCell(TableLayout layout, int rowNo, int columnNo) {
+        if (rowNo >= layout.getChildCount()) return null;
+        TableRow row = (TableRow) layout.getChildAt(rowNo);
+
+        if (columnNo >= row.getChildCount()) return null;
+        return row.getChildAt(columnNo);
+
+    }
+
 
 }

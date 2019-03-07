@@ -28,8 +28,9 @@ public class SolarSystem {
         for (int i = 0; i < planetList.length; i++) {
             planetList[i] = makePlanet(i);
             Log.d("Planet ", planetList[i].toString());
-
+            parentGalaxy.getPlanetNameMap().put(planetList[i].getName().toString(), planetList[i]);
         }
+
     }
 
     /**
@@ -46,7 +47,6 @@ public class SolarSystem {
         RelativePosition point = getValidUnusedPoint();
         String size = getPlanetSize();
         parentGalaxy.getGalaxyMap()[point.getX()][point.getY()] = "*";
-        parentGalaxy.getWholePlanetList().put(celestialName.getName(), planetList[i]);
 
         return new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
     }

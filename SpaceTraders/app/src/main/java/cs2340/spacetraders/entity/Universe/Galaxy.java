@@ -13,7 +13,8 @@ import java.util.Set;
 
 public class Galaxy {
 
-    private Map<String, Planet> wholePlanetList;
+    private Map<String, Planet> planetNameMap;
+    private List<Planet> planetList;
     private List<RelativePosition> systemPositionList;
     private Set<CelestialName> usedCelestialNames;
     private List<SolarSystem> solarSystemList;
@@ -21,7 +22,7 @@ public class Galaxy {
     private String[][] galaxyMap;
     private Random rand = new Random();
     private Set<Wormhole> wormholeSet;
-    private Map<CelestialName, String> solarSystemSizes;
+    private Planet currentPlanet;
 
     /**
      * Initializes Galaxy and creates solarSystem until there are no more names left.
@@ -29,23 +30,25 @@ public class Galaxy {
      */
     public Galaxy() {
         solarSystemList = new ArrayList<SolarSystem>();
-        wholePlanetList = new HashMap<String, Planet>();
+        planetNameMap = new HashMap<String, Planet>();
         systemPositionList = new ArrayList<RelativePosition>();
         usedCelestialNames = new HashSet<CelestialName>();
         wormholeSet = new HashSet<Wormhole>();
         mapSize = new RelativePosition(35, 35);
         galaxyMap = new String[mapSize.getX()][mapSize.getY()];
+        int maxWormmHolePairs = 2;
 
-        for (String[] row: galaxyMap)
-            Arrays.fill(row, " ");
+        for (String[] row: galaxyMap) {Arrays.fill(row, " "); }
 
-        while (usedCelestialNames.size() + 5 < CelestialName.values().length){
+        while (usedCelestialNames.size() + 5 < CelestialName.values().length) {
             solarSystemList.add(makeSolarSystem());
         }
-        int maxWormmHolePairs = 2;
-        for (int i = 0; i < maxWormmHolePairs; i++) {
-            placeWormholePair();
-        }
+        planetList = new ArrayList<Planet>(planetNameMap.values());
+        currentPlanet = chooseRandomPlanet();
+        Log.d("MarK", currentPlanet.toString());
+
+        for (int i = 0; i < maxWormmHolePairs; i++) { placeWormholePair(); }
+
         printMap();
     }
 
@@ -179,7 +182,15 @@ public class Galaxy {
      * @return the planet searched (null if not)
      */
     private Planet searchPlanetByName(String name) {
-        return wholePlanetList.containsKey(name) ? wholePlanetList.get(name) : null;
+        return planetNameMap.containsKey(name) ? planetNameMap.get(name) : null;
+    }
+
+    private Planet chooseRandomPlanet() {
+        return planetList.get(rand.nextInt(planetList.size()));
+    }
+
+    public boolean isGalaxyCreated() {
+        return currentPlanet != null || currentPlanet.getInventory() != null;
     }
 
     /**
@@ -190,11 +201,15 @@ public class Galaxy {
         return galaxyMap;
     }
 
-    public Map<String, Planet> getWholePlanetList() {
-        return wholePlanetList;
+    public Map<String, Planet> getPlanetNameMap() {
+        return planetNameMap;
     }
 
     public List<SolarSystem> getSolarSystemList() {
         return solarSystemList;
+    }
+
+    public Planet getCurrentPlanet() {
+        return currentPlanet;
     }
 }
