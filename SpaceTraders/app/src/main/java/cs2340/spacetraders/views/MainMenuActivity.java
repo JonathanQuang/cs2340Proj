@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import cs2340.spacetraders.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity {
 
     public static final int ADD_PLAYER_REQUEST_ID = 1;
 
@@ -17,13 +18,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_menu);
+        ImageView imageView = (ImageView) findViewById(R.id.spaceTradersBackground);
+        imageView.setBackgroundResource(R.drawable.background);
+
 
         Button add =  findViewById(R.id.new_player);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ConfigurationActivity.class);
+                Intent intent = new Intent(MainMenuActivity.this, ConfigurationActivity.class);
                 startActivityForResult(intent, ADD_PLAYER_REQUEST_ID);
             }
         });
