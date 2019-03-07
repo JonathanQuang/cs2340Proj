@@ -1,13 +1,17 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Travel;
 
-public class Trader extends Encounterable {
+import cs2340.spacetraders.entity.Ship;
+import cs2340.spacetraders.entity.ShipType;
+import cs2340.spacetraders.entity.Travel.Encounterable;
+
+public class Pirate extends Encounterable {
 
     private Ship ship;
 
     /**
      *
      */
-    public Trader() {
+    public Pirate() {
         super();
         ship = new Ship(ShipType.randomShipType());
     }
@@ -15,7 +19,7 @@ public class Trader extends Encounterable {
     /**
      *
      */
-    public void trade() {
+    public void steal() {
 
     }
 
@@ -34,7 +38,7 @@ public class Trader extends Encounterable {
      */
     @Override
     public String createDialogue() {
-        return "I am a trader";
+        return "Arrrr";
     }
 
     /**
@@ -45,4 +49,6 @@ public class Trader extends Encounterable {
     public int attack() {
         return 0;
     }
+
+
 }

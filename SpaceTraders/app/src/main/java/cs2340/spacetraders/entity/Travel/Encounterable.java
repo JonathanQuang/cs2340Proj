@@ -1,4 +1,6 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Travel;
+
+import cs2340.spacetraders.entity.Ship;
 
 public abstract class Encounterable {
 

@@ -1,4 +1,8 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Travel;
+
+import cs2340.spacetraders.entity.Ship;
+import cs2340.spacetraders.entity.ShipType;
+import cs2340.spacetraders.entity.Travel.Encounterable;
 
 public class Police extends Encounterable {
 
