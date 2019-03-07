@@ -1,5 +1,7 @@
 package cs2340.spacetraders.viewmodels;
 
+import android.util.Log;
+
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
@@ -37,7 +39,7 @@ public class MarketScreenViewModel {
 
     public String popUpSellStr() {
         return "Your current " + currentGood.toString() + " Supply: " + playerInventory.getGoodAmount(currentGood) + "\n"
-                + "Selling Price: $" + planetInventory.getBuyPrice(currentGood) + "\n"
+                + "Selling Price: $" + planetInventory.getSellPrice(currentGood) + "\n"
                 //+ "Quantity Selling: ---" + "\n"
                 //+ "Total Revenue: ---" + "\n"
                 //+ "Average Revenue per Unit: ---";
@@ -52,7 +54,7 @@ public class MarketScreenViewModel {
     }
 
     public void buyGood(int amount) {
-        planetInventory.purchaseGood(currentGood);
+        planetInventory.purchaseGood(currentGood, amount);
         playerInventory.addGood(currentGood, amount, planetInventory.getBuyPrice(currentGood));
         currentPlayer.changeCredits(-1 * amount * planetInventory.getBuyPrice(currentGood));
     }
@@ -68,6 +70,7 @@ public class MarketScreenViewModel {
         } catch (Exception e) {
             return false;
         }
+        Log.d("market debug", quant + " | " + planetInventory.getBuyPrice(currentGood) + " | " + currentPlayer.getCredits());
         if (quant <= 0 || quant > planetInventory.getGoodCount(currentGood)) {
             return false;
         }
@@ -80,7 +83,24 @@ public class MarketScreenViewModel {
         return true;
     }
 
-    public void sellGood() {
+
+    public void sellGood(int amount) {
+        planetInventory.updateCountOfSingleGood(currentGood, amount);
+        playerInventory.removeGood(currentGood, amount);
+        currentPlayer.changeCredits(amount * planetInventory.getSellPrice(currentGood));
+    }
+
+    public boolean validQuantityToSell(String sellText) {
+        int quant = -1;
+        try {
+            quant = Integer.parseInt(sellText);
+        } catch (Exception e) {
+            return false;
+        }
+        if (quant <= 0 || quant > playerInventory.getGoodAmount(currentGood)) {
+            return false;
+        }
+        return true;
 
     }
 }

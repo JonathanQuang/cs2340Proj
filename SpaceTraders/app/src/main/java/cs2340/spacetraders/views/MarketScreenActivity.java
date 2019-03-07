@@ -147,7 +147,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         sellButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 marketScreenVM.setGood(GOOD);
-                onButtonShowSellPopupWindowClick(view);
+                onButtonShowSellPopupWindowClick(view, SELL_BUTTON);
                 if (PLAYER_INVENTORY.getGoodAmount(GOOD) == 0) {
                     SELL_BUTTON.setEnabled(false);
                 }
@@ -213,6 +213,7 @@ public class MarketScreenActivity extends AppCompatActivity {
 
                 sellButton.setEnabled(true);
                 if (planetInventory.getGoodCount(marketScreenVM.getCurrentGood()) == 0) {
+                    easyToast("All sellers on the planet have left for the day");
                     buyButton.setEnabled(false);
                 }
                 popupWindow.dismiss();
@@ -220,11 +221,11 @@ public class MarketScreenActivity extends AppCompatActivity {
         });
     }
 
-    private void onButtonShowSellPopupWindowClick(View view) {
+    private void onButtonShowSellPopupWindowClick(View view, final Button sellButton) {
         mContext = getApplicationContext();
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.sell_popup, null);
+        final View popupView = inflater.inflate(R.layout.sell_popup, null);
         TextView buyTest = popupView.findViewById(R.id.sellButtonText);
         buyTest.setText(marketScreenVM.popUpSellStr());
 
@@ -254,7 +255,20 @@ public class MarketScreenActivity extends AppCompatActivity {
 
         sell_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                EditText numToBuy = popupView.findViewById(R.id.sell);
+                if (marketScreenVM.validQuantityToSell(numToBuy.getText().toString())) {
+                    marketScreenVM.sellGood(Integer.parseInt(numToBuy.getText().toString()));
+                } else {
+                    easyToast("Invalid Quantity");
+                    return;
+                }
 
+
+                if (playerInventory.getGoodAmount(marketScreenVM.getCurrentGood()) == 0) {
+                    sellButton.setEnabled(false);
+                }
+
+                popupWindow.dismiss();
             }
         });
     }

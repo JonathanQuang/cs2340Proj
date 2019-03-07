@@ -40,6 +40,11 @@ public class PlanetInventory {
         }
     }
 
+    public void updateCountOfSingleGood(Good good, int quantityAdded) {
+        int currentGoodAmount = goodsCount.get(good);
+        goodsCount.put(good,currentGoodAmount + quantityAdded);
+    }
+
     public boolean canBuyGood(Good good) {
         return goodsCanBuy.get(good) != null ;
     }
@@ -63,6 +68,16 @@ public class PlanetInventory {
     public void purchaseGood(Good good) {
         if (goodsCount.get(good) != null && goodsCount.get(good) != 0) {
             int count = goodsCount.get(good) - 1;
+            goodsCount.put(good, count);
+            if(count == 0) {
+                goodsCanBuy.put(good, false);
+            }
+        }
+    }
+
+    public void purchaseGood(Good good, int amountToRemove) {
+        if (goodsCount.get(good) != null && goodsCount.get(good) != 0) {
+            int count = goodsCount.get(good) - amountToRemove;
             goodsCount.put(good, count);
             if(count == 0) {
                 goodsCanBuy.put(good, false);
