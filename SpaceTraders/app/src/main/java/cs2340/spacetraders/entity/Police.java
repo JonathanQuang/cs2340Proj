@@ -4,11 +4,14 @@ public class Police extends Encounterable {
 
     private double bribeChance, searchChance, ignoreChance, attackChance;
 
+    private Ship ship;
+
     /**
      *
      */
     public Police() {
         super();
+        ship = new Ship(ShipType.randomShipType());
     }
 
     /**
@@ -40,7 +43,7 @@ public class Police extends Encounterable {
      */
     @Override
     public Ship getShip() {
-        return null;
+        return ship;
     }
 
     /**

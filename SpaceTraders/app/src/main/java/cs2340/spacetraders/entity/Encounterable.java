@@ -2,7 +2,9 @@ package cs2340.spacetraders.entity;
 
 public abstract class Encounterable {
 
-    private double fleeChance, pursueChance, surrenderChance;
+    private double fleeChance = 0.25;
+    private double pursueChance = 0.5;
+    private double surrenderChance = 0.75;
 
     /**
      *

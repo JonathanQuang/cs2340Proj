@@ -2,11 +2,14 @@ package cs2340.spacetraders.entity;
 
 public class Pirate extends Encounterable {
 
+    private Ship ship;
+
     /**
      *
      */
     public Pirate() {
         super();
+        ship = new Ship(ShipType.randomShipType());
     }
 
     /**
@@ -22,7 +25,7 @@ public class Pirate extends Encounterable {
      */
     @Override
     public Ship getShip() {
-        return null;
+        return ship;
     }
 
     /**

@@ -3,6 +3,8 @@ package cs2340.spacetraders.entity;
 public class Ship {
 
     private ShipType shipType;
+    private double health;
+    private double fuel;
 
     /**
      * Initializes a ship
@@ -10,10 +12,12 @@ public class Ship {
      */
     public Ship(ShipType shipType){
         this.shipType = shipType;
+        this.health = 100;
+        this.fuel = 100;
     }
 
     public Ship() {
-        this.shipType = ShipType.Gnat;
+        this(ShipType.Gnat);
     }
 
     /**
@@ -32,6 +36,21 @@ public class Ship {
         return shipType;
     }
 
+    public double getHealth() {
+        return health;
+    }
+
+    public void setHealth(double health) {
+        this.health = health;
+    }
+
+    public double getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(double fuel) {
+        this.fuel = fuel;
+    }
 
     /**
      * Gets string representation of the information about the ship
