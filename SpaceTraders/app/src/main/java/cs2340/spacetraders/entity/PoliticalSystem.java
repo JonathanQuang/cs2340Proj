@@ -1,47 +1,47 @@
 package cs2340.spacetraders.entity;
 
 public enum PoliticalSystem {
-    Anarchy,
-    Capitalist_State,
-    Communist_State,
-    Confederacy,
-    Corporate_State,
-    Cybernetic_State,
-    Democracy,
-    Dictatorship,
-    Fascist_State ,
-    Feudal_State,
-    Military_State,
-    Monarchy,
-    Pacifist_State,
-    Socialist_State,
-    State_Of_Satori,
-    Technocracy,
-    Theocracy;
+    Anarchy("High", "None", "Low", "None", "None"),
+    Capitalist_State("Low", "Some", "High", "None", "High"),
+    Communist_State("Low", "High", "Some", "High", "Low"),
+    Confederacy("Some", "High", "High", "None", "None"),
+    Corporate_State("Low", "High", "High", "Low", "Some"),
+    Cybernetic_State("High", "High", "High", "None", "High"),
+    Democracy("Low", "Low", "High", "Some", "Some"),
+    Dictatorship("High", "High", "High", "High", "High"),
+    Fascist_State("Low", "High", "Low", "None", "None"),
+    Feudal_State("High", "None", "Low", "None", "None"),
+    Military_State("None", "High", "High", "None", "None"),
+    Monarchy("Some", "High", "High", "None", "None"),
+    Pacifist_State("Low", "Low", "Some", "None", "None"),
+    Socialist_State("High", "Low", "Low", "High", "None"),
+    State_Of_Satori("Low", "Low", "Low", "None", "None"),
+    Technocracy("Low", "High", "High", "High", "High"),
+    Theocracy("Low", "High", "Some", "None", "Some");
 
-    private String pirateQuantiy;
+    private String pirateQuantity;
     private String policeQuantity;
     private String tradersQuantity;
-    private String policeBriberyAcceptence;
-    private String policeSmugglingAcceptence;
+    private String policeBriberyAcceptance;
+    private String policeSmugglingAcceptance;
 //    private Good mainDesiredGood
 
     PoliticalSystem() {
     }
 
 
-    PoliticalSystem(String pirateQuantiy, String policeQuantity, String tradersQuantity, String policeBriberyAcceptence,
-                    String policeSmugglingAcceptence) {
-        this.pirateQuantiy = pirateQuantiy;
+    PoliticalSystem(String pirateQuantity, String policeQuantity, String tradersQuantity, String policeBriberyAcceptance,
+                    String policeSmugglingAcceptance) {
+        this.pirateQuantity = pirateQuantity;
         this.policeQuantity = policeQuantity;
         this.tradersQuantity = tradersQuantity;
-        this.policeBriberyAcceptence = policeBriberyAcceptence;
-        this.policeSmugglingAcceptence = policeSmugglingAcceptence;
+        this.policeBriberyAcceptance = policeBriberyAcceptance;
+        this.policeSmugglingAcceptance = policeSmugglingAcceptance;
 
     }
 
     public String getPirateQuantiy() {
-        return pirateQuantiy;
+        return pirateQuantity;
     }
 
     public String getPoliceQuantity() {
@@ -53,10 +53,10 @@ public enum PoliticalSystem {
     }
 
     public String getPoliceBriberyAcceptence() {
-        return policeBriberyAcceptence;
+        return policeBriberyAcceptance;
     }
 
     public String getPoliceSmugglingAcceptence() {
-        return policeSmugglingAcceptence;
+        return policeSmugglingAcceptance;
     }
 }

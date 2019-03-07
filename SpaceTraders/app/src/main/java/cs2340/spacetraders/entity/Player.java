@@ -11,6 +11,7 @@ public class Player {
     private int pilotStat;
     private int credits;
     private Ship ship;
+    private Inventory inventory;
 
     /**
      * Makes a player with name, stats, and ship
@@ -28,6 +29,7 @@ public class Player {
         this.pilotStat = pilotStat;
         this.credits = initialCredits;
         this.ship = new Ship();
+        this.inventory = new Inventory();
     }
 
     /**
