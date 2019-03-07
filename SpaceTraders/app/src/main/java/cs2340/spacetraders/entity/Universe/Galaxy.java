@@ -1,4 +1,4 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
@@ -12,7 +12,9 @@ import java.util.Random;
 import java.util.Set;
 
 public class Galaxy {
-    private Map<String, Planet> wholePlanetList;
+
+    private Map<String, Planet> planetNameMap;
+    private List<Planet> planetList;
     private List<RelativePosition> systemPositionList;
     private Set<CelestialName> usedCelestialNames;
     private List<SolarSystem> solarSystemList;
@@ -20,6 +22,8 @@ public class Galaxy {
     private String[][] galaxyMap;
     private Random rand = new Random();
     private Set<Wormhole> wormholeSet;
+    private Planet currentPlanet;
+
 
     /**
      * Initializes Galaxy and creates solarSystem until there are no more names left.
@@ -27,22 +31,26 @@ public class Galaxy {
      */
     public Galaxy() {
         solarSystemList = new ArrayList<SolarSystem>();
-        wholePlanetList = new HashMap<String, Planet>();
+        planetNameMap = new HashMap<String, Planet>();
         systemPositionList = new ArrayList<RelativePosition>();
         usedCelestialNames = new HashSet<CelestialName>();
         wormholeSet = new HashSet<Wormhole>();
-        mapSize = new RelativePosition(40, 40);
+        mapSize = new RelativePosition(35, 35);
         galaxyMap = new String[mapSize.getX()][mapSize.getY()];
-        for (String[] row: galaxyMap)
-            Arrays.fill(row, " ");
 
-        while (usedCelestialNames.size() + 5 < CelestialName.values().length){
+        int maxWormmHolePairs = 2;
+
+        for (String[] row: galaxyMap) {Arrays.fill(row, " "); }
+
+        while (usedCelestialNames.size() + 5 < CelestialName.values().length) {
             solarSystemList.add(makeSolarSystem());
         }
-        int maxWormmHolePairs = 2;
-        for (int i = 0; i < maxWormmHolePairs; i++) {
-            placeWormholePair();
-        }
+        planetList = new ArrayList<Planet>(planetNameMap.values());
+        currentPlanet = chooseRandomPlanet();
+        Log.d("MarK", currentPlanet.toString());
+
+        for (int i = 0; i < maxWormmHolePairs; i++) { placeWormholePair(); }
+
         printMap();
     }
 
@@ -51,17 +59,13 @@ public class Galaxy {
      */
     private SolarSystem makeSolarSystem() {
         int planetNum = rand.nextInt(5) + 1;
-        RelativePosition center = getValidSystemPoint(planetNum);
         CelestialName systemName = getNonRepeatedCelestialName();
+        Log.d("Planet", "Getting new system's center position");
+        RelativePosition center = getValidSystemPoint(planetNum);
         String size = getSystemSize(planetNum);
 
         Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
-
-        //return new SolarSystem(systemName, center, planetNum, size,this);
-
-        //SolarSystem solarSystem = new SolarSystem(systemName, center, planetNum, size,this);
-        //solarSystemList.add(solarSystem);
         return new SolarSystem(systemName, center, planetNum, size,this);
     }
 
@@ -102,9 +106,9 @@ public class Galaxy {
     private RelativePosition getValidSystemPoint(int planetNum) {
         RelativePosition center;
         do {
-            int x = rand.nextInt(mapSize.getX());
-            int y = rand.nextInt(mapSize.getY());
             int r = (planetNum + 2)/3;
+            int x = rand.nextInt(mapSize.getX() - 2 * r) + r;
+            int y = rand.nextInt(mapSize.getY() - 2 * r) + r;
             center = new RelativePosition(x, y, r, true);
         } while (systemPositionList.contains(center) || !isValidCornerPoint(center));
         systemPositionList.add(center);
@@ -180,7 +184,15 @@ public class Galaxy {
      * @return the planet searched (null if not)
      */
     private Planet searchPlanetByName(String name) {
-        return wholePlanetList.containsKey(name) ? wholePlanetList.get(name) : null;
+        return planetNameMap.containsKey(name) ? planetNameMap.get(name) : null;
+    }
+
+    private Planet chooseRandomPlanet() {
+        return planetList.get(rand.nextInt(planetList.size()));
+    }
+
+    public boolean isGalaxyCreated() {
+        return currentPlanet != null || currentPlanet.getInventory() != null;
     }
 
     /**
@@ -191,7 +203,15 @@ public class Galaxy {
         return galaxyMap;
     }
 
-    public Map<String, Planet> getWholePlanetList() {
-        return wholePlanetList;
+    public Map<String, Planet> getPlanetNameMap() {
+        return planetNameMap;
+    }
+
+    public List<SolarSystem> getSolarSystemList() {
+        return solarSystemList;
+    }
+
+    public Planet getCurrentPlanet() {
+        return currentPlanet;
     }
 }

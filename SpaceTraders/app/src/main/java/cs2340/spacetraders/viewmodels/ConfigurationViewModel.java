@@ -38,14 +38,14 @@ public class ConfigurationViewModel extends AndroidViewModel {
      */
     public boolean onOkay(String name, int engineerStat, int fighterStat, int traderStat,
                           int pilotStat, Difficulty difficulty, int pointsLeft) {
-        if (name.length() == 0) {
-            Toast.makeText(getApplication(), "Name is Empty", Toast.LENGTH_LONG).show();
-            return false;
-        } else if (pointsLeft != 0) {
-            Toast.makeText(getApplication(),
-                    String.valueOf(pointsLeft) + " Skill Point Remaining", Toast.LENGTH_LONG).show();
-            return false;
-        }
+//        if (name.length() == 0) {
+//            Toast.makeText(getApplication(), "Name is Empty", Toast.LENGTH_LONG).show();
+//            return false;
+//        } else if (pointsLeft != 0) {
+//            Toast.makeText(getApplication(),
+//                    String.valueOf(pointsLeft) + " Skill Point Remaining", Toast.LENGTH_LONG).show();
+//            return false;
+//        }
         Log.d("debug", "Game Stared");
 
         Toast.makeText(getApplication(), "Starting Game!", Toast.LENGTH_LONG).show();

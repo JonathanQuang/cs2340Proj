@@ -1,4 +1,4 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Universe;
 
 public class Wormhole {
     private Wormhole connectedWormhole;
@@ -86,6 +86,4 @@ public class Wormhole {
         }
         return retStr + " connected to a wormhole located at " + connectedWormhole.connectedWormhole.position;
     }
-
-
 }

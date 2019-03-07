@@ -1,4 +1,4 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Universe;
 
 public enum PoliticalSystem {
     Anarchy,

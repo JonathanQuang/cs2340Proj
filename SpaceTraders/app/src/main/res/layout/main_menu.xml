@@ -26,7 +26,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.MainActivity">
+        tools:context=".views.MainMenuActivity">
 
         <ImageView
             android:id="@+id/spaceTradersBackground"
@@ -41,7 +41,7 @@
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
             android:background="@android:color/black"
-            android:src="@mipmap/background"
+            android:src="@drawable/background"
             android:visibility="visible" />
     </RelativeLayout>
 

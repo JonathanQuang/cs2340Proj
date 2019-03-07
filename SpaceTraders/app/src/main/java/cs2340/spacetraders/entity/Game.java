@@ -1,5 +1,7 @@
 package cs2340.spacetraders.entity;
 
+import cs2340.spacetraders.entity.Universe.Galaxy;
+
 public class Game {
     private  Difficulty difficulty;
     private Galaxy galaxy;

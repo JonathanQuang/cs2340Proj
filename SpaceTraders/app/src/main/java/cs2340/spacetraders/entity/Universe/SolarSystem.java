@@ -1,15 +1,13 @@
-package cs2340.spacetraders.entity;
+package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
 public class SolarSystem {
-    private Planet[] plantList;
+    private Planet[] planetList;
     private Set<RelativePosition> planetPositions;
     private CelestialName name;
     private RelativePosition center;
@@ -25,10 +23,14 @@ public class SolarSystem {
         rand = new Random();
 
         planetPositions = new HashSet<RelativePosition>();
-        plantList = new Planet[planetNum];
-        for (int i = 0; i < plantList.length; i++) {
-            plantList[i] = makePlanet(i);
+
+        planetList = new Planet[planetNum];
+        for (int i = 0; i < planetList.length; i++) {
+            planetList[i] = makePlanet(i);
+            Log.d("Planet ", planetList[i].toString());
+            parentGalaxy.getPlanetNameMap().put(planetList[i].getName().toString(), planetList[i]);
         }
+
     }
 
     /**
@@ -45,19 +47,8 @@ public class SolarSystem {
         RelativePosition point = getValidUnusedPoint();
         String size = getPlanetSize();
         parentGalaxy.getGalaxyMap()[point.getX()][point.getY()] = "*";
-        parentGalaxy.getWholePlanetList().put(celestialName.getName(), plantList[i]);
-        //Integer debugInt = new Integer(plantList.length);
-        //Log.d("Planet list size", debugInt.toString());
-
-        plantList[i] = new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
-        try {
-            Log.d("Planet ", plantList[i].toString());
-        } catch (NullPointerException e) {
-            Log.d("Planet", "null planet detected");
-        }
 
         return new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
-
     }
 
 
@@ -84,4 +75,11 @@ public class SolarSystem {
         return sizeStr;
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public Planet[] getPlanetList() {
+        return planetList;
+    }
 }
