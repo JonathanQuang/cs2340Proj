@@ -20,6 +20,10 @@ public class MarketScreenViewModel {
         this.currentGood = currentGood;
     }
 
+    public Good getCurrentGood() {
+        return currentGood;
+    }
+
     public String popUpBuyStr() {
         return "Planet " + currentGood.toString() + " Supply: " + planetInventory.getGoodCount(currentGood) + "\n"
                 + "Buying Price: $" + planetInventory.getBuyPrice(currentGood) + "\n"

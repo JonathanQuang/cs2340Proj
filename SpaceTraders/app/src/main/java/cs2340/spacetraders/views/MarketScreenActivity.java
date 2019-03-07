@@ -117,16 +117,10 @@ public class MarketScreenActivity extends AppCompatActivity {
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 marketScreeVM.setGood(GOOD);
-                int i = onButtonShowBuyPopupWindowClick(view);
+                onButtonShowBuyPopupWindowClick(view, BUY_BUTTON, SELL_BUTTON);
                 Log.d("Market", Integer.toString(playerInventory.getGoodAmount(GOOD)));
 
-                if (planetInventory.getGoodCount(GOOD) == 0) {
-                    BUY_BUTTON.setEnabled(false);
-                }
 
-                if (playerInventory.getGoodAmount(GOOD) > 0) {
-                    SELL_BUTTON.setEnabled(true);
-                }
             }
         });
 
@@ -165,7 +159,10 @@ public class MarketScreenActivity extends AppCompatActivity {
         return sellButton;
     }
 
-    private int onButtonShowBuyPopupWindowClick(View view) {
+
+    //---------------------------------------------------------------------------
+
+    private void onButtonShowBuyPopupWindowClick(View view, final Button buyButton, final Button sellButton) {
         mContext = getApplicationContext();
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -184,7 +181,6 @@ public class MarketScreenActivity extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();
                 return true;
@@ -200,9 +196,13 @@ public class MarketScreenActivity extends AppCompatActivity {
         purchase_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 marketScreeVM.buyGood();
+                sellButton.setEnabled(true);
+                if (planetInventory.getGoodCount(marketScreeVM.getCurrentGood()) == 0) {
+                    buyButton.setEnabled(false);
+                }
+                popupWindow.dismiss();
             }
         });
-        return 0;
     }
 
     private void onButtonShowSellPopupWindowClick(View view) {
