@@ -9,18 +9,21 @@
 
     <TextView
         android:id="@+id/planetName"
-        android:layout_width="104dp"
+        android:layout_width="149dp"
         android:layout_height="31dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="50px"
+        android:textSize="75px"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/planetImage" />
 
     <ImageView
         android:id="@+id/planetImage"
@@ -41,12 +44,14 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="411dp"
-        android:layout_height="409dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/planetName">
 
         <TableLayout
             android:id="@+id/table"
@@ -78,8 +83,9 @@
                         android:layout_width="128dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textAlignment="center"
                         android:text="Resources"
-                        android:textSize="40px"
+                        android:textSize="50px"
                         tools:layout_editor_absoluteX="50dp"
                         tools:layout_editor_absoluteY="57dp" />
 
@@ -89,7 +95,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Buy"
-                        android:textSize="40px"
+                        android:textAlignment="center"
+                        android:textSize="50px"
                         tools:layout_editor_absoluteX="145dp"
                         tools:layout_editor_absoluteY="57dp" />
 
@@ -98,7 +105,9 @@
                         android:layout_width="114dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textAlignment="center"
                         android:text="Sell"
+                        android:textSize="50px"
                         tools:layout_editor_absoluteX="210dp"
                         tools:layout_editor_absoluteY="57dp" />
                 </LinearLayout>
@@ -129,7 +138,8 @@
                         android:layout_height="34dp"
                         android:layout_weight="1"
                         android:text="Button"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:textAlignment="center"/>
 
                     <Button
                         android:id="@+id/modelSellButton"
@@ -137,7 +147,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Button"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:textAlignment="center"/>
                 </LinearLayout>
 
             </TableRow>

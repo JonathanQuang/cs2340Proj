@@ -8,11 +8,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="296dp"
+        android:layout_width="350dp"
         android:layout_height="224dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="192dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,20 +24,24 @@
 
     <TextView
         android:id="@+id/sellButtonText"
-        android:layout_width="255dp"
-        android:layout_height="92dp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="TextView"
+        android:textSize="40px"
+        android:textAlignment="center"
         android:textColor="@color/colorAccent"
-        android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.022"
         tools:text="Testing Buy PopUp" />
 
     <Button
@@ -45,6 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
+        android:gravity="center"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintHorizontal_bias="0.11"
@@ -57,6 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sell"
+        android:gravity="center"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintHorizontal_bias="0.84"
@@ -66,16 +74,21 @@
 
     <EditText
         android:id="@+id/sell"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="136dp"
-        android:layout_marginBottom="76dp"
+        android:layout_width="38dp"
+        android:layout_height="54dp"
         android:ems="10"
+        android:gravity="center"
         android:hint="0"
         android:inputType="number"
         android:text="0"
+        android:textSize="50px"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.743"
         tools:text="0" />
 
 </android.support.constraint.ConstraintLayout>
