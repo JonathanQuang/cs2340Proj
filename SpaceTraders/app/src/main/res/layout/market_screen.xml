@@ -55,7 +55,7 @@
 
         <TableLayout
             android:id="@+id/table"
-            android:layout_width="354dp"
+            android:layout_width="match_parent"
             android:layout_height="346dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -71,7 +71,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="100px">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,19 +80,19 @@
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_width="128dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="135dp"
+                        android:layout_height="100px"
                         android:gravity="center"
-                        android:textAlignment="center"
                         android:text="Resources"
+                        android:textAlignment="center"
                         android:textSize="50px"
                         tools:layout_editor_absoluteX="50dp"
                         tools:layout_editor_absoluteY="57dp" />
 
                     <TextView
                         android:id="@+id/textView2"
-                        android:layout_width="113dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="135dp"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="Buy"
                         android:textAlignment="center"
@@ -102,11 +102,11 @@
 
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="114dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="135dp"
+                        android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textAlignment="center"
                         android:text="Sell"
+                        android:textAlignment="center"
                         android:textSize="50px"
                         tools:layout_editor_absoluteX="210dp"
                         tools:layout_editor_absoluteY="57dp" />
@@ -117,38 +117,39 @@
             <TableRow
                 android:id="@+id/modelRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="80px">
 
                 <LinearLayout
                     android:id="@+id/modelLinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="100px"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/modelRowText"
-                        android:layout_width="104dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="135dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="..." />
+                        android:text="..."
+                        android:textSize="40px"/>
 
                     <Button
                         android:id="@+id/modelBuyButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="34dp"
-                        android:layout_weight="1"
-                        android:text="Button"
-                        android:textSize="10sp"
-                        android:textAlignment="center"/>
-
-                    <Button
-                        android:id="@+id/modelSellButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="135dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Button"
-                        android:textSize="10sp"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:textSize="35px" />
+
+                    <Button
+                        android:id="@+id/modelSellButton"
+                        android:layout_width="135dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Button"
+                        android:textAlignment="center"
+                        android:textSize="35px" />
                 </LinearLayout>
 
             </TableRow>
