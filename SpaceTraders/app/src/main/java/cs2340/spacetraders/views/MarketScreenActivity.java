@@ -3,7 +3,6 @@ package cs2340.spacetraders.views;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -12,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TableLayout;
@@ -19,13 +19,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
-import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.MarketScreenViewModel;
@@ -34,11 +31,8 @@ public class MarketScreenActivity extends AppCompatActivity {
 
     private Context mContext;
     private Activity mActivity;
-
     private Button mButton;
-
     private PopupWindow mPopupWindow;
-
     private TableRow modelRow;
     private TableLayout table;
     private TextView modelRowText;
@@ -50,6 +44,13 @@ public class MarketScreenActivity extends AppCompatActivity {
 
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
+
+    int[] smallStars = {
+            R.drawable.blue_s,
+            R.drawable.red_s,
+            R.drawable.yellow_s,
+            R.drawable.white_s
+    };
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +73,53 @@ public class MarketScreenActivity extends AppCompatActivity {
         planetNametext.setText(currentPlanet.getName().toString());
         marketScreenVM = new MarketScreenViewModel(planetInventory, playerInventory);
         marketScreenVM.setPlayer(Model.getInstance().getPlayer());
+
+        int type = R.drawable.normie_l;
+
+        switch(currentPlanet.getResources()) {
+            case DESERT:
+                type = R.drawable.desert_l;
+                break;
+            case WARLIKE:
+                type = R.drawable.war_l;
+                break;
+            case ARTISTIC:
+                type = R.drawable.artistic_l;
+                break;
+            case LIFELESS:
+                type = R.drawable.lifeless_l;
+                break;
+            case POORSOIL:
+                type = R.drawable.poor_soil_l;
+                break;
+            case RICHSOIL:
+                type = R.drawable.rich_soil_l;
+                break;
+            case RICHFAUNA:
+                type = R.drawable.fauna_l;
+                break;
+            case LOTSOFHERBS:
+                type = R.drawable.herbs_l;
+                break;
+            case LOTSOFWATER:
+                type = R.drawable.water_l;
+                break;
+            case MINERALRICH:
+                type = R.drawable.mineral_l;
+                break;
+            case MINERALPOOR:
+                type = R.drawable.poor_soil_l;
+                break;
+            case WEIRDMUSHROOMS:
+                type = R.drawable.mushrooms_l;
+                break;
+            case NOSPECIALRESOURCES:
+                type = R.drawable.normie_l;
+                break;
+        }
+
+        ImageView planetImage = (ImageView) findViewById(R.id.planetImage);
+        planetImage.setImageResource(type);
 
         for (Good good: Good.values()) {
             table.addView(generateTableRow(good));
