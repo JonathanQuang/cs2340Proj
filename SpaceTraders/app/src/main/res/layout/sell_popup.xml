@@ -17,10 +17,10 @@
         android:background="@android:drawable/editbox_dropdown_light_frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.655" />
+        app:layout_constraintVertical_bias="0.657" />
 
     <TextView
         android:id="@+id/sellButtonText"
@@ -32,16 +32,15 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="40px"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
+        android:textSize="45px"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sell"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.022"
         tools:text="Testing Buy PopUp" />
 
     <Button
