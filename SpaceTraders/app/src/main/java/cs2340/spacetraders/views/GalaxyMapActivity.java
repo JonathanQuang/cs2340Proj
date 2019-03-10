@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -56,6 +57,10 @@ public class GalaxyMapActivity extends AppCompatActivity {
 
         int imageID = Model.getInstance().getPlanetImageIDs().get(planet.getResources());
         planet_button.setBackground(ContextCompat.getDrawable(getApplicationContext(), imageID));
+
+        ViewGroup.LayoutParams params = planet_button.getLayoutParams();
+        params.height = params.width = 70 + planet.getSizeAsInt() * 40;
+        planet_button.setLayoutParams(params);
 
         planet_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -104,8 +104,11 @@ public class Planet {
         return parentSolarSystem;
     }
 
-    @Override
-    public int hashCode() {
-        return (size == null ? 0 : size.hashCode()) + (resources == null ? 0 : resources.ordinal());
+    public int getSizeAsInt() {
+        if (size.equals("Small")) {return 0;}
+        if (size.equals("Medium")) {return 1;}
+        else {return 2;}
     }
+
+
 }
