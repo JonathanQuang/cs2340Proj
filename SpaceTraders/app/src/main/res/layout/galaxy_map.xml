@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".views.MainMenuActivity"
-        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteX="118dp"
         tools:layout_editor_absoluteY="0dp">
 
         <ImageView
@@ -115,5 +115,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.422" />
+
+    <ImageView
+        android:layout_width="312dp"
+        android:layout_height="315dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ring"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
 
 </android.support.constraint.ConstraintLayout>
