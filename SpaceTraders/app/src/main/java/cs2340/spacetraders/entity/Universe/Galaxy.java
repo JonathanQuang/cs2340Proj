@@ -183,7 +183,7 @@ public class Galaxy {
      * @param name the name of a planet that may or maybe not exist
      * @return the planet searched (null if not)
      */
-    private Planet searchPlanetByName(String name) {
+    public Planet searchPlanetByName(String name) {
         return planetNameMap.containsKey(name) ? planetNameMap.get(name) : null;
     }
 
@@ -213,5 +213,9 @@ public class Galaxy {
 
     public Planet getCurrentPlanet() {
         return currentPlanet;
+    }
+
+    public List<Planet> getPlanetList() {
+        return planetList;
     }
 }

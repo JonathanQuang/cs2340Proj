@@ -18,15 +18,18 @@ public class Planet {
     private PlanetInventory inventory;
     private PlanetaryEvent event;
     private double tradersReturnRate;
+    private SolarSystem parentSolarSystem;
 
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
-                  PoliticalSystem politicalSystem, RelativePosition relativePosition, String size) {
+                  PoliticalSystem politicalSystem, RelativePosition relativePosition,
+                  String size, SolarSystem parentSolarSystem) {
         this.name = name;
         this.techLevel = techLevel;
         this.resources = resources;
         this.politicalSystem = politicalSystem;
         this.relativePosition = relativePosition;
         this.size = size;
+        this.parentSolarSystem = parentSolarSystem;
         inventory = new PlanetInventory();
 
         event = PlanetaryEvent.Nothing;

@@ -64,12 +64,8 @@ public class MarketScreenViewModel {
     }
 
     public boolean validQuantityToBuy(String buyText) {
-        int quant = -1;
-        try {
-            quant = Integer.parseInt(buyText);
-        } catch (Exception e) {
-            return false;
-        }
+        int quant = Integer.parseInt(buyText);
+
         Log.d("market debug", quant + " | " + planetInventory.getBuyPrice(currentGood) + " | " + currentPlayer.getCredits());
         if (quant <= 0 || quant > planetInventory.getGoodCount(currentGood)) {
             return false;
@@ -91,15 +87,12 @@ public class MarketScreenViewModel {
     }
 
     public boolean validQuantityToSell(String sellText) {
-        int quant = -1;
-        try {
-            quant = Integer.parseInt(sellText);
-        } catch (Exception e) {
-            return false;
-        }
+        int quant = Integer.parseInt(sellText);
+
         if (quant <= 0 || quant > playerInventory.getGoodAmount(currentGood)) {
             return false;
         }
+
         return true;
 
     }

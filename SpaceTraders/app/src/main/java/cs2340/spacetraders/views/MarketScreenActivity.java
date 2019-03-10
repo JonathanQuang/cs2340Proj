@@ -2,6 +2,7 @@ package cs2340.spacetraders.views;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -125,6 +126,15 @@ public class MarketScreenActivity extends AppCompatActivity {
             table.addView(generateTableRow(good));
         }
         table.removeView(table.getChildAt(1));
+
+
+        Button map_button = findViewById(R.id.map_button);
+        map_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MarketScreenActivity.this, GalaxyMapActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
     }
 
     private View generateTableRow(Good good) {

@@ -48,7 +48,7 @@ public class SolarSystem {
         String size = getPlanetSize();
         parentGalaxy.getGalaxyMap()[point.getX()][point.getY()] = "*";
 
-        return new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
+        return new Planet(celestialName, techLevel, resources, politicalSystem, point, size, this);
     }
 
 
