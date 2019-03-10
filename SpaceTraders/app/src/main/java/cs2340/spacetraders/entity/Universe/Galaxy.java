@@ -58,7 +58,7 @@ public class Galaxy {
      * Makes a solar system that randomizes all its attributes
      */
     private SolarSystem makeSolarSystem() {
-        int planetNum = rand.nextInt(5) + 1;
+        int planetNum = rand.nextInt(5) + 1;  //1-5
         CelestialName systemName = getNonRepeatedCelestialName();
         Log.d("Planet", "Getting new system's center position");
         RelativePosition center = getValidSystemPoint(planetNum);

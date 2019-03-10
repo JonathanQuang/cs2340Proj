@@ -99,4 +99,13 @@ public class Planet {
     public PlanetInventory getInventory() {
         return inventory;
     }
+
+    public SolarSystem getParentSolarSystem() {
+        return parentSolarSystem;
+    }
+
+    @Override
+    public int hashCode() {
+        return (size == null ? 0 : size.hashCode()) + (resources == null ? 0 : resources.ordinal());
+    }
 }
