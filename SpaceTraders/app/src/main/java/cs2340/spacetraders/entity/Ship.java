@@ -40,16 +40,16 @@ public class Ship {
         return health;
     }
 
-    public void setHealth(double health) {
-        this.health = health;
+    public void takeDamage(double damage) {
+        this.health -= damage;
     }
 
     public double getFuel() {
         return fuel;
     }
 
-    public void setFuel(double fuel) {
-        this.fuel = fuel;
+    public void useFuel(double fuel) {
+        this.fuel -= fuel;
     }
 
     public int getCargoCapacity() {

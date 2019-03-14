@@ -9,9 +9,10 @@ public class Player {
     private int fighterStat;
     private int traderStat;
     private int pilotStat;
-    private int credits;
-    private Ship ship;
-    private Inventory inventory;
+    private static int credits;
+    private static Ship ship;
+    private static Inventory inventory;
+    private static boolean criminalStatus;
 
     /**
      * Makes a player with name, stats, and ship
@@ -30,15 +31,16 @@ public class Player {
         this.credits = initialCredits;
         this.ship = new Ship();
         this.inventory = new Inventory(ship.getCargoCapacity());
+        this.criminalStatus = false;
     }
 
-    public Inventory getInventory() {
+    public static Inventory getInventory() {
         return inventory;
     }
 
     public int getCredits() {return credits;}
 
-    public void changeCredits(int changeNum) {credits += changeNum;}
+    public static void changeCredits(int changeNum) {credits += changeNum;}
 
     /**
      * Gets a string representation of the player's attributes
@@ -54,5 +56,21 @@ public class Player {
         retStr += ", Number of Credits: " + credits;
         retStr += ", Ship Info: " + ship;
         return retStr;
+    }
+
+    public static void setCriminalStatus(boolean status) {
+        criminalStatus = status;
+    }
+
+    public static boolean getCriminalStatus() {
+        return criminalStatus;
+    }
+
+    public void death() {
+
+    }
+
+    public static void takeDamage(double damage) {
+        ship.takeDamage(damage);
     }
 }

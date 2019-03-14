@@ -1,26 +1,31 @@
 package cs2340.spacetraders.entity.Travel;
 
+import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.entity.Travel.Encounterable;
+import cs2340.spacetraders.entity.Universe.Planet;
 
 public class Pirate extends Encounterable {
-
-    private Ship ship;
 
     /**
      *
      */
     public Pirate() {
         super();
-        ship = new Ship(ShipType.randomShipType());
+        super.setAttackChance(1);
+        super.setIgnoreChance(0);
     }
 
     /**
      *
      */
     public void steal() {
+        if (Player.getInventory().getCapacity() > 0) {
 
+        } else {
+            Player.changeCredits(-2000);
+        }
     }
 
     /**
@@ -29,7 +34,7 @@ public class Pirate extends Encounterable {
      */
     @Override
     public Ship getShip() {
-        return ship;
+        return super.getShip();
     }
 
     /**
@@ -39,15 +44,6 @@ public class Pirate extends Encounterable {
     @Override
     public String createDialogue() {
         return "Arrrr";
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public int attack() {
-        return 0;
     }
 
 

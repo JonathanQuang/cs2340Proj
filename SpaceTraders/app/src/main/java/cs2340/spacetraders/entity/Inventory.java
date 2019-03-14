@@ -10,6 +10,7 @@ public class Inventory {
     private Map<Good, Double> averagePurchasePrice;
     private int currCapacity;
     private int maxCapacity;
+    private boolean containsIllegalGoods = false;
 
     /**
      * Constructor
@@ -46,6 +47,10 @@ public class Inventory {
      */
     public int getCapacity() {
         return currCapacity;
+    }
+
+    public boolean containsIllegalGoods() {
+        return containsIllegalGoods;
     }
 
     public int getGoodAmount(Good good) {

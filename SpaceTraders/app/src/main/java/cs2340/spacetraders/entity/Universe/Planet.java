@@ -13,7 +13,10 @@ public class Planet {
     private RelativePosition relativePosition;
     private String size;
     private String policeQuantity;
-    private String pirateQuantit;
+    private String traderQuantity;
+    private String pirateQuantity;
+    private String policeBriberyAcceptance;
+    private String policeSmugglingAcceptance;
     private boolean isSpacePort;
     private PlanetInventory inventory;
     private PlanetaryEvent event;
@@ -27,6 +30,11 @@ public class Planet {
         this.politicalSystem = politicalSystem;
         this.relativePosition = relativePosition;
         this.size = size;
+        this.policeQuantity = politicalSystem.getPoliceQuantity();
+        this.pirateQuantity = politicalSystem.getPirateQuantity();
+        this.traderQuantity = politicalSystem.getTradersQuantity();
+        this.policeBriberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
+        this.policeSmugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
         inventory = new PlanetInventory();
 
         event = PlanetaryEvent.Nothing;
@@ -68,8 +76,20 @@ public class Planet {
         return policeQuantity;
     }
 
-    public String getPirateQuantit() {
-        return pirateQuantit;
+    public String getPirateQuantity() {
+        return pirateQuantity;
+    }
+
+    public String getTraderQuantity() {
+        return traderQuantity;
+    }
+
+    public String getPoliceBriberyAcceptance() {
+        return policeBriberyAcceptance;
+    }
+
+    public String getPoliceSmugglingAcceptance() {
+        return policeSmugglingAcceptance;
     }
 
     public boolean isSpacePort() {
