@@ -10,10 +10,7 @@ import cs2340.spacetraders.viewmodels.Market;
 
 public class MarketScreenViewModel {
 
-    private PlanetInventory planetInventory;
-    private Inventory playerInventory;
-    private Good currentGood;
-    private Player currentPlayer;
+
     private Market currentMarket;
 
     public MarketScreenViewModel(PlanetInventory planetInventory, Inventory playerInventory) {
