@@ -15,7 +15,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_border"
-        android:backgroundTint="@android:color/secondary_text_light"
         android:fontFamily="monospace"
         android:gravity="center"
         android:text="New Player"
