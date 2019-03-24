@@ -8,13 +8,14 @@ import android.widget.Button;
 
 import cs2340.spacetraders.R;
 
-class MenuScreen extends AppCompatActivity {
+public class MenuScreen extends AppCompatActivity {
     private Button shipMarketButton;
     private Button shipyardButton;
     private Button shipRepairButton;
     private Button hireCrewButton;
     private Button starMapButton;
     private Button targetSystemButton;
+    private Button planetMarketButton;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ class MenuScreen extends AppCompatActivity {
         hireCrewButton = findViewById(R.id.hireCrewButton);
         starMapButton = findViewById(R.id.starMapButton);
         targetSystemButton = findViewById(R.id.targetSystemButton);
+        planetMarketButton = findViewById(R.id.planetMarketButton);
 
         shipMarketButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -64,6 +66,13 @@ class MenuScreen extends AppCompatActivity {
         targetSystemButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, TargetSystemActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        planetMarketButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuScreen.this, MarketScreenActivity.class);
                 startActivityForResult(intent, 0);
             }
         });

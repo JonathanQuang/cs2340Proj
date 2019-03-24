@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -42,7 +43,7 @@ public class MarketScreenActivity extends AppCompatActivity {
     private LinearLayout modelLinearLayout;
     private TextView planetNametext;
     private MarketScreenViewModel marketScreenVM;
-    private Button menuButton;
+    private FloatingActionButton menuButton;
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
 
