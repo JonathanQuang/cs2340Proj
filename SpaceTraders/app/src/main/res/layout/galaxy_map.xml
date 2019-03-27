@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".views.MainMenuActivity"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="173dp">
 
         <ImageView
             android:id="@+id/spaceTradersBackground"
@@ -26,13 +26,13 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:background="@drawable/galaxy_background"
+            <!--android:background="@drawable/galaxy_background"-->
             android:visibility="visible" />
     </RelativeLayout>
 
+
     <Button
         android:id="@+id/planet1"
-
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -118,7 +118,7 @@
 
     <ImageView
         android:layout_width="312dp"
-        android:layout_height="315dp"
+        android:layout_height="312dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -130,5 +130,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.452" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="1000dp"
+                android:layout_height="1000dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:adjustViewBounds="true"
+                android:scaleType="center"
+                android:src="@drawable/galaxy_background" />
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
