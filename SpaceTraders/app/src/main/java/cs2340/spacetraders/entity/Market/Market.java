@@ -1,4 +1,4 @@
-package cs2340.spacetraders.viewmodels;
+package cs2340.spacetraders.entity.Market;
 
 import android.util.Log;
 
