@@ -333,4 +333,6 @@ public class MarketScreenActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onBackPressed() {}
 }

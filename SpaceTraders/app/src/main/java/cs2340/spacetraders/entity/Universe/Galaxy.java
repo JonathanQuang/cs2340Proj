@@ -24,7 +24,7 @@ public class Galaxy {
     private Set<Wormhole> wormholeSet;
     private Planet currentPlanet;
     private int mapWidth = 25;
-    private int mapHeight = 50;
+    private int mapHeight = 37;
 
 
     /**
@@ -51,6 +51,7 @@ public class Galaxy {
         currentPlanet = chooseRandomPlanet();
         Log.d("MarK", currentPlanet.toString());
 
+        //commented because wormhole in 3x3 system will cause infinite loop currently
 //        for (int i = 0; i < maxWormmHolePairs; i++) { placeWormholePair(); }
 
         printMap();

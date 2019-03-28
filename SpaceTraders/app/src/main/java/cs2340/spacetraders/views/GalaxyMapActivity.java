@@ -131,19 +131,16 @@ public class GalaxyMapActivity extends AppCompatActivity {
         int screenHeight = size.y - 250;
 
         RelativePosition mapSize = Model.getInstance().getGame().getGalaxy().getMapSize();
-        RelativePosition currPlanetPos = currentPlanet.getRelativePosition();
-        RelativePosition maxPlanetAwayPos = travel.getMaxValidPlanetAway().getRelativePosition();
-        System.out.println("maxPlanetAway = " + maxPlanetAwayPos);
-
-        int deltaX = Math.abs(currPlanetPos.getX() - maxPlanetAwayPos.getX());
-        int deltaY = Math.abs(currPlanetPos.getY() - maxPlanetAwayPos.getY());
-
-        int deltaXPx = (int) (((double) deltaX / mapSize.getX()) * screenWidth);
-        int deltaYPx = (int) (((double) deltaY / mapSize.getY()) * screenHeight);
+        int deltaXPx = (int) (((double) 1 / mapSize.getX()) * screenWidth);
+        int deltaYPx = (int) (((double) 1 / mapSize.getY()) * screenHeight);
+        System.out.println("deltaYPx = " + deltaYPx);
+        System.out.println("deltaXPx = " + deltaXPx);
+        System.out.println("screenHeight = " + screenHeight);
+        System.out.println("screenWidth = " + screenWidth);
 
 
         ViewGroup.LayoutParams params = ring.getLayoutParams();
-        params.height = params.width = 130 + (radiusOfTravel - 1) * 60;
+        params.height = params.width = 2* (radiusOfTravel * 42);
         ring.setLayoutParams(params);
         setPositionOnScreen(ring, currentPlanet.getRelativePosition(), params.height/2);
     }

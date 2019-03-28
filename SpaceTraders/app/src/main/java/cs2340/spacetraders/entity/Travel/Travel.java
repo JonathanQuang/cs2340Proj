@@ -45,11 +45,10 @@ public class Travel {
             int dist = planetDistances.get(planet);
             int fuelUsed = dist * FUEL_PER_UNIT_MOVED;
             ship.setFuel(fuel - fuelUsed);
-            System.out.println("(fuel-fuelUsed) = " + (fuel-fuelUsed));
+//            System.out.println("(fuel-fuelUsed) = " + (fuel-fuelUsed));
             //RUN_ENCOUNTERABLE()
             currentPlanet = planet;
             findValidPlanets();
-            System.out.println("validPlanets();v = " + validPlanets);;
             Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
             return 0;
         }
@@ -66,7 +65,7 @@ public class Travel {
         int max = 0;
         for (Planet otherPlanet: planetList) {
             int dist = (int) currentPlanet.getPlanetDistance(otherPlanet);
-            if (dist < maxDistance && otherPlanet != currentPlanet) {
+            if (dist <= maxDistance && otherPlanet != currentPlanet) {
                 validPlanets.add(otherPlanet);
                 planetDistances.put(otherPlanet, dist);
 
