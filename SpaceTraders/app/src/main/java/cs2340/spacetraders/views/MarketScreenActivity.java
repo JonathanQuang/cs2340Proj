@@ -47,13 +47,6 @@ public class MarketScreenActivity extends AppCompatActivity {
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
 
-    int[] smallStars = {
-            R.drawable.blue_s,
-            R.drawable.red_s,
-            R.drawable.yellow_s,
-            R.drawable.white_s
-    };
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.market_screen);
@@ -67,8 +60,9 @@ public class MarketScreenActivity extends AppCompatActivity {
         menuButton = findViewById(R.id.menuButton);
 
         Planet currentPlanet = null;
-        while(currentPlanet == null) {
-            currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
+        boolean buggedout = true;
+        while(currentPlanet == null && buggedout) {
+                currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
         }
         planetInventory = currentPlanet.getInventory();
         playerInventory = Model.getInstance().getPlayer().getInventory();
@@ -76,50 +70,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         marketScreenVM = new MarketScreenViewModel(planetInventory, playerInventory);
         marketScreenVM.setPlayer(Model.getInstance().getPlayer());
 
-        int type = R.drawable.normie_l;
-
-        switch(currentPlanet.getResources()) {
-            case DESERT:
-                type = R.drawable.desert_l;
-                break;
-            case WARLIKE:
-                type = R.drawable.war_l;
-                break;
-            case ARTISTIC:
-                type = R.drawable.artistic_l;
-                break;
-            case LIFELESS:
-                type = R.drawable.lifeless_l;
-                break;
-            case POORSOIL:
-                type = R.drawable.poor_soil_l;
-                break;
-            case RICHSOIL:
-                type = R.drawable.rich_soil_l;
-                break;
-            case RICHFAUNA:
-                type = R.drawable.fauna_l;
-                break;
-            case LOTSOFHERBS:
-                type = R.drawable.herbs_l;
-                break;
-            case LOTSOFWATER:
-                type = R.drawable.water_l;
-                break;
-            case MINERALRICH:
-                type = R.drawable.mineral_l;
-                break;
-            case MINERALPOOR:
-                type = R.drawable.poor_soil_l;
-                break;
-            case WEIRDMUSHROOMS:
-                type = R.drawable.mushrooms_l;
-                break;
-            case NOSPECIALRESOURCES:
-                type = R.drawable.normie_l;
-                break;
-        }
-
+        int type = Model.getInstance().getPlanetImageIDs().get(currentPlanet.getResources());
         ImageView planetImage = (ImageView) findViewById(R.id.planetImage);
         planetImage.setImageResource(type);
 
@@ -333,4 +284,6 @@ public class MarketScreenActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onBackPressed() {}
 }

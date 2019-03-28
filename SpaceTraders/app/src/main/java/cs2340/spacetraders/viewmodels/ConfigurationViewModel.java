@@ -16,7 +16,7 @@ import cs2340.spacetraders.model.Model;
 
 public class ConfigurationViewModel extends AndroidViewModel {
 
-    public final int STARTING_POINTS = 1; //16
+    public final int STARTING_POINTS = 16; //16
 
     /**
      * Default Constructor
@@ -33,7 +33,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
      * @param fighterStat the fighter stats of the player
      * @param traderStat the trader stats of the player
      * @param pilotStat the pilot stats of the player
-     * @param difficulty the diI fficult of the game
+     * @param difficulty the difficulty of the game
      * @return if player was properly created
      */
     public boolean onOkay(String name, int engineerStat, int fighterStat, int traderStat,
@@ -43,8 +43,8 @@ public class ConfigurationViewModel extends AndroidViewModel {
 //            return false;
 //        } else if (pointsLeft != 0) {
 //            Toast.makeText(getApplication(),
-//                    String.valueOf(pointsLeft) + " Skill Point Remaining", Toast.LENGTH_LONG).show();
-//            return false;
+//                   String.valueOf(pointsLeft) + " Skill Point Remaining", Toast.LENGTH_LONG).show();
+//                return false;
 //        }
         Log.d("debug", "Game Stared");
 

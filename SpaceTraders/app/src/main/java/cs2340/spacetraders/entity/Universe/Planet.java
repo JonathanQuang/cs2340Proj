@@ -21,20 +21,26 @@ public class Planet {
     private PlanetInventory inventory;
     private PlanetaryEvent event;
     private double tradersReturnRate;
+    private SolarSystem parentSolarSystem;
 
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
-                  PoliticalSystem politicalSystem, RelativePosition relativePosition, String size) {
+                  PoliticalSystem politicalSystem, RelativePosition relativePosition,
+                  String size, SolarSystem parentSolarSystem) {
         this.name = name;
         this.techLevel = techLevel;
         this.resources = resources;
         this.politicalSystem = politicalSystem;
         this.relativePosition = relativePosition;
         this.size = size;
+<<<<<<< HEAD
         this.policeQuantity = politicalSystem.getPoliceQuantity();
         this.pirateQuantity = politicalSystem.getPirateQuantity();
         this.traderQuantity = politicalSystem.getTradersQuantity();
         this.policeBriberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
         this.policeSmugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
+=======
+        this.parentSolarSystem = parentSolarSystem;
+>>>>>>> sandbox
         inventory = new PlanetInventory();
 
         event = PlanetaryEvent.Nothing;
@@ -116,9 +122,23 @@ public class Planet {
         return inventory;
     }
 
+
+    public SolarSystem getParentSolarSystem() {
+        return parentSolarSystem;
+    }
+
+    public int getSizeAsInt() {
+        if (size.equals("Small")) {return 0;}
+        if (size.equals("Medium")) {return 1;}
+        else {return 2;}
+    }
+
+
+
     public double getPlanetDistance(Planet otherPlanet) {
         return  Math.sqrt(
                 Math.pow(relativePosition.getX() - otherPlanet.relativePosition.getX(), 2) +
                 Math.pow(relativePosition.getY() - otherPlanet.relativePosition.getY(), 2));
     }
+
 }
