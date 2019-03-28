@@ -64,8 +64,9 @@ public class EncounterScreenActivity extends AppCompatActivity {
         encounterScreenVM.setPlayer(Model.getInstance().getPlayer());
         character = encounterScreenVM.setCharacter();
         if (character == null) {
+            Log.d("EncounterGabe11", "NoEncounter");
             setContentView(R.layout.encounter_screen);
-            Button okButton = findViewById(R.id.playButton);
+            Button okButton = findViewById(R.id.encounterButton);
 
             okButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -74,11 +75,22 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 }
             });
         } else if (character instanceof Police) {
+            Log.d("EncounterGabe11", "Police");
             showPolicePopupWindow(findViewById(android.R.id.content));
         } else if (character instanceof Pirate) {
+            Log.d("EncounterGabe11", "Pirate");
             showPiratePopupWindow(findViewById(android.R.id.content));
         } else if (character instanceof Trader) {
+            Log.d("EncounterGabe11", "Trader");
             setContentView(R.layout.trader_popup);
+            Button okButton = findViewById(R.id.encounterButton);
+
+            okButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
+                    startActivityForResult(intent,0);
+                }
+            });
         }
     }
 
@@ -136,7 +148,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.police_popup, null);
-        TextView buyTest = popupView.findViewById(R.id.sellButtonText);
+        TextView buyTest = popupView.findViewById(R.id.buyButtonText);
         buyTest.setText(encounterScreenVM.popUpSellStr());
 
         Button flee_button = popupView.findViewById(R.id.flee_button);
