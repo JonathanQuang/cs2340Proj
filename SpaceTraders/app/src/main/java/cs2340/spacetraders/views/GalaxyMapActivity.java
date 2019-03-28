@@ -1,8 +1,11 @@
 package cs2340.spacetraders.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -38,6 +41,15 @@ public class GalaxyMapActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.galaxy_map);
+
+        Button okButton = findViewById(R.id.playButton);
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(GalaxyMapActivity.this, EncounterScreenActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
 
 //        Map <String, Planet> wholePlanetList = Model.getInstance().getGame().getGalaxy().getWholePlanetList();
 //        List<SolarSystem> solarSystemList = Model.getInstance().getGame().getGalaxy().getSolarSystemList();

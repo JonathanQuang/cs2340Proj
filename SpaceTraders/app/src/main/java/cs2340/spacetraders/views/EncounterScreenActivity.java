@@ -2,6 +2,7 @@ package cs2340.spacetraders.views;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import cs2340.spacetraders.R;
+import cs2340.spacetraders.entity.Difficulty;
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Travel.Encounterable;
@@ -63,8 +65,14 @@ public class EncounterScreenActivity extends AppCompatActivity {
         character = encounterScreenVM.setCharacter();
         if (character == null) {
             setContentView(R.layout.encounter_screen);
-            modelLinearLayout = findViewById(R.id.modelLinearLayout);
-            planetNametext = findViewById(R.id.planetName);
+            Button okButton = findViewById(R.id.playButton);
+
+            okButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
+                    startActivityForResult(intent,0);
+                }
+            });
         } else if (character instanceof Police) {
             showPolicePopupWindow(findViewById(android.R.id.content));
         } else if (character instanceof Pirate) {
