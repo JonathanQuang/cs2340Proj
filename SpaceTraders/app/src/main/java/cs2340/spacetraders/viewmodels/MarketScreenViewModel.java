@@ -6,95 +6,69 @@ import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 import cs2340.spacetraders.entity.Player;
+import cs2340.spacetraders.entity.Market.Market;
 
 public class MarketScreenViewModel {
 
-    private PlanetInventory planetInventory;
-    private Inventory playerInventory;
-    private Good currentGood;
-    private Player currentPlayer;
+
+    private Market currentMarket;
 
     public MarketScreenViewModel(PlanetInventory planetInventory, Inventory playerInventory) {
-        this.planetInventory = planetInventory;
-        this.playerInventory = playerInventory;
+        currentMarket = new Market(planetInventory, playerInventory);
     }
 
     public void setGood(Good currentGood) {
-        this.currentGood = currentGood;
+        currentMarket.setGood(currentGood);
     }
 
     public Good getCurrentGood() {
-        return currentGood;
+        return currentMarket.getCurrentGood();
     }
 
     public String popUpBuyStr() {
-        return "Planet " + currentGood.toString() + " Supply: " + planetInventory.getGoodCount(currentGood) + "\n"
-                + "Buying Price: $" + planetInventory.getBuyPrice(currentGood) + "\n"
+        return "Planet " + currentMarket.getCurrentGood().toString() + " Supply: " + currentMarket.getCurrentGoodCountInPlanet() + "\n"
+                + "Buying Price: $" + currentMarket.getPlanetBuyPrice() + "\n"
                 //+ "Quantity Purchasing: ---" + "\n"
                 //+ "Total Cost: ---" + "\n";
-                + "You currently have " + playerInventory.getGoodAmount(currentGood) + " " + currentGood.getGoodName() + "\n"
-                + "You have " + currentPlayer.getCredits() + " credits" + "\n"
+                + "You currently have " + currentMarket.getCurrentGoodCountInPlayer() + " " + currentMarket.getGoodName() + "\n"
+                + "You have " + currentMarket.getPlayerCredits() + " credits" + "\n"
                 + "Type below amount purchase";
     }
 
     public String popUpSellStr() {
-        return "Your current " + currentGood.toString() + " Supply: " + playerInventory.getGoodAmount(currentGood) + "\n"
-                + "Selling Price: $" + planetInventory.getSellPrice(currentGood) + "\n"
+        return "Your current " + currentMarket.getCurrentGood().toString() + " Supply: " + currentMarket.getCurrentGoodCountInPlayer() + "\n"
+                + "Selling Price: $" + currentMarket.getPlanetSellPrice() + "\n"
                 //+ "Quantity Selling: ---" + "\n"
                 //+ "Total Revenue: ---" + "\n"
                 //+ "Average Revenue per Unit: ---";
-                + "You currently have " + playerInventory.getGoodAmount(currentGood) + " " + currentGood.getGoodName() + "\n"
-                + "You have " + currentPlayer.getCredits() + " credits" + "\n"
+                + "You currently have " + currentMarket.getCurrentGoodCountInPlayer() + " " + currentMarket.getGoodName() + "\n"
+                + "You have " + currentMarket.getPlayerCredits() + " credits" + "\n"
                 + "Type below amount to sell";
     }
 
     public void buyGood() {
-        planetInventory.purchaseGood(currentGood);
-        playerInventory.addGood(currentGood, 1, planetInventory.getBuyPrice(currentGood));
+        currentMarket.buyGood();
     }
 
     public void buyGood(int amount) {
-        planetInventory.purchaseGood(currentGood, amount);
-        playerInventory.addGood(currentGood, amount, planetInventory.getBuyPrice(currentGood));
-        currentPlayer.changeCredits(-1 * amount * planetInventory.getBuyPrice(currentGood));
+        currentMarket.buyGood(amount);
     }
 
     public void setPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
+        currentMarket.setPlayer(currentPlayer);
     }
 
     public boolean validQuantityToBuy(String buyText) {
-        int quant = Integer.parseInt(buyText);
-
-        Log.d("market debug", quant + " | " + planetInventory.getBuyPrice(currentGood) + " | " + currentPlayer.getCredits());
-        if (quant <= 0 || quant > planetInventory.getGoodCount(currentGood)) {
-            return false;
-        }
-        if (quant * planetInventory.getBuyPrice(currentGood) > currentPlayer.getCredits()) {
-            return false;
-        }
-        if (!(playerInventory.canBuyGood(quant))) {
-            return false;
-        }
-        return true;
+        return currentMarket.validQuantityToBuy(buyText);
     }
 
 
     public void sellGood(int amount) {
-        planetInventory.updateCountOfSingleGood(currentGood, amount);
-        playerInventory.removeGood(currentGood, amount);
-        currentPlayer.changeCredits(amount * planetInventory.getSellPrice(currentGood));
+        currentMarket.sellGood(amount);
     }
 
     public boolean validQuantityToSell(String sellText) {
-        int quant = Integer.parseInt(sellText);
-
-        if (quant <= 0 || quant > playerInventory.getGoodAmount(currentGood)) {
-            return false;
-        }
-
-        return true;
-
+        return currentMarket.validQuantityToSell(sellText);
     }
 }
 

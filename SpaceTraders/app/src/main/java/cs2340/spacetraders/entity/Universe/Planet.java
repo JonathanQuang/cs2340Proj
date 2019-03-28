@@ -93,12 +93,12 @@ public class Planet {
             int sellPrice = (int) (buyPrice * (1 - tradersReturnRate));
             inventory.addToPlanetInventory(good, buyPrice, sellPrice, count, canBuy, canSell);
         }
-//        Log.d("Market", techLevel.toString() + "-> " + inventory.toString());
     }
 
     public PlanetInventory getInventory() {
         return inventory;
     }
+
 
     public SolarSystem getParentSolarSystem() {
         return parentSolarSystem;
@@ -110,5 +110,12 @@ public class Planet {
         else {return 2;}
     }
 
+
+
+    public double getPlanetDistance(Planet otherPlanet) {
+        return  Math.sqrt(
+                Math.pow(relativePosition.getX() - otherPlanet.relativePosition.getX(), 2) +
+                Math.pow(relativePosition.getY() - otherPlanet.relativePosition.getY(), 2));
+    }
 
 }

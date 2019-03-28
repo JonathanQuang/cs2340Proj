@@ -24,6 +24,18 @@
         </activity>
         <activity android:name=".views.GameActivity">
         </activity>
+        <activity android:name=".views.MenuScreen">
+        </activity>
+        <activity android:name=".views.ShipMarketActivity">
+        </activity>
+        <activity android:name=".views.TargetSystemActivity">
+        </activity>
+        <activity android:name=".views.ShipyardActivity">
+        </activity>
+        <activity android:name=".views.ShipRepairActivity">
+        </activity>
+        <activity android:name=".views.HireCrewActivity">
+        </activity>
         <activity android:name=".views.GalaxyMapActivity">
         </activity>
     </application>

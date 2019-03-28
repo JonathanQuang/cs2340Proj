@@ -221,7 +221,12 @@ public class Galaxy {
         return planetList;
     }
 
+
     public RelativePosition getMapSize() {
         return mapSize;
+    }
+
+    public void setCurrentPlanet(Planet currentPlanet) {
+        this.currentPlanet = currentPlanet;
     }
 }

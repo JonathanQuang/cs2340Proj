@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -42,7 +43,7 @@ public class MarketScreenActivity extends AppCompatActivity {
     private LinearLayout modelLinearLayout;
     private TextView planetNametext;
     private MarketScreenViewModel marketScreenVM;
-
+    private FloatingActionButton menuButton;
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
 
@@ -63,7 +64,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         modelSellButton = findViewById(R.id.modelSellButton);
         modelLinearLayout = findViewById(R.id.modelLinearLayout);
         planetNametext = findViewById(R.id.planetName);
-
+        menuButton = findViewById(R.id.menuButton);
 
         Planet currentPlanet = null;
         while(currentPlanet == null) {
@@ -126,12 +127,9 @@ public class MarketScreenActivity extends AppCompatActivity {
             table.addView(generateTableRow(good));
         }
         table.removeView(table.getChildAt(1));
-
-
-        Button map_button = findViewById(R.id.map_button);
-        map_button.setOnClickListener(new View.OnClickListener() {
+        menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MarketScreenActivity.this, GalaxyMapActivity.class);
+                Intent intent = new Intent(MarketScreenActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -334,4 +332,5 @@ public class MarketScreenActivity extends AppCompatActivity {
     private void easyToast(String toastMessage) {
         Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
     }
+
 }
