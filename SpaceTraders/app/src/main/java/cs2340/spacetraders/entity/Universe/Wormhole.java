@@ -84,6 +84,6 @@ public class Wormhole {
         if (connectedWormhole == null) {
             return retStr + " but not connected to another wormhole";
         }
-        return retStr + " connected to a wormhole located at " + connectedWormhole.connectedWormhole.position;
+        return retStr + " connected to a wormhole located at " + connectedWormhole.position;
     }
 }
