@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,10 +23,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import cs2340.spacetraders.R;
+import cs2340.spacetraders.entity.Travel.Travel;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.entity.Universe.RelativePosition;
 import cs2340.spacetraders.entity.Universe.SolarSystem;
@@ -35,7 +38,7 @@ import cs2340.spacetraders.viewmodels.GalaxyMapViewModel;
 public class GalaxyMapActivity extends AppCompatActivity {
 
     private GalaxyMapViewModel galaxyMapVM;
-    private List<Planet> validPlanets;
+    private Travel travel;
 
     /** Called when the application starts. */
     @SuppressLint("ClickableViewAccessibility")
@@ -45,6 +48,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         setContentView(R.layout.galaxy_map);
 
         Planet currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
+        travel = new Travel(Model.getInstance().getPlayer(), currentPlanet);
 
         //Show All Planets
         List<Planet> planetList = Model.getInstance().getGame().getGalaxy().getPlanetList();
@@ -54,10 +58,15 @@ public class GalaxyMapActivity extends AppCompatActivity {
         for (int i = 0; i < planetButtonIDs.length; i++) {
             Planet planet = i < planetList.size() ? planetList.get(i) : null;
             makePlanetButton(planet, planetButtonIDs[i]);
-            if(i + 1 == planetButtonIDs.length) {
-                System.out.println("planetList.size() = " + planetList.size());
+            if(planet != null && planet.equals(currentPlanet)) {
+                Button curr_planet_button = findViewById(planetButtonIDs[i]);
+                if (curr_planet_button != null) {
+                    curr_planet_button.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.white_l));
+                }
             }
         }
+
+        putValidPlanetRing(currentPlanet, travel.radiusOfTravel());
 
         //Circle All Systems
         List<SolarSystem> solarSystemsList = Model.getInstance().getGame().getGalaxy().getSolarSystemList();
@@ -112,6 +121,33 @@ public class GalaxyMapActivity extends AppCompatActivity {
         view.setTranslationY((int) (screenHeight * probY - radius) + 20);
     }
 
+    private void putValidPlanetRing(Planet currentPlanet, int radiusOfTravel) {
+        ImageView ring = findViewById(R.id.validRing);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int screenWidth = size.x - 20;
+        int screenHeight = size.y - 250;
+
+        RelativePosition mapSize = Model.getInstance().getGame().getGalaxy().getMapSize();
+        RelativePosition currPlanetPos = currentPlanet.getRelativePosition();
+        RelativePosition maxPlanetAwayPos = travel.getMaxValidPlanetAway().getRelativePosition();
+        System.out.println("maxPlanetAway = " + maxPlanetAwayPos);
+
+        int deltaX = Math.abs(currPlanetPos.getX() - maxPlanetAwayPos.getX());
+        int deltaY = Math.abs(currPlanetPos.getY() - maxPlanetAwayPos.getY());
+
+        int deltaXPx = (int) (((double) deltaX / mapSize.getX()) * screenWidth);
+        int deltaYPx = (int) (((double) deltaY / mapSize.getY()) * screenHeight);
+
+
+        ViewGroup.LayoutParams params = ring.getLayoutParams();
+        params.height = params.width = 130 + (radiusOfTravel - 1) * 60;
+        ring.setLayoutParams(params);
+        setPositionOnScreen(ring, currentPlanet.getRelativePosition(), params.height/2);
+    }
+
     private void setRing(SolarSystem solarSystem, int ringID) {
         View ring = findViewById(ringID);
         if (solarSystem == null) {
@@ -128,7 +164,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
 
 
 
-    private void onButtonShowPlanetInfoClick(View view, Planet planet) {
+    private void onButtonShowPlanetInfoClick(View view, final Planet planet) {
         LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.planet_info_popup, null);
 
@@ -149,10 +185,19 @@ public class GalaxyMapActivity extends AppCompatActivity {
             }
         });
 
-//        Button travelButton = findViewById(R.id.travelButton);
-//        travelButton.setEnabled(false);
-//        if (planet !=  null) {
-//        }
+        Button travelButton = popupView.findViewById(R.id.travelButton);
+        if (!travel.getValidPlanets().contains(planet)){
+            travelButton.setEnabled(false);
+        }
+
+        travelButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (travel.travel(planet) == 0) {
+                    Intent intent = new Intent(GalaxyMapActivity.this, MarketScreenActivity.class);
+                    startActivityForResult(intent,0);
+                }
+            }
+        });
     }
 
     public int[] getPlanetButtonIDs() {

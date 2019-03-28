@@ -15,13 +15,16 @@ public class Travel {
     private int FUEL_PER_UNIT_MOVED = 10;
     private Player player;
     private Planet currentPlanet;
-    private ArrayList<Planet> validPlanets;
+    private List<Planet> validPlanets;
     private Map<Planet, Integer> planetDistances;
+    private Planet maxValidPlanetAway;
 
-    public Travel(Player player) {
+    public Travel(Player player, Planet currentPlanet) {
         this.player = player;
+        this.currentPlanet = currentPlanet;
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
+        findValidPlanets();
     }
 
     public boolean canTravelTo(Planet planet) {
@@ -42,9 +45,11 @@ public class Travel {
             int dist = planetDistances.get(planet);
             int fuelUsed = dist * FUEL_PER_UNIT_MOVED;
             ship.setFuel(fuel - fuelUsed);
+            System.out.println("(fuel-fuelUsed) = " + (fuel-fuelUsed));
             //RUN_ENCOUNTERABLE()
             currentPlanet = planet;
             findValidPlanets();
+            System.out.println("validPlanets();v = " + validPlanets);;
             Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
             return 0;
         }
@@ -58,16 +63,33 @@ public class Travel {
         List<Planet> planetList = Model.getInstance().getGame().getGalaxy().getPlanetList();
 
         //Brute Force
+        int max = 0;
         for (Planet otherPlanet: planetList) {
             int dist = (int) currentPlanet.getPlanetDistance(otherPlanet);
-            if (dist < maxDistance) {
+            if (dist < maxDistance && otherPlanet != currentPlanet) {
                 validPlanets.add(otherPlanet);
                 planetDistances.put(otherPlanet, dist);
+
+                if (dist > max) {
+                    maxValidPlanetAway = otherPlanet;
+                }
             }
         }
     }
 
     public int radiusOfTravel() {
         return player.getShip().getFuel() / FUEL_PER_UNIT_MOVED;
+    }
+
+    public List<Planet> getValidPlanets() {
+        return validPlanets;
+    }
+
+    public Planet getMaxValidPlanetAway() {
+        return maxValidPlanetAway;
+    }
+
+    public Map<Planet, Integer> getPlanetDistances() {
+        return planetDistances;
     }
 }

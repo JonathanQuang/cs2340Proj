@@ -1216,5 +1216,12 @@
         android:src="@drawable/ring"
         tools:ignore="MissingConstraints"/>
 
+    <ImageView
+        android:id="@+id/validRing"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/cyan_ring"
+        tools:ignore="MissingConstraints" />
+
 
 </android.support.constraint.ConstraintLayout>
