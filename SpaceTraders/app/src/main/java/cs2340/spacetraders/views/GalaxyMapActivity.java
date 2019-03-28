@@ -1,22 +1,14 @@
 package cs2340.spacetraders.views;
 
-<<<<<<< HEAD
-import android.content.Intent;
-=======
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.media.Image;
->>>>>>> sandbox
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-<<<<<<< HEAD
-import android.view.View;
-import android.widget.Button;
-=======
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,7 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
->>>>>>> sandbox
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,36 +47,6 @@ public class GalaxyMapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.galaxy_map);
 
-<<<<<<< HEAD
-        Button okButton = findViewById(R.id.playButton);
-
-        okButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(GalaxyMapActivity.this, EncounterScreenActivity.class);
-                startActivityForResult(intent,0);
-            }
-        });
-
-//        Map <String, Planet> wholePlanetList = Model.getInstance().getGame().getGalaxy().getWholePlanetList();
-//        List<SolarSystem> solarSystemList = Model.getInstance().getGame().getGalaxy().getSolarSystemList();
-//        solarSystemList.get(0).getPlanetList();
-
-        //19 solar systems
-//        Random generator = new Random();
-//        for (int i = 0; i < 19; i++) {
-//            ImageButton star = (ImageButton) findViewById(R.id.star);
-//            if (starsmall){
-//                int randomSmallStar = smallStars[generator.nextInt(smallStars.length)];
-//                star.setImageResource(randomSmallStar);
-//            } else if (star.getS){
-//                int randomMediumStar = mediumStars[generator.nextInt(mediumStars.length)];
-//                star.setImageResource(randomMediumStar);
-//            } else{
-//                int randomLargeStar = largeStars[generator.nextInt(largeStars.length)];
-//                star.setImageResource(randomLargeStar);
-//            }
-//        }
-=======
         Planet currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
         travel = new Travel(Model.getInstance().getPlayer(), currentPlanet);
 
@@ -114,7 +75,6 @@ public class GalaxyMapActivity extends AppCompatActivity {
             SolarSystem solarSystem = i < solarSystemsList.size() ? solarSystemsList.get(i) : null;
             setRing(solarSystem, ringIDs[i]);
         }
->>>>>>> sandbox
     }
 
     private void makePlanetButton(final Planet planet, int buttonID) {
@@ -230,7 +190,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         travelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (travel.travel(planet) == 0) {
-                    Intent intent = new Intent(GalaxyMapActivity.this, MarketScreenActivity.class);
+                    Intent intent = new Intent(GalaxyMapActivity.this, EncounterScreenActivity.class);
                     startActivityForResult(intent,0);
                 }
             }

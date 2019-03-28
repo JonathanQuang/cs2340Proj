@@ -40,13 +40,9 @@ public class Player {
 
     public int getCredits() {return credits;}
 
-<<<<<<< HEAD
-    public static void changeCredits(int changeNum) {credits += changeNum;}
-=======
     public int getShipTypePrice() {return ship.getShipTypePrice();}
 
-    public void changeCredits(int changeNum) {credits += changeNum;}
->>>>>>> sandbox
+    public static void changeCredits(int changeNum) {credits += changeNum;}
 
     public void setShipType(ShipType shipType) {
         ship.setShipType(shipType);

@@ -32,15 +32,12 @@ public class Planet {
         this.politicalSystem = politicalSystem;
         this.relativePosition = relativePosition;
         this.size = size;
-<<<<<<< HEAD
         this.policeQuantity = politicalSystem.getPoliceQuantity();
         this.pirateQuantity = politicalSystem.getPirateQuantity();
         this.traderQuantity = politicalSystem.getTradersQuantity();
         this.policeBriberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
         this.policeSmugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
-=======
         this.parentSolarSystem = parentSolarSystem;
->>>>>>> sandbox
         inventory = new PlanetInventory();
 
         event = PlanetaryEvent.Nothing;

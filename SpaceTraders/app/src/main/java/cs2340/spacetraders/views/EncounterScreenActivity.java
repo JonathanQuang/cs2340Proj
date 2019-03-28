@@ -54,15 +54,28 @@ public class EncounterScreenActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        currentPlanet = null;
+        Log.d("EncounterGabe11", "Start!");
+
         while(currentPlanet == null) {
+            Log.d("EncounterGabe11", "Planet!");
             currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
+            planetNametext.setText(currentPlanet.getName().toString());
         }
-        playerInventory = Model.getInstance().getPlayer().getInventory();
-        planetNametext.setText(currentPlanet.getName().toString());
-        encounterScreenVM = new EncounterScreenViewModel(currentPlanet, playerInventory);
-        encounterScreenVM.setPlayer(Model.getInstance().getPlayer());
+
+        while (playerInventory == null) {
+            Log.d("EncounterGabe11", "Player Inventory!");
+            playerInventory = Model.getInstance().getPlayer().getInventory();
+        }
+
+        while (encounterScreenVM == null) {
+            Log.d("EncounterGabe11", "Encounter VM!");
+            encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
+            encounterScreenVM.setPlayer(Model.getInstance().getPlayer());
+        }
+
+        Log.d("EncounterGabe11", "Character!");
         character = encounterScreenVM.setCharacter();
+
         if (character == null) {
             Log.d("EncounterGabe11", "NoEncounter");
             setContentView(R.layout.encounter_screen);

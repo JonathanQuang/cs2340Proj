@@ -6,27 +6,14 @@ import java.util.List;
 import java.util.Random;
 
 public enum ShipType {
-<<<<<<< HEAD
-    Flea("FLEA" , 5, 20),
-    Gnat("GNAT" , 10, 25),
-    Firefly("FIREFLY" , 20, 35),
-    Mosquito("MOSQUITO" , 30, 45),
-    Bumblebee("BUMBLEBEE" , 40, 55),
-    Beetle("BEETLE" , 50, 65),
-    Hornet("HORNET" , 60, 75);
 
-    /** the full string representation of the shiptype **/
-    private final String SHIP_TYPE;
-    private final int CARGO_CAPACITY;
-    private final int DEFAULT_DAMAGE;
-=======
-    Flea("FLEA" , 10, "Tiny", 20, 25, 0, 0, 0, 1, 7000),
-    Gnat("GNAT" , 15, "Small", 14, 100, 1, 0, 1, 1, 10000),
-    Firefly("FIREFLY" , 20, "Small", 17, 100, 1, 1, 1, 1, 16000),
-    Mosquito("MOSQUITO" , 15, "Small", 13, 100, 2, 1, 1, 1, 21000),
-    Bumblebee("BUMBLEBEE" , 25, "Medium", 15, 100, 1, 2, 2, 2, 51000),
-    Beetle("BEETLE" , 50, "Medium", 14, 50, 0, 1, 1, 3, 71000),
-    Hornet("HORNET" , 20, "Large", 16, 150, 3, 2, 1 ,2, 91000);
+    Flea("FLEA" , 10, "Tiny", 20, 25, 0, 0, 0, 1, 7000, 10),
+    Gnat("GNAT" , 15, "Small", 14, 100, 1, 0, 1, 1, 10000, 20),
+    Firefly("FIREFLY" , 20, "Small", 17, 100, 1, 1, 1, 1, 16000, 30),
+    Mosquito("MOSQUITO" , 15, "Small", 13, 100, 2, 1, 1, 1, 21000, 40),
+    Bumblebee("BUMBLEBEE" , 25, "Medium", 15, 100, 1, 2, 2, 2, 51000, 50),
+    Beetle("BEETLE" , 50, "Medium", 14, 50, 0, 1, 1, 3, 71000, 60),
+    Hornet("HORNET" , 20, "Large", 16, 150, 3, 2, 1 ,2, 91000, 70);
 
     /** the full string representation of the shiptype **/
     private final String shipType;
@@ -39,7 +26,7 @@ public enum ShipType {
     private final int gadgetSlots;
     private final int crewQuarters;
     private final int price;
->>>>>>> sandbox
+    private final int DEFAULT_DAMAGE;
 
     private static final List<ShipType> SHIPLIST =
             Collections.unmodifiableList(Arrays.asList(values()));
@@ -50,14 +37,8 @@ public enum ShipType {
      * Initializes string ship type of enum
      * @param shipType the ship type
      */
-<<<<<<< HEAD
-    ShipType(String shipType, int cargoCapacity, int defaultDamage) {
-        this.SHIP_TYPE = shipType;
-        this.CARGO_CAPACITY = cargoCapacity;
-        this.DEFAULT_DAMAGE = defaultDamage;
-=======
     ShipType(String shipType, int cargoCapacity, String shipSize, int range, int hullStrength,
-             int weaponSlots, int shieldSlots, int gadgetSlots, int crewQuarters, int price) {
+             int weaponSlots, int shieldSlots, int gadgetSlots, int crewQuarters, int price, int defaultDamage) {
         this.shipType = shipType;
         this.cargoCapacity = cargoCapacity;
         this.shipSize = shipSize;
@@ -68,16 +49,14 @@ public enum ShipType {
         this.gadgetSlots = gadgetSlots;
         this.crewQuarters = crewQuarters;
         this.price = price;
->>>>>>> sandbox
+        this.DEFAULT_DAMAGE = defaultDamage;
     }
 
     /**
      * Gets the ship type
      * @return the ship type
      */
-    public String getShipType() {return SHIP_TYPE;}
 
-    public int getCargoCapacity() {return CARGO_CAPACITY;}
 
     public double getDefaultDamage() {return DEFAULT_DAMAGE;}
 
@@ -97,13 +76,14 @@ public enum ShipType {
 
     public int getPrice() {return price;}
 
+    public int getCargoCapacity() {return cargoCapacity;}
 
+    public String getShipType() {return shipType;}
 
     /**
      * Gets the string representation of the ship type
      * @return the string representation of the ship type
      */
-    public String toString() {return SHIP_TYPE;}
 
     public static ShipType randomShipType()  {
         return SHIPLIST.get(RANDOM.nextInt(SIZE));

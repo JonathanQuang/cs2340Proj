@@ -15,20 +15,14 @@ import cs2340.spacetraders.entity.Universe.Planet;
 
 public class EncounterScreenViewModel {
     private Planet planet;
-    private Inventory playerInventory;
-    private Good currentGood;
     private Player currentPlayer;
     private Random random = new Random();
     private Encounterable character;
 
-    public EncounterScreenViewModel(Planet planet, Inventory playerInventory) {
+    public EncounterScreenViewModel(Planet planet) {
         this.planet = planet;
-        this.playerInventory = playerInventory;
     }
 
-    public void setGood(Good currentGood) {
-        this.currentGood = currentGood;
-    }
 
     public void playerAttack() {
         character.takeDamage(currentPlayer.getShip().getDamage());
@@ -44,27 +38,23 @@ public class EncounterScreenViewModel {
         }
     }
 
-    public Good getCurrentGood() {
-        return currentGood;
-    }
-
     public String popUpBuyStr() {
-        return "Planet " + currentGood.toString() + " Supply: " + "\n"
+        return "Planet " + " Supply: " + "\n"
                 + "Buying Price: $" + "\n"
                 //+ "Quantity Purchasing: ---" + "\n"
                 //+ "Total Cost: ---" + "\n";
-                + "You currently have " + playerInventory.getGoodAmount(currentGood) + " " + currentGood.getGoodName() + "\n"
+                + "You currently have " + " " + "\n"
                 + "You have " + currentPlayer.getCredits() + " credits" + "\n"
                 + "Type below amount purchase";
     }
 
     public String popUpSellStr() {
-        return "Your current " + currentGood.toString() + " Supply: " + playerInventory.getGoodAmount(currentGood) + "\n"
+        return "Your current " + " Supply: " + "\n"
                 + "Selling Price: $" + "\n"
                 //+ "Quantity Selling: ---" + "\n"
                 //+ "Total Revenue: ---" + "\n"
                 //+ "Average Revenue per Unit: ---";
-                + "You currently have " + playerInventory.getGoodAmount(currentGood) + " " + currentGood.getGoodName() + "\n"
+                + "You currently have " + " " + "\n"
                 + "You have " + currentPlayer.getCredits() + " credits" + "\n"
                 + "Type below amount to sell";
     }
