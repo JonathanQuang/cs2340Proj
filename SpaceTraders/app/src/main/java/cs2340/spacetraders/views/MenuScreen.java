@@ -32,7 +32,6 @@ public class MenuScreen extends AppCompatActivity {
         shipMarketButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, ShipMarketActivity.class);
-                Log.d("shipmarket debug","going to shipmarket");
                 startActivityForResult(intent, 0);
             }
         });
