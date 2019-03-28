@@ -67,8 +67,9 @@ public class MarketScreenActivity extends AppCompatActivity {
         menuButton = findViewById(R.id.menuButton);
 
         Planet currentPlanet = null;
-        while(currentPlanet == null) {
-            currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
+        boolean buggedout = true;
+        while(currentPlanet == null && buggedout) {
+                currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
         }
         planetInventory = currentPlanet.getInventory();
         playerInventory = Model.getInstance().getPlayer().getInventory();

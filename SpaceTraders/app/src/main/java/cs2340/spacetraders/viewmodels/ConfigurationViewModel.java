@@ -33,7 +33,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
      * @param fighterStat the fighter stats of the player
      * @param traderStat the trader stats of the player
      * @param pilotStat the pilot stats of the player
-     * @param difficulty the diI fficult of the game
+     * @param difficulty the difficulty of the game
      * @return if player was properly created
      */
     public boolean onOkay(String name, int engineerStat, int fighterStat, int traderStat,
