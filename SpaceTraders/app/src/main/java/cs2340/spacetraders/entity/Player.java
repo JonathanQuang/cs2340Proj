@@ -58,7 +58,6 @@ public class Player {
         return retStr;
     }
 
-<<<<<<< HEAD
     public static void setCriminalStatus(boolean status) {
         criminalStatus = status;
     }
@@ -82,9 +81,4 @@ public class Player {
     public static double getHealth() {
         return ship.getHealth();
     }
-=======
-    public Ship getShip() {
-        return ship;
-    }
->>>>>>> sandbox
 }

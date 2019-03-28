@@ -4,12 +4,8 @@ public class Ship {
 
     private ShipType shipType;
     private double health;
-<<<<<<< HEAD
-    private double fuel;
     private double damage;
-=======
     private int fuel;
->>>>>>> sandbox
 
     /**
      * Initializes a ship
@@ -58,13 +54,8 @@ public class Ship {
         return fuel;
     }
 
-<<<<<<< HEAD
-    public void useFuel(double fuel) {
-        this.fuel -= fuel;
-=======
     public void setFuel(int fuel) {
         this.fuel = fuel;
->>>>>>> sandbox
     }
 
     public int getCargoCapacity() {
