@@ -12,26 +12,26 @@ import cs2340.spacetraders.model.Model;
 
 public class GalaxyMapActivity extends AppCompatActivity {
 
-    int[] smallStars = {
-            R.drawable.blue_s,
-            R.drawable.red_s,
-            R.drawable.yellow_s,
-            R.drawable.white_s
-    };
-
-    int[] mediumStars = {
-            R.drawable.blue_m,
-            R.drawable.red_m,
-            R.drawable.yellow_m,
-            R.drawable.white_m
-    };
-
-    int[] largeStars = {
-            R.drawable.blue_l,
-            R.drawable.red_l,
-            R.drawable.yellow_l,
-            R.drawable.white_l
-    };
+//    int[] smallStars = {
+//            R.drawable.blue_s,
+//            R.drawable.red_s,
+//            R.drawable.yellow_s,
+//            R.drawable.white_s
+//    };
+//
+//    int[] mediumStars = {
+//            R.drawable.blue_m,
+//            R.drawable.red_m,
+//            R.drawable.yellow_m,
+//            R.drawable.white_m
+//    };
+//
+//    int[] largeStars = {
+//            R.drawable.blue_l,
+//            R.drawable.red_l,
+//            R.drawable.yellow_l,
+//            R.drawable.white_l
+//    };
 
     /** Called when the application starts. */
     @Override
@@ -40,7 +40,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         setContentView(R.layout.galaxy_map);
 
 //        Map <String, Planet> wholePlanetList = Model.getInstance().getGame().getGalaxy().getWholePlanetList();
-        List<SolarSystem> solarSystemList = Model.getInstance().getGame().getGalaxy().getSolarSystemList();
+//        List<SolarSystem> solarSystemList = Model.getInstance().getGame().getGalaxy().getSolarSystemList();
 //        solarSystemList.get(0).getPlanetList();
 
         //19 solar systems

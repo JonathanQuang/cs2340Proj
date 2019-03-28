@@ -214,4 +214,12 @@ public class Galaxy {
     public Planet getCurrentPlanet() {
         return currentPlanet;
     }
+
+    public List<Planet> getPlanetList() {
+        return planetList;
+    }
+
+    public void setCurrentPlanet(Planet currentPlanet) {
+        this.currentPlanet = currentPlanet;
+    }
 }

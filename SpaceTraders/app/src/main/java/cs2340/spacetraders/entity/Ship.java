@@ -4,7 +4,7 @@ public class Ship {
 
     private ShipType shipType;
     private double health;
-    private double fuel;
+    private int fuel;
 
     /**
      * Initializes a ship
@@ -44,11 +44,11 @@ public class Ship {
         this.health = health;
     }
 
-    public double getFuel() {
+    public int getFuel() {
         return fuel;
     }
 
-    public void setFuel(double fuel) {
+    public void setFuel(int fuel) {
         this.fuel = fuel;
     }
 

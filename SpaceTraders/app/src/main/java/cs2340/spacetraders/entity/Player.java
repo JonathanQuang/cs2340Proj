@@ -63,4 +63,8 @@ public class Player {
         retStr += ", Ship Info: " + ship;
         return retStr;
     }
+
+    public Ship getShip() {
+        return ship;
+    }
 }

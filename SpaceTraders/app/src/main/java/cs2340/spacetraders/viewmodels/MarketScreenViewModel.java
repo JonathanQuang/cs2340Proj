@@ -6,6 +6,7 @@ import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 import cs2340.spacetraders.entity.Player;
+import cs2340.spacetraders.entity.Market.Market;
 
 
 public class MarketScreenViewModel {
