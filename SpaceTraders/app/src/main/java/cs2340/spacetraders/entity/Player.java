@@ -38,7 +38,15 @@ public class Player {
 
     public int getCredits() {return credits;}
 
+    public int getShipTypePrice() {return ship.getShipTypePrice();}
+
     public void changeCredits(int changeNum) {credits += changeNum;}
+
+    public void setShipType(ShipType shipType) {
+        ship.setShipType(shipType);
+    }
+
+    public ShipType getShipType() {return ship.getShipType();}
 
     /**
      * Gets a string representation of the player's attributes

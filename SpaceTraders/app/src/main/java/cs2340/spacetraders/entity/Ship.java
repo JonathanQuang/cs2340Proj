@@ -56,6 +56,8 @@ public class Ship {
         return shipType.getCargoCapacity();
     }
 
+    public int getShipTypePrice() {return shipType.getPrice();}
+
     /**
      * Gets string representation of the information about the ship
      * @return  this ship's string representation
