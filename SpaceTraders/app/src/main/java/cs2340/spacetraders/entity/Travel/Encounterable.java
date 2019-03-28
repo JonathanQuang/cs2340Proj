@@ -13,7 +13,6 @@ public abstract class Encounterable {
     private double difficultyMultiplier = Game.getDifficulty().getMultipler();
     private double fleeChance = 0.25;
     private double pursueChance = 0.5;
-    private double surrenderChance = 0.75;
     private double ignoreChance, attackChance;
     private Ship ship = new Ship(ShipType.randomShipType());
 
@@ -63,14 +62,6 @@ public abstract class Encounterable {
         return pursueChance;
     }
 
-    /**
-     *
-     * @return
-     */
-    public double getSurrenderChance() {
-        return surrenderChance;
-    }
-
     public double getIgnoreChance() {
         return ignoreChance;
     }
@@ -88,7 +79,7 @@ public abstract class Encounterable {
     }
 
     public void characterDestruction() {
-
+        Player.changeCredits((int) (500 * difficultyMultiplier));
     }
 
 }

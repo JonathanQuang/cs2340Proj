@@ -18,8 +18,8 @@ public class Police extends Encounterable {
      */
     public Police(Planet planet) {
         super();
-        bribeChance = PoliticalSystem.determineProbability(planet.getPoliceBriberyAcceptance());
-        searchChance = PoliticalSystem.determineProbability(planet.getPoliceSmugglingAcceptance());
+        bribeChance = planet.getPoliticalSystem().determineProbability(planet.getPoliceBriberyAcceptance());
+        searchChance = planet.getPoliticalSystem().determineProbability(planet.getPoliceSmugglingAcceptance());
         if (Player.getCriminalStatus()) {
             super.setIgnoreChance(0);
             super.setAttackChance(1);
@@ -37,7 +37,7 @@ public class Police extends Encounterable {
         if (super.getRandom() > bribeChance) {
             Player.changeCredits(-500);
         } else {
-            confiscate();
+            checkCargo();
         }
     }
 

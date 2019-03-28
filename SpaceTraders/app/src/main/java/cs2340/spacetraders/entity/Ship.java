@@ -5,6 +5,7 @@ public class Ship {
     private ShipType shipType;
     private double health;
     private double fuel;
+    private double damage;
 
     /**
      * Initializes a ship
@@ -14,6 +15,7 @@ public class Ship {
         this.shipType = shipType;
         this.health = 100;
         this.fuel = 100;
+        this.damage = shipType.getDefaultDamage();
     }
 
     public Ship() {
@@ -38,6 +40,10 @@ public class Ship {
 
     public double getHealth() {
         return health;
+    }
+
+    public double getDamage() {
+        return damage;
     }
 
     public void takeDamage(double damage) {

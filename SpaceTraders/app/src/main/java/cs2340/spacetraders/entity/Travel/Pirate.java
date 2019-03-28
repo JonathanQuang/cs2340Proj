@@ -1,5 +1,7 @@
 package cs2340.spacetraders.entity.Travel;
 
+import cs2340.spacetraders.entity.Inventory;
+import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.ShipType;
@@ -21,8 +23,9 @@ public class Pirate extends Encounterable {
      *
      */
     public void steal() {
-        if (Player.getInventory().getCapacity() > 0) {
-
+        Inventory inventory = Player.getInventory();
+        if (inventory.getCapacity() > 0) {
+            inventory.removeRandomGood();
         } else {
             Player.changeCredits(-2000);
         }

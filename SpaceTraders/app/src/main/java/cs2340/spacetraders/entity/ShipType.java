@@ -42,6 +42,8 @@ public enum ShipType {
 
     public int getCargoCapacity() {return CARGO_CAPACITY;}
 
+    public double getDefaultDamage() {return DEFAULT_DAMAGE;}
+
     /**
      * Gets the string representation of the ship type
      * @return the string representation of the ship type

@@ -70,7 +70,15 @@ public class Player {
 
     }
 
+    public static Ship getShip() {
+        return ship;
+    }
+
     public static void takeDamage(double damage) {
         ship.takeDamage(damage);
+    }
+
+    public static double getHealth() {
+        return ship.getHealth();
     }
 }
