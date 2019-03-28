@@ -35,6 +35,7 @@ import cs2340.spacetraders.viewmodels.GalaxyMapViewModel;
 public class GalaxyMapActivity extends AppCompatActivity {
 
     private GalaxyMapViewModel galaxyMapVM;
+    private List<Planet> validPlanets;
 
     /** Called when the application starts. */
     @SuppressLint("ClickableViewAccessibility")
@@ -53,6 +54,9 @@ public class GalaxyMapActivity extends AppCompatActivity {
         for (int i = 0; i < planetButtonIDs.length; i++) {
             Planet planet = i < planetList.size() ? planetList.get(i) : null;
             makePlanetButton(planet, planetButtonIDs[i]);
+            if(i + 1 == planetButtonIDs.length) {
+                System.out.println("planetList.size() = " + planetList.size());
+            }
         }
 
         //Circle All Systems
@@ -92,20 +96,20 @@ public class GalaxyMapActivity extends AppCompatActivity {
         });
     }
 
-    private void setPositionOnScreen(View view, RelativePosition position, int i) {
+    private void setPositionOnScreen(View view, RelativePosition position, int radius) {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int screenWidth = size.x - 20;
-        int screenHeight = size.y - 150;
+        int screenHeight = size.y - 250;
 
         //Places based on proportion from (planet x to map width) is (screen x to screen width)
         RelativePosition mapSize = Model.getInstance().getGame().getGalaxy().getMapSize();
         double probX = ((double) position.getX()) / mapSize.getX();
         double probY = ((double) position.getY()) / mapSize.getY();
 
-        view.setTranslationX((int) (screenWidth * probX - i) + 20);
-        view.setTranslationY((int) (screenHeight * probY - i) + 20);
+        view.setTranslationX((int) (screenWidth * probX - radius) + 20);
+        view.setTranslationY((int) (screenHeight * probY - radius) + 20);
     }
 
     private void setRing(SolarSystem solarSystem, int ringID) {
@@ -114,8 +118,12 @@ public class GalaxyMapActivity extends AppCompatActivity {
             ring.setVisibility(View.GONE);
             return;
         }
-        System.out.println(solarSystem.getCenter());
-        setPositionOnScreen(ring, solarSystem.getCenter(), 10);
+        //Set Size
+        ViewGroup.LayoutParams params = ring.getLayoutParams();
+        params.height = params.width = 130 + (solarSystem.getCenter().getRectRadius() - 1) * 100;
+        ring.setLayoutParams(params);
+
+        setPositionOnScreen(ring, solarSystem.getCenter(), params.height/2);
     }
 
 
@@ -124,7 +132,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.planet_info_popup, null);
 
-        TextView textView = popupView.findViewById(R.id.buyButtonText);
+        TextView textView = popupView.findViewById(R.id.planetText);
         textView.setText(galaxyMapVM.popUpPlanetInfo());
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -140,6 +148,11 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+//        Button travelButton = findViewById(R.id.travelButton);
+//        travelButton.setEnabled(false);
+//        if (planet !=  null) {
+//        }
     }
 
     public int[] getPlanetButtonIDs() {
@@ -157,7 +170,19 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 R.id.planet46, R.id.planet47, R.id.planet48, R.id.planet49, R.id.planet50,
                 R.id.planet51, R.id.planet52, R.id.planet53, R.id.planet54, R.id.planet55,
                 R.id.planet56, R.id.planet57, R.id.planet58, R.id.planet59, R.id.planet60,
-                R.id.planet61, R.id.planet62};
+                R.id.planet61, R.id.planet62, R.id.planet63, R.id.planet64, R.id.planet65,
+                R.id.planet66, R.id.planet67, R.id.planet68, R.id.planet69, R.id.planet70,
+                R.id.planet71, R.id.planet72, R.id.planet73, R.id.planet74, R.id.planet75,
+                R.id.planet76, R.id.planet77, R.id.planet78, R.id.planet79, R.id.planet80,
+                R.id.planet81, R.id.planet82, R.id.planet83, R.id.planet84, R.id.planet85,
+                R.id.planet86, R.id.planet87, R.id.planet88, R.id.planet89, R.id.planet90,
+                R.id.planet91, R.id.planet92, R.id.planet93, R.id.planet94, R.id.planet95,
+                R.id.planet96, R.id.planet97, R.id.planet98, R.id.planet99, R.id.planet100,
+                R.id.planet101, R.id.planet102, R.id.planet103, R.id.planet104, R.id.planet105,
+                R.id.planet106, R.id.planet107, R.id.planet108, R.id.planet109, R.id.planet110,
+                R.id.planet111, R.id.planet112, R.id.planet113, R.id.planet114, R.id.planet115,
+                R.id.planet116, R.id.planet117, R.id.planet118, R.id.planet119, R.id.planet120,
+                R.id.planet121, R.id.planet122, R.id.planet123};
     }
 
     public int[] getRingButtonIDs() {
