@@ -2,13 +2,15 @@ package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 public class SolarSystem {
     private Planet[] planetList;
-    private Set<RelativePosition> planetPositions;
+    private List<RelativePosition> planetPositions;
     private CelestialName name;
     private RelativePosition center;
     private String size;
@@ -22,7 +24,7 @@ public class SolarSystem {
         this.parentGalaxy = parentGalaxy;
         rand = new Random();
 
-        planetPositions = new HashSet<RelativePosition>();
+        planetPositions = new ArrayList<>();
 
         planetList = new Planet[planetNum];
         for (int i = 0; i < planetList.length; i++) {
@@ -46,9 +48,9 @@ public class SolarSystem {
         PoliticalSystem politicalSystem = PoliticalSystem.values()[rand.nextInt(PoliticalSystem.values().length)];
         RelativePosition point = getValidUnusedPoint();
         String size = getPlanetSize();
-        parentGalaxy.getGalaxyMap()[point.getX()][point.getY()] = "*";
+        parentGalaxy.getGalaxyMap()[point.getY()][point.getX()] = "*";
 
-        return new Planet(celestialName, techLevel, resources, politicalSystem, point, size);
+        return new Planet(celestialName, techLevel, resources, politicalSystem, point, size, this);
     }
 
 
@@ -81,5 +83,9 @@ public class SolarSystem {
 
     public Planet[] getPlanetList() {
         return planetList;
+    }
+
+    public RelativePosition getCenter() {
+        return center;
     }
 }

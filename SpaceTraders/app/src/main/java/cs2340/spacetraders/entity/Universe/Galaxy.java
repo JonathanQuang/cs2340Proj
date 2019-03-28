@@ -23,6 +23,8 @@ public class Galaxy {
     private Random rand = new Random();
     private Set<Wormhole> wormholeSet;
     private Planet currentPlanet;
+    private int mapWidth = 25;
+    private int mapHeight = 37;
 
 
     /**
@@ -35,8 +37,8 @@ public class Galaxy {
         systemPositionList = new ArrayList<RelativePosition>();
         usedCelestialNames = new HashSet<CelestialName>();
         wormholeSet = new HashSet<Wormhole>();
-        mapSize = new RelativePosition(35, 35);
-        galaxyMap = new String[mapSize.getX()][mapSize.getY()];
+        mapSize = new RelativePosition(mapWidth, mapHeight);
+        galaxyMap = new String[mapHeight][mapWidth];
 
         int maxWormmHolePairs = 2;
 
@@ -49,7 +51,8 @@ public class Galaxy {
         currentPlanet = chooseRandomPlanet();
         Log.d("MarK", currentPlanet.toString());
 
-        for (int i = 0; i < maxWormmHolePairs; i++) { placeWormholePair(); }
+        //commented because wormhole in 3x3 system will cause infinite loop currently
+//        for (int i = 0; i < maxWormmHolePairs; i++) { placeWormholePair(); }
 
         printMap();
     }
@@ -58,7 +61,7 @@ public class Galaxy {
      * Makes a solar system that randomizes all its attributes
      */
     private SolarSystem makeSolarSystem() {
-        int planetNum = rand.nextInt(5) + 1;
+        int planetNum = rand.nextInt(5) + 1;  //1-5
         CelestialName systemName = getNonRepeatedCelestialName();
         Log.d("Planet", "Getting new system's center position");
         RelativePosition center = getValidSystemPoint(planetNum);
@@ -93,8 +96,8 @@ public class Galaxy {
         Wormhole w1 = new Wormhole(relPos1);
         Wormhole w2 = new Wormhole(relPos2);
         w1.joinWormholes(w2);
-        galaxyMap[relPos1.getX()][relPos1.getY()] = "@";
-        galaxyMap[relPos2.getX()][relPos2.getY()] = "@";
+        galaxyMap[relPos1.getY()][relPos1.getX()] = "@";
+        galaxyMap[relPos2.getY()][relPos2.getX()] = "@";
     }
 
     /**
@@ -161,11 +164,11 @@ public class Galaxy {
         int y = position.getY();
         int r = position.getRectRadius();
 
-        for (int i = -r; i <= r; galaxyMap[x + i][y + r] = "#", i++) ;
-        for (int i = -r; i <= r; galaxyMap[x + i][y - r] = "#", i++) ;
-        for (int i = -r; i <= r; galaxyMap[x + r][y + i] = "#", i++) ;
-        for (int i = -r; i <= r; galaxyMap[x - r][y + i] = "#", i++) ;
-        galaxyMap[x][y] = "O";
+        for (int i = -r; i <= r; galaxyMap[y + r][x + i] = "#", i++) ;
+        for (int i = -r; i <= r; galaxyMap[y - r][x + i] = "#", i++) ;
+        for (int i = -r; i <= r; galaxyMap[y + i][x + r] = "#", i++) ;
+        for (int i = -r; i <= r; galaxyMap[y + i][x - r] = "#", i++) ;
+        galaxyMap[y][x] = "O";
     }
 
     /**
@@ -183,7 +186,7 @@ public class Galaxy {
      * @param name the name of a planet that may or maybe not exist
      * @return the planet searched (null if not)
      */
-    private Planet searchPlanetByName(String name) {
+    public Planet searchPlanetByName(String name) {
         return planetNameMap.containsKey(name) ? planetNameMap.get(name) : null;
     }
 
@@ -217,6 +220,11 @@ public class Galaxy {
 
     public List<Planet> getPlanetList() {
         return planetList;
+    }
+
+
+    public RelativePosition getMapSize() {
+        return mapSize;
     }
 
     public void setCurrentPlanet(Planet currentPlanet) {
