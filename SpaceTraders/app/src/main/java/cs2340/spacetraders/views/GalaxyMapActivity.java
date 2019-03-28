@@ -20,12 +20,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Map;
 
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.entity.Universe.RelativePosition;
 import cs2340.spacetraders.entity.Universe.SolarSystem;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.GalaxyMapViewModel;
@@ -42,150 +44,24 @@ public class GalaxyMapActivity extends AppCompatActivity {
         setContentView(R.layout.galaxy_map);
 
         Planet currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
-        Planet[] planetList = currentPlanet.getParentSolarSystem().getPlanetList();
-        galaxyMapVM = new GalaxyMapViewModel(currentPlanet, planetList);
 
-        int[] planetButtonIDs = new int[]{R.id.planet1, R.id.planet2, R.id.planet3, R.id.planet4, R.id.planet5};
+        //Show All Planets
+        List<Planet> planetList = Model.getInstance().getGame().getGalaxy().getPlanetList();
+        galaxyMapVM = new GalaxyMapViewModel(currentPlanet, planetList);
+        int[] planetButtonIDs = getPlanetButtonIDs();
 
         for (int i = 0; i < planetButtonIDs.length; i++) {
-            Planet planet = i < planetList.length ? planetList[i] : null;
+            Planet planet = i < planetList.size() ? planetList.get(i) : null;
             makePlanetButton(planet, planetButtonIDs[i]);
         }
 
-
-
-
-        //BLAH-----------------------------------------------------------------
-
-        final ImageView ImageView_BitmapView = (ImageView) findViewById(R.id.img);
-
-        int bitmapWidth = ImageView_BitmapView.getMaxWidth();
-        int bitmapHeight = ImageView_BitmapView.getMaxHeight();
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int screenWidth = size.x;
-        int screenHeight = size.y;
-
-        // set maximum scroll amount (based on center of image)
-        int maxX = (int)((bitmapWidth / 2) - (screenWidth / 2));
-        int maxY = (int)((bitmapHeight / 2) - (screenHeight / 2));
-        System.out.println(bitmapWidth + "x" + bitmapHeight + " " + screenWidth + "x" + screenHeight);
-
-        // set scroll limits
-        final int maxLeft = (maxX * -1);
-        final int maxRight = maxX;
-        final int maxTop = (maxY * -1);
-        final int maxBottom = maxY;
-
-
-        // set touchlistener
-        ImageView_BitmapView.setOnTouchListener(new View.OnTouchListener()
-        {
-            float downX, downY;
-            int totalX, totalY;
-            int scrollByX, scrollByY;
-            public boolean onTouch(View view, MotionEvent event)
-            {
-                float currentX, currentY;
-                switch (event.getAction())
-                {
-                    case MotionEvent.ACTION_DOWN:
-                        System.out.println("sjdfnskdjnfjksd");
-                        downX = event.getX();
-                        downY = event.getY();
-                        break;
-
-                    case MotionEvent.ACTION_MOVE:
-                        currentX = event.getX();
-                        currentY = event.getY();
-                        scrollByX = (int)(downX - currentX);
-                        scrollByY = (int)(downY - currentY);
-
-                        // scrolling to left side of image (pic moving to the right)
-                        if (currentX > downX)
-                        {
-                            if (totalX == maxLeft)
-                            {
-                                scrollByX = 0;
-                            }
-                            if (totalX > maxLeft)
-                            {
-                                totalX = totalX + scrollByX;
-                            }
-                            if (totalX < maxLeft)
-                            {
-                                scrollByX = maxLeft - (totalX - scrollByX);
-                                totalX = maxLeft;
-                            }
-                        }
-
-                        // scrolling to right side of image (pic moving to the left)
-                        if (currentX < downX)
-                        {
-                            if (totalX == maxRight)
-                            {
-                                scrollByX = 0;
-                            }
-                            if (totalX < maxRight)
-                            {
-                                totalX = totalX + scrollByX;
-                            }
-                            if (totalX > maxRight)
-                            {
-                                scrollByX = maxRight - (totalX - scrollByX);
-                                totalX = maxRight;
-                            }
-                        }
-
-                        // scrolling to top of image (pic moving to the bottom)
-                        if (currentY > downY)
-                        {
-                            if (totalY == maxTop)
-                            {
-                                scrollByY = 0;
-                            }
-                            if (totalY > maxTop)
-                            {
-                                totalY = totalY + scrollByY;
-                            }
-                            if (totalY < maxTop)
-                            {
-                                scrollByY = maxTop - (totalY - scrollByY);
-                                totalY = maxTop;
-                            }
-                        }
-
-                        // scrolling to bottom of image (pic moving to the top)
-                        if (currentY < downY)
-                        {
-                            if (totalY == maxBottom)
-                            {
-                                scrollByY = 0;
-                            }
-                            if (totalY < maxBottom)
-                            {
-                                totalY = totalY + scrollByY;
-                            }
-                            if (totalY > maxBottom)
-                            {
-                                scrollByY = maxBottom - (totalY - scrollByY);
-                                totalY = maxBottom;
-                            }
-                        }
-
-                        System.out.println("sjdfddddddddddddd"+scrollByX);
-                        ImageView_BitmapView.scrollBy(scrollByX, scrollByY);
-                        downX = currentX;
-                        downY = currentY;
-                        break;
-
-                }
-
-                return true;
-            }
-        });
+        //Circle All Systems
+        List<SolarSystem> solarSystemsList = Model.getInstance().getGame().getGalaxy().getSolarSystemList();
+        int[] ringIDs = getRingButtonIDs();
+        for (int i = 0; i < ringIDs.length; i++) {
+            SolarSystem solarSystem = i < solarSystemsList.size() ? solarSystemsList.get(i) : null;
+            setRing(solarSystem, ringIDs[i]);
+        }
     }
 
     private void makePlanetButton(final Planet planet, int buttonID) {
@@ -195,13 +71,19 @@ public class GalaxyMapActivity extends AppCompatActivity {
             return;
         }
 
+        //Set Resources
         int imageID = Model.getInstance().getPlanetImageIDs().get(planet.getResources());
         planet_button.setBackground(ContextCompat.getDrawable(getApplicationContext(), imageID));
 
+        //Set Size
         ViewGroup.LayoutParams params = planet_button.getLayoutParams();
-        params.height = params.width = 70 + planet.getSizeAsInt() * 40;
+        params.height = params.width = 25 + planet.getSizeAsInt() * 5;
         planet_button.setLayoutParams(params);
 
+        //Set Position
+        setPositionOnScreen(planet_button, planet.getRelativePosition(), params.height/2);
+
+        //Set onClick
         planet_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 galaxyMapVM.setCurrentPlanet(planet);
@@ -209,6 +91,34 @@ public class GalaxyMapActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void setPositionOnScreen(View view, RelativePosition position, int i) {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int screenWidth = size.x - 20;
+        int screenHeight = size.y - 150;
+
+        //Places based on proportion from (planet x to map width) is (screen x to screen width)
+        RelativePosition mapSize = Model.getInstance().getGame().getGalaxy().getMapSize();
+        double probX = ((double) position.getX()) / mapSize.getX();
+        double probY = ((double) position.getY()) / mapSize.getY();
+
+        view.setTranslationX((int) (screenWidth * probX - i) + 20);
+        view.setTranslationY((int) (screenHeight * probY - i) + 20);
+    }
+
+    private void setRing(SolarSystem solarSystem, int ringID) {
+        View ring = findViewById(ringID);
+        if (solarSystem == null) {
+            ring.setVisibility(View.GONE);
+            return;
+        }
+        System.out.println(solarSystem.getCenter());
+        setPositionOnScreen(ring, solarSystem.getCenter(), 10);
+    }
+
+
 
     private void onButtonShowPlanetInfoClick(View view, Planet planet) {
         LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -230,5 +140,41 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public int[] getPlanetButtonIDs() {
+        //Made with Python :P
+        return new int[]{
+                R.id.planet1, R.id.planet2, R.id.planet3, R.id.planet4, R.id.planet5,
+                R.id.planet6, R.id.planet7, R.id.planet8, R.id.planet9, R.id.planet10,
+                R.id.planet11, R.id.planet12, R.id.planet13, R.id.planet14, R.id.planet15,
+                R.id.planet16, R.id.planet17, R.id.planet18, R.id.planet19, R.id.planet20,
+                R.id.planet21, R.id.planet22, R.id.planet23, R.id.planet24, R.id.planet25,
+                R.id.planet26, R.id.planet27, R.id.planet28, R.id.planet29, R.id.planet30,
+                R.id.planet31, R.id.planet32, R.id.planet33, R.id.planet34, R.id.planet35,
+                R.id.planet36, R.id.planet37, R.id.planet38, R.id.planet39, R.id.planet40,
+                R.id.planet41, R.id.planet42, R.id.planet43, R.id.planet44, R.id.planet45,
+                R.id.planet46, R.id.planet47, R.id.planet48, R.id.planet49, R.id.planet50,
+                R.id.planet51, R.id.planet52, R.id.planet53, R.id.planet54, R.id.planet55,
+                R.id.planet56, R.id.planet57, R.id.planet58, R.id.planet59, R.id.planet60,
+                R.id.planet61, R.id.planet62};
+    }
+
+    public int[] getRingButtonIDs() {
+        //Made with Python :P
+        return new int[]{
+                R.id.ring1, R.id.ring2, R.id.ring3, R.id.ring4, R.id.ring5,
+                R.id.ring6, R.id.ring7, R.id.ring8, R.id.ring9, R.id.ring10,
+                R.id.ring11, R.id.ring12, R.id.ring13, R.id.ring14, R.id.ring15,
+                R.id.ring16, R.id.ring17, R.id.ring18, R.id.ring19, R.id.ring20,
+                R.id.ring21, R.id.ring22, R.id.ring23, R.id.ring24, R.id.ring25,
+                R.id.ring26, R.id.ring27, R.id.ring28, R.id.ring29, R.id.ring30,
+                R.id.ring31, R.id.ring32, R.id.ring33, R.id.ring34, R.id.ring35,
+                R.id.ring36, R.id.ring37, R.id.ring38, R.id.ring39, R.id.ring40,
+                R.id.ring41, R.id.ring42, R.id.ring43, R.id.ring44, R.id.ring45,
+                R.id.ring46, R.id.ring47, R.id.ring48, R.id.ring49, R.id.ring50,
+                R.id.ring51, R.id.ring52, R.id.ring53, R.id.ring54, R.id.ring55,
+                R.id.ring56, R.id.ring57, R.id.ring58, R.id.ring59, R.id.ring60,
+                R.id.ring61, R.id.ring62};
     }
 }

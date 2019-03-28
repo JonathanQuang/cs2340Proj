@@ -25,139 +25,819 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
+            android:background="@drawable/galaxy_background"
             android:layout_marginBottom="0dp"
-            <!--android:background="@drawable/galaxy_background"-->
             android:visibility="visible" />
     </RelativeLayout>
 
 
+    <!--Generated through Python :P-->
     <Button
         android:id="@+id/planet1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/yellow_l"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.657"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
 
     <Button
         android:id="@+id/planet2"
-
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/rich_soil_l"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.353" />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
 
     <Button
         android:id="@+id/planet3"
-
-        android:layout_width="52dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/normie_l"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.347" />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
 
 
     <Button
         android:id="@+id/planet4"
-
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/mineral_l"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.318"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
 
     <Button
         android:id="@+id/planet5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
 
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/artistic_l"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.802"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422" />
+    <Button
+        android:id="@+id/planet6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet7"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet8"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet9"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet10"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet11"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet12"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet13"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet14"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet15"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet16"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet17"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet18"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet19"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet20"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet21"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet22"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet23"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet24"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet25"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet26"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet27"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet28"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet29"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet30"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet31"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet32"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet33"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet34"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet35"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet36"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet37"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet38"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet39"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet40"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet41"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet42"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet43"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet44"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet45"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet46"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet47"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet48"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet49"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet50"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet51"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet52"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet53"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet54"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet55"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet56"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet57"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet58"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet59"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet60"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet61"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/planet62"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints"/>
 
     <ImageView
-        android:layout_width="312dp"
-        android:layout_height="312dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/ring1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:src="@drawable/ring"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452" />
+        tools:ignore="MissingConstraints"/>
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+    <ImageView
+        android:id="@+id/ring2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+    <ImageView
+        android:id="@+id/ring3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
 
-            <ImageView
-                android:id="@+id/img"
-                android:layout_width="1000dp"
-                android:layout_height="1000dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
-                android:adjustViewBounds="true"
-                android:scaleType="center"
-                android:src="@drawable/galaxy_background" />
-        </LinearLayout>
-    </ScrollView>
+    <ImageView
+        android:id="@+id/ring4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring7"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring8"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring9"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring10"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring11"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring12"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring13"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring14"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring15"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring16"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring17"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring18"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring19"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring20"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring21"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring22"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring23"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring24"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring25"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring26"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring27"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring28"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring29"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring30"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring31"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring32"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring33"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring34"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring35"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring36"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring37"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring38"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring39"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring40"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring41"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring42"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring43"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring44"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring45"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring46"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring47"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring48"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring49"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring50"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring51"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring52"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring53"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring54"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring55"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring56"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring57"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring58"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring59"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring60"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring61"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/ring62"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ring"
+        tools:ignore="MissingConstraints"/>
+
 
 </android.support.constraint.ConstraintLayout>

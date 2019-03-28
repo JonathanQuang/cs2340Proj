@@ -38,7 +38,6 @@ public class RelativePosition {
         } else if (!(o instanceof RelativePosition)) {
             return false;
         }
-
         RelativePosition that = (RelativePosition) o;
         return isInSquareOfInfluence(that);
     }
@@ -75,12 +74,13 @@ public class RelativePosition {
                     }
                 }
             }
+            return false;
         } else {
-            return x == that.x && y == that.y
-                    || x == that.x && y - 1 == that.y || x == that.x && y + 1 == that.y
-                    || x - 1 == that.x && y == that.y || x + 1 == that.x && y == that.y;
+            System.out.println((x == that.x && y == that.y));
+            return (x == that.x && y == that.y)
+                    || (x == that.x && y - 1 == that.y) || (x == that.x && y + 1 == that.y)
+                    || (x - 1 == that.x && y == that.y) || (x + 1 == that.x && y == that.y);
         }
-        return false;
     }
 
     public String toString() {
