@@ -48,16 +48,98 @@ public class EncounterScreenActivity extends AppCompatActivity {
     private EncounterScreenViewModel encounterScreenVM;
 
     private Inventory playerInventory;
-    private Planet currentPlanet;
     private Encounterable character;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Log.d("EncounterGabe11", "Start!");
-
+        int totalEncounters = 0;
+        Planet currentPlanet = null;
         while(currentPlanet == null) {
-            //Log.d("EncounterGabe11", "Planet!");
+            Log.d("EncounterGabe11", "Planet!");
+            currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
+        }
+        //planetNametext = findViewById(R.id.planetName);
+        //planetNametext.setText(currentPlanet.getName().toString());
+
+        encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
+        Log.d("EncounterGabe11", "VM!");
+
+        character = encounterScreenVM.setCharacter();
+        Log.d("EncounterGabe11", "Character!");
+
+        if (character == null) {
+            Log.d("EncounterGabe11", "NoEncounter");
+            setContentView(R.layout.encounter_screen);
+            Button okButton = findViewById(R.id.encounterButton);
+
+            okButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
+                    startActivityForResult(intent, 0);
+                }
+            });
+        } else {
+            Log.d("EncounterGabe11", "Police");
+            //showPolicePopupWindow(findViewById(android.R.id.content));
+            setContentView(R.layout.police_popup);
+            totalEncounters++;
+            Button okButton = findViewById(R.id.attack_button);
+
+            okButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    startActivityForResult(intent, 0);
+                }
+            });
+        }
+        /*
+        else if (character instanceof Police && totalEncounters <= 2) {
+            Log.d("EncounterGabe11", "Police");
+            //showPolicePopupWindow(findViewById(android.R.id.content));
+            setContentView(R.layout.police_popup);
+            totalEncounters++;
+            Button okButton = findViewById(R.id.attack_button);
+
+            okButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    startActivityForResult(intent, 0);
+                }
+            });
+        } else if (character instanceof Pirate && totalEncounters <= 2) {
+            Log.d("EncounterGabe11", "Pirate");
+            //showPiratePopupWindow(findViewById(android.R.id.content));
+            setContentView(R.layout.pirate_popup);
+            totalEncounters++;
+            Button okButton = findViewById(R.id.attack_button);
+
+            okButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    startActivityForResult(intent, 0);
+                }
+            });
+        } else if (character instanceof Trader && totalEncounters <= 2) {
+            Log.d("EncounterGabe11", "Trader");
+            setContentView(R.layout.trader_popup);
+            totalEncounters++;
+            Button okButton = findViewById(R.id.encounterButton);
+
+            okButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    startActivityForResult(intent,0);
+                }
+            });
+        }
+        */
+
+    }
+/*
+        while (currentPlanet == null) {
+            Log.d("EncounterGabe11", "Planet!");
             currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
             planetNametext.setText(currentPlanet.getName().toString());
         }
@@ -75,6 +157,15 @@ public class EncounterScreenActivity extends AppCompatActivity {
 
         //Log.d("EncounterGabe11", "Character!");
         character = encounterScreenVM.setCharacter();
+        setContentView(R.layout.encounter_screen);
+        Button okButton = findViewById(R.id.encounterButton);
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
 
         if (character == null) {
             //Log.d("EncounterGabe11", "NoEncounter");
@@ -107,7 +198,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
         }
     }
 
-
+*/
     //---------------------------------------------------------------------------
 
     private void showPiratePopupWindow(View view) {
@@ -206,4 +297,5 @@ public class EncounterScreenActivity extends AppCompatActivity {
     private void easyToast(String toastMessage) {
         Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
     }
+
 }
