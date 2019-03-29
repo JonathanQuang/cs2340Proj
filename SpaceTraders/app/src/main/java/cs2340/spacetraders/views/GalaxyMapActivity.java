@@ -46,8 +46,11 @@ public class GalaxyMapActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.galaxy_map);
-
-        Planet currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
+        Planet currentPlanet = null;
+        while(currentPlanet == null) {
+            currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
+        }
+        Log.d("EncounterGabe11", "Galaxy Map!");
         travel = new Travel(Model.getInstance().getPlayer(), currentPlanet);
 
         //Show All Planets

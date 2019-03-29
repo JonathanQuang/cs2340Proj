@@ -57,27 +57,27 @@ public class EncounterScreenActivity extends AppCompatActivity {
         Log.d("EncounterGabe11", "Start!");
 
         while(currentPlanet == null) {
-            Log.d("EncounterGabe11", "Planet!");
+            //Log.d("EncounterGabe11", "Planet!");
             currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
             planetNametext.setText(currentPlanet.getName().toString());
         }
 
         while (playerInventory == null) {
-            Log.d("EncounterGabe11", "Player Inventory!");
+            //Log.d("EncounterGabe11", "Player Inventory!");
             playerInventory = Model.getInstance().getPlayer().getInventory();
         }
 
         while (encounterScreenVM == null) {
-            Log.d("EncounterGabe11", "Encounter VM!");
+            //Log.d("EncounterGabe11", "Encounter VM!");
             encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
             encounterScreenVM.setPlayer(Model.getInstance().getPlayer());
         }
 
-        Log.d("EncounterGabe11", "Character!");
+        //Log.d("EncounterGabe11", "Character!");
         character = encounterScreenVM.setCharacter();
 
         if (character == null) {
-            Log.d("EncounterGabe11", "NoEncounter");
+            //Log.d("EncounterGabe11", "NoEncounter");
             setContentView(R.layout.encounter_screen);
             Button okButton = findViewById(R.id.encounterButton);
 
@@ -88,13 +88,13 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 }
             });
         } else if (character instanceof Police) {
-            Log.d("EncounterGabe11", "Police");
+            //Log.d("EncounterGabe11", "Police");
             showPolicePopupWindow(findViewById(android.R.id.content));
         } else if (character instanceof Pirate) {
-            Log.d("EncounterGabe11", "Pirate");
+            //Log.d("EncounterGabe11", "Pirate");
             showPiratePopupWindow(findViewById(android.R.id.content));
         } else if (character instanceof Trader) {
-            Log.d("EncounterGabe11", "Trader");
+            //Log.d("EncounterGabe11", "Trader");
             setContentView(R.layout.trader_popup);
             Button okButton = findViewById(R.id.encounterButton);
 
