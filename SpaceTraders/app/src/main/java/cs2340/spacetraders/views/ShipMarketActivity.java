@@ -30,7 +30,7 @@ public class ShipMarketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_market_screen);
 
-        menuButton = findViewById(R.id.menuButton);
+        menuButton = findViewById(R.id.menuButton2);
         gnatButton = findViewById(R.id.gnatButton);
         fleaButton = findViewById(R.id.fleaButton);
         fireflyButton = findViewById(R.id.fireflyButton);

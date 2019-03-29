@@ -1,10 +1,9 @@
 package cs2340.spacetraders.views;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import cs2340.spacetraders.R;
@@ -15,7 +14,6 @@ import cs2340.spacetraders.viewmodels.ShipMarketViewModel;
 class ShipDisplayActivity extends AppCompatActivity {
 
     private ShipMarketViewModel shipmarketVM;
-    private Button modelBuyButton;
     private TextView modelCreditsText;
 
     private TextView nameText;
@@ -28,14 +26,15 @@ class ShipDisplayActivity extends AppCompatActivity {
     private TextView gadgetSlotsText;
     private TextView crewQuartersText;
     private static ShipType shipTypeVar;
+    private ImageView shipImage;
 
     private Button menuButton;
     private Button buyButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        menuButton = findViewById(R.id.menuButton);
-        modelBuyButton = findViewById(R.id.modelBuyButton);
+        menuButton = findViewById(R.id.menuButton3);
+        buyButton = findViewById(R.id.buyButton);
         modelCreditsText = findViewById(R.id.modelCreditsText);
         nameText = findViewById(R.id.nameText);
         sizeText = findViewById(R.id.sizeText);
@@ -46,21 +45,40 @@ class ShipDisplayActivity extends AppCompatActivity {
         shieldSlotsText = findViewById(R.id.shieldSlotsText);
         gadgetSlotsText = findViewById(R.id.gadgetSlotsText);
         crewQuartersText = findViewById(R.id.crewQuartersText);
+        shipImage = findViewById(R.id.shipImage);
         shipmarketVM = new ShipMarketViewModel(Model.getInstance().getPlayer());
         attachInfoEventListener(shipTypeVar);
+        if (shipTypeVar.equals(ShipType.Gnat)) {
 
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ShipDisplayActivity.this, MenuScreen.class);
-                startActivityForResult(intent, 0);
-            }
-        });
+        } else if (shipTypeVar.equals(ShipType.Flea)) {
+            shipImage.setImageResource(R.drawable.flea_l);
+        } else if (shipTypeVar.equals(ShipType.Beetle)) {
+            shipImage.setImageResource(R.drawable.beetle_l);
+        } else if (shipTypeVar.equals(ShipType.Firefly)) {
+            shipImage.setImageResource(R.drawable.firefly_l);
+        } else if (shipTypeVar.equals(ShipType.Bumblebee)) {
+            shipImage.setImageResource(R.drawable.bumblebee_l);
+        } else if (shipTypeVar.equals(ShipType.Grasshopper)) {
+            shipImage.setImageResource(R.drawable.grasshopper_l);
+        } else if (shipTypeVar.equals(ShipType.Hornet)) {
+            shipImage.setImageResource(R.drawable.hornet_l);
+        } else if (shipTypeVar.equals(ShipType.Mosquito)) {
+            shipImage.setImageResource(R.drawable.mosquito_l);
+        } else if (shipTypeVar.equals(ShipType.Termite)) {
+            shipImage.setImageResource(R.drawable.termite_l);
+        }
+//        menuButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ShipDisplayActivity.this, MenuScreen.class);
+//                startActivityForResult(intent, 0);
+//            }
+//        });
 
-        buyButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //buying mechanism
-            }
-        });
+//        buyButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                //buying mechanism
+//            }
+//        });
     }
 
     protected static void setShipType(ShipType shipType) {
