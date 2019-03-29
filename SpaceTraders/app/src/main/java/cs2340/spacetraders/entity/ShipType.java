@@ -12,7 +12,9 @@ public enum ShipType {
     Mosquito("MOSQUITO" , 15, "Small", 13, 100, 2, 1, 1, 1, 21000),
     Bumblebee("BUMBLEBEE" , 25, "Medium", 15, 100, 1, 2, 2, 2, 51000),
     Beetle("BEETLE" , 50, "Medium", 14, 50, 0, 1, 1, 3, 71000),
-    Hornet("HORNET" , 20, "Large", 16, 150, 3, 2, 1 ,2, 91000);
+    Hornet("HORNET" , 20, "Large", 16, 150, 3, 2, 1 ,2, 91000),
+    Grasshopper("GRASSHOPPER", 30, "Medium", 15, 100, 2, 2, 3, 3, 81000),
+    Termite("TERMITE", 60, "Large", 13, 150, 1, 2, 3, 3, 91000);
 
     /** the full string representation of the shiptype **/
     private final String shipType;

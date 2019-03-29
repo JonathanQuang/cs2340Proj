@@ -55,7 +55,7 @@
     <Button
         android:id="@+id/shipyardButton"
         android:layout_width="138dp"
-        android:layout_height="48dp"
+        android:layout_height="54dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"

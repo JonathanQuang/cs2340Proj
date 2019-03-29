@@ -5,6 +5,23 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/menuButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
     <TextView
         android:id="@+id/modelCreditsText"
         android:layout_width="80dp"
@@ -19,7 +36,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.137" />
 
     <TextView
         android:id="@+id/nameText"
@@ -33,9 +51,10 @@
         android:textSize="75px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.081" />
 
     <TextView
         android:id="@+id/sizeText"
@@ -51,7 +70,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modelCreditsText" />
+        app:layout_constraintTop_toBottomOf="@+id/modelCreditsText"
+        app:layout_constraintVertical_bias="0.236" />
 
     <TextView
         android:id="@+id/cargoBayText"
@@ -68,7 +88,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weaponSlotsText"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.228" />
 
     <TextView
         android:id="@+id/rangeText"
@@ -84,7 +104,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cargoBayText" />
+        app:layout_constraintTop_toBottomOf="@+id/cargoBayText"
+        app:layout_constraintVertical_bias="0.344" />
 
     <TextView
         android:id="@+id/hullStrengthText"
@@ -100,7 +121,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rangeText" />
+        app:layout_constraintTop_toBottomOf="@+id/rangeText"
+        app:layout_constraintVertical_bias="0.206" />
 
     <TextView
         android:id="@+id/weaponSlotsText"
@@ -116,7 +138,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.146"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modelCreditsText" />
+        app:layout_constraintTop_toBottomOf="@+id/modelCreditsText"
+        app:layout_constraintVertical_bias="0.236" />
 
     <TextView
         android:id="@+id/shieldSlotsText"
@@ -133,7 +156,7 @@
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sizeText"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.347" />
 
     <TextView
         android:id="@+id/gadgetSlotsText"
@@ -147,8 +170,10 @@
         android:textSize="40px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shieldSlotsText" />
+        app:layout_constraintTop_toBottomOf="@+id/shieldSlotsText"
+        app:layout_constraintVertical_bias="0.344" />
 
     <TextView
         android:id="@+id/crewQuartersText"
@@ -165,7 +190,7 @@
         app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gadgetSlotsText"
-        app:layout_constraintVertical_bias="0.581" />
+        app:layout_constraintVertical_bias="0.222" />
 
 
     <ImageView
@@ -183,5 +208,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText"
         app:srcCompat="@drawable/bumblebee_l" />
+
+    <Button
+        android:id="@+id/buyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="BUY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modelCreditsText"
+        app:layout_constraintVertical_bias="0.78" />
 
 </android.support.constraint.ConstraintLayout>
