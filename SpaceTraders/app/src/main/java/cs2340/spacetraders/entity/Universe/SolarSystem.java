@@ -2,13 +2,14 @@ package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class SolarSystem {
+public class SolarSystem implements Serializable {
     private Planet[] planetList;
     private List<RelativePosition> planetPositions;
     private CelestialName name;

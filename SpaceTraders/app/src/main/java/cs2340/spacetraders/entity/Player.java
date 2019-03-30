@@ -1,6 +1,8 @@
 package cs2340.spacetraders.entity;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
 
     private final int  initialCredits = 1000;
 

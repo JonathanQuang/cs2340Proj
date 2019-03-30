@@ -17,9 +17,10 @@
         android:text="Target System"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shipMarketButton"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <Button
         android:id="@+id/planetMarketButton"
@@ -35,7 +36,7 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/targetSystemButton"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/shipMarketButton"
@@ -48,14 +49,15 @@
         android:text="Ship Market"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shipyardButton"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/shipyardButton"
         android:layout_width="138dp"
-        android:layout_height="48dp"
+        android:layout_height="51dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -63,9 +65,10 @@
         android:text="Equipment Shipyard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hireCrewButton"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintVertical_bias="0.01" />
 
     <Button
         android:id="@+id/hireCrewButton"
@@ -78,9 +81,10 @@
         android:text="Hire Crew"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/starMapButton"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <Button
         android:id="@+id/starMapButton"
@@ -93,9 +97,10 @@
         android:text="Star Map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shipRepairButton"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintVertical_bias="0.011" />
 
     <Button
         android:id="@+id/shipRepairButton"
@@ -108,7 +113,24 @@
         android:text="Ship Repair"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.026" />
+
+    <Button
+        android:id="@+id/saveGame"
+        android:layout_width="138dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/planetMarketButton"
+        app:layout_constraintVertical_bias="0.031" />
 </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@ package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-public class Galaxy {
+public class Galaxy implements Serializable {
 
     private Map<String, Planet> planetNameMap;
     private List<Planet> planetList;

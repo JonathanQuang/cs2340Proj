@@ -1,6 +1,8 @@
 package cs2340.spacetraders.entity.Universe;
 
-public class Wormhole {
+import java.io.Serializable;
+
+public class Wormhole implements Serializable {
     private Wormhole connectedWormhole;
     private RelativePosition position;
     private int id;

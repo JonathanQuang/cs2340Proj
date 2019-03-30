@@ -1,6 +1,8 @@
 package cs2340.spacetraders.entity.Universe;
 
-public class RelativePosition {
+import java.io.Serializable;
+
+public class RelativePosition implements Serializable {
     private int x;
     private int y;
     private int rectRadius;

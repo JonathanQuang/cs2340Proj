@@ -2,10 +2,12 @@ package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
+import java.io.Serializable;
+
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 
-public class Planet {
+public class Planet implements Serializable {
     private CelestialName name;
     private TechLevel techLevel;
     private Resources resources;
