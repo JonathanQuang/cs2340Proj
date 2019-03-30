@@ -4,6 +4,7 @@ import java.util.List;
 
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.model.Model;
 
 public class GalaxyMapViewModel {
 
@@ -14,6 +15,7 @@ public class GalaxyMapViewModel {
     public GalaxyMapViewModel(Planet currentPlanet, List<Planet> planetList) {
         this.currentPlanet = currentPlanet;
         this.planetList = planetList;
+        currentPlayer = Model.getInstance().getPlayer();
     }
 
     public void setCurrentPlanet(Planet currentPlanet) {

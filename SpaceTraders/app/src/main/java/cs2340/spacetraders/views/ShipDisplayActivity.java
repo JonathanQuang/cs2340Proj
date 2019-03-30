@@ -1,7 +1,10 @@
 package cs2340.spacetraders.views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,7 +14,7 @@ import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.ShipMarketViewModel;
 
-class ShipDisplayActivity extends AppCompatActivity {
+public class ShipDisplayActivity extends AppCompatActivity {
 
     private ShipMarketViewModel shipmarketVM;
     private TextView modelCreditsText;
@@ -28,12 +31,14 @@ class ShipDisplayActivity extends AppCompatActivity {
     private static ShipType shipTypeVar;
     private ImageView shipImage;
 
-    private Button menuButton;
+    private FloatingActionButton menuButton;
     private Button buyButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        menuButton = findViewById(R.id.menuButton3);
+        setContentView(R.layout.ship_display);
+
+        menuButton = findViewById(R.id.menuButton);
         buyButton = findViewById(R.id.buyButton);
         modelCreditsText = findViewById(R.id.modelCreditsText);
         nameText = findViewById(R.id.nameText);
@@ -49,7 +54,7 @@ class ShipDisplayActivity extends AppCompatActivity {
         shipmarketVM = new ShipMarketViewModel(Model.getInstance().getPlayer());
         attachInfoEventListener(shipTypeVar);
         if (shipTypeVar.equals(ShipType.Gnat)) {
-
+            shipImage.setImageResource(R.drawable.gnat_l);
         } else if (shipTypeVar.equals(ShipType.Flea)) {
             shipImage.setImageResource(R.drawable.flea_l);
         } else if (shipTypeVar.equals(ShipType.Beetle)) {
@@ -67,18 +72,19 @@ class ShipDisplayActivity extends AppCompatActivity {
         } else if (shipTypeVar.equals(ShipType.Termite)) {
             shipImage.setImageResource(R.drawable.termite_l);
         }
-//        menuButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent = new Intent(ShipDisplayActivity.this, MenuScreen.class);
-//                startActivityForResult(intent, 0);
-//            }
-//        });
 
-//        buyButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                //buying mechanism
-//            }
-//        });
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ShipDisplayActivity.this, MenuScreen.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        buyButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //buying mechanism
+            }
+        });
     }
 
     protected static void setShipType(ShipType shipType) {
@@ -92,8 +98,8 @@ class ShipDisplayActivity extends AppCompatActivity {
 
     private void updateInfoSection(String name, String size, int cargoBays, int range, int weaponSlots,
                                    int shieldSlots, int gadgetSlots, int crewQuarters) {
-        nameText.setText("Name :" + name);
-        sizeText.setText("Size :" + size);
+        nameText.setText("Name:" + name);
+        sizeText.setText("Size:" + size);
         cargoBayText.setText("Cargo Bays: " + cargoBays);
         rangeText.setText("Range: " + range);
         weaponSlotsText.setText("Weapon slots: " + weaponSlots);
