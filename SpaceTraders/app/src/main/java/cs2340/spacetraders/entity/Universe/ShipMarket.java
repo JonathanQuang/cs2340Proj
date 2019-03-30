@@ -1,12 +1,13 @@
 package cs2340.spacetraders.entity.Universe;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.ShipType;
 
-public class ShipMarket {
+public class ShipMarket implements Serializable {
 
 
     private Player player;

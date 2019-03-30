@@ -2,6 +2,7 @@ package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-public class Galaxy {
+public class Galaxy implements Serializable {
 
     private Map<String, Planet> planetNameMap;
     private List<Planet> planetList;
@@ -21,10 +22,12 @@ public class Galaxy {
     private RelativePosition mapSize;
     private String[][] galaxyMap;
     private Random rand = new Random();
-    private Set<Wormhole> wormholeSet;
+    private List<Wormhole[]> wormholePairList;
     private Planet currentPlanet;
     private int mapWidth = 25;
     private int mapHeight = 37;
+    private int maxPlantsPerSystem = 6;
+    private int maxWormHolePairs = 2;
 
 
     /**
@@ -32,28 +35,27 @@ public class Galaxy {
      * Also, creates an prints out map of galaxy.
      */
     public Galaxy() {
-        solarSystemList = new ArrayList<SolarSystem>();
-        planetNameMap = new HashMap<String, Planet>();
-        systemPositionList = new ArrayList<RelativePosition>();
-        usedCelestialNames = new HashSet<CelestialName>();
-        wormholeSet = new HashSet<Wormhole>();
+        solarSystemList = new ArrayList<>();
+        planetNameMap = new HashMap<>();
+        systemPositionList = new ArrayList<>();
+        usedCelestialNames = new HashSet<>();
+        wormholePairList = new ArrayList<Wormhole[]>();
         mapSize = new RelativePosition(mapWidth, mapHeight);
         galaxyMap = new String[mapHeight][mapWidth];
 
-        int maxWormmHolePairs = 2;
-
         for (String[] row: galaxyMap) {Arrays.fill(row, " "); }
-
-        while (usedCelestialNames.size() + 5 < CelestialName.values().length) {
-            solarSystemList.add(makeSolarSystem());
+        while (usedCelestialNames.size() + maxPlantsPerSystem < CelestialName.values().length) {
+            SolarSystem newSolarSystem = makeSolarSystem();
+            if (newSolarSystem != null) {
+                solarSystemList.add(newSolarSystem);
+            }
         }
+
         planetList = new ArrayList<Planet>(planetNameMap.values());
         currentPlanet = chooseRandomPlanet();
-        Log.d("MarK", currentPlanet.toString());
+        Log.d("Current Planet", currentPlanet.toString());
 
-        //commented because wormhole in 3x3 system will cause infinite loop currently
-//        for (int i = 0; i < maxWormmHolePairs; i++) { placeWormholePair(); }
-
+        for (int i = 0; i < maxWormHolePairs; i++) { placeWormholePair(); }
         printMap();
     }
 
@@ -61,12 +63,13 @@ public class Galaxy {
      * Makes a solar system that randomizes all its attributes
      */
     private SolarSystem makeSolarSystem() {
-        int planetNum = rand.nextInt(5) + 1;  //1-5
-        CelestialName systemName = getNonRepeatedCelestialName();
+        int planetNum = rand.nextInt(maxPlantsPerSystem) + 1;
         Log.d("Planet", "Getting new system's center position");
         RelativePosition center = getValidSystemPoint(planetNum);
-        String size = getSystemSize(planetNum);
+        if (center == null) { return null; }
 
+        String size = getSystemSize(planetNum);
+        CelestialName systemName = getNonRepeatedCelestialName();
         Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
         return new SolarSystem(systemName, center, planetNum, size,this);
@@ -76,28 +79,28 @@ public class Galaxy {
      * picks two random systems to place a wormhole in
      */
     private void placeWormholePair(){
-
-        if (solarSystemList.size() <= 2) {
-            return;
+        SolarSystem solarsystem1 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
+        int attempt = 0;
+        while (solarsystem1.getCenter().getRectRadius() < 2) {
+            solarsystem1 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
+            if (++attempt > 500) { return; }
         }
-        int p1 = rand.nextInt(solarSystemList.size());
-        int p2 = p1;
-        int attempts = 0;
-        while (p1 == p2) {
-            p2 = rand.nextInt(solarSystemList.size());
-            attempts++;
-            if (attempts > 20) {
-                return;
-            }
-        }
-        RelativePosition relPos1 = solarSystemList.get(p1).getValidUnusedPoint();
-        RelativePosition relPos2 = solarSystemList.get(p2).getValidUnusedPoint();
 
-        Wormhole w1 = new Wormhole(relPos1);
-        Wormhole w2 = new Wormhole(relPos2);
+        SolarSystem solarsystem2 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
+        attempt = 0;
+        while (solarsystem2.getCenter().getRectRadius() < 2 || solarsystem2 == solarsystem1) {
+            solarsystem2 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
+            if (++attempt > 500) { return; }
+        }
+
+        Wormhole w1 = new Wormhole(this, solarsystem1.getValidUnusedPoint());
+        Wormhole w2 = new Wormhole(this, solarsystem2.getValidUnusedPoint());
+
         w1.joinWormholes(w2);
-        galaxyMap[relPos1.getY()][relPos1.getX()] = "@";
-        galaxyMap[relPos2.getY()][relPos2.getX()] = "@";
+        wormholePairList.add(new Wormhole[]{w1, w2});
+
+        galaxyMap[w1.getPosition().getY()][w1.getPosition().getX()] = "@";
+        galaxyMap[w2.getPosition().getY()][w2.getPosition().getX()] = "@";
     }
 
     /**
@@ -108,11 +111,13 @@ public class Galaxy {
      */
     private RelativePosition getValidSystemPoint(int planetNum) {
         RelativePosition center;
+        int attempts = 0;
         do {
-            int r = (planetNum + 2)/3;
+            int r = planetNum < 4 ? 1 : 2;
             int x = rand.nextInt(mapSize.getX() - 2 * r) + r;
             int y = rand.nextInt(mapSize.getY() - 2 * r) + r;
             center = new RelativePosition(x, y, r, true);
+            if (++attempts > 200) { return null; }
         } while (systemPositionList.contains(center) || !isValidCornerPoint(center));
         systemPositionList.add(center);
         return center;
@@ -229,5 +234,9 @@ public class Galaxy {
 
     public void setCurrentPlanet(Planet currentPlanet) {
         this.currentPlanet = currentPlanet;
+    }
+
+    public List<Wormhole[]> getWormholePairList() {
+        return wormholePairList;
     }
 }

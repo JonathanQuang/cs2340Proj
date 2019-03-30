@@ -1,5 +1,6 @@
 package cs2340.spacetraders.entity.Travel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +11,7 @@ import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.model.Model;
 
-public class Travel {
+public class Travel implements Serializable {
 
     private int FUEL_PER_UNIT_MOVED = 10;
     private Player player;
@@ -45,7 +46,7 @@ public class Travel {
             int dist = planetDistances.get(planet);
             int fuelUsed = dist * FUEL_PER_UNIT_MOVED;
             ship.setFuel(fuel - fuelUsed);
-//            System.out.println("(fuel-fuelUsed) = " + (fuel-fuelUsed));
+            System.out.println("ship.getFuel() = " + ship.getFuel());
             //RUN_ENCOUNTERABLE()
             currentPlanet = planet;
             findValidPlanets();
@@ -53,6 +54,12 @@ public class Travel {
             return 0;
         }
         return 1;
+    }
+
+    public void wormHoleTravel(Planet planet) {
+        currentPlanet = planet;
+        findValidPlanets();
+        Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
     }
 
     private void findValidPlanets() {

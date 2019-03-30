@@ -6,8 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Base64;
 
 import cs2340.spacetraders.R;
+import cs2340.spacetraders.entity.Ship;
+import cs2340.spacetraders.entity.ShipType;
+import cs2340.spacetraders.model.Model;
 
 public class MenuScreen extends AppCompatActivity {
     private Button shipMarketButton;
@@ -15,8 +28,9 @@ public class MenuScreen extends AppCompatActivity {
     private Button shipRepairButton;
     private Button hireCrewButton;
     private Button starMapButton;
-    private Button targetSystemButton;
+    private Button retireButton;
     private Button planetMarketButton;
+    private Button saveGameButton;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +40,9 @@ public class MenuScreen extends AppCompatActivity {
         shipRepairButton = findViewById(R.id.shipRepairButton);
         hireCrewButton = findViewById(R.id.hireCrewButton);
         starMapButton = findViewById(R.id.starMapButton);
-        targetSystemButton = findViewById(R.id.targetSystemButton);
+        retireButton = findViewById(R.id.retire_button);
         planetMarketButton = findViewById(R.id.planetMarketButton);
+        saveGameButton = findViewById(R.id.saveGame);
 
         shipMarketButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -64,12 +79,6 @@ public class MenuScreen extends AppCompatActivity {
             }
         });
 
-        targetSystemButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuScreen.this, TargetSystemActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
 
         planetMarketButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -77,5 +86,37 @@ public class MenuScreen extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+
+        saveGameButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                saveState();
+            }
+        });
+
+        retireButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuScreen.this, RetireActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+    }
+
+    private void saveState() {
+        FirebaseApp.initializeApp(this);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(bos);
+            out.writeObject(Model.getInstance());
+            out.close();
+            Toast.makeText(getApplication(), "Saved Game", Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplication(), "Error Reading from Database", Toast.LENGTH_LONG).show();
+        }
+        String msg = Base64.getEncoder().encodeToString(bos.toByteArray());
+        myRef.setValue(msg);
     }
 }

@@ -7,14 +7,14 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/targetText"
+        android:id="@+id/retire"
         android:layout_width="190dp"
         android:layout_height="107dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="target system"
+        android:text="Retire"
         android:textSize="100px"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"

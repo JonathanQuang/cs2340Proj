@@ -7,30 +7,101 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.common.util.ArrayUtils;
+import com.google.android.gms.common.util.IOUtils;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Base64;
 
 import cs2340.spacetraders.R;
+import cs2340.spacetraders.model.Model;
 
-public class MainMenuActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity implements Serializable {
 
     public static final int ADD_PLAYER_REQUEST_ID = 1;
+    private DatabaseReference myRef;
 
     /** Called when the application starts. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
-        ImageView imageView = (ImageView) findViewById(R.id.spaceTradersBackground);
-        imageView.setBackgroundResource(R.drawable.background);
 
+        //Set up Firebase
+        FirebaseApp.initializeApp(this);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("message");
 
-        Button add =  findViewById(R.id.new_player);
-        add.setOnClickListener(new View.OnClickListener() {
+        //New Game
+        Button newGame =  findViewById(R.id.new_player);
+        newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenuActivity.this, ConfigurationActivity.class);
                 startActivityForResult(intent, ADD_PLAYER_REQUEST_ID);
             }
         });
+
+        //Load Old Game
+        Button continueGame =  findViewById(R.id.continue_game);
+        continueGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadLastGame();
+            }
+        });
+    }
+
+    private void loadLastGame() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                Model previousGame = (Model) readMessage(value);
+                Toast.makeText(getApplication(), "Loaded Game", Toast.LENGTH_LONG).show();
+                if (previousGame != null) {
+                    //Set up Model
+                    Model.getInstance().setPlayer(previousGame.getPlayer());
+                    Model.getInstance().setGame(previousGame.getGame());
+
+                    Intent intent = new Intent(MainMenuActivity.this, MarketScreenActivity.class);
+                    startActivityForResult(intent, ADD_PLAYER_REQUEST_ID);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.d("Loading Game", "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+    private Object readMessage(String msg) {
+        try {
+            byte[] bytes = Base64.getDecoder().decode(msg);
+            ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(bytes));
+            Object o = in.readObject();
+            in.close();
+            Log.d("Loading Game", "Model Read!!! = " + o);
+            return o;
+        } catch (IOException | ClassNotFoundException | NullPointerException e) {
+                Log.d("Loading Game", "Failed to load value.", e);
+        }
+        return null;
     }
 
     /** Called when the activity is about to become visible. */

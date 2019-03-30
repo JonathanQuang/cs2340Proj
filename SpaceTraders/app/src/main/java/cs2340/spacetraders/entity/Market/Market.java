@@ -2,13 +2,15 @@ package cs2340.spacetraders.entity.Market;
 
 import android.util.Log;
 
+import java.io.Serializable;
+
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 import cs2340.spacetraders.entity.Player;
 
 
-public class Market {
+public class Market implements Serializable {
 
     private PlanetInventory planetInventory;
     private Inventory playerInventory;
