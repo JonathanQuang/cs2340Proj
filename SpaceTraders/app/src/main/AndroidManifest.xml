@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".views.ShipyardActivity">
         </activity>
+        <activity android:name=".views.ShipDisplayActivity">
+        </activity>
         <activity android:name=".views.ShipRepairActivity">
         </activity>
         <activity android:name=".views.HireCrewActivity">
