@@ -1223,5 +1223,29 @@
         android:src="@drawable/cyan_ring"
         tools:ignore="MissingConstraints" />
 
+    <Button
+        android:id="@+id/wormhole1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/wormhole2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/wormhole3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/wormhole4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:ignore="MissingConstraints" />
+
 
 </android.support.constraint.ConstraintLayout>

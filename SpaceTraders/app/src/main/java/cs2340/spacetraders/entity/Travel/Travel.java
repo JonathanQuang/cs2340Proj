@@ -56,6 +56,12 @@ public class Travel implements Serializable {
         return 1;
     }
 
+    public void wormHoleTravel(Planet planet) {
+        currentPlanet = planet;
+        findValidPlanets();
+        Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
+    }
+
     private void findValidPlanets() {
         validPlanets.clear();
         planetDistances.clear();

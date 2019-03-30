@@ -33,7 +33,7 @@ import cs2340.spacetraders.model.Model;
 public class MainMenuActivity extends AppCompatActivity implements Serializable {
 
     public static final int ADD_PLAYER_REQUEST_ID = 1;
-    DatabaseReference myRef;
+    private DatabaseReference myRef;
 
     /** Called when the application starts. */
     @Override
@@ -66,7 +66,7 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
         });
     }
 
-    public void loadLastGame() {
+    private void loadLastGame() {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -90,7 +90,7 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
         });
     }
 
-    public Object readMessage(String msg) {
+    private Object readMessage(String msg) {
         try {
             byte[] bytes = Base64.getDecoder().decode(msg);
             ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(bytes));

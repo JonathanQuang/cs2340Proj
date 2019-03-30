@@ -28,7 +28,7 @@ public class MenuScreen extends AppCompatActivity {
     private Button shipRepairButton;
     private Button hireCrewButton;
     private Button starMapButton;
-    private Button targetSystemButton;
+    private Button retireButton;
     private Button planetMarketButton;
     private Button saveGameButton;
     
@@ -40,7 +40,7 @@ public class MenuScreen extends AppCompatActivity {
         shipRepairButton = findViewById(R.id.shipRepairButton);
         hireCrewButton = findViewById(R.id.hireCrewButton);
         starMapButton = findViewById(R.id.starMapButton);
-        targetSystemButton = findViewById(R.id.targetSystemButton);
+        retireButton = findViewById(R.id.retire_button);
         planetMarketButton = findViewById(R.id.planetMarketButton);
         saveGameButton = findViewById(R.id.saveGame);
 
@@ -80,12 +80,6 @@ public class MenuScreen extends AppCompatActivity {
             }
         });
 
-        targetSystemButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuScreen.this, TargetSystemActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
 
         planetMarketButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -99,9 +93,16 @@ public class MenuScreen extends AppCompatActivity {
                 saveState();
             }
         });
+
+        retireButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuScreen.this, RetireActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
     }
 
-    public void saveState() {
+    private void saveState() {
         FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");

@@ -8,17 +8,17 @@ import android.view.View;
 
 import cs2340.spacetraders.R;
 
-public class TargetSystemActivity extends AppCompatActivity {
+public class RetireActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.target_system);
+        setContentView(R.layout.retire_screen);
 
         menuButton = findViewById(R.id.menuButton);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(TargetSystemActivity.this, MenuScreen.class);
+                Intent intent = new Intent(RetireActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);
             }
         });    }

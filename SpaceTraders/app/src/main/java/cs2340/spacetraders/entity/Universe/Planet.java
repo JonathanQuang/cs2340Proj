@@ -21,6 +21,7 @@ public class Planet implements Serializable {
     private PlanetaryEvent event;
     private double tradersReturnRate;
     private SolarSystem parentSolarSystem;
+    private Wormhole connectWormHole;
 
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
                   PoliticalSystem politicalSystem, RelativePosition relativePosition,
@@ -41,8 +42,9 @@ public class Planet implements Serializable {
 //        Log.d("Mark", "Inverntory Made");
     }
 
-    public void makeSpaceport() {
+    public void makeSpaceport(Wormhole wormhole) {
         isSpacePort = true;
+        connectWormHole = wormhole;
     }
 
     public CelestialName getName() {

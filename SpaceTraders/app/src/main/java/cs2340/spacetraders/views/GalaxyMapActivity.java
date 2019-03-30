@@ -1,14 +1,11 @@
 package cs2340.spacetraders.views;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,22 +13,20 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.Travel.Travel;
+import cs2340.spacetraders.entity.Universe.Galaxy;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.entity.Universe.RelativePosition;
 import cs2340.spacetraders.entity.Universe.SolarSystem;
+import cs2340.spacetraders.entity.Universe.Wormhole;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.GalaxyMapViewModel;
 
@@ -39,6 +34,10 @@ public class GalaxyMapActivity extends AppCompatActivity {
 
     private GalaxyMapViewModel galaxyMapVM;
     private Travel travel;
+    private int screenHeight;
+    private int screenWidth;
+    private RelativePosition mapSize;
+    private Planet currentPlanet;
 
     /** Called when the application starts. */
     @SuppressLint("ClickableViewAccessibility")
@@ -46,57 +45,64 @@ public class GalaxyMapActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.galaxy_map);
-
-        Planet currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
-        travel = new Travel(Model.getInstance().getPlayer(), currentPlanet);
-
-        //Show All Planets
-        List<Planet> planetList = Model.getInstance().getGame().getGalaxy().getPlanetList();
-        galaxyMapVM = new GalaxyMapViewModel(currentPlanet, planetList);
         int[] planetButtonIDs = getPlanetButtonIDs();
+        int[] ringIDs = getRingButtonIDs();
+        int[][] wormholeIDs = getWormholeIDs();
+        setScreenDimensions();
 
+        //Get info for Planets
+        Galaxy galaxy = Model.getInstance().getGame().getGalaxy();
+        mapSize = galaxy.getMapSize();
+        currentPlanet = galaxy.getCurrentPlanet();
+        List<Planet> planetList = galaxy.getPlanetList();
+        travel = new Travel(Model.getInstance().getPlayer(), currentPlanet);
+        galaxyMapVM = new GalaxyMapViewModel(currentPlanet, planetList);
+
+        //Place All Plants
         for (int i = 0; i < planetButtonIDs.length; i++) {
             Planet planet = i < planetList.size() ? planetList.get(i) : null;
-            makePlanetButton(planet, planetButtonIDs[i]);
-            if(planet != null && planet.equals(currentPlanet)) {
-                Button curr_planet_button = findViewById(planetButtonIDs[i]);
-                if (curr_planet_button != null) {
+            if (planet != null) {
+                placePlanet(planet, planetButtonIDs[i]);
+                if (planet.equals(currentPlanet)) {
+                    Button curr_planet_button = findViewById(planetButtonIDs[i]);
                     curr_planet_button.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.white_l));
                 }
-            }
+            } else { findViewById(planetButtonIDs[i]).setVisibility(View.GONE); }
         }
 
-        putValidPlanetRing(currentPlanet, travel.radiusOfTravel());
+        //Circle Range of Travel
+        placeRangeRing(travel.radiusOfTravel());
 
         //Circle All Systems
-        List<SolarSystem> solarSystemsList = Model.getInstance().getGame().getGalaxy().getSolarSystemList();
-        int[] ringIDs = getRingButtonIDs();
+        List<SolarSystem> solarSystemsList = galaxy.getSolarSystemList();
         for (int i = 0; i < ringIDs.length; i++) {
             SolarSystem solarSystem = i < solarSystemsList.size() ? solarSystemsList.get(i) : null;
-            setRing(solarSystem, ringIDs[i]);
+            if (solarSystem != null) {
+                placeSystemRing(solarSystem, ringIDs[i]);
+            } else { findViewById(ringIDs[i]).setVisibility(View.GONE);}
+        }
+
+        //Place Wormholes
+        List<Wormhole[]> wormholePairList = galaxy.getWormholePairList();
+        for (int i = 0; i < wormholeIDs.length; i++) {
+            Wormhole[] wormhole = i < wormholePairList.size() ? wormholePairList.get(i) : null;
+            if (wormhole != null) {
+                placeWormhole(wormhole[0], wormholeIDs[i][0], wormholeIDs[i][2]);
+                placeWormhole(wormhole[1], wormholeIDs[i][1], wormholeIDs[i][2]);
+            } else {
+                findViewById(wormholeIDs[i][0]).setVisibility(View.GONE);
+                findViewById(wormholeIDs[i][1]).setVisibility(View.GONE);
+            }
         }
     }
 
-    private void makePlanetButton(final Planet planet, int buttonID) {
+    private void placePlanet(final Planet planet, int buttonID) {
         Button planet_button = findViewById(buttonID);
-        if (planet == null) {
-            planet_button.setVisibility(View.GONE);
-            return;
-        }
-
-        //Set Resources
         int imageID = Model.getInstance().getPlanetImageIDs().get(planet.getResources());
-        planet_button.setBackground(ContextCompat.getDrawable(getApplicationContext(), imageID));
+        int size = 25 + planet.getSizeAsInt() * 5;
 
-        //Set Size
-        ViewGroup.LayoutParams params = planet_button.getLayoutParams();
-        params.height = params.width = 25 + planet.getSizeAsInt() * 5;
-        planet_button.setLayoutParams(params);
+        makeCustomView(planet_button, imageID, size, planet.getRelativePosition());
 
-        //Set Position
-        setPositionOnScreen(planet_button, planet.getRelativePosition(), params.height/2);
-
-        //Set onClick
         planet_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 galaxyMapVM.setCurrentPlanet(planet);
@@ -105,61 +111,49 @@ public class GalaxyMapActivity extends AppCompatActivity {
         });
     }
 
-    private void setPositionOnScreen(View view, RelativePosition position, int radius) {
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int screenWidth = size.x - 20;
-        int screenHeight = size.y - 250;
+    private void placeRangeRing(int radiusOfTravel) {
+        ImageView ring = findViewById(R.id.validRing);
+        int size = 2 * (radiusOfTravel * 44);
+        makeCustomView(ring, R.drawable.cyan_ring, size, currentPlanet.getRelativePosition());
+    }
 
+    private void placeSystemRing(SolarSystem solarSystem, int ringID) {
+        View ring = findViewById(ringID);
+        int size = 130 + (solarSystem.getCenter().getRectRadius() - 1) * 100;
+        makeCustomView(ring, R.drawable.ring, size, solarSystem.getCenter());
+    }
+
+    private void placeWormhole(final Wormhole wormhole, int wormholeID, int wormholeImg) {
+        Button wormhole_button = findViewById(wormholeID);
+        makeCustomView(wormhole_button, wormholeImg, 25, wormhole.getPosition());
+
+        wormhole_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                galaxyMapVM.setSelectedWormhole(wormhole);
+                onButtonShowWormHoleClick(v, wormhole);
+            }
+        });
+    }
+
+    private void makeCustomView(View view, int imageID, int size, RelativePosition position) {
+        //Set Picture
+        view.setBackground(ContextCompat.getDrawable(getApplicationContext(), imageID));
+        //Set Size
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+        params.height = params.width = size;
+        view.setLayoutParams(params);
+        //Set Position
+        setPositionOnScreen(view, position, params.height/2);
+    }
+
+    private void setPositionOnScreen(View view, RelativePosition position, int radius) {
         //Places based on proportion from (planet x to map width) is (screen x to screen width)
-        RelativePosition mapSize = Model.getInstance().getGame().getGalaxy().getMapSize();
         double probX = ((double) position.getX()) / mapSize.getX();
         double probY = ((double) position.getY()) / mapSize.getY();
 
         view.setTranslationX((int) (screenWidth * probX - radius) + 20);
         view.setTranslationY((int) (screenHeight * probY - radius) + 20);
     }
-
-    private void putValidPlanetRing(Planet currentPlanet, int radiusOfTravel) {
-        ImageView ring = findViewById(R.id.validRing);
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int screenWidth = size.x - 20;
-        int screenHeight = size.y - 250;
-
-        RelativePosition mapSize = Model.getInstance().getGame().getGalaxy().getMapSize();
-        int deltaXPx = (int) (((double) 1 / mapSize.getX()) * screenWidth);
-        int deltaYPx = (int) (((double) 1 / mapSize.getY()) * screenHeight);
-        System.out.println("deltaYPx = " + deltaYPx);
-        System.out.println("deltaXPx = " + deltaXPx);
-        System.out.println("screenHeight = " + screenHeight);
-        System.out.println("screenWidth = " + screenWidth);
-
-
-        ViewGroup.LayoutParams params = ring.getLayoutParams();
-        params.height = params.width = 2* (radiusOfTravel * 42);
-        ring.setLayoutParams(params);
-        setPositionOnScreen(ring, currentPlanet.getRelativePosition(), params.height/2);
-    }
-
-    private void setRing(SolarSystem solarSystem, int ringID) {
-        View ring = findViewById(ringID);
-        if (solarSystem == null) {
-            ring.setVisibility(View.GONE);
-            return;
-        }
-        //Set Size
-        ViewGroup.LayoutParams params = ring.getLayoutParams();
-        params.height = params.width = 130 + (solarSystem.getCenter().getRectRadius() - 1) * 100;
-        ring.setLayoutParams(params);
-
-        setPositionOnScreen(ring, solarSystem.getCenter(), params.height/2);
-    }
-
-
 
     private void onButtonShowPlanetInfoClick(View view, final Planet planet) {
         LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -183,10 +177,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         });
 
         Button travelButton = popupView.findViewById(R.id.travelButton);
-        if (!travel.getValidPlanets().contains(planet)){
-            travelButton.setEnabled(false);
-        }
-
+        if (!travel.getValidPlanets().contains(planet)){ travelButton.setEnabled(false); }
         travelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (travel.travel(planet) == 0) {
@@ -197,8 +188,51 @@ public class GalaxyMapActivity extends AppCompatActivity {
         });
     }
 
+    private void onButtonShowWormHoleClick(View view, final Wormhole wormhole) {
+        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View popupView = inflater.inflate(R.layout.wormhole_popup, null);
+
+        TextView textView = popupView.findViewById(R.id.wormholeText);
+        textView.setText(galaxyMapVM.popUpWormHoleInfo());
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        popupWindow.setElevation(5.0f);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+        Button warpButton = popupView.findViewById(R.id.warpButton);
+        if (currentPlanet != wormhole.getShipportPlanet()){ warpButton.setEnabled(false); }
+        warpButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                travel.wormHoleTravel(wormhole.getConnectedWormhole().getShipportPlanet());
+                Intent intent = new Intent(GalaxyMapActivity.this, MarketScreenActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+    }
+
+    public void setScreenDimensions() {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        screenWidth = size.x - 20;
+        screenHeight = size.y - 250;
+    }
+
+    public int getPixelPerUnit() {
+        return(int) (1.0 / mapSize.getY() * screenHeight);
+    }
+
     public int[] getPlanetButtonIDs() {
-        //Made with Python :P
         return new int[]{
                 R.id.planet1, R.id.planet2, R.id.planet3, R.id.planet4, R.id.planet5,
                 R.id.planet6, R.id.planet7, R.id.planet8, R.id.planet9, R.id.planet10,
@@ -228,7 +262,6 @@ public class GalaxyMapActivity extends AppCompatActivity {
     }
 
     public int[] getRingButtonIDs() {
-        //Made with Python :P
         return new int[]{
                 R.id.ring1, R.id.ring2, R.id.ring3, R.id.ring4, R.id.ring5,
                 R.id.ring6, R.id.ring7, R.id.ring8, R.id.ring9, R.id.ring10,
@@ -243,5 +276,10 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 R.id.ring51, R.id.ring52, R.id.ring53, R.id.ring54, R.id.ring55,
                 R.id.ring56, R.id.ring57, R.id.ring58, R.id.ring59, R.id.ring60,
                 R.id.ring61, R.id.ring62};
+    }
+
+    public int[][] getWormholeIDs() {
+        return new int[][]{{R.id.wormhole1, R.id.wormhole2, R.drawable.wormhole},
+                { R.id.wormhole3, R.id.wormhole4, R.drawable.wormhole_green}};
     }
 }

@@ -30,7 +30,7 @@ public class SolarSystem implements Serializable {
         planetList = new Planet[planetNum];
         for (int i = 0; i < planetList.length; i++) {
             planetList[i] = makePlanet(i);
-            Log.d("Planet ", planetList[i].toString());
+//            Log.d("Planet ", planetList[i].toString());
             parentGalaxy.getPlanetNameMap().put(planetList[i].getName().toString(), planetList[i]);
         }
 
@@ -71,11 +71,9 @@ public class SolarSystem implements Serializable {
 
     private String getPlanetSize() {
         int size = rand.nextInt(3);
-        String sizeStr = "";
-        if (size == 0) {sizeStr = "Small"; }
-        else if (size == 1) { sizeStr = "Medium"; }
-        else if (size == 2) { sizeStr = "Large"; }
-        return sizeStr;
+        if (size == 0) {return "Small"; }
+        else if (size == 1) { return"Medium"; }
+        else { return "Large"; }
     }
 
     public String getSize() {
