@@ -6,12 +6,12 @@ import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.entity.Universe.ShipMarket;
 
-public class ShipMarketViewModel {
+public class ShipDisplayViewModel {
 
     private Player player;
     private ShipMarket shipMarket;
 
-    public ShipMarketViewModel(Player player) {
+    public ShipDisplayViewModel(Player player) {
         this.player = player;
         shipMarket = new ShipMarket(player);
     }
