@@ -10,12 +10,14 @@ import cs2340.spacetraders.entity.Universe.Planet;
 
 public class Pirate extends Encounterable {
 
+    private boolean hostile = true;
+
     /**
      *
      */
     public Pirate() {
         super();
-        super.setAttackChance(1);
+        super.setAttackChance(0.9);
         super.setIgnoreChance(0);
     }
 
@@ -46,7 +48,31 @@ public class Pirate extends Encounterable {
      */
     @Override
     public String createDialogue() {
-        return "Arrrr";
+        return "Pirate: Hostile";
+    }
+
+    @Override
+    public void surrenderResult() {
+        steal();
+    }
+
+    @Override
+    public boolean setHostile() {
+        return hostile;
+    }
+
+    @Override
+    public String uniqueAction() {
+        return null;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "Pirate";
     }
 
 

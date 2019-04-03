@@ -11,8 +11,8 @@ public abstract class Encounterable {
 
     private Random random = new Random();
     private double difficultyMultiplier = Game.getDifficulty().getMultipler();
-    private double fleeChance = 0.25;
-    private double pursueChance = 0.5;
+    private double fleeChance = 0.05;
+    private double pursueChance = 0.1;
     private double ignoreChance, attackChance;
     private Ship ship = new Ship(ShipType.randomShipType());
 
@@ -29,6 +29,24 @@ public abstract class Encounterable {
      * @return
      */
     public abstract String createDialogue();
+
+    /**
+     *
+     * @return
+     */
+    public abstract void surrenderResult();
+
+    /**
+     *
+     * @return
+     */
+    public abstract boolean setHostile();
+
+    /**
+     *
+     * @return
+     */
+    public abstract String uniqueAction();
 
     /**
      *

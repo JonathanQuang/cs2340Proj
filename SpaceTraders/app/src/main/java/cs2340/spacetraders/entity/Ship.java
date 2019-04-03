@@ -69,6 +69,6 @@ public class Ship {
      * @return  this ship's string representation
      */
     public String toString() {
-        return "(Type) " + shipType;
+        return "" + shipType;
     }
 }

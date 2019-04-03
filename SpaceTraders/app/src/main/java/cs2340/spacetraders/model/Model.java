@@ -23,6 +23,7 @@ public class Model {
     private Map<Resources, Integer> planetImageIDs;
 
     private static  Model instance = new Model();
+    private static DataStorage storage = new DataStorage();
     public static Model getInstance() { return instance; }
 
     private Model() {
@@ -61,6 +62,13 @@ public class Model {
      */
     public Game getGame() {
         return game;
+    }
+
+    /** gets data
+     * @return data storage
+     */
+    public static DataStorage getDataStorage() {
+        return storage;
     }
 
     private void setPlanetImageIDs() {

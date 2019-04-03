@@ -18,6 +18,7 @@ public class EncounterScreenViewModel {
     private Player currentPlayer;
     private Random random = new Random();
     private Encounterable character;
+    private String action = "";
 
     public EncounterScreenViewModel(Planet planet) {
         this.planet = planet;
@@ -31,32 +32,39 @@ public class EncounterScreenViewModel {
         }
     }
 
-    public void characterAttack() {
-        character.attack(character.getShip().getDamage());
-        if (currentPlayer.getShip().getHealth() <= 0) {
-            currentPlayer.death();
+    public void characterAction() {
+        if (random.nextDouble() < character.getIgnoreChance()) {
+            action = character.toString() + " ignored you";
+        } else if (random.nextDouble() < character.getFleeChance()) {
+            character.attack(character.getShip().getDamage());
+            action = character.toString() + " fled";
+        } else if (random.nextDouble() < character.getAttackChance()) {
+            character.attack(character.getShip().getDamage());
+            action = character.toString() + " attacked you";
+        } else {
+            action = character.toString() + " watched you";
         }
     }
 
-    public String popUpBuyStr() {
-        return "Planet " + " Supply: " + "\n"
-                + "Buying Price: $" + "\n"
-                //+ "Quantity Purchasing: ---" + "\n"
-                //+ "Total Cost: ---" + "\n";
-                + "You currently have " + " " + "\n"
-                + "You have " + currentPlayer.getCredits() + " credits" + "\n"
-                + "Type below amount purchase";
+    public boolean pursueAction() {
+        if (random.nextDouble() < character.getPursueChance()) {
+            character.attack(character.getShip().getDamage());
+            action = character.toString() + " chased you down and attacked you";
+            return true;
+        } else {
+            action = character.toString() + " let you go";
+            return false;
+        }
     }
 
-    public String popUpSellStr() {
-        return "Your current " + " Supply: " + "\n"
-                + "Selling Price: $" + "\n"
-                //+ "Quantity Selling: ---" + "\n"
-                //+ "Total Revenue: ---" + "\n"
-                //+ "Average Revenue per Unit: ---";
-                + "You currently have " + " " + "\n"
-                + "You have " + currentPlayer.getCredits() + " credits" + "\n"
-                + "Type below amount to sell";
+    public String playerInfo() {
+        return "Ship: " + Player.getShip() + "\n"
+                + "Health: " + Player.getShip().getHealth();
+    }
+
+    public String encounterInfo(Encounterable character) {
+        return "Ship: " + character.getShip() + "\n"
+                + "Health: " + character.getShip().getHealth();
     }
 
     public void setPlayer(Player currentPlayer) {
@@ -64,11 +72,11 @@ public class EncounterScreenViewModel {
     }
 
     public Encounterable setCharacter() {
-        if (random.nextDouble() > planet.getPoliticalSystem().determineProbability(planet.getPoliceQuantity())) {
+        if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(planet.getPoliceQuantity())) {
             this.character = new Police(planet);
-        } else if (random.nextDouble() > planet.getPoliticalSystem().determineProbability(planet.getPirateQuantity())) {
+        } else if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(planet.getPirateQuantity())) {
             this.character = new Pirate();
-        } else if (random.nextDouble() > planet.getPoliticalSystem().determineProbability(planet.getTraderQuantity())) {
+        } else if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(planet.getTraderQuantity())) {
             this.character = new Trader(planet);
         } else {
             character = null;
@@ -78,5 +86,9 @@ public class EncounterScreenViewModel {
 
     public Encounterable getCharacter() {
         return character;
+    }
+
+    public String getAction() {
+        return action;
     }
 }

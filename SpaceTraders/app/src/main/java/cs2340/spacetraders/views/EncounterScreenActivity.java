@@ -49,249 +49,237 @@ public class EncounterScreenActivity extends AppCompatActivity {
 
     private Inventory playerInventory;
     private Encounterable character;
+    private int totalEncounters;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d("EncounterGabe11", "Start!");
-        int totalEncounters = 0;
+        totalEncounters = Model.getDataStorage().getTotalEncounters();
+
         Planet currentPlanet = null;
         while(currentPlanet == null) {
-            Log.d("EncounterGabe11", "Planet!");
             currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
         }
-        //planetNametext = findViewById(R.id.planetName);
-        //planetNametext.setText(currentPlanet.getName().toString());
 
         encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
-        Log.d("EncounterGabe11", "VM!");
-
         character = encounterScreenVM.setCharacter();
-        Log.d("EncounterGabe11", "Character!");
 
-        if (character == null) {
-            Log.d("EncounterGabe11", "NoEncounter");
+        if (character == null || totalEncounters >= 5) {
             setContentView(R.layout.encounter_screen);
             Button okButton = findViewById(R.id.encounterButton);
 
             okButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
+                    Model.getDataStorage().setTotalEncounters(0);
                     startActivityForResult(intent, 0);
                 }
             });
-        } else {
-            Log.d("EncounterGabe11", "Police");
-            //showPolicePopupWindow(findViewById(android.R.id.content));
+        } else if (character instanceof Police && totalEncounters < 5) {
             setContentView(R.layout.police_popup);
-            totalEncounters++;
-            Button okButton = findViewById(R.id.attack_button);
+            Model.getDataStorage().setTotalEncounters(++totalEncounters);
+            Button attackButton = findViewById(R.id.attack_button);
+            Button fleeButton = findViewById(R.id.flee_button);
+            Button surrenderButton = findViewById(R.id.surrender_button);
+            Button bribeButton = findViewById(R.id.bribe_button);
+            final TextView playerInfo = findViewById(R.id.playerInfoText);
+            final TextView encounterInfo = findViewById(R.id.encounterInfoText);
+            final TextView encounterType = findViewById(R.id.encounterType);
+            final TextView action = findViewById(R.id.action);
 
-            okButton.setOnClickListener(new View.OnClickListener() {
+            encounterType.setText(character.createDialogue());
+            playerInfo.setText(encounterScreenVM.playerInfo());
+            encounterInfo.setText(encounterScreenVM.encounterInfo(character));
+
+            fleeButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    action.setText("You tried to flee");
+                    if (encounterScreenVM.pursueAction()) {
+                        easyToast(encounterScreenVM.getAction());
+                        playerInfo.setText(encounterScreenVM.playerInfo());
+                    } else {
+                        easyToast(encounterScreenVM.getAction());
+                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        startActivityForResult(intent, 0);
+                    }
+                }
+            });
+
+            surrenderButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    character.surrenderResult();
+                    easyToast("You surrendered");
                     Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);
                 }
             });
-        }
-        /*
-        else if (character instanceof Police && totalEncounters <= 2) {
-            Log.d("EncounterGabe11", "Police");
-            //showPolicePopupWindow(findViewById(android.R.id.content));
-            setContentView(R.layout.police_popup);
-            totalEncounters++;
-            Button okButton = findViewById(R.id.attack_button);
 
-            okButton.setOnClickListener(new View.OnClickListener() {
+            bribeButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    easyToast("You" + character.uniqueAction() + "bribe the officer");
                     Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);
                 }
             });
-        } else if (character instanceof Pirate && totalEncounters <= 2) {
-            Log.d("EncounterGabe11", "Pirate");
-            //showPiratePopupWindow(findViewById(android.R.id.content));
+
+            attackButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    action.setText("You attack");
+                    encounterScreenVM.playerAttack();
+                    Player.setCriminalStatus(true);
+                    character.setHostile();
+                    playerInfo.setText(encounterScreenVM.playerInfo());
+                    encounterInfo.setText(encounterScreenVM.encounterInfo(character));
+                    encounterType.setText(character.createDialogue());
+                    if (encounterScreenVM.getCharacter().getShip().getHealth() <= 0) {
+                        easyToast("You won the battle");
+                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        startActivityForResult(intent, 0);
+                    } else if (Player.getHealth() <= 0) {
+                        easyToast("You died");
+                        //death
+                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        startActivityForResult(intent, 0);
+                    } else {
+                        encounterScreenVM.characterAction();
+                        action.setText(encounterScreenVM.getAction());
+                    }
+                }
+            });
+        } else if (character instanceof Pirate && totalEncounters < 5) {
             setContentView(R.layout.pirate_popup);
-            totalEncounters++;
-            Button okButton = findViewById(R.id.attack_button);
+            Model.getDataStorage().setTotalEncounters(++totalEncounters);
+            Button attackButton = findViewById(R.id.attack_button);
+            Button fleeButton = findViewById(R.id.flee_button);
+            Button surrenderButton = findViewById(R.id.surrender_button);
+            final TextView playerInfo = findViewById(R.id.playerInfoText);
+            final TextView encounterInfo = findViewById(R.id.encounterInfoText);
+            final TextView encounterType = findViewById(R.id.encounterType);
+            final TextView action = findViewById(R.id.action);
 
-            okButton.setOnClickListener(new View.OnClickListener() {
+            encounterType.setText(character.createDialogue());
+            playerInfo.setText(encounterScreenVM.playerInfo());
+            encounterInfo.setText(encounterScreenVM.encounterInfo(character));
+
+            fleeButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    action.setText("You tried to flee");
+                    if (encounterScreenVM.pursueAction()) {
+                        easyToast(encounterScreenVM.getAction());
+                        playerInfo.setText(encounterScreenVM.playerInfo());
+                    } else {
+                        easyToast(encounterScreenVM.getAction());
+                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        startActivityForResult(intent, 0);
+                    }
+                }
+            });
+
+            surrenderButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    character.surrenderResult();
+                    easyToast("You surrendered");
                     Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);
                 }
             });
-        } else if (character instanceof Trader && totalEncounters <= 2) {
-            Log.d("EncounterGabe11", "Trader");
-            setContentView(R.layout.trader_popup);
-            totalEncounters++;
-            Button okButton = findViewById(R.id.encounterButton);
 
-            okButton.setOnClickListener(new View.OnClickListener() {
+            attackButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    action.setText("You attack");
+                    encounterScreenVM.playerAttack();
+                    character.setHostile();
+                    playerInfo.setText(encounterScreenVM.playerInfo());
+                    encounterInfo.setText(encounterScreenVM.encounterInfo(character));
+                    if (encounterScreenVM.getCharacter().getShip().getHealth() <= 0) {
+                        easyToast("You won the battle");
+                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        startActivityForResult(intent, 0);
+                    } else if (Player.getHealth() <= 0) {
+                        easyToast("You died");
+                        //death
+                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        startActivityForResult(intent, 0);
+                    } else {
+                        encounterScreenVM.characterAction();
+                        action.setText(encounterScreenVM.getAction());
+                    }
+                }
+            });
+        } else if (character instanceof Trader && totalEncounters < 5) {
+            setContentView(R.layout.trader_popup);
+            Model.getDataStorage().setTotalEncounters(++totalEncounters);
+            Button attackButton = findViewById(R.id.attack_button);
+            Button fleeButton = findViewById(R.id.flee_button);
+            Button surrenderButton = findViewById(R.id.surrender_button);
+            Button tradeButton = findViewById(R.id.trade_button);
+            final TextView playerInfo = findViewById(R.id.playerInfoText);
+            final TextView encounterInfo = findViewById(R.id.encounterInfoText);
+            final TextView encounterType = findViewById(R.id.encounterType);
+            final TextView action = findViewById(R.id.action);
+
+            encounterType.setText(character.createDialogue());
+            playerInfo.setText(encounterScreenVM.playerInfo());
+            encounterInfo.setText(encounterScreenVM.encounterInfo(character));
+
+            fleeButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    action.setText("You tried to flee");
+                    if (encounterScreenVM.pursueAction()) {
+                        easyToast(encounterScreenVM.getAction());
+                        playerInfo.setText(encounterScreenVM.playerInfo());
+                    } else {
+                        easyToast(encounterScreenVM.getAction());
+                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        startActivityForResult(intent, 0);
+                    }
+                }
+            });
+
+            surrenderButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    character.surrenderResult();
+                    easyToast("You surrendered");
                     Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
-                    startActivityForResult(intent,0);
+                    startActivityForResult(intent, 0);
                 }
             });
-        }
-        */
 
-    }
-/*
-        while (currentPlanet == null) {
-            Log.d("EncounterGabe11", "Planet!");
-            currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
-            planetNametext.setText(currentPlanet.getName().toString());
-        }
-
-        while (playerInventory == null) {
-            //Log.d("EncounterGabe11", "Player Inventory!");
-            playerInventory = Model.getInstance().getPlayer().getInventory();
-        }
-
-        while (encounterScreenVM == null) {
-            //Log.d("EncounterGabe11", "Encounter VM!");
-            encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
-            encounterScreenVM.setPlayer(Model.getInstance().getPlayer());
-        }
-
-        //Log.d("EncounterGabe11", "Character!");
-        character = encounterScreenVM.setCharacter();
-        setContentView(R.layout.encounter_screen);
-        Button okButton = findViewById(R.id.encounterButton);
-
-        okButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-        if (character == null) {
-            //Log.d("EncounterGabe11", "NoEncounter");
-            setContentView(R.layout.encounter_screen);
-            Button okButton = findViewById(R.id.encounterButton);
-
-            okButton.setOnClickListener(new View.OnClickListener() {
+            tradeButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
-                    startActivityForResult(intent,0);
+                    character.uniqueAction();
+                    easyToast("You successfully traded");
+                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    startActivityForResult(intent, 0);
                 }
             });
-        } else if (character instanceof Police) {
-            //Log.d("EncounterGabe11", "Police");
-            showPolicePopupWindow(findViewById(android.R.id.content));
-        } else if (character instanceof Pirate) {
-            //Log.d("EncounterGabe11", "Pirate");
-            showPiratePopupWindow(findViewById(android.R.id.content));
-        } else if (character instanceof Trader) {
-            //Log.d("EncounterGabe11", "Trader");
-            setContentView(R.layout.trader_popup);
-            Button okButton = findViewById(R.id.encounterButton);
 
-            okButton.setOnClickListener(new View.OnClickListener() {
+            attackButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
-                    startActivityForResult(intent,0);
+                    action.setText("You attack");
+                    encounterScreenVM.playerAttack();
+                    Player.setCriminalStatus(true);
+                    character.setHostile();
+                    playerInfo.setText(encounterScreenVM.playerInfo());
+                    encounterInfo.setText(encounterScreenVM.encounterInfo(character));
+                    encounterType.setText(character.createDialogue());
+                    if (encounterScreenVM.getCharacter().getShip().getHealth() <= 0) {
+                        easyToast("You won the battle");
+                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        startActivityForResult(intent, 0);
+                    } else if (Player.getHealth() <= 0) {
+                        easyToast("You died");
+                        //death
+                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        startActivityForResult(intent, 0);
+                    } else {
+                        encounterScreenVM.characterAction();
+                        action.setText(encounterScreenVM.getAction());
+                    }
                 }
             });
         }
-    }
 
-*/
-    //---------------------------------------------------------------------------
-
-    private void showPiratePopupWindow(View view) {
-        mContext = getApplicationContext();
-
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View popupView = inflater.inflate(R.layout.pirate_popup, null);
-        TextView buyTest = popupView.findViewById(R.id.buyButtonText);
-        buyTest.setText(encounterScreenVM.popUpBuyStr());
-
-        Button attack_button = popupView.findViewById(R.id.attack_button);
-        Button flee_button = popupView.findViewById(R.id.flee_button);
-
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-        popupWindow.setElevation(5.0f);
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
-            }
-        });
-
-        flee_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                easyToast("You ran away");
-                popupWindow.dismiss();
-            }
-        });
-
-        attack_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                encounterScreenVM.playerAttack();
-                if (encounterScreenVM.getCharacter().getShip().getHealth() <= 0) {
-                    easyToast("You won the battle");
-                    popupWindow.dismiss();
-                } else if (Player.getHealth() <= 0) {
-                    easyToast("You died");
-                    popupWindow.dismiss();
-                }
-            }
-        });
-    }
-
-    private void showPolicePopupWindow(View view) {
-        mContext = getApplicationContext();
-
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View popupView = inflater.inflate(R.layout.police_popup, null);
-        TextView buyTest = popupView.findViewById(R.id.buyButtonText);
-        buyTest.setText(encounterScreenVM.popUpSellStr());
-
-        Button flee_button = popupView.findViewById(R.id.flee_button);
-        Button attack_button = popupView.findViewById(R.id.attack_button);
-
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-        popupWindow.setElevation(5.0f);
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
-            }
-        });
-
-        flee_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                easyToast("You ran away");
-                popupWindow.dismiss();
-            }
-        });
-
-        attack_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                encounterScreenVM.playerAttack();
-                if (encounterScreenVM.getCharacter().getShip().getHealth() <= 0) {
-                    easyToast("You won the battle");
-                    popupWindow.dismiss();
-                } else if (Player.getHealth() <= 0) {
-                    easyToast("You died");
-                    popupWindow.dismiss();
-                }
-            }
-        });
     }
 
     private void easyToast(String toastMessage) {

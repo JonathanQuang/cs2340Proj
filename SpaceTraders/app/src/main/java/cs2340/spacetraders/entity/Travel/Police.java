@@ -12,6 +12,7 @@ import cs2340.spacetraders.entity.Universe.PoliticalSystem;
 public class Police extends Encounterable {
 
     private double bribeChance, searchChance;
+    private boolean hostile = false;
 
     /**
      *
@@ -20,9 +21,9 @@ public class Police extends Encounterable {
         super();
         bribeChance = planet.getPoliticalSystem().determineProbability(planet.getPoliceBriberyAcceptance());
         searchChance = planet.getPoliticalSystem().determineProbability(planet.getPoliceSmugglingAcceptance());
-        if (Player.getCriminalStatus()) {
+        if (hostile) {
             super.setIgnoreChance(0);
-            super.setAttackChance(1);
+            super.setAttackChance(0.9);
         } else {
             super.setIgnoreChance(searchChance);
             super.setAttackChance(0);
@@ -33,11 +34,13 @@ public class Police extends Encounterable {
      *
      * @return
      */
-    public void bribe() {
+    public String bribe() {
         if (super.getRandom() > bribeChance) {
             Player.changeCredits(-500);
+            return " successfully ";
         } else {
             checkCargo();
+            return " failed to ";
         }
     }
 
@@ -78,7 +81,42 @@ public class Police extends Encounterable {
      */
     @Override
     public String createDialogue() {
-        return "This is the police";
+        if (Player.getCriminalStatus()) {
+            return "Police: Hostile";
+        } else {
+            return "Police: Non-hostile";
+        }
+    }
+
+    @Override
+    public void surrenderResult() {
+        checkCargo();
+    }
+
+    @Override
+    public boolean setHostile() {
+        if (Player.getCriminalStatus()) {
+            hostile = true;
+            super.setIgnoreChance(0);
+            super.setAttackChance(0.9);
+            return hostile;
+        } else {
+            return hostile;
+        }
+    }
+
+    @Override
+    public String uniqueAction() {
+        return bribe();
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "Police";
     }
 
 }
