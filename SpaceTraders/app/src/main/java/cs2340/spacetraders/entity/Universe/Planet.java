@@ -2,6 +2,8 @@ package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
+import java.util.Random;
+
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 
@@ -22,6 +24,7 @@ public class Planet {
     private PlanetaryEvent event;
     private double tradersReturnRate;
     private SolarSystem parentSolarSystem;
+    private final Random RANDOM = new Random();
 
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
                   PoliticalSystem politicalSystem, RelativePosition relativePosition,
@@ -40,11 +43,13 @@ public class Planet {
         this.parentSolarSystem = parentSolarSystem;
         inventory = new PlanetInventory();
 
-        event = PlanetaryEvent.Nothing;
+        event = PlanetaryEvent.randomEvent();
+        Log.d("Mark", "Random Event");
+        //event = PlanetaryEvent.Nothing;
         tradersReturnRate = .10;
 
         makePlanetInventory();
-//        Log.d("Mark", "Inverntory Made");
+        Log.d("Mark", "Inverntory Made");
     }
 
     public void makeSpaceport() {
@@ -73,6 +78,10 @@ public class Planet {
 
     public String getSize() {
         return size;
+    }
+
+    public PlanetaryEvent getPlanetaryEvent() {
+        return event;
     }
 
     public String getPoliceQuantity() {
