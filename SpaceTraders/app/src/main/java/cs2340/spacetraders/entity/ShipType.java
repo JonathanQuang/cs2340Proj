@@ -30,6 +30,8 @@ public enum ShipType {
             Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = SHIPLIST.size();
     private static final Random RANDOM = new Random();
+    private static final int rangeToMaxFuelMultiplier = 10;
+    private static final int hullStrengthToMaxHPMultiplier = 1;
 
     /**
      * Initializes string ship type of enum
@@ -72,6 +74,12 @@ public enum ShipType {
     public int getCrewQuarters() {return crewQuarters;}
 
     public int getPrice() {return price;}
+
+    public int getMaxHealth() {return hullStrength * hullStrengthToMaxHPMultiplier;}
+
+    public int getMaxFuel() {return range * rangeToMaxFuelMultiplier;}
+
+
 
 
 

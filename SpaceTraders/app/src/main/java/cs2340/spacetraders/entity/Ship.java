@@ -1,10 +1,16 @@
 package cs2340.spacetraders.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
+
 public class Ship {
 
     private ShipType shipType;
     private double health;
     private int fuel;
+    private List<WeaponTypes> equippedWeapons;
 
     /**
      * Initializes a ship
@@ -12,8 +18,9 @@ public class Ship {
      */
     public Ship(ShipType shipType){
         this.shipType = shipType;
-        this.health = 100;
-        this.fuel = 100;
+        this.health = (double) shipType.getMaxHealth();
+        this.fuel = shipType.getMaxFuel();
+        this.equippedWeapons = new ArrayList<WeaponTypes>();
     }
 
     public Ship() {
@@ -36,9 +43,7 @@ public class Ship {
         return shipType;
     }
 
-    public double getHealth() {
-        return health;
-    }
+    public double getHealth() { return health; }
 
     public void setHealth(double health) {
         this.health = health;
@@ -57,6 +62,12 @@ public class Ship {
     }
 
     public int getShipTypePrice() {return shipType.getPrice();}
+
+    public List<WeaponTypes> getEquippedWeapons() {return equippedWeapons;}
+
+    public void addWeapon(WeaponTypes weapon) {
+        equippedWeapons.add(weapon);
+    }
 
     /**
      * Gets string representation of the information about the ship
