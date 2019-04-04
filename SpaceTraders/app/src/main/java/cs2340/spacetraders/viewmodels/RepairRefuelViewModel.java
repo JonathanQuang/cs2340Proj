@@ -53,8 +53,8 @@ public class RepairRefuelViewModel {
         return null;
     }
 
-    public void repairHealth(double healthToBuy) {
-        player.changeCredits((int) (-1.0 * healthToBuy * healthUnitPrice));
+    public void repairHealth(int healthToBuy) {
+        player.changeCredits(-1 * healthToBuy * healthUnitPrice);
         playerShip.setHealth(healthToBuy + playerShip.getHealth());
     }
 

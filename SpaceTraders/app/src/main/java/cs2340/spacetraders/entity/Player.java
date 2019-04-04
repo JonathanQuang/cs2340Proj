@@ -2,7 +2,7 @@ package cs2340.spacetraders.entity;
 
 public class Player {
 
-    private final int  initialCredits = 1000;
+    private final int  initialCredits = 1000000;
 
     private String name;
     private int engineerStat;

@@ -91,9 +91,9 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
                     return;
                 }
                 String healthUserInputStr = healthEditable.toString();
-                double healthPurchased;
+                int healthPurchased;
                 try {
-                    healthPurchased = Double.parseDouble(healthUserInputStr);
+                    healthPurchased = Integer.parseInt(healthUserInputStr);
                 } catch (NumberFormatException e) {
                     Toast.makeText(getApplicationContext(), "Please enter a number", Toast.LENGTH_SHORT).show();
                     return;

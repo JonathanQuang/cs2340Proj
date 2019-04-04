@@ -73,7 +73,6 @@ public class ShipyardActivity extends AppCompatActivity {
         weaponTable.removeViewAt(0);
         generateWeaponTable();
         updateEquippedWeaponsList();
-
     }
 
     private void generateWeaponTable() {
@@ -111,7 +110,6 @@ public class ShipyardActivity extends AppCompatActivity {
     }
 
     private void attachWeaponBuyingEventListener(Button weaponBuyButton, final WeaponTypes weapon) {
-
         weaponBuyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String purchaseErrorString = shipyardVM.weaponBuyError(weapon);
@@ -125,21 +123,14 @@ public class ShipyardActivity extends AppCompatActivity {
                 updateInfo(weapon);
             }
         });
-
-        return;
     }
 
     private void attachWeaponInfoEventListener(Button modelWeaponInfoButton, final WeaponTypes weapon) {
-
-
-
-
         modelWeaponInfoButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 updateInfo(weapon);
             }
         });
-
     }
 
     private void updateInfo(final WeaponTypes weapon) {
@@ -151,11 +142,9 @@ public class ShipyardActivity extends AppCompatActivity {
         buyNum.setText(Integer.toString(buyPrice));
         sellNum.setText(Integer.toString(sellPrice));
 
-        if (power < 0) {
-            powerNum.setText("NA");
-        } else {
-            powerNum.setText(Integer.toString(power));
-        }
+
+        powerNum.setText(power < 0 ? "NA" :  Integer.toString(power));
+
         if (charge < 0) {
             chargeNum.setText("NA");
         } else {
@@ -170,6 +159,4 @@ public class ShipyardActivity extends AppCompatActivity {
     private void updateEquippedWeaponsList() {
         equippedWeapons.setText(shipyardVM.getEquippedWeaponsString());
     }
-
-
 }
