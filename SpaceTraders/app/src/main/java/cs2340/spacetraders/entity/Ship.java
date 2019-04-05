@@ -8,6 +8,7 @@ public class Ship implements Serializable {
     private double health;
     private double damage;
     private int fuel;
+    private List<WeaponTypes> equippedWeapons;
 
     /**
      * Initializes a ship
@@ -15,9 +16,10 @@ public class Ship implements Serializable {
      */
     public Ship(ShipType shipType){
         this.shipType = shipType;
-        this.health = 200;
-        this.fuel = 100;
         this.damage = shipType.getDefaultDamage();
+        this.health = (double) shipType.getMaxHealth();
+        this.fuel = shipType.getMaxFuel();
+        this.equippedWeapons = new ArrayList<WeaponTypes>();
     }
 
     public Ship() {
@@ -62,6 +64,12 @@ public class Ship implements Serializable {
 
     public int getCargoCapacity() {
         return shipType.getCargoCapacity();
+    }
+
+    public List<WeaponTypes> getEquippedWeapons() {return equippedWeapons;}
+
+    public void addWeapon(WeaponTypes weapon) {
+        equippedWeapons.add(weapon);
     }
 
     public int getShipTypePrice() {return shipType.getPrice();}

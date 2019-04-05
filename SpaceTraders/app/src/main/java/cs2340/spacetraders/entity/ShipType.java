@@ -30,6 +30,8 @@ public enum ShipType {
     private final int price;
     private final int DEFAULT_DAMAGE;
     private final Random RANDOM = new Random();
+    private final int rangeToMaxFuelMultiplier = 10;
+    private final int hullStrengthToMaxHPMultiplier = 1;
 
     /**
      * Initializes string ship type of enum
@@ -77,6 +79,10 @@ public enum ShipType {
     public int getCargoCapacity() {return cargoCapacity;}
 
     public String getShipType() {return shipType;}
+
+    public int getMaxHealth() {return hullStrength * hullStrengthToMaxHPMultiplier;}
+
+    public int getMaxFuel() {return range * rangeToMaxFuelMultiplier;}
 
     /**
      * Gets the string representation of the ship type

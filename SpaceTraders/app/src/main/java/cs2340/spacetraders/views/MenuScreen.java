@@ -31,7 +31,7 @@ public class MenuScreen extends AppCompatActivity {
     private Button retireButton;
     private Button planetMarketButton;
     private Button saveGameButton;
-    
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);
