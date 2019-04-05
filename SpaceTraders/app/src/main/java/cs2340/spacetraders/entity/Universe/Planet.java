@@ -43,9 +43,14 @@ public class Planet {
         this.parentSolarSystem = parentSolarSystem;
         inventory = new PlanetInventory();
 
-        event = PlanetaryEvent.randomEvent();
+        if (RANDOM.nextDouble() < 0.8) {
+            event = PlanetaryEvent.Nothing;
+        } else {
+            while (event == null || event == PlanetaryEvent.Nothing) {
+                event = PlanetaryEvent.randomEvent();
+            }
+        }
         Log.d("Mark", "Random Event");
-        //event = PlanetaryEvent.Nothing;
         tradersReturnRate = .10;
 
         makePlanetInventory();

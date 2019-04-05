@@ -82,7 +82,9 @@ public class MarketScreenActivity extends AppCompatActivity {
         }
         table.removeView(table.getChildAt(1));
 
-        easyToast("This planet is currently experiencing " + event.toString());
+        if (event != PlanetaryEvent.Nothing) {
+            easyToast("This planet is currently experiencing " + event.toString());
+        }
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
