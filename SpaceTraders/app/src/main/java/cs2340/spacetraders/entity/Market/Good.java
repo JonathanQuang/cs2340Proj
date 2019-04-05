@@ -2,13 +2,14 @@ package cs2340.spacetraders.entity.Market;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
 import cs2340.spacetraders.entity.Universe.Resources;
 import cs2340.spacetraders.entity.Universe.TechLevel;
 
-public enum Good {
+public enum Good implements Serializable {
     Water("Water", 30, 3, 30, 50, 4, 2, 0, 0, PlanetaryEvent.Drought, Resources.LOTSOFWATER, Resources.DESERT),
     Furs("Furs", 250, 10, 230, 280, 10, 0, 0, 0, PlanetaryEvent.Cold, Resources.RICHFAUNA, Resources.LIFELESS),
     Food("Food", 100, 5, 90, 160, 5, 1, 1, 0, PlanetaryEvent.Cropfail, Resources.RICHSOIL, Resources.POORSOIL),

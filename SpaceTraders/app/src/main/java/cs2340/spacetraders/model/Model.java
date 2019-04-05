@@ -2,6 +2,7 @@ package cs2340.spacetraders.model;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import cs2340.spacetraders.entity.Universe.Resources;
 
 import static cs2340.spacetraders.entity.Universe.Resources.DESERT;
 
-public class Model {
+public class Model implements Serializable {
 
     private Player player;
     private Game game;
@@ -85,5 +86,13 @@ public class Model {
 
     public Map<Resources, Integer> getPlanetImageIDs() {
         return planetImageIDs;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

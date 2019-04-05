@@ -89,5 +89,3 @@ public enum ShipType {
         return SHIPLIST.get(RANDOM.nextInt(SIZE));
     }
 }
-
-

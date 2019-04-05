@@ -1,6 +1,8 @@
 package cs2340.spacetraders.entity;
 
-public class Ship {
+import java.io.Serializable;
+
+public class Ship implements Serializable {
 
     private ShipType shipType;
     private double health;
@@ -13,7 +15,7 @@ public class Ship {
      */
     public Ship(ShipType shipType){
         this.shipType = shipType;
-        this.health = 100;
+        this.health = 200;
         this.fuel = 100;
         this.damage = shipType.getDefaultDamage();
     }
@@ -69,6 +71,6 @@ public class Ship {
      * @return  this ship's string representation
      */
     public String toString() {
-        return "" + shipType;
+        return "(Type) " + shipType +", Health: " + health + "Fuel: " + fuel;
     }
 }

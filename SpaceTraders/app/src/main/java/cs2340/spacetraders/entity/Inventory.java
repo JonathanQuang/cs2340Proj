@@ -1,12 +1,13 @@
 package cs2340.spacetraders.entity;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 import cs2340.spacetraders.entity.Market.Good;
 
-public class Inventory {
+public class Inventory implements Serializable {
     private Map<Good, Integer> inventoryGoodCount;
     private Map<Good, Double> averagePurchasePrice;
     private int currCapacity;

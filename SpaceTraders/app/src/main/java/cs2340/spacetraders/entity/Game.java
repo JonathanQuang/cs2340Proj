@@ -1,5 +1,7 @@
 package cs2340.spacetraders.entity;
 
+import java.io.Serializable;
+
 import cs2340.spacetraders.entity.Universe.Galaxy;
 
 public class Game {

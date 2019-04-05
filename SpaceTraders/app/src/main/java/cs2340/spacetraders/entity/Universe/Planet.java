@@ -3,11 +3,11 @@ package cs2340.spacetraders.entity.Universe;
 import android.util.Log;
 
 import java.util.Random;
-
+import java.io.Serializable;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 
-public class Planet {
+public class Planet implements Serializable {
     private CelestialName name;
     private TechLevel techLevel;
     private Resources resources;
@@ -25,6 +25,7 @@ public class Planet {
     private double tradersReturnRate;
     private SolarSystem parentSolarSystem;
     private final Random RANDOM = new Random();
+    private Wormhole connectWormHole;
 
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
                   PoliticalSystem politicalSystem, RelativePosition relativePosition,
@@ -57,8 +58,9 @@ public class Planet {
         Log.d("Mark", "Inverntory Made");
     }
 
-    public void makeSpaceport() {
+    public void makeSpaceport(Wormhole wormhole) {
         isSpacePort = true;
+        connectWormHole = wormhole;
     }
 
     public CelestialName getName() {

@@ -2,7 +2,6 @@
 
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -1223,6 +1222,30 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/cyan_ring"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/wormhole1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/wormhole2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/wormhole3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/wormhole4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         tools:ignore="MissingConstraints" />
 
 
