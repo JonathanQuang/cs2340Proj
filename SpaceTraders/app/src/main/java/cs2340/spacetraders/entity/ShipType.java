@@ -29,11 +29,7 @@ public enum ShipType {
     private final int crewQuarters;
     private final int price;
     private final int DEFAULT_DAMAGE;
-
-    private static final List<ShipType> SHIPLIST =
-            Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int SIZE = SHIPLIST.size();
-    private static final Random RANDOM = new Random();
+    private final Random RANDOM = new Random();
 
     /**
      * Initializes string ship type of enum
@@ -87,7 +83,7 @@ public enum ShipType {
      * @return the string representation of the ship type
      */
 
-    public static ShipType randomShipType()  {
-        return SHIPLIST.get(RANDOM.nextInt(SIZE));
+    public ShipType randomShipType()  {
+        return ShipType.values()[RANDOM.nextInt(ShipType.values().length)];
     }
 }

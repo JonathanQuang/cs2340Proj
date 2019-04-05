@@ -12,10 +12,11 @@ import cs2340.spacetraders.entity.Travel.Pirate;
 import cs2340.spacetraders.entity.Travel.Police;
 import cs2340.spacetraders.entity.Travel.Trader;
 import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.model.Model;
 
 public class EncounterScreenViewModel {
     private Planet planet;
-    private Player currentPlayer;
+    private Player currentPlayer = Model.getInstance().getPlayer();
     private Random random = new Random();
     private Encounterable character;
     private String action = "";
@@ -58,8 +59,8 @@ public class EncounterScreenViewModel {
     }
 
     public String playerInfo() {
-        return "Ship: " + Player.getShip() + "\n"
-                + "Health: " + Player.getShip().getHealth();
+        return "Ship: " + currentPlayer.getShip() + "\n"
+                + "Health: " + currentPlayer.getShip().getHealth();
     }
 
     public String encounterInfo(Encounterable character) {

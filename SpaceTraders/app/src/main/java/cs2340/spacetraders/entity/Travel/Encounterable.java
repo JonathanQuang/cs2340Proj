@@ -6,15 +6,19 @@ import cs2340.spacetraders.entity.Game;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.ShipType;
+import cs2340.spacetraders.model.Model;
 
 public abstract class Encounterable {
 
     private Random random = new Random();
-    private double difficultyMultiplier = Game.getDifficulty().getMultipler();
+    private Game game = Model.getInstance().getGame();
+    private double difficultyMultiplier = game.getDifficulty().getMultipler();
     private double fleeChance = 0.05;
     private double pursueChance = 0.1;
     private double ignoreChance, attackChance;
-    private Ship ship = new Ship(ShipType.randomShipType());
+    private ShipType type = ShipType.Gnat;
+    private Ship ship = new Ship(type.randomShipType());
+    private Player player = Model.getInstance().getPlayer();
 
     /**
      *
@@ -53,7 +57,7 @@ public abstract class Encounterable {
      * @return
      */
     public void attack(double damage){
-        Player.takeDamage(damage * difficultyMultiplier);
+        player.takeDamage(damage * difficultyMultiplier);
     }
 
     public void takeDamage(double damage){
@@ -97,7 +101,11 @@ public abstract class Encounterable {
     }
 
     public void characterDestruction() {
-        Player.changeCredits((int) (500 * difficultyMultiplier));
+        player.changeCredits((int) (500 * difficultyMultiplier));
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
 }

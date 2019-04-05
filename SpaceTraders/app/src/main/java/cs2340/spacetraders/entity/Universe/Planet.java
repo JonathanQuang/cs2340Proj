@@ -43,12 +43,11 @@ public class Planet implements Serializable {
         this.policeSmugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
         this.parentSolarSystem = parentSolarSystem;
         inventory = new PlanetInventory();
+        event = PlanetaryEvent.Nothing;
 
-        if (RANDOM.nextDouble() < 0.8) {
-            event = PlanetaryEvent.Nothing;
-        } else {
+        if (RANDOM.nextDouble() > 0.8) {
             while (event == null || event == PlanetaryEvent.Nothing) {
-                event = PlanetaryEvent.randomEvent();
+                event = event.randomEvent();
             }
         }
         Log.d("Mark", "Random Event");

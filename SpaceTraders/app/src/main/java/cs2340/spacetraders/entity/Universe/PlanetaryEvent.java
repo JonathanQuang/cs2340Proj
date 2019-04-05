@@ -16,10 +16,7 @@ public enum PlanetaryEvent {
     LackOfWorkers("LackOfWorkers");
 
     private final String increaseEvent;
-    private static final List<PlanetaryEvent> EVENT_LIST =
-            Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int SIZE = EVENT_LIST.size();
-    private static final Random RANDOM = new Random();
+    private final Random RANDOM = new Random();
 
     PlanetaryEvent(String increaseEvent) {
         this.increaseEvent = increaseEvent;
@@ -29,16 +26,12 @@ public enum PlanetaryEvent {
         return increaseEvent;
     }
 
-    public int getSIZE() {
-        return SIZE;
-    }
-
     public String toString() {
         return increaseEvent;
     }
 
-    public static PlanetaryEvent randomEvent()  {
-        return EVENT_LIST.get(RANDOM.nextInt(SIZE));
+    public PlanetaryEvent randomEvent()  {
+        return PlanetaryEvent.values()[RANDOM.nextInt(PlanetaryEvent.values().length)];
     }
 
 }

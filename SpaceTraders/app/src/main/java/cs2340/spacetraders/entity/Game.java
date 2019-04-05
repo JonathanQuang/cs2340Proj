@@ -5,7 +5,7 @@ import java.io.Serializable;
 import cs2340.spacetraders.entity.Universe.Galaxy;
 
 public class Game {
-    private static Difficulty difficulty;
+    private Difficulty difficulty;
     private Galaxy galaxy;
 
     /** Initializes the game difficulty
@@ -30,7 +30,7 @@ public class Game {
     /** Gets the game difficulty
      * @return the game difficulty
      */
-    public static Difficulty getDifficulty() {
+    public Difficulty getDifficulty() {
         return difficulty;
     }
 

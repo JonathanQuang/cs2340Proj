@@ -56,7 +56,7 @@ public class Trader extends Encounterable {
      */
     @Override
     public String createDialogue() {
-        if (Player.getCriminalStatus()) {
+        if (getPlayer().getCriminalStatus()) {
             return "Trader: Hostile";
         } else {
             return "Trader: Non-hostile";
@@ -65,17 +65,17 @@ public class Trader extends Encounterable {
 
     @Override
     public void surrenderResult() {
-        Inventory inventory = Player.getInventory();
+        Inventory inventory = getPlayer().getInventory();
         if (inventory.getCapacity() > 0) {
             inventory.removeRandomGood();
         } else {
-            Player.changeCredits(-2000);
+            getPlayer().changeCredits(-2000);
         }
     }
 
     @Override
     public boolean setHostile() {
-        if (Player.getCriminalStatus()) {
+        if (getPlayer().getCriminalStatus()) {
             hostile = true;
             super.setIgnoreChance(0);
             super.setAttackChance(0.9);

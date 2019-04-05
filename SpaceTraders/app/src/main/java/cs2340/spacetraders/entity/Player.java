@@ -11,10 +11,10 @@ public class Player implements Serializable {
     private int fighterStat;
     private int traderStat;
     private int pilotStat;
-    private static int credits;
-    private static Ship ship;
-    private static Inventory inventory;
-    private static boolean criminalStatus;
+    private int credits;
+    private Ship ship;
+    private Inventory inventory;
+    private boolean criminalStatus;
 
     /**
      * Makes a player with name, stats, and ship
@@ -36,7 +36,7 @@ public class Player implements Serializable {
         this.criminalStatus = false;
     }
 
-    public static Inventory getInventory() {
+    public Inventory getInventory() {
         return inventory;
     }
 
@@ -44,7 +44,7 @@ public class Player implements Serializable {
 
     public int getShipTypePrice() {return ship.getShipTypePrice();}
 
-    public static void changeCredits(int changeNum) {credits += changeNum;}
+    public void changeCredits(int changeNum) {credits += changeNum;}
 
     public void setShipType(ShipType shipType) {
         ship.setShipType(shipType);
@@ -68,11 +68,11 @@ public class Player implements Serializable {
         return retStr;
     }
 
-    public static void setCriminalStatus(boolean status) {
+    public void setCriminalStatus(boolean status) {
         criminalStatus = status;
     }
 
-    public static boolean getCriminalStatus() {
+    public boolean getCriminalStatus() {
         return criminalStatus;
     }
 
@@ -80,15 +80,15 @@ public class Player implements Serializable {
 
     }
 
-    public static Ship getShip() {
+    public Ship getShip() {
         return ship;
     }
 
-    public static void takeDamage(double damage) {
+    public void takeDamage(double damage) {
         ship.takeDamage(damage);
     }
 
-    public static double getHealth() {
+    public double getHealth() {
         return ship.getHealth();
     }
 }

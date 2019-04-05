@@ -36,7 +36,7 @@ public class Police extends Encounterable {
      */
     public String bribe() {
         if (super.getRandom() > bribeChance) {
-            Player.changeCredits(-500);
+            getPlayer().changeCredits(-500);
             return " successfully ";
         } else {
             checkCargo();
@@ -50,7 +50,7 @@ public class Police extends Encounterable {
      */
     public void checkCargo() {
         if (super.getRandom() > searchChance) {
-            if (Player.getInventory().containsIllegalGoods()) {
+            if (getPlayer().getInventory().containsIllegalGoods()) {
                 confiscate();
             }
         }
@@ -60,10 +60,10 @@ public class Police extends Encounterable {
      *
      */
     public void confiscate() {
-        Inventory inventory = Player.getInventory();
+        Inventory inventory = getPlayer().getInventory();
         inventory.removeGood(Good.Firearms, inventory.getGoodAmount(Good.Firearms));
         inventory.removeGood(Good.Narcotics, inventory.getGoodAmount(Good.Narcotics));
-        Player.changeCredits(-1000);
+        getPlayer().changeCredits(-1000);
     }
 
     /**
@@ -81,7 +81,7 @@ public class Police extends Encounterable {
      */
     @Override
     public String createDialogue() {
-        if (Player.getCriminalStatus()) {
+        if (getPlayer().getCriminalStatus()) {
             return "Police: Hostile";
         } else {
             return "Police: Non-hostile";
@@ -95,7 +95,7 @@ public class Police extends Encounterable {
 
     @Override
     public boolean setHostile() {
-        if (Player.getCriminalStatus()) {
+        if (getPlayer().getCriminalStatus()) {
             hostile = true;
             super.setIgnoreChance(0);
             super.setAttackChance(0.9);

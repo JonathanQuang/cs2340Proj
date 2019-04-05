@@ -49,6 +49,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
 
     private Inventory playerInventory;
     private Encounterable character;
+    private Player player;
     private int totalEncounters;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
         while(currentPlanet == null) {
             currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
         }
-
+        player = Model.getInstance().getPlayer();
         encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
         character = encounterScreenVM.setCharacter();
 
@@ -126,7 +127,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     action.setText("You attack");
                     encounterScreenVM.playerAttack();
-                    Player.setCriminalStatus(true);
+                    player.setCriminalStatus(true);
                     character.setHostile();
                     playerInfo.setText(encounterScreenVM.playerInfo());
                     encounterInfo.setText(encounterScreenVM.encounterInfo(character));
@@ -135,7 +136,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                         easyToast("You won the battle");
                         Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
-                    } else if (Player.getHealth() <= 0) {
+                    } else if (player.getHealth() <= 0) {
                         easyToast("You died");
                         //death
                         Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
@@ -195,7 +196,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                         easyToast("You won the battle");
                         Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
-                    } else if (Player.getHealth() <= 0) {
+                    } else if (player.getHealth() <= 0) {
                         easyToast("You died");
                         //death
                         Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
@@ -258,7 +259,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     action.setText("You attack");
                     encounterScreenVM.playerAttack();
-                    Player.setCriminalStatus(true);
+                    player.setCriminalStatus(true);
                     character.setHostile();
                     playerInfo.setText(encounterScreenVM.playerInfo());
                     encounterInfo.setText(encounterScreenVM.encounterInfo(character));
@@ -267,7 +268,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                         easyToast("You won the battle");
                         Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
-                    } else if (Player.getHealth() <= 0) {
+                    } else if (player.getHealth() <= 0) {
                         easyToast("You died");
                         //death
                         Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
