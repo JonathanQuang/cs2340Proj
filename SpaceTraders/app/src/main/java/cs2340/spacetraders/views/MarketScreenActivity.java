@@ -47,6 +47,10 @@ public class MarketScreenActivity extends AppCompatActivity {
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
 
+    /**
+     * called when player is viewing the market screen
+     * @param savedInstanceState the saved instance
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.market_screen);
@@ -85,6 +89,11 @@ public class MarketScreenActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * to generate a table for the layout of the screen
+     * @param good the item to buy/sell
+     * @return the row
+     */
     private View generateTableRow(Good good) {
         //Make TableRow
         TableRow tableRow = new TableRow(this);
@@ -115,6 +124,12 @@ public class MarketScreenActivity extends AppCompatActivity {
         return tableRow;
     }
 
+    /**
+     * to make the buy button for each good
+     * @param good good in consideration
+     * @param sellButton the sell button in consideration
+     * @return the buy button
+     */
     private Button makeBuyButton(Good good, Button sellButton) {
         Button buyButton = new Button(this);
         buyButton.setLayoutParams(modelBuyButton.getLayoutParams());
@@ -141,6 +156,11 @@ public class MarketScreenActivity extends AppCompatActivity {
         return buyButton;
     }
 
+    /**
+     * to make the buy button for each good
+     * @param good good in consideration
+     * @return the sell button
+     */
     private Button makeSellButton(Good good) {
         Button sellButton = new Button(this);
         sellButton.setLayoutParams(modelBuyButton.getLayoutParams());
@@ -172,6 +192,12 @@ public class MarketScreenActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------
 
+    /**
+     * to set up the button and its pop-up for the market
+     * @param view the view object
+     * @param buyButton buy button in consideration
+     * @param sellButton sell button in consideration
+     */
     private void onButtonShowBuyPopupWindowClick(View view, final Button buyButton, final Button sellButton) {
         mContext = getApplicationContext();
 
@@ -227,6 +253,11 @@ public class MarketScreenActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * to set-up the pop-up and the sell button for it
+     * @param view the view object
+     * @param sellButton the sell button in consideration
+     */
     private void onButtonShowSellPopupWindowClick(View view, final Button sellButton) {
         mContext = getApplicationContext();
 
@@ -279,6 +310,10 @@ public class MarketScreenActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * to send a toast
+     * @param toastMessage the message to be sent
+     */
     private void easyToast(String toastMessage) {
         Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
     }

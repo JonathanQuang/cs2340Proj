@@ -3,7 +3,6 @@ package cs2340.spacetraders.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,8 +17,6 @@ import java.io.ObjectOutputStream;
 import java.util.Base64;
 
 import cs2340.spacetraders.R;
-import cs2340.spacetraders.entity.Ship;
-import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.model.Model;
 
 public class MenuScreen extends AppCompatActivity {
@@ -31,7 +28,11 @@ public class MenuScreen extends AppCompatActivity {
     private Button retireButton;
     private Button planetMarketButton;
     private Button saveGameButton;
-    
+
+    /**
+     * called when menu screen is viewed
+     * @param savedInstanceState the saved instance
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);
@@ -101,6 +102,9 @@ public class MenuScreen extends AppCompatActivity {
         });
     }
 
+    /**
+     * to save the game state
+     */
     private void saveState() {
         FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
