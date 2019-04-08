@@ -3,8 +3,6 @@ package cs2340.spacetraders.entity.Universe;
 import java.io.Serializable;
 import java.util.List;
 
-import cs2340.spacetraders.model.Model;
-
 public class Wormhole implements Serializable {
     private Galaxy galaxy;
     private Wormhole connectedWormhole;
