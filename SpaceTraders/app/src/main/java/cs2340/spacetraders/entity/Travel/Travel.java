@@ -19,12 +19,14 @@ public class Travel implements Serializable {
     private List<Planet> validPlanets;
     private Map<Planet, Integer> planetDistances;
     private Planet maxValidPlanetAway;
+    private List<Planet> planetList;
 
-    public Travel(Player player, Planet currentPlanet) {
+    public Travel(Player player, Planet currentPlanet, List<Planet> planetList) {
         this.player = player;
         this.currentPlanet = currentPlanet;
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
+        this.planetList = planetList;
         findValidPlanets();
     }
 
@@ -47,7 +49,6 @@ public class Travel implements Serializable {
             int fuelUsed = dist * FUEL_PER_UNIT_MOVED;
             ship.setFuel(fuel - fuelUsed);
             System.out.println("ship.getFuel() = " + ship.getFuel());
-            //RUN_ENCOUNTERABLE()
             currentPlanet = planet;
             findValidPlanets();
             Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
@@ -62,21 +63,18 @@ public class Travel implements Serializable {
         Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
     }
 
-    private void findValidPlanets() {
+    public void findValidPlanets() {
         validPlanets.clear();
         planetDistances.clear();
-        int maxDistance = radiusOfTravel();
-        List<Planet> planetList = Model.getInstance().getGame().getGalaxy().getPlanetList();
+        int radiusOfTravel = radiusOfTravel();
+        int maxPlanetDistance = 0;
 
-        //Brute Force
-        int max = 0;
         for (Planet otherPlanet: planetList) {
             int dist = (int) currentPlanet.getPlanetDistance(otherPlanet);
-            if (dist <= maxDistance && otherPlanet != currentPlanet) {
+            if (dist <= radiusOfTravel && otherPlanet != currentPlanet) {
                 validPlanets.add(otherPlanet);
                 planetDistances.put(otherPlanet, dist);
-
-                if (dist > max) {
+                if (dist > maxPlanetDistance) {
                     maxValidPlanetAway = otherPlanet;
                 }
             }
