@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Wormhole implements Serializable {
-    private Galaxy galaxy;
+    private List<Planet> galaxy;
     private Wormhole connectedWormhole;
     private RelativePosition position;
     private Planet shipportPlanet;
@@ -15,18 +15,21 @@ public class Wormhole implements Serializable {
      *
      * @param position RelativePosition object to represent where the wormhole is
      */
-    public Wormhole(Galaxy galaxy, RelativePosition position) {
+    public Wormhole(List<Planet> galaxy, RelativePosition position) {
         this.galaxy = galaxy;
         this.position = position;
         findSpacePort();
     }
 
+    public Wormhole(Galaxy galaxy, RelativePosition position) {
+        this(galaxy.getPlanetList(), position);
+    }
+
     private void findSpacePort() {
-        List<Planet> planetList = galaxy.getPlanetList();
-        Planet closestPlanet = planetList.get(0);
+        Planet closestPlanet = galaxy.get(0);
         double min = Integer.MAX_VALUE;
 
-        for (Planet otherPlanet: planetList) {
+        for (Planet otherPlanet: galaxy) {
             double dist = getDistance(otherPlanet);
             if (dist < min && !otherPlanet.isSpacePort()) {
                 min = dist;

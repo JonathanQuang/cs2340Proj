@@ -1,14 +1,12 @@
 package cs2340.spacetraders.entity.Universe;
 
-import android.util.Log;
-
 import java.io.Serializable;
 
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 
 public class Planet implements Serializable {
-    private CelestialName name;
+    private String name;
     private TechLevel techLevel;
     private Resources resources;
     private PoliticalSystem politicalSystem;
@@ -26,7 +24,7 @@ public class Planet implements Serializable {
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
                   PoliticalSystem politicalSystem, RelativePosition relativePosition,
                   String size, SolarSystem parentSolarSystem) {
-        this.name = name;
+        this.name = name.getName();
         this.techLevel = techLevel;
         this.resources = resources;
         this.politicalSystem = politicalSystem;
@@ -42,12 +40,23 @@ public class Planet implements Serializable {
 //        Log.d("Mark", "Inverntory Made");
     }
 
+    public Planet(String name, RelativePosition relativePosition) {
+        this.name = name;
+        this.relativePosition = relativePosition;
+    }
+
     public void makeSpaceport(Wormhole wormhole) {
         isSpacePort = true;
         connectWormHole = wormhole;
     }
 
-    public CelestialName getName() {
+    @Override
+    public boolean equals(Object obj) {
+        Planet that = (Planet) obj;
+        return this.getName().equals(that.getName());
+    }
+
+    public String getName() {
         return name;
     }
 
@@ -84,7 +93,7 @@ public class Planet implements Serializable {
     }
 
     public String toString() {
-        return name.getName() + " is a " + size  + " planet at " + relativePosition + " with a " + techLevel
+        return name + " is a " + size  + " planet at " + relativePosition + " with a " + techLevel
                 + " " + politicalSystem + " possessing a " + resources + " environment";
     }
 
