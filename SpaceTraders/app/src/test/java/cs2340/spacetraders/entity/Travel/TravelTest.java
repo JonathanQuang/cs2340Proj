@@ -91,16 +91,53 @@ public class TravelTest {
 
     @Test(timeout = TIMEOUT)
     public void testFindingMultiValidPlanetsEasy() {
-        CelestialName name = celestialNames[0];
-        Planet planet = makePlanet(name, 0,1);
-        planetList.add(planet);
+        Planet planet1 = makePlanet(celestialNames[0], 0,1);
+        Planet planet2 = makePlanet(celestialNames[0], 2,2);
+        Planet planet3 = makePlanet(celestialNames[0], 5,5);
+        Planet planet4 = makePlanet(celestialNames[0], 100,100);
+
+        planetList.add(planet1);
+        planetList.add(planet2);
+        planetList.add(planet3);
+        planetList.add(planet4);
+
         travel = new Travel(player, makePlanet(0, 0), planetList);
 
         travel.findValidPlanets();
-        assertEquals(1, travel.getValidPlanets().size());
-        assertEquals(planet, travel.getValidPlanets().get(0));
-        assertEquals(new Integer(1), travel.getPlanetDistances().get(planet));
-        assertEquals(planet, travel.getMaxValidPlanetAway());
+        assertEquals(3, travel.getValidPlanets().size());
+        assert(travel.getValidPlanets().contains(planet1));
+        assert(!travel.getValidPlanets().contains(planet4));
+        assertEquals(planet3, travel.getMaxValidPlanetAway());
     }
 
+    @Test(timeout = TIMEOUT)
+    public void testFindingMultiValidPlanetsHard() {
+        Planet planet1 = makePlanet(celestialNames[0], 0,1);
+        Planet planet2 = makePlanet(celestialNames[2], 2,2);
+        Planet planet3 = makePlanet(celestialNames[3], 5,5);
+        Planet planet4 = makePlanet(celestialNames[4], 100,100);
+        Planet planet5 = makePlanet(celestialNames[5], 5,5);
+        Planet planet6 = makePlanet(celestialNames[6], -1,-1);
+        Planet planet7 = makePlanet(celestialNames[7], -5,-5);
+        Planet planet8 = makePlanet(celestialNames[8], 4,9);
+
+        planetList.add(planet1);
+        planetList.add(planet2);
+        planetList.add(planet3);
+        planetList.add(planet4);
+        planetList.add(planet5);
+        planetList.add(planet6);
+        planetList.add(planet7);
+        planetList.add(planet8);
+
+        Planet currentPlanet = makePlanet(0, 0);
+        travel = new Travel(player, currentPlanet, planetList);
+
+        travel.findValidPlanets();
+        assertEquals(7, travel.getValidPlanets().size());
+        assert(travel.getValidPlanets().contains(planet1));
+        assert(!travel.getValidPlanets().contains(planet4));
+        assert(!travel.getValidPlanets().contains(currentPlanet));
+        assertEquals(planet8, travel.getMaxValidPlanetAway());
+    }
 }
