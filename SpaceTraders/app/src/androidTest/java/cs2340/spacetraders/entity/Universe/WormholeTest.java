@@ -19,25 +19,25 @@ public class WormholeTest {
     @Before
     public void setUp() {
         planetList = new ArrayList<>();
-        planetList.add(new Planet("A0", new RelativePosition(0, 0)));
-        planetList.add(new Planet("A1", new RelativePosition(10, 0)));
-        planetList.add(new Planet("A2", new RelativePosition(20, 0)));
-        planetList.add(new Planet("A3", new RelativePosition(30, 0)));
+        planetList.add(new Planet(CelestialName.Acamar, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(0, 0), null, null)); //A0
+        planetList.add(new Planet(CelestialName.Adahn, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(10, 0), null, null)); //A1
+        planetList.add(new Planet(CelestialName.Aldea, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(20, 0), null, null)); //A2
+        planetList.add(new Planet(CelestialName.Andevian, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(30, 0), null, null)); //A3
 
-        planetList.add(new Planet("B0", new RelativePosition(0, 10)));
-        planetList.add(new Planet("B1", new RelativePosition(10, 10)));
-        planetList.add(new Planet("B2", new RelativePosition(20, 10)));
-        planetList.add(new Planet("B3", new RelativePosition(30, 10)));
+        planetList.add(new Planet(CelestialName.Balosnee, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(0, 10), null, null)); //B0
+        planetList.add(new Planet(CelestialName.Brax, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(10, 10), null, null)); //B1
+        planetList.add(new Planet(CelestialName.Bretel, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(20, 10), null, null)); //B2
+        planetList.add(new Planet(CelestialName.Deneb, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(30, 10), null, null)); //B3
 
-        planetList.add(new Planet("C0", new RelativePosition(0, 20)));
-        planetList.add(new Planet("C1", new RelativePosition(10, 20)));
-        planetList.add(new Planet("C2", new RelativePosition(20, 20)));
-        planetList.add(new Planet("C3", new RelativePosition(30, 20)));
+        planetList.add(new Planet(CelestialName.Endor, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(0, 20), null, null)); //C0
+        planetList.add(new Planet(CelestialName.Esmee, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(10, 20), null, null)); //C1
+        planetList.add(new Planet(CelestialName.Exo, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(20, 20), null, null)); //C2
+        planetList.add(new Planet(CelestialName.Iodine, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(30, 20), null, null)); //C3
 
-        planetList.add(new Planet("D0", new RelativePosition(0, 30)));
-        planetList.add(new Planet("D1", new RelativePosition(10, 30)));
-        planetList.add(new Planet("D2", new RelativePosition(20, 30)));
-        planetList.add(new Planet("D3", new RelativePosition(30, 30)));
+        planetList.add(new Planet(CelestialName.Janus, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(0, 30), null, null)); //D0
+        planetList.add(new Planet(CelestialName.Japori, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(10, 30), null, null)); //D1
+        planetList.add(new Planet(CelestialName.Jarada, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(20, 30), null, null)); //D2
+        planetList.add(new Planet(CelestialName.Kaylon, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(30, 30), null, null)); //D3
 
         /*
         creates a galaxy which looks like:
@@ -52,25 +52,25 @@ public class WormholeTest {
 
 
         planetList2 = new ArrayList<>();
-        planetList2.add(new Planet("A0", new RelativePosition(0, 0)));
-        planetList2.add(new Planet("A1", new RelativePosition(5, 0)));
-        planetList2.add(new Planet("A2", new RelativePosition(15, 0)));
-        planetList2.add(new Planet("A3", new RelativePosition(35, 0)));
+        planetList2.add(new Planet(CelestialName.Acamar, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(0, 0), null, null)); //A0
+        planetList2.add(new Planet(CelestialName.Adahn, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(5, 0), null, null)); //A1
+        planetList2.add(new Planet(CelestialName.Aldea, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(15, 0), null, null)); //A2
+        planetList2.add(new Planet(CelestialName.Andevian, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(35, 0), null, null)); //A3
 
-        planetList2.add(new Planet("B0", new RelativePosition(0, 5)));
-        planetList2.add(new Planet("B1", new RelativePosition(5, 5)));
-        planetList2.add(new Planet("B2", new RelativePosition(15, 5)));
-        planetList2.add(new Planet("B3", new RelativePosition(35, 5)));
+        planetList2.add(new Planet(CelestialName.Balosnee, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(0, 5), null, null)); //B0
+        planetList2.add(new Planet(CelestialName.Brax, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(5, 5), null, null)); //B1
+        planetList2.add(new Planet(CelestialName.Bretel, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(15, 5), null, null)); //B2
+        planetList2.add(new Planet(CelestialName.Deneb, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(35, 5), null, null)); //B3
 
-        planetList2.add(new Planet("C0", new RelativePosition(0, 15)));
-        planetList2.add(new Planet("C1", new RelativePosition(5, 15)));
-        planetList2.add(new Planet("C2", new RelativePosition(15, 15)));
-        planetList2.add(new Planet("C3", new RelativePosition(35, 15)));
+        planetList2.add(new Planet(CelestialName.Endor, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(0, 15), null, null)); //C0
+        planetList2.add(new Planet(CelestialName.Esmee, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(5, 15), null, null)); //C1
+        planetList2.add(new Planet(CelestialName.Exo, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(15, 15), null, null)); //C2
+        planetList2.add(new Planet(CelestialName.Iodine, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(35, 15), null, null)); //C3
 
-        planetList2.add(new Planet("D0", new RelativePosition(0, 35)));
-        planetList2.add(new Planet("D1", new RelativePosition(5, 35)));
-        planetList2.add(new Planet("D2", new RelativePosition(15, 35)));
-        planetList2.add(new Planet("D3", new RelativePosition(35, 35)));
+        planetList2.add(new Planet(CelestialName.Janus, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(0, 35), null, null)); //D0
+        planetList2.add(new Planet(CelestialName.Japori, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(5, 35), null, null)); //D1
+        planetList2.add(new Planet(CelestialName.Jarada, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(15, 35), null, null)); //D2
+        planetList2.add(new Planet(CelestialName.Kaylon, TechLevel.HiTech, Resources.DESERT, PoliticalSystem.Anarchy, new RelativePosition(35, 35), null, null)); //D3
 
                 /*
         creates a galaxy which looks like:

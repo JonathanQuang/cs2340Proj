@@ -6,7 +6,7 @@ import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 
 public class Planet implements Serializable {
-    private String name;
+    private CelestialName name;
     private TechLevel techLevel;
     private Resources resources;
     private PoliticalSystem politicalSystem;
@@ -24,7 +24,7 @@ public class Planet implements Serializable {
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
                   PoliticalSystem politicalSystem, RelativePosition relativePosition,
                   String size, SolarSystem parentSolarSystem) {
-        this.name = name.getName();
+        this.name = name;
         this.techLevel = techLevel;
         this.resources = resources;
         this.politicalSystem = politicalSystem;
@@ -40,11 +40,6 @@ public class Planet implements Serializable {
 //        Log.d("Mark", "Inverntory Made");
     }
 
-    public Planet(String name, RelativePosition relativePosition) {
-        this.name = name;
-        this.relativePosition = relativePosition;
-    }
-
     public void makeSpaceport(Wormhole wormhole) {
         isSpacePort = true;
         connectWormHole = wormhole;
@@ -57,7 +52,7 @@ public class Planet implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public TechLevel getTechLevel() {
