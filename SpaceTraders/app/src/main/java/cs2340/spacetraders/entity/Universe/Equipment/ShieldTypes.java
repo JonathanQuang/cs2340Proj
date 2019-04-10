@@ -32,9 +32,9 @@ public enum ShieldTypes {
 
     public String getEquipType() {return equipType;}
 
-    public int getBuyprice() {return buyprice;}
+    public int getBuyPrice() {return buyprice;}
 
-    public int getSellprice() {return sellprice;}
+    public int getSellPrice() {return sellprice;}
 
     public int getPower() {return power;}
 

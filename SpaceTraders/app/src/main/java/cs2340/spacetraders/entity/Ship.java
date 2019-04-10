@@ -63,11 +63,15 @@ public class Ship {
 
     public int getShipTypePrice() {return shipType.getPrice();}
 
+    public int getShipTypeMaxWeaponSlots() {return  shipType.getWeaponSlots();}
+
     public List<WeaponTypes> getEquippedWeapons() {return equippedWeapons;}
 
     public void addWeapon(WeaponTypes weapon) {
         equippedWeapons.add(weapon);
     }
+
+    public void removeWeapon(WeaponTypes weapon) {equippedWeapons.remove(weapon);}
 
     /**
      * Gets string representation of the information about the ship

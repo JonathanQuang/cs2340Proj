@@ -13,13 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cs2340.spacetraders.R;
-import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.ShipyardViewModel;
 
 public class ShipyardActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
+
     private Button shipmarketButton;
 
     private TableLayout weaponTable;
@@ -27,6 +27,7 @@ public class ShipyardActivity extends AppCompatActivity {
     private Button modelWeaponBuyButton;
     private Button modelWeaponInfoButton;
     private TextView modelWeaponName;
+    private Button modelSellButton;
 
     private TextView buyNum;
     private TextView sellNum;
@@ -46,7 +47,6 @@ public class ShipyardActivity extends AppCompatActivity {
         setContentView(R.layout.shipyard_screen);
 
         menuButton = findViewById(R.id.menuButton);
-
         menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(ShipyardActivity.this, MenuScreen.class);
@@ -59,6 +59,7 @@ public class ShipyardActivity extends AppCompatActivity {
         modelWeaponBuyButton = findViewById(R.id.modelWeaponBuyButton);
         modelWeaponInfoButton = findViewById(R.id.modelWeaponInfoButton);
         modelWeaponName = findViewById(R.id.modelWeaponName);
+        modelSellButton = findViewById(R.id.modelSellButton);
 
         buyNum = findViewById(R.id.buyNum);
         sellNum = findViewById(R.id.sellNum);
@@ -86,67 +87,72 @@ public class ShipyardActivity extends AppCompatActivity {
         TableRow tablerow = new TableRow(this);
         tablerow.setLayoutParams(modelWeaponRow.getLayoutParams());
 
-        //Copy the weapon buy button
-        Button weaponBuyButton = new Button(this);
-        weaponBuyButton.setLayoutParams(modelWeaponBuyButton.getLayoutParams());
-        attachWeaponBuyingEventListener(weaponBuyButton, weapon);
-        weaponBuyButton.setText("BUY");
-
         //Copy the info button
         Button weaponInfoButton = new Button(this);
         weaponInfoButton.setLayoutParams(modelWeaponInfoButton.getLayoutParams());
         weaponInfoButton.setText("INFO");
         attachWeaponInfoEventListener(weaponInfoButton, weapon);
 
+        //Copy weapon textView
         TextView weaponName = new TextView(this);
         weaponName.setLayoutParams(modelWeaponName.getLayoutParams());
         weaponName.setText(weapon.getEquipName());
 
+        //Copy the sell button
+        Button sellButton = new Button(this);
+        sellButton.setLayoutParams(modelSellButton.getLayoutParams());
+        sellButton.setEnabled(shipyardVM.containsWeaponType(weapon));
+        sellButton.setText("SELL");
+        attachSellButtonEventListener(sellButton, weapon);
+
+        //Copy the weapon buy button
+        Button weaponBuyButton = new Button(this);
+        weaponBuyButton.setLayoutParams(modelWeaponBuyButton.getLayoutParams());
+        attachWeaponBuyingEventListener(weaponBuyButton, weapon, sellButton);
+        weaponBuyButton.setText("BUY");
+
         tablerow.addView(weaponBuyButton);
         tablerow.addView(weaponInfoButton);
         tablerow.addView(weaponName);
+        tablerow.addView(sellButton);
 
         return tablerow;
 
     }
 
-    private void attachWeaponBuyingEventListener(Button weaponBuyButton, final WeaponTypes weapon) {
-
+    private void attachWeaponBuyingEventListener(Button weaponBuyButton, final WeaponTypes WEAPON, final Button weaponSellButton) {
         weaponBuyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String purchaseErrorString = shipyardVM.weaponBuyError(weapon);
+                String purchaseErrorString = shipyardVM.weaponBuyError(WEAPON);
                 if (purchaseErrorString == null) {
-                    shipyardVM.buyWeapon(weapon);
+                    shipyardVM.buyWeapon(WEAPON);
                     updateCreditCounter();
                     updateEquippedWeaponsList();
+                    weaponSellButton.setEnabled(true);
                 } else {
                     Toast.makeText(ShipyardActivity.this, purchaseErrorString, Toast.LENGTH_SHORT).show();
                 }
-                updateInfo(weapon);
+                updateInfo(WEAPON);
             }
         });
 
         return;
     }
 
-    private void attachWeaponInfoEventListener(Button modelWeaponInfoButton, final WeaponTypes weapon) {
-
-
-
-
+    private void attachWeaponInfoEventListener(Button modelWeaponInfoButton, final WeaponTypes WEAPON) {
         modelWeaponInfoButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                updateInfo(weapon);
+                updateInfo(WEAPON);
             }
         });
 
     }
 
-    private void updateInfo(final WeaponTypes weapon) {
-        final int buyPrice = weapon.getBuyprice();
-        final int sellPrice = weapon.getSellprice();
-        final int power = weapon.getPower();
-        final int charge = weapon.getCharge();
+    private void updateInfo(final WeaponTypes WEAPON) {
+        final int buyPrice = WEAPON.getBuyPrice();
+        final int sellPrice = WEAPON.getSellPrice();
+        final int power = WEAPON.getPower();
+        final int charge = WEAPON.getCharge();
 
         buyNum.setText(Integer.toString(buyPrice));
         sellNum.setText(Integer.toString(sellPrice));
@@ -165,6 +171,19 @@ public class ShipyardActivity extends AppCompatActivity {
 
     private void updateCreditCounter() {
         creditCounter.setText(Integer.toString(shipyardVM.getPlayerCredits()));
+    }
+
+    private void attachSellButtonEventListener(final Button MODEL_SELL_BUTTON, final WeaponTypes WEAPON) {
+        MODEL_SELL_BUTTON.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                shipyardVM.sellWeapon(WEAPON);
+                if (!(shipyardVM.containsWeaponType(WEAPON))) {
+                    MODEL_SELL_BUTTON.setEnabled(false);
+                }
+                updateCreditCounter();
+                updateEquippedWeaponsList();
+            }
+        });
     }
 
     private void updateEquippedWeaponsList() {

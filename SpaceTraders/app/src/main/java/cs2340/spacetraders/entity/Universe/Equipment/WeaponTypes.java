@@ -11,11 +11,12 @@ public enum WeaponTypes {
 
     private String equipName;
     private String equipType;
-    private int buyprice;
-    private int sellprice;
+    private int buyPrice;
+    private int sellPrice;
     //prices equal to -1 should be displayed as NA in the equipment shipyard
     //these values are set to -1 instead of being omitted to maintain the format of the arguments
-    //on how other enums in the equipment folder are formatted
+    //on how other enums in the equipment folder are formatted (or how they should be formatted according to the actual
+    //space traders game
 
     private int power;
     private int charge;
@@ -24,8 +25,8 @@ public enum WeaponTypes {
     WeaponTypes(String equipName, String equipType, int buyprice, int sellprice, int power, int charge, String description) {
         this.equipName = equipName;
         this.equipType = equipType;
-        this.buyprice = buyprice;
-        this.sellprice = sellprice;
+        this.buyPrice = buyprice;
+        this.sellPrice = sellprice;
         this.power = power;
         this.charge = charge;
         this.description = description;
@@ -35,9 +36,9 @@ public enum WeaponTypes {
 
     public String getEquipType() {return equipType;}
 
-    public int getBuyprice() {return buyprice;}
+    public int getBuyPrice() {return buyPrice;}
 
-    public int getSellprice() {return sellprice;}
+    public int getSellPrice() {return sellPrice;}
 
     public int getPower() {return power;}
 

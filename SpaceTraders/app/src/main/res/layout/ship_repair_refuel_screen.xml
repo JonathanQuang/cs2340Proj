@@ -5,6 +5,36 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/unitPrice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="200dp"
+        android:text="Unit Price: "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/healthUnitPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="200dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/unitPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="412dp"
+        android:text="Unit Price: "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <Button
         android:id="@+id/repairButton"
         android:layout_width="wrap_content"
@@ -31,8 +61,8 @@
         android:id="@+id/maxHealthNum"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginBottom="172dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginBottom="176dp"
         android:text="Current Health"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -41,8 +71,8 @@
         android:id="@+id/currentHealthNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginBottom="212dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginBottom="204dp"
         android:text="Current Health"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -61,11 +91,11 @@
         android:id="@+id/maxFuelNum"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="384dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/menuButton"
@@ -98,21 +128,21 @@
         android:id="@+id/currentFuel"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="412dp"
         android:text="Current Fuel:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/maxFuel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="384dp"
         android:text="Max Fuel:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/fuelToBuyUserInput"
@@ -130,20 +160,30 @@
         android:id="@+id/currentFuelNum"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="408dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="216dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="200dp"
         android:text="Current Health"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fuelUnitPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="412dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

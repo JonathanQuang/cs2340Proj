@@ -20,16 +20,19 @@ import cs2340.spacetraders.viewmodels.RepairRefuelViewModel;
 
 public class ShipRepairRefuelActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
+
     private TextView currentFuelNum;
     private TextView maxFuelNum;
     private AppCompatEditText fuelToBuyUserInput;
     private RepairRefuelViewModel repairRefuelVM;
     private Button refuelButton;
+    private TextView fuelUnitPrice;
 
     private TextView currentHealthNum;
     private TextView maxHealthNum;
     private AppCompatEditText healthToBuyUserInput;
     private Button repairButton;
+    private TextView healthUnitPrice;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,29 +43,29 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
         maxFuelNum = findViewById(R.id.maxFuelNum);
         fuelToBuyUserInput = findViewById(R.id.fuelToBuyUserInput);
         refuelButton = findViewById(R.id.refuelButton);
+        fuelUnitPrice = findViewById(R.id.fuelUnitPrice);
 
         currentHealthNum = findViewById(R.id.currentHealthNum);
         maxHealthNum = findViewById(R.id.maxHealthNum);
         healthToBuyUserInput = findViewById(R.id.healthToBuyUserInput);
         repairButton = findViewById(R.id.repairButton);
+        healthUnitPrice = findViewById(R.id.healthUnitPrice);
 
 
         repairRefuelVM = new RepairRefuelViewModel(Model.getInstance().getPlayer());
+        fuelUnitPrice.setText(Integer.toString(repairRefuelVM.getFuelUnitPrice()));
+        healthUnitPrice.setText(Integer.toString(repairRefuelVM.getFuelUnitPrice()));
+
 
         maxFuelNum.setText(Integer.toString(repairRefuelVM.getMaxFuel()));
         setFuelText(repairRefuelVM.getPlayerFuel());
 
         refuelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Editable fuelEditable = fuelToBuyUserInput.getText();
-
-                if (fuelEditable == null) {
-                    Toast.makeText(getApplicationContext(), "Please enter a number", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                String fuelUserInputStr = fuelEditable.toString();
                 int fuelPurchased;
                 try {
+                    Editable fuelEditable = fuelToBuyUserInput.getText();
+                    String fuelUserInputStr = fuelEditable.toString();
                     fuelPurchased = Integer.parseInt(fuelUserInputStr);
                 } catch (NumberFormatException e) {
                     Toast.makeText(getApplicationContext(), "Please enter a number", Toast.LENGTH_SHORT).show();
@@ -84,16 +87,11 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
 
         repairButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Editable healthEditable = healthToBuyUserInput.getText();
-
-                if (healthEditable == null) {
-                    Toast.makeText(getApplicationContext(), "Please enter a number", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                String healthUserInputStr = healthEditable.toString();
-                double healthPurchased;
+                int healthPurchased;
                 try {
-                    healthPurchased = Double.parseDouble(healthUserInputStr);
+                    Editable healthEditable = healthToBuyUserInput.getText();
+                    String healthUserInputStr = healthEditable.toString();
+                    healthPurchased = Integer.parseInt(healthUserInputStr);
                 } catch (NumberFormatException e) {
                     Toast.makeText(getApplicationContext(), "Please enter a number", Toast.LENGTH_SHORT).show();
                     return;
