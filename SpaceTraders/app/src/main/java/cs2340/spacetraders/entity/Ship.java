@@ -6,6 +6,7 @@ public class Ship implements Serializable {
 
     private ShipType shipType;
     private double health;
+    private double damage;
     private int fuel;
 
     /**
@@ -16,6 +17,7 @@ public class Ship implements Serializable {
         this.shipType = shipType;
         this.health = 200;
         this.fuel = 100;
+        this.damage = shipType.getDefaultDamage();
     }
 
     public Ship() {
@@ -42,8 +44,12 @@ public class Ship implements Serializable {
         return health;
     }
 
-    public void setHealth(double health) {
-        this.health = health;
+    public double getDamage() {
+        return damage;
+    }
+
+    public void takeDamage(double damage) {
+        this.health -= damage;
     }
 
     public int getFuel() {

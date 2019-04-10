@@ -219,7 +219,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         travelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (travel.travel(planet) == 0) {
-                    Intent intent = new Intent(GalaxyMapActivity.this, MarketScreenActivity.class);
+                    Intent intent = new Intent(GalaxyMapActivity.this, EncounterScreenActivity.class);
                     startActivityForResult(intent,0);
                 }
             }

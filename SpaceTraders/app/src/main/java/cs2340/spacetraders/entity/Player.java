@@ -14,6 +14,7 @@ public class Player implements Serializable {
     private int credits;
     private Ship ship;
     private Inventory inventory;
+    private boolean criminalStatus;
 
     /**
      * Makes a player with name, stats, and ship
@@ -32,6 +33,7 @@ public class Player implements Serializable {
         this.credits = initialCredits;
         this.ship = new Ship();
         this.inventory = new Inventory(ship.getCargoCapacity());
+        this.criminalStatus = false;
     }
 
     public Inventory getInventory() {
@@ -66,7 +68,27 @@ public class Player implements Serializable {
         return retStr;
     }
 
+    public void setCriminalStatus(boolean status) {
+        criminalStatus = status;
+    }
+
+    public boolean getCriminalStatus() {
+        return criminalStatus;
+    }
+
+    public void death() {
+
+    }
+
     public Ship getShip() {
         return ship;
+    }
+
+    public void takeDamage(double damage) {
+        ship.takeDamage(damage);
+    }
+
+    public double getHealth() {
+        return ship.getHealth();
     }
 }

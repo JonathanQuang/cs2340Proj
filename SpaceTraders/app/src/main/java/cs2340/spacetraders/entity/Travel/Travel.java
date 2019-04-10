@@ -9,6 +9,7 @@ import java.util.Map;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
 import cs2340.spacetraders.model.Model;
 
 public class Travel implements Serializable {
@@ -19,12 +20,14 @@ public class Travel implements Serializable {
     private List<Planet> validPlanets;
     private Map<Planet, Integer> planetDistances;
     private Planet maxValidPlanetAway;
+    private PlanetaryEvent randomEvent;
 
     public Travel(Player player, Planet currentPlanet) {
         this.player = player;
         this.currentPlanet = currentPlanet;
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
+        randomEvent = this.currentPlanet.getPlanetaryEvent();
         findValidPlanets();
     }
 
@@ -97,5 +100,9 @@ public class Travel implements Serializable {
 
     public Map<Planet, Integer> getPlanetDistances() {
         return planetDistances;
+    }
+
+    public PlanetaryEvent getPlanetaryEvent() {
+        return randomEvent;
     }
 }
