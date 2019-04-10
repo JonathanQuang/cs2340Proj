@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import cs2340.spacetraders.entity.Universe.Galaxy;
 
-public class Game {
+public class Game implements Serializable {
     private Difficulty difficulty;
     private Galaxy galaxy;
 
