@@ -2,7 +2,7 @@ package cs2340.spacetraders.entity.Universe.Equipment;
 
 public enum WeaponTypes {
 
-    PulseLaser("Pulse Laser", "Weapon", 750, 1500, 15, -1, "Weakest weapon available that uses smallest amount of energy to shoot light"),
+    PulseLaser("Pulse Laser", "Weapon", 1750, 1500, 15, -1, "Weakest weapon available that uses smallest amount of energy to shoot light"),
     BeamLaser("Beam Laser", "Weapon", 11500, 9375, 25, -1, "Shoots a constant laser beam that's similar to two pulse lasers"),
     MilitaryLaser("Military Laser", "Weapon", 32200, 26250, 35, -1, "Shoots a dense and concentrated beam similar to three pulse lasers"),
     PhotonDisrupter("Photon Disruptor", "Weapon", 13800, 11250, 20, -1, "Weak weapon with a chance to electrically disable ships");

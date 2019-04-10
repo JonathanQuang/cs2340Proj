@@ -34,6 +34,8 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
     private Button repairButton;
     private TextView healthUnitPrice;
 
+    private TextView currentCredits;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_repair_refuel_screen);
@@ -60,6 +62,10 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
         maxFuelNum.setText(Integer.toString(repairRefuelVM.getMaxFuel()));
         setFuelText(repairRefuelVM.getPlayerFuel());
 
+        //code refuses to compile if textView15 has its name changed both here and the layout file
+        currentCredits = findViewById(R.id.textView15);
+        updatePlayerCredits();
+
         refuelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int fuelPurchased;
@@ -76,6 +82,7 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
                 if (errorText == null) {
                     repairRefuelVM.purchaseFuel(fuelPurchased);
                     setFuelText(repairRefuelVM.getPlayerFuel());
+                    updatePlayerCredits();
                 } else {
                     Toast.makeText(getApplicationContext(), errorText, Toast.LENGTH_SHORT).show();
                 }
@@ -101,6 +108,7 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
                 if (errorText == null) {
                     repairRefuelVM.repairHealth(healthPurchased);
                     setHealthText(repairRefuelVM.getPlayerHealth());
+                    updatePlayerCredits();
                 } else {
                     Toast.makeText(getApplicationContext(), errorText, Toast.LENGTH_SHORT).show();
                 }
@@ -122,5 +130,9 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
 
     private void setHealthText(double health) {
         currentHealthNum.setText(Double.toString(health));
+    }
+
+    private void updatePlayerCredits() {
+        currentCredits.setText(Integer.toString(repairRefuelVM.getPlayerCredits()));
     }
 }

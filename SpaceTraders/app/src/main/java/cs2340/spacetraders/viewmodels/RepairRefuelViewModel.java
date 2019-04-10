@@ -62,4 +62,8 @@ public class RepairRefuelViewModel {
         playerShip.setHealth(healthToBuy + playerShip.getHealth());
     }
 
+    public int getPlayerCredits() {
+        return player.getCredits();
+    }
+
 }
