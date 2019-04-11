@@ -14,18 +14,18 @@ import cs2340.spacetraders.model.Model;
  */
 public abstract class Encounterable {
 
-    private Random random = new Random();
-    private Model model = Model.getInstance();
-    private Game game = model.getGame();
-    private Difficulty difficulty = game.getDifficulty();
-    private double difficultyMultiplier = difficulty.getMultipler();
-    private double fleeChance = 0.05;
-    private double pursueChance = 0.1;
+    private final Random random = new Random();
+    private final Model model = Model.getInstance();
+    private final Game game = model.getGame();
+    private final Difficulty difficulty = game.getDifficulty();
+    private final double difficultyMultiplier = difficulty.getMultipler();
+    private final double fleeChance = 0.05;
+    private final double pursueChance = 0.1;
     private double ignoreChance;
     private double attackChance;
-    private ShipType type = ShipType.Gnat;
-    private Ship ship = new Ship(type.randomShipType());
-    private Player player = model.getPlayer();
+    private final ShipType type = ShipType.Gnat;
+    private final Ship ship = new Ship(type.randomShipType());
+    private final Player player = model.getPlayer();
 
     /**
      * Returns the character's ship

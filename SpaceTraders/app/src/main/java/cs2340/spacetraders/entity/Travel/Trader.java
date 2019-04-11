@@ -10,8 +10,8 @@ import cs2340.spacetraders.entity.Universe.Planet;
 public class Trader extends Encounterable {
 
     private boolean hostile;
-    private Player player = getPlayer();
-    private Inventory playerInventory = player.getInventory();
+    private final Player player = getPlayer();
+    private final Inventory playerInventory = player.getInventory();
 
     /**
      * Default constructor

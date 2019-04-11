@@ -20,7 +20,7 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
     private TextView currentFuelNum;
     private EditText fuelToBuyUserInput;
     private RepairRefuelViewModel repairRefuelVM;
-
+    private final Model model = Model.getInstance();
     private TextView currentHealthNum;
     private EditText healthToBuyUserInput;
     private Button repairButton;
@@ -46,7 +46,7 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
         healthUnitPrice = findViewById(R.id.healthUnitPrice);
 
 
-        repairRefuelVM = new RepairRefuelViewModel(Model.getInstance().getPlayer());
+        repairRefuelVM = new RepairRefuelViewModel(model.getPlayer());
         fuelUnitPrice.setText(Integer.toString(repairRefuelVM.getFuelUnitPrice()));
         healthUnitPrice.setText(Integer.toString(repairRefuelVM.getFuelUnitPrice()));
 

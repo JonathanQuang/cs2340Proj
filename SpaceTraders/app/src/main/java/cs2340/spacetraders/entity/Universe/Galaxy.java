@@ -17,20 +17,23 @@ import java.util.Set;
  */
 public class Galaxy implements Serializable {
 
-    private Map<String, Planet> planetNameMap;
-    private List<Planet> planetList;
-    private List<RelativePosition> systemPositionList;
-    private Set<CelestialName> usedCelestialNames;
-    private List<SolarSystem> solarSystemList;
-    private RelativePosition mapSize;
-    private String[][] galaxyMap;
-    private Random rand = new Random();
-    private List<Wormhole[]> wormholePairList;
+    private final Map<String, Planet> planetNameMap;
+    private final List<Planet> planetList;
+    private final List<RelativePosition> systemPositionList;
+    private final Set<CelestialName> usedCelestialNames;
+    private final List<SolarSystem> solarSystemList;
+    private final RelativePosition mapSize;
+    private final String[][] galaxyMap;
+    private final Random rand = new Random();
+    private final List<Wormhole[]> wormholePairList;
     private Planet currentPlanet;
-    private int mapWidth = 25;
-    private int mapHeight = 37;
-    private int maxPlantsPerSystem = 6;
-    private int maxWormHolePairs = 2;
+    private final int mapWidth = 25;
+    private final int mapHeight = 37;
+    private final int maxPlantsPerSystem = 6;
+    private final int maxWormHolePairs = 2;
+    private CelestialName systemName;
+    private RelativePosition center;
+    private RelativePosition position;
 
 
     /**
@@ -75,7 +78,7 @@ public class Galaxy implements Serializable {
         if (center == null) { return null; }
 
         String size = getSystemSize(planetNum);
-        CelestialName systemName = getNonRepeatedCelestialName();
+        systemName = getNonRepeatedCelestialName();
         Log.d("Planet", "-----System " + systemName.getName() + " created at "
                 + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
@@ -87,15 +90,17 @@ public class Galaxy implements Serializable {
      */
     private void placeWormholePair(){
         SolarSystem solarsystem1 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
+        center = solarsystem1.getCenter();
         int attempt = 0;
-        while (solarsystem1.getCenter().getRectRadius() < 2) {
+        while (center.getRectRadius() < 2) {
             solarsystem1 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
             if (++attempt > 500) { return; }
         }
 
         SolarSystem solarsystem2 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
         attempt = 0;
-        while ( (solarsystem2.getCenter().getRectRadius() < 2) || (solarsystem2 == solarsystem1) ) {
+        center = solarsystem2.getCenter();
+        while ( (center.getRectRadius() < 2) || (solarsystem2 == solarsystem1) ) {
             solarsystem2 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
             if (++attempt > 500) { return; }
         }
@@ -105,9 +110,10 @@ public class Galaxy implements Serializable {
 
         w1.joinWormholes(w2);
         wormholePairList.add(new Wormhole[]{w1, w2});
-
-        galaxyMap[w1.getPosition().getY()][w1.getPosition().getX()] = "@";
-        galaxyMap[w2.getPosition().getY()][w2.getPosition().getX()] = "@";
+        position = w1.getPosition();
+        galaxyMap[position.getY()][position.getX()] = "@";
+        position = w2.getPosition();
+        galaxyMap[position.getY()][position.getX()] = "@";
     }
 
     /**

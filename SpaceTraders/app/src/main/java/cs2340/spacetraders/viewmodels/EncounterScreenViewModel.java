@@ -16,18 +16,18 @@ import cs2340.spacetraders.model.Model;
  * Model for encountering a character
  */
 public class EncounterScreenViewModel {
-    private Planet planet;
-    private Model model = Model.getInstance();
+    private final Planet planet;
+    private final Model model = Model.getInstance();
     private Player currentPlayer = model.getPlayer();
-    private Random random = new Random();
+    private final Random random = new Random();
     private Encounterable character;
     private String action = "";
-    private Ship playerShip = currentPlayer.getShip();
+    private final Ship playerShip = currentPlayer.getShip();
     private Ship characterShip;
-    private PoliticalSystem politicalSystem;
-    private String policeQuantity;
-    private String traderQuantity;
-    private String pirateQuantity;
+    private final PoliticalSystem politicalSystem;
+    private final String policeQuantity;
+    private final String traderQuantity;
+    private final String pirateQuantity;
 
     /**
      * Constructor for the model, based on the planet's information

@@ -15,6 +15,7 @@ import cs2340.spacetraders.model.Model;
 public class ConfigurationViewModel extends AndroidViewModel {
 
     public final int STARTING_POINTS = 16; //16
+    private final Model model = Model.getInstance();
 
     /**
      * Default Constructor
@@ -48,8 +49,8 @@ public class ConfigurationViewModel extends AndroidViewModel {
         Log.d("debug", "Game Stared");
 
         Toast.makeText(getApplication(), "Starting Game!", Toast.LENGTH_LONG).show();
-        Model.getInstance().createPlayer(name, engineerStat,fighterStat, traderStat, pilotStat);
-        Model.getInstance().createGame(difficulty);
+        model.createPlayer(name, engineerStat,fighterStat, traderStat, pilotStat);
+        model.createGame(difficulty);
 
         return true;
     }

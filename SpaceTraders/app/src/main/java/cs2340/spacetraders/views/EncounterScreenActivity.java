@@ -33,10 +33,10 @@ public class EncounterScreenActivity extends AppCompatActivity {
     private Encounterable character;
     private Player player;
     private int totalEncounters;
-    private Model model = Model.getInstance();
-    private Game game = model.getGame();
-    private DataStorage dataStorage = game.getDataStorage();
-    private Galaxy galaxy = game.getGalaxy();
+    private final Model model = Model.getInstance();
+    private final Game game = model.getGame();
+    private final DataStorage dataStorage = game.getDataStorage();
+    private final Galaxy galaxy = game.getGalaxy();
     private Ship playerShip;
     private Ship characterShip;
     private ShipType playerShipType;

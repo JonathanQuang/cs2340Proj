@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
+import cs2340.spacetraders.entity.Universe.RelativePosition;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.ShipyardViewModel;
 
@@ -34,6 +35,8 @@ public class ShipyardActivity extends AppCompatActivity {
     private TextView equippedWeapons;
 
     private ShipyardViewModel shipyardVM;
+    private final Model model = Model.getInstance();
+    private RelativePosition center;
 
     public ShipyardActivity() {
     }
@@ -71,7 +74,7 @@ public class ShipyardActivity extends AppCompatActivity {
 
         creditCounter = findViewById(R.id.creditCounter);
         equippedWeapons = findViewById(R.id.equippedWeapons);
-        shipyardVM = new ShipyardViewModel(Model.getInstance().getPlayer());
+        shipyardVM = new ShipyardViewModel(model.getPlayer());
         updateCreditCounter();
 
         weaponTable.removeViewAt(0);

@@ -11,10 +11,10 @@ import cs2340.spacetraders.entity.Market.Good;
  * Class for an inventory that contains goods
  */
 public class Inventory implements Serializable {
-    private Map<Good, Integer> inventoryGoodCount;
-    private Map<Good, Double> averagePurchasePrice;
+    private final Map<Good, Integer> inventoryGoodCount;
+    private final Map<Good, Double> averagePurchasePrice;
     private int currCapacity;
-    private int maxCapacity;
+    private final int maxCapacity;
     private boolean containsIllegalGoods;
 
     /**

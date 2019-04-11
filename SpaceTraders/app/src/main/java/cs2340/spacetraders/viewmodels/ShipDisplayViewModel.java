@@ -8,8 +8,8 @@ import cs2340.spacetraders.entity.Universe.ShipMarket;
 
 public class ShipDisplayViewModel {
 
-    private Player player;
-    private ShipMarket shipMarket;
+    private final Player player;
+    private final ShipMarket shipMarket;
 
     public ShipDisplayViewModel(Player player) {
         this.player = player;

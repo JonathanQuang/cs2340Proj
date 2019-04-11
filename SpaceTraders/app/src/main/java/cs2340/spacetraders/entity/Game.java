@@ -8,9 +8,9 @@ import cs2340.spacetraders.entity.Universe.Galaxy;
  * Implementation of game
  */
 public class Game implements Serializable {
-    private Difficulty difficulty;
+    private final Difficulty difficulty;
     private Galaxy galaxy;
-    private static DataStorage storage = new DataStorage();
+    private static final DataStorage storage = new DataStorage();
 
     /** Initializes the game difficulty
      * @param difficulty the game difficulty

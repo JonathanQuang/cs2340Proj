@@ -14,8 +14,8 @@ import cs2340.spacetraders.entity.Player;
  */
 public class Market implements Serializable {
 
-    private PlanetInventory planetInventory;
-    private Inventory playerInventory;
+    private final PlanetInventory planetInventory;
+    private final Inventory playerInventory;
     private Good currentGood;
     private Player currentPlayer;
 

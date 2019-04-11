@@ -11,14 +11,14 @@ import cs2340.spacetraders.entity.Universe.PoliticalSystem;
  */
 public class Police extends Encounterable {
 
-    private double bribeChance;
-    private double searchChance;
+    private final double bribeChance;
+    private final double searchChance;
     private boolean hostile;
-    private Player player = getPlayer();
-    private Inventory playerInventory = player.getInventory();
-    private PoliticalSystem politicalSystem;
-    private String briberyAcceptance;
-    private String smugglingAcceptance;
+    private final Player player = getPlayer();
+    private final Inventory playerInventory = player.getInventory();
+    private final PoliticalSystem politicalSystem;
+    private final String briberyAcceptance;
+    private final String smugglingAcceptance;
 
     /**
      * Default constructor

@@ -44,7 +44,7 @@ public enum Good implements Serializable {
     private final PlanetaryEvent priceIncreaseEvent;
     private final Resources lowPriceEnv;
     private final Resources highPriceEnv;
-    private Random rand;
+    private final Random rand;
 
     /**
      * Constructor for Good

@@ -19,9 +19,9 @@ public class Model implements Serializable {
 
     private Player player;
     private Game game;
-    private Map<Resources, Integer> planetImageIDs;
+    private final Map<Resources, Integer> planetImageIDs;
 
-    private static  Model instance = new Model();
+    private static final Model instance = new Model();
 
     /**
      * Getter for the instance of the model

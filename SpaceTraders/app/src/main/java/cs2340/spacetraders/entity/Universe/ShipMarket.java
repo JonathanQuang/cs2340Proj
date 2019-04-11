@@ -13,8 +13,8 @@ import cs2340.spacetraders.entity.ShipType;
 public class ShipMarket implements Serializable {
 
 
-    private Player player;
-    private Map<ShipType, Integer> shipTypePriceDiffMap;
+    private final Player player;
+    private final Map<ShipType, Integer> shipTypePriceDiffMap;
 
     /**
      * Constructor for the ship market

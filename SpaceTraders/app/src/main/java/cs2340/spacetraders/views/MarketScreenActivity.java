@@ -22,9 +22,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cs2340.spacetraders.R;
+import cs2340.spacetraders.entity.Game;
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
+import cs2340.spacetraders.entity.Player;
+import cs2340.spacetraders.entity.Universe.CelestialName;
+import cs2340.spacetraders.entity.Universe.Galaxy;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
 import cs2340.spacetraders.model.Model;
@@ -48,7 +52,12 @@ public class MarketScreenActivity extends AppCompatActivity {
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
     private PlanetaryEvent event;
-
+    private final Model model = Model.getInstance();
+    private final Game game = model.getGame();
+    private final Galaxy galaxy = game.getGalaxy();
+    private final Player player = model.getPlayer();
+    private Planet currentPlanet;
+    private CelestialName planetName;
     /**
      * called when player is viewing the market screen
      * @param savedInstanceState the saved instance
@@ -66,18 +75,18 @@ public class MarketScreenActivity extends AppCompatActivity {
         planetNameText = findViewById(R.id.planetName);
         menuButton = findViewById(R.id.menuButton);
 
-        Planet currentPlanet = null;
         while(currentPlanet == null) {
-                currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
+                currentPlanet = galaxy.getCurrentPlanet();
         }
+        planetName = currentPlanet.getName();
         planetInventory = currentPlanet.getInventory();
-        playerInventory = Model.getInstance().getPlayer().getInventory();
-        planetNameText.setText(currentPlanet.getName().toString());
+        playerInventory = player.getInventory();
+        planetNameText.setText(planetName.toString());
         marketScreenVM = new MarketScreenViewModel(planetInventory, playerInventory);
-        marketScreenVM.setPlayer(Model.getInstance().getPlayer());
+        marketScreenVM.setPlayer(player);
         event = currentPlanet.getPlanetaryEvent();
 
-        int type = Model.getInstance().getPlanetImageIDs().get(currentPlanet.getResources());
+        int type = model.getPlanetImageIDs().get(currentPlanet.getResources());
         ImageView planetImage = (ImageView) findViewById(R.id.planetImage);
         planetImage.setImageResource(type);
 

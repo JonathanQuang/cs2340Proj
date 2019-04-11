@@ -9,14 +9,14 @@ public class Player implements Serializable {
 
     private final int  initialCredits = 100000;
 
-    private String name;
-    private int engineerStat;
-    private int fighterStat;
-    private int traderStat;
-    private int pilotStat;
+    private final String name;
+    private final int engineerStat;
+    private final int fighterStat;
+    private final int traderStat;
+    private final int pilotStat;
     private int credits;
-    private Ship ship;
-    private Inventory inventory;
+    private final Ship ship;
+    private final Inventory inventory;
     private boolean criminalStatus;
 
     /**

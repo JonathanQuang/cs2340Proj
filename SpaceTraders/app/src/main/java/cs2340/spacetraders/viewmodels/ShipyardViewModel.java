@@ -8,10 +8,10 @@ import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
 import cs2340.spacetraders.entity.Universe.Shipyard;
 
 public class ShipyardViewModel {
-    private Player player;
-    private Shipyard shipyard;
-    private Ship playerShip;
-    private List<WeaponTypes> weaponTypes;
+    private final Player player;
+    private final Shipyard shipyard;
+    private final Ship playerShip;
+    private final List<WeaponTypes> weaponTypes;
 
     public ShipyardViewModel(Player player) {
         this.player = player;

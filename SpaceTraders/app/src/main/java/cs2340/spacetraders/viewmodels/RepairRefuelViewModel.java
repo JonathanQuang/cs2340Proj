@@ -5,11 +5,11 @@ import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.ShipType;
 
 public class RepairRefuelViewModel {
-    private Ship playerShip;
-    private ShipType playerShipType;
+    private final Ship playerShip;
+    private final ShipType playerShipType;
     private final int FUEL_UNIT_PRICE = 10;
     private final int HEALTH_UNIT_PRICE = 20;
-    private Player player;
+    private final Player player;
 
 
     public RepairRefuelViewModel(Player player) {
