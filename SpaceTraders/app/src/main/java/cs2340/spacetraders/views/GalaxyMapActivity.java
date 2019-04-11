@@ -65,7 +65,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
 
         //Place All Plants
         for (int i = 0; i < planetButtonIDs.length; i++) {
-            Planet planet = i < planetList.size() ? planetList.get(i) : null;
+            Planet planet = i < planetList.size() ? (planetList.get(i)) : (null);
             if (planet != null) {
                 placePlanet(planet, planetButtonIDs[i]);
                 if (planet.equals(currentPlanet)) {
@@ -82,7 +82,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         //Circle All Systems
         List<SolarSystem> solarSystemsList = galaxy.getSolarSystemList();
         for (int i = 0; i < ringIDs.length; i++) {
-            SolarSystem solarSystem = i < solarSystemsList.size() ? solarSystemsList.get(i) : null;
+            SolarSystem solarSystem = i < solarSystemsList.size() ? (solarSystemsList.get(i)) : (null);
             if (solarSystem != null) {
                 placeSystemRing(solarSystem, ringIDs[i]);
             } else { findViewById(ringIDs[i]).setVisibility(View.GONE);}
@@ -91,7 +91,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         //Place Wormholes
         List<Wormhole[]> wormholePairList = galaxy.getWormholePairList();
         for (int i = 0; i < wormholeIDs.length; i++) {
-            Wormhole[] wormhole = i < wormholePairList.size() ? wormholePairList.get(i) : null;
+            Wormhole[] wormhole = i < wormholePairList.size() ? (wormholePairList.get(i)) : (null);
             if (wormhole != null) {
                 placeWormhole(wormhole[0], wormholeIDs[i][0], wormholeIDs[i][2]);
                 placeWormhole(wormhole[1], wormholeIDs[i][1], wormholeIDs[i][2]);
@@ -193,8 +193,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
         double probX = ((double) position.getX()) / mapSize.getX();
         double probY = ((double) position.getY()) / mapSize.getY();
 
-        view.setTranslationX((int) ((screenWidth * probX - radius) + 20));
-        view.setTranslationY((int) ((screenHeight * probY - radius) + 20));
+        view.setTranslationX((int) ((screenWidth * probX) - (radius - 20)));
+        view.setTranslationY((int) ((screenHeight * probY) - (radius - 20)));
     }
 
     /**

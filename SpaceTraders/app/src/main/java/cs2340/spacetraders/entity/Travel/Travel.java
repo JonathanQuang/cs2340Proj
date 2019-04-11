@@ -35,6 +35,7 @@ public class Travel implements Serializable {
     /**
      * @param player the main player
      * @param currentPlanet the current player in the galaxy
+     * @param planetList the planet list
      */
     public Travel(Player player, Planet currentPlanet, List<Planet> planetList) {
         this.player = player;

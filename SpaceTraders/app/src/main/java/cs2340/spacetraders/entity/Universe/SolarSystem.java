@@ -71,10 +71,10 @@ public class SolarSystem implements Serializable {
     public RelativePosition getValidUnusedPoint() {
         RelativePosition point;
         do {
-            int x = rand.nextInt(2 * center.getRectRadius() + 1)
-                    + center.getX() - center.getRectRadius();
+            int x = ((rand.nextInt((2 * center.getRectRadius()) + 1))
+                    + (center.getX() - center.getRectRadius()));
             int y = rand.nextInt(2 * center.getRectRadius() + 1)
-                    + center.getY() - center.getRectRadius();
+                    + (center.getY() - center.getRectRadius());
             point = new RelativePosition(x, y);
         } while (planetPositions.contains(point));
         planetPositions.add(point);

@@ -114,9 +114,9 @@ public enum Good implements Serializable {
         int price = basePrice + ((techLevel.ordinal() - minProduceLevel) * priceIncrease);
         boolean heads = rand.nextInt(2) == 1;
         int var = (int) (basePrice * (rand.nextInt(variance + 1) / 100.0));
-        int finalPrice = heads ? price + var : price - var;
+        int finalPrice = heads ? (price + var) : (price - var);
 
-        finalPrice = (planetaryEvent == priceIncreaseEvent) ? finalPrice * 3 : finalPrice;
+        finalPrice = (planetaryEvent == priceIncreaseEvent) ? (finalPrice * 3) : (finalPrice);
         finalPrice = (resources == lowPriceEnv) ? (int) (finalPrice * .5) : finalPrice;
         finalPrice = (resources == highPriceEnv) ? (int) (finalPrice * 1.5) : finalPrice;
         finalPrice = (finalPrice > 0) ? finalPrice : 0;
@@ -129,7 +129,7 @@ public enum Good implements Serializable {
      */
     public int makeGoodCount(TechLevel techLevel){
         int count = rand.nextInt(10) + 1;
-        count = techLevel.ordinal() == maxProductionLevel ? count * 2 : count;
+        count = techLevel.ordinal() == maxProductionLevel ? (count * 2) : (count);
         return count;
     }
 }

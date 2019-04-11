@@ -127,8 +127,8 @@ public class Galaxy implements Serializable {
         int attempts = 0;
         do {
             int r = (planetNum < 4) ? 1 : 2;
-            int x = rand.nextInt((mapSize.getX() - 2 * r)) + r;
-            int y = rand.nextInt(mapSize.getY() - 2 * r) + r;
+            int x = rand.nextInt((mapSize.getX() - (2 * r))) + r;
+            int y = rand.nextInt(mapSize.getY() - (2 * r)) + r;
             center = new RelativePosition(x, y, r, true);
             if (++attempts > 200) { return null; }
         } while (systemPositionList.contains(center) || !isValidCornerPoint(center));
@@ -145,7 +145,8 @@ public class Galaxy implements Serializable {
         int x = point.getX();
         int y = point.getY();
         int r = point.getRectRadius();
-        return (0 <= x - r) && (x + r < mapSize.getX()) && (0 <= y - r) && (y + r < mapSize.getY());
+        return (((0 <= (x - r)) && ((x + r) < mapSize.getX()))
+                && ((0 <= (y - r)) && ((y + r) < mapSize.getY())));
     }
 
     /**

@@ -69,7 +69,7 @@ public class Inventory implements Serializable {
      * @return amount in inventory
      */
     public int getGoodAmount(Good good) {
-        return inventoryGoodCount.get(good) != null ? inventoryGoodCount.get(good) : 0;
+        return inventoryGoodCount.get(good) != null ? (inventoryGoodCount.get(good)) : (0);
     }
 
     /**
@@ -78,7 +78,7 @@ public class Inventory implements Serializable {
      * @return average price player purchased the good
      */
     public double getAvgPurchasePrice(Good good) {
-        return averagePurchasePrice.get(good) != null ? averagePurchasePrice.get(good) : 0;
+        return averagePurchasePrice.get(good) != null ? (averagePurchasePrice.get(good)) : (0);
     }
 
     /**
@@ -111,7 +111,7 @@ public class Inventory implements Serializable {
      * @return true or false
      */
     public boolean canBuyGood(int numGoods) {
-        return currCapacity + numGoods <= maxCapacity;
+        return currCapacity + numGoods <= (maxCapacity);
     }
 
     /**
