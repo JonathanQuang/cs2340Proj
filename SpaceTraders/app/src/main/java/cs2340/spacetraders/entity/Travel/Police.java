@@ -3,40 +3,49 @@ package cs2340.spacetraders.entity.Travel;
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Player;
-import cs2340.spacetraders.entity.Ship;
-import cs2340.spacetraders.entity.ShipType;
-import cs2340.spacetraders.entity.Travel.Encounterable;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.entity.Universe.PoliticalSystem;
 
+/**
+ * Concrete implementation of a Police character
+ */
 public class Police extends Encounterable {
 
-    private double bribeChance, searchChance;
-    private boolean hostile = false;
+    private double bribeChance;
+    private double searchChance;
+    private boolean hostile;
+    private Player player = getPlayer();
+    private Inventory playerInventory = player.getInventory();
+    private PoliticalSystem politicalSystem;
+    private String briberyAcceptance;
+    private String smugglingAcceptance;
 
     /**
-     *
+     * Default constructor
+     * @param planet current planet being traveled to
      */
     public Police(Planet planet) {
-        super();
-        bribeChance = planet.getPoliticalSystem().determineProbability(planet.getPoliceBriberyAcceptance());
-        searchChance = planet.getPoliticalSystem().determineProbability(planet.getPoliceSmugglingAcceptance());
+        politicalSystem = planet.getPoliticalSystem();
+        briberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
+        smugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
+        bribeChance = politicalSystem.determineProbability(briberyAcceptance);
+        searchChance = politicalSystem.determineProbability(smugglingAcceptance);
         if (hostile) {
-            super.setIgnoreChance(0);
-            super.setAttackChance(0.9);
+            setIgnoreChance(0);
+            setAttackChance(0.9);
         } else {
-            super.setIgnoreChance(searchChance);
-            super.setAttackChance(0);
+            setIgnoreChance(searchChance);
+            setAttackChance(0);
         }
     }
 
     /**
-     *
-     * @return
+     * Action that takes place if player tries to bribe the police
+     * @return String success or failure
      */
     public String bribe() {
-        if (super.getRandom() > bribeChance) {
-            getPlayer().changeCredits(-500);
+        if (getRandom() > bribeChance) {
+            player.changeCredits(-500);
             return " successfully ";
         } else {
             checkCargo();
@@ -45,43 +54,30 @@ public class Police extends Encounterable {
     }
 
     /**
-     *
-     * @return
+     * Checks the player inventory for illegal goods
      */
     public void checkCargo() {
-        if (super.getRandom() > searchChance) {
-            if (getPlayer().getInventory().containsIllegalGoods()) {
+        if (getRandom() > searchChance) {
+            if (playerInventory.containsIllegalGoods()) {
                 confiscate();
             }
         }
     }
 
     /**
-     *
+     * Takes the illegal goods and fines the player
      */
     public void confiscate() {
-        Inventory inventory = getPlayer().getInventory();
-        inventory.removeGood(Good.Firearms, inventory.getGoodAmount(Good.Firearms));
-        inventory.removeGood(Good.Narcotics, inventory.getGoodAmount(Good.Narcotics));
-        getPlayer().changeCredits(-1000);
+        int goodAmount = playerInventory.getGoodAmount(Good.Firearms);
+        playerInventory.removeGood(Good.Firearms, goodAmount);
+        goodAmount = playerInventory.getGoodAmount(Good.Narcotics);
+        playerInventory.removeGood(Good.Narcotics, goodAmount);
+        player.changeCredits(-1000);
     }
 
-    /**
-     *
-     * @return
-     */
-    @Override
-    public Ship getShip() {
-        return super.getShip();
-    }
-
-    /**
-     *
-     * @return
-     */
     @Override
     public String createDialogue() {
-        if (getPlayer().getCriminalStatus()) {
+        if (player.getCriminalStatus()) {
             return "Police: Hostile";
         } else {
             return "Police: Non-hostile";
@@ -95,10 +91,10 @@ public class Police extends Encounterable {
 
     @Override
     public boolean setHostile() {
-        if (getPlayer().getCriminalStatus()) {
+        if (player.getCriminalStatus()) {
             hostile = true;
-            super.setIgnoreChance(0);
-            super.setAttackChance(0.9);
+            setIgnoreChance(0);
+            setAttackChance(0.9);
             return hostile;
         } else {
             return hostile;
@@ -110,10 +106,6 @@ public class Police extends Encounterable {
         return bribe();
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
         return "Police";

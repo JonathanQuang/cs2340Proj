@@ -3,10 +3,7 @@ package cs2340.spacetraders.model;
 import android.util.Log;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import cs2340.spacetraders.R;
@@ -15,8 +12,9 @@ import cs2340.spacetraders.entity.Game;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Universe.Resources;
 
-import static cs2340.spacetraders.entity.Universe.Resources.DESERT;
-
+/**
+ * Base model for the entire game
+ */
 public class Model implements Serializable {
 
     private Player player;
@@ -24,7 +22,11 @@ public class Model implements Serializable {
     private Map<Resources, Integer> planetImageIDs;
 
     private static  Model instance = new Model();
-    private static DataStorage storage = new DataStorage();
+
+    /**
+     * Getter for the instance of the model
+     * @return instance
+     */
     public static Model getInstance() { return instance; }
 
     private Model() {
@@ -39,7 +41,8 @@ public class Model implements Serializable {
      * @param traderStat the trader stats of the player
      * @param pilotStat the pilot stats of the player
      */
-    public void createPlayer(String name, int engineerStat, int fighterStat, int traderStat, int pilotStat) {
+    public void createPlayer(String name, int engineerStat, int fighterStat,
+                             int traderStat, int pilotStat) {
         player = new Player(name, engineerStat,fighterStat, traderStat, pilotStat);
         Log.d("Player", player.toString());
     }
@@ -65,15 +68,9 @@ public class Model implements Serializable {
         return game;
     }
 
-    /** gets data
-     * @return data storage
-     */
-    public static DataStorage getDataStorage() {
-        return storage;
-    }
-
     private void setPlanetImageIDs() {
-        int[] planetPNGs = new int[] {R.drawable.normie_l, R.drawable.mineral_l, R.drawable.poor_soil_l,
+        int[] planetPNGs = new int[] {R.drawable.normie_l, R.drawable.mineral_l,
+                                R.drawable.poor_soil_l,
                                 R.drawable.desert_l, R.drawable.water_l, R.drawable.rich_soil_l,
                                 R.drawable.poor_soil_l, R.drawable.fauna_l, R.drawable.lifeless_l,
                                 R.drawable.mushrooms_l, R.drawable.herbs_l, R.drawable.artistic_l,
@@ -84,14 +81,26 @@ public class Model implements Serializable {
         }
     }
 
+    /**
+     * Getter for the planet images
+     * @return list of planet images
+     */
     public Map<Resources, Integer> getPlanetImageIDs() {
         return planetImageIDs;
     }
 
+    /**
+     * Setter for the game
+     * @param game current instance of the game
+     */
     public void setGame(Game game) {
         this.game = game;
     }
 
+    /**
+     * Setter for the current player
+     * @param player current player
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }

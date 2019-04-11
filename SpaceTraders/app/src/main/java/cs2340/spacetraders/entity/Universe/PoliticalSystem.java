@@ -83,17 +83,18 @@ public enum PoliticalSystem {
     }
 
     /**
-     * @param quantity the string representation of the amount of a character
-     * @return the statistical proportion that character will be found
+     * Sets numeric probabilities for the String representations
+     * @param quantity given String
+     * @return double for probability
      */
-    public static double determineProbability(String quantity) {
-        if (quantity.equals("None")) {
+    public double determineProbability(String quantity) {
+        if ("None".equals(quantity)) {
             return 0;
-        } else if (quantity.equals("Low")) {
+        } else if ("Low".equals(quantity)) {
             return 0.25;
-        } else if (quantity.equals("Some")) {
+        } else if ("Some".equals(quantity)) {
             return 0.5;
-        } else if (quantity.equals("High")) {
+        } else if ("High".equals(quantity)) {
             return 0.75;
         } else {
             return 1;

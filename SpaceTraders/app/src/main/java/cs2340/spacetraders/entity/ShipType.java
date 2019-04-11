@@ -1,10 +1,10 @@
 package cs2340.spacetraders.entity;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
+/**
+ * Enum for possible ship types a ship may be
+ */
 public enum ShipType {
 
     Flea("FLEA" , 10, "Tiny", 20, 25, 0, 0, 0, 1, 7000, 10),
@@ -17,7 +17,7 @@ public enum ShipType {
     Grasshopper("GRASSHOPPER", 30, "Medium", 15, 100, 2, 2, 3, 3, 81000, 80),
     Termite("TERMITE", 60, "Large", 13, 150, 1, 2, 3, 3, 91000, 90);
 
-    /** the full string representation of the shiptype **/
+    /** the full string representation of the shipType **/
     private final String shipType;
     private final int cargoCapacity;
     private final String shipSize;
@@ -30,13 +30,17 @@ public enum ShipType {
     private final int price;
     private final int DEFAULT_DAMAGE;
     private final Random RANDOM = new Random();
+    //dont make these variables local for the sake of easy configuration for game balance
+    private final int rangeToMaxFuelMultiplier = 10;
+    private final int hullStrengthToMaxHPMultiplier = 1;
 
     /**
      * Initializes string ship type of enum
      * @param shipType the ship type
      */
     ShipType(String shipType, int cargoCapacity, String shipSize, int range, int hullStrength,
-             int weaponSlots, int shieldSlots, int gadgetSlots, int crewQuarters, int price, int defaultDamage) {
+             int weaponSlots, int shieldSlots, int gadgetSlots, int crewQuarters,
+             int price, int defaultDamage) {
         this.shipType = shipType;
         this.cargoCapacity = cargoCapacity;
         this.shipSize = shipSize;
@@ -51,38 +55,87 @@ public enum ShipType {
     }
 
     /**
-     * Gets the ship type
-     * @return the ship type
+     * Getter for the ship's default damage
+     * @return DEFAULT_DAMAGE
      */
-
-
     public double getDefaultDamage() {return DEFAULT_DAMAGE;}
 
+    /**
+     * Getter for the ship's size
+     * @return shipSize
+     */
     public String getShipSize() {return shipSize;}
 
+    /**
+     * Getter for the ship's range
+     * @return range
+     */
     public int getRange() {return range;}
 
+    /**
+     * Getter for the ship's hull strength
+     * @return hullStrength
+     */
     public int getHullStrength() {return hullStrength;}
 
+    /**
+     * Getter for the number of weapon slots
+     * @return weaponSlots
+     */
     public int getWeaponSlots() {return weaponSlots;}
 
+    /**
+     * Getter for the number of shield slots
+     * @return shieldSlots
+     */
     public int getShieldSlots() {return shieldSlots;}
 
+    /**
+     * Getter for the number of shieldSlots
+     * @return shieldSlots
+     */
     public int getGadgetSlots() {return shieldSlots;}
 
+    /**
+     * Getter for the number of crew quarters
+     * @return crewQuarters
+     */
     public int getCrewQuarters() {return crewQuarters;}
 
+    /**
+     * Getter for the ship type's price
+     * @return price
+     */
     public int getPrice() {return price;}
 
+    /**
+     * Getter for the maximum cargo capacity
+     * @return cargoCapacity
+     */
     public int getCargoCapacity() {return cargoCapacity;}
 
+    /**
+     * Getter for the shipType
+     * @return shipType
+     */
     public String getShipType() {return shipType;}
 
     /**
-     * Gets the string representation of the ship type
-     * @return the string representation of the ship type
+     * Getter for the max health
+     * @return int of hull strength times multiplier
      */
+    public int getMaxHealth() {return hullStrength * hullStrengthToMaxHPMultiplier;}
 
+    /**
+     * Getter for max fuel
+     * @return int of maximum fuel that can be carried
+     */
+    public int getMaxFuel() {return range * rangeToMaxFuelMultiplier;}
+
+    /**
+     * Returns a random shipType
+     * @return a random shipType
+     */
     public ShipType randomShipType()  {
         return ShipType.values()[RANDOM.nextInt(ShipType.values().length)];
     }

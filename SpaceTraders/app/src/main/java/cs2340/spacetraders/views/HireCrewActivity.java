@@ -14,6 +14,7 @@ public class HireCrewActivity extends AppCompatActivity {
     /** Called when player wants to hire crew
      * @param savedInstanceState the saved instance
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hire_crew_screen);
@@ -21,6 +22,7 @@ public class HireCrewActivity extends AppCompatActivity {
         menuButton = findViewById(R.id.menuButton);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HireCrewActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);

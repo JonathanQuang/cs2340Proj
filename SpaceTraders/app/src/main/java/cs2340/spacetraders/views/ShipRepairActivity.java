@@ -15,6 +15,7 @@ public class ShipRepairActivity extends AppCompatActivity {
      * called when repairing the ship
      * @param savedInstanceState the saved instance
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_repair_screen);
@@ -22,6 +23,7 @@ public class ShipRepairActivity extends AppCompatActivity {
         menuButton = findViewById(R.id.menuButton);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShipRepairActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);

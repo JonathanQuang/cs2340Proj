@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Player implements Serializable {
 
-    private final int  initialCredits = 1000;
+    private final int  initialCredits = 100000;
 
     private String name;
     private int engineerStat;
@@ -40,6 +40,7 @@ public class Player implements Serializable {
     }
 
     /**
+     * Return the player's inventory
      * @return the player's inventory
      */
     public Inventory getInventory() {
@@ -52,7 +53,8 @@ public class Player implements Serializable {
     public int getCredits() {return credits;}
 
     /**
-     * @return the ship type
+     * Returns ship price
+     * @return ship's shipType price
      */
     public int getShipTypePrice() {return ship.getShipTypePrice();}
 
@@ -77,6 +79,7 @@ public class Player implements Serializable {
      * Gets a string representation of the player's attributes
      * @return a string representation of the player's attributes
      */
+    @Override
     public String toString() {
         String retStr = "";
         retStr += "Player name: " + name;
@@ -89,14 +92,25 @@ public class Player implements Serializable {
         return retStr;
     }
 
+    /**
+     * Changes the criminal status of the player
+     * @param status player's criminal status
+     */
     public void setCriminalStatus(boolean status) {
         criminalStatus = status;
     }
 
+    /**
+     * Getter for the player's criminal status
+     * @return criminalStatus
+     */
     public boolean getCriminalStatus() {
         return criminalStatus;
     }
 
+    /**
+     * Action upon player's death
+     */
     public void death() {
 
     }
@@ -108,10 +122,18 @@ public class Player implements Serializable {
         return ship;
     }
 
+    /**
+     * Player's ship takes damage after getting attacked
+     * @param damage Damage taken
+     */
     public void takeDamage(double damage) {
         ship.takeDamage(damage);
     }
 
+    /**
+     * Getter for the player's health
+     * @return ship's health
+     */
     public double getHealth() {
         return ship.getHealth();
     }

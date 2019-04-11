@@ -109,7 +109,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Ship Repair"
+        android:text="Repair/Refuel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -133,3 +133,4 @@
         app:layout_constraintTop_toBottomOf="@+id/hireCrewButton"
         app:layout_constraintVertical_bias="0.02" />
 </android.support.constraint.ConstraintLayout>
+

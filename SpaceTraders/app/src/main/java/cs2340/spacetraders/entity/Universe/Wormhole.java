@@ -1,8 +1,9 @@
 package cs2340.spacetraders.entity.Universe;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.List;
-import cs2340.spacetraders.model.Model;
 
 /**
  * A method of transportation within the galaxy connect to spaceports
@@ -27,6 +28,11 @@ public class Wormhole implements Serializable {
         findSpacePort();
     }
 
+    /**
+     * Constructor for wormhole given Galaxy object
+     * @param galaxy the parent galaxy
+     * @param position RelativePosition object to represent where the wormhole is
+     */
     public Wormhole(Galaxy galaxy, RelativePosition position) {
         this(galaxy.getPlanetList(), position);
     }
@@ -88,6 +94,7 @@ public class Wormhole implements Serializable {
         return 3 * position.getY() + 7 * position.getX();
     }
 
+    @NonNull
     @Override
     public String toString(){
         String retStr = "this wormhole is located at " + this.position;

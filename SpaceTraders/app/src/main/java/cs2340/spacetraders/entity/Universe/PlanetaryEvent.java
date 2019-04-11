@@ -1,8 +1,5 @@
 package cs2340.spacetraders.entity.Universe;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -35,6 +32,7 @@ public enum PlanetaryEvent {
         return increaseEvent;
     }
 
+    @Override
     public String toString() {
         return increaseEvent;
     }

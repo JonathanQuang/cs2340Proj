@@ -47,7 +47,8 @@ public class Galaxy implements Serializable {
         galaxyMap = new String[mapHeight][mapWidth];
 
         for (String[] row: galaxyMap) {Arrays.fill(row, " "); }
-        while (usedCelestialNames.size() + maxPlantsPerSystem < CelestialName.values().length) {
+        while ( (usedCelestialNames.size() + maxPlantsPerSystem) <
+                (CelestialName.values().length) ) {
             SolarSystem newSolarSystem = makeSolarSystem();
             if (newSolarSystem != null) {
                 solarSystemList.add(newSolarSystem);
@@ -94,7 +95,7 @@ public class Galaxy implements Serializable {
 
         SolarSystem solarsystem2 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
         attempt = 0;
-        while (solarsystem2.getCenter().getRectRadius() < 2 || solarsystem2 == solarsystem1) {
+        while ( (solarsystem2.getCenter().getRectRadius() < 2) || (solarsystem2 == solarsystem1) ) {
             solarsystem2 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
             if (++attempt > 500) { return; }
         }
@@ -119,8 +120,8 @@ public class Galaxy implements Serializable {
         RelativePosition center;
         int attempts = 0;
         do {
-            int r = planetNum < 4 ? 1 : 2;
-            int x = rand.nextInt(mapSize.getX() - 2 * r) + r;
+            int r = (planetNum < 4) ? 1 : 2;
+            int x = rand.nextInt((mapSize.getX() - 2 * r)) + r;
             int y = rand.nextInt(mapSize.getY() - 2 * r) + r;
             center = new RelativePosition(x, y, r, true);
             if (++attempts > 200) { return null; }
@@ -138,7 +139,7 @@ public class Galaxy implements Serializable {
         int x = point.getX();
         int y = point.getY();
         int r = point.getRectRadius();
-        return 0 <= x - r && x + r < mapSize.getX() && 0 <= y - r && y + r < mapSize.getY();
+        return (0 <= x - r) && (x + r < mapSize.getX()) && (0 <= y - r) && (y + r < mapSize.getY());
     }
 
     /**
@@ -175,10 +176,10 @@ public class Galaxy implements Serializable {
         int y = position.getY();
         int r = position.getRectRadius();
 
-        for (int i = -r; i <= r; galaxyMap[y + r][x + i] = "#", i++) ;
-        for (int i = -r; i <= r; galaxyMap[y - r][x + i] = "#", i++) ;
-        for (int i = -r; i <= r; galaxyMap[y + i][x + r] = "#", i++) ;
-        for (int i = -r; i <= r; galaxyMap[y + i][x - r] = "#", i++) ;
+        for (int i = -r; i <= r; galaxyMap[y + r][x + i] = "#", i++);
+        for (int i = -r; i <= r; galaxyMap[y - r][x + i] = "#", i++);
+        for (int i = -r; i <= r; galaxyMap[y + i][x + r] = "#", i++);
+        for (int i = -r; i <= r; galaxyMap[y + i][x - r] = "#", i++);
         galaxyMap[y][x] = "O";
     }
 
@@ -212,7 +213,7 @@ public class Galaxy implements Serializable {
      * @return checks if current planet is null
      */
     public boolean isGalaxyCreated() {
-        return currentPlanet != null || currentPlanet.getInventory() != null;
+        return (currentPlanet != null) || (currentPlanet.getInventory() != null);
     }
 
     /**

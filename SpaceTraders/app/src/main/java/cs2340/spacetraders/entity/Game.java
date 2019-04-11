@@ -4,9 +4,13 @@ import java.io.Serializable;
 
 import cs2340.spacetraders.entity.Universe.Galaxy;
 
+/**
+ * Implementation of game
+ */
 public class Game implements Serializable {
     private Difficulty difficulty;
     private Galaxy galaxy;
+    private static DataStorage storage = new DataStorage();
 
     /** Initializes the game difficulty
      * @param difficulty the game difficulty
@@ -23,6 +27,10 @@ public class Game implements Serializable {
         galaxy = new Galaxy();
     }
 
+    /**
+     * Getter for galaxy
+     * @return galaxy
+     */
     public Galaxy getGalaxy() {
         return galaxy;
     }
@@ -34,10 +42,15 @@ public class Game implements Serializable {
         return difficulty;
     }
 
-    /** Gets the string representation fo the game difficulty
-     * @return the string representation fo the game difficulty
-     */
+    @Override
     public String toString() {
         return "The Game Difficulty is" + difficulty.toString();
+    }
+
+    /** gets data
+     * @return data storage
+     */
+    public DataStorage getDataStorage() {
+        return storage;
     }
 }

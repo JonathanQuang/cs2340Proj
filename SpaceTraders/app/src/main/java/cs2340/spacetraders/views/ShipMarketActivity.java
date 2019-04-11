@@ -15,6 +15,7 @@ public class ShipMarketActivity extends AppCompatActivity {
      * created when viewing all of the ships
      * @param savedInstanceState the saved state
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_market_screen);
@@ -42,6 +43,7 @@ public class ShipMarketActivity extends AppCompatActivity {
         setupShipButton(fireflyButton, ShipType.Firefly);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShipMarketActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);
@@ -56,6 +58,7 @@ public class ShipMarketActivity extends AppCompatActivity {
      */
     private void setupShipButton(ImageButton button, final ShipType shipType) {
         button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShipMarketActivity.this, ShipDisplayActivity.class);
                 ShipDisplayActivity.setShipType(shipType);
@@ -64,4 +67,3 @@ public class ShipMarketActivity extends AppCompatActivity {
         });
     }
 }
-
