@@ -1,5 +1,8 @@
 package cs2340.spacetraders.entity.Universe;
 
+/**
+ * The List of Celestial Names
+ */
 public enum CelestialName {
      Acamar("Acamar"),
      Adahn ("Adahn"),
@@ -123,11 +126,17 @@ public enum CelestialName {
      Zuul("Zuul");
 
     private final String name;
-     
+
+     /**
+      * @param name the name of the planet
+      */
      CelestialName(String name) {
          this.name = name;
      }
 
+     /**
+      * @return get the name of the planet
+      */
     public String getName() {
         return name;
     }

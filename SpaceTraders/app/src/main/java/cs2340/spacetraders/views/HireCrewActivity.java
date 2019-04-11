@@ -11,6 +11,9 @@ import cs2340.spacetraders.R;
 public class HireCrewActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
 
+    /** Called when player wants to hire crew
+     * @param savedInstanceState the saved instance
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hire_crew_screen);

@@ -1,5 +1,8 @@
 package cs2340.spacetraders.entity.Universe;
 
+/**
+ * A Enumeration of the possible resources found a planet
+ */
 public enum Resources {
     NOSPECIALRESOURCES,
     MINERALRICH,
@@ -13,11 +16,5 @@ public enum Resources {
     WEIRDMUSHROOMS,
     LOTSOFHERBS,
     ARTISTIC,
-    WARLIKE;
-
-//        private Good[] favoredGoods;
-//    private Good[] disfavoredGoods;
-
-    Resources() {
-    }
+    WARLIKE
 }

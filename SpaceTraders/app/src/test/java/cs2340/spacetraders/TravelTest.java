@@ -1,25 +1,22 @@
-package cs2340.spacetraders.entity.Travel;
+package cs2340.spacetraders;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
+import cs2340.spacetraders.entity.Travel.Travel;
 import cs2340.spacetraders.entity.Universe.CelestialName;
-import cs2340.spacetraders.entity.Universe.Galaxy;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.entity.Universe.PoliticalSystem;
 import cs2340.spacetraders.entity.Universe.RelativePosition;
 import cs2340.spacetraders.entity.Universe.Resources;
 import cs2340.spacetraders.entity.Universe.TechLevel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for findValidPlanets()
@@ -46,7 +43,7 @@ public class TravelTest {
     }
 
     private Planet makePlanet(int x, int y) {
-        return makePlanet(null, x, y);
+        return makePlanet(CelestialName.values()[99], x, y);
     }
 
     private Planet makePlanet(CelestialName name, int x, int y) {
@@ -57,7 +54,6 @@ public class TravelTest {
     @Test(timeout = TIMEOUT)
     public void testFindingZeroValidPlanets() {
         travel = new Travel(player, makePlanet(0, 0), new ArrayList<Planet>());
-        travel.findValidPlanets();
         assertEquals(0, travel.getValidPlanets().size());
     }
 
@@ -68,7 +64,6 @@ public class TravelTest {
         planetList.add(planet);
         travel = new Travel(player, makePlanet(0, 0), planetList);
 
-        travel.findValidPlanets();
         assertEquals(1, travel.getValidPlanets().size());
         assertEquals(planet, travel.getValidPlanets().get(0));
         assertEquals(new Integer(1), travel.getPlanetDistances().get(planet));
@@ -82,19 +77,18 @@ public class TravelTest {
         planetList.add(planet);
         travel = new Travel(player, makePlanet(0, 0), planetList);
 
-        travel.findValidPlanets();
         assertEquals(1, travel.getValidPlanets().size());
         assertEquals(planet, travel.getValidPlanets().get(0));
         assertEquals(new Integer(1), travel.getPlanetDistances().get(planet));
         assertEquals(planet, travel.getMaxValidPlanetAway());
     }
 
-    @Test(timeout = TIMEOUT)
+    @Test
     public void testFindingMultiValidPlanetsEasy() {
         Planet planet1 = makePlanet(celestialNames[0], 0,1);
-        Planet planet2 = makePlanet(celestialNames[0], 2,2);
-        Planet planet3 = makePlanet(celestialNames[0], 5,5);
-        Planet planet4 = makePlanet(celestialNames[0], 100,100);
+        Planet planet2 = makePlanet(celestialNames[1], 2,2);
+        Planet planet3 = makePlanet(celestialNames[2], 5,5);
+        Planet planet4 = makePlanet(celestialNames[3], 100,100);
 
         planetList.add(planet1);
         planetList.add(planet2);
@@ -103,9 +97,10 @@ public class TravelTest {
 
         travel = new Travel(player, makePlanet(0, 0), planetList);
 
-        travel.findValidPlanets();
         assertEquals(3, travel.getValidPlanets().size());
         assert(travel.getValidPlanets().contains(planet1));
+        System.out.println("travel = " + travel.getValidPlanets());
+
         assert(!travel.getValidPlanets().contains(planet4));
         assertEquals(planet3, travel.getMaxValidPlanetAway());
     }

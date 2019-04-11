@@ -13,6 +13,10 @@ public class ShipyardActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
     private Button shipmarketButton;
 
+    /**
+     * called when viewing the shipyard
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shipyard_screen);

@@ -76,7 +76,8 @@ public class Market implements Serializable {
         } catch (Exception e) {
             return false;
         }
-        Log.d("market debug", quant + " | " + planetInventory.getBuyPrice(currentGood) + " | " + currentPlayer.getCredits());
+        Log.d("market debug", quant + " | " + planetInventory.getBuyPrice(currentGood)
+                + " | " + currentPlayer.getCredits());
         if (quant <= 0 || quant > planetInventory.getGoodCount(currentGood)) {
             return false;
         }

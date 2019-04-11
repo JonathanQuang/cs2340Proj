@@ -11,6 +11,10 @@ import cs2340.spacetraders.R;
 public class ShipRepairActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
 
+    /**
+     * called when repairing the ship
+     * @param savedInstanceState the saved instance
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_repair_screen);
