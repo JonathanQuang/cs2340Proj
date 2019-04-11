@@ -1,7 +1,7 @@
 package cs2340.spacetraders.entity.Universe;
 
-import android.util.Log;
 
+import android.util.Log;
 import java.util.Random;
 import java.io.Serializable;
 import cs2340.spacetraders.entity.Market.Good;
@@ -78,11 +78,19 @@ public class Planet implements Serializable {
         connectWormHole = wormhole;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        Planet that = (Planet) obj;
+        return this.getName().equals(that.getName());
+    }
+
     /**
      * @return the name of the planet
      */
     public CelestialName getName() {
         return name;
+
     }
 
     /**
