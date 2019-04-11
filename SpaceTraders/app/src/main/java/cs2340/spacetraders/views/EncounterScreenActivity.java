@@ -23,7 +23,6 @@ import cs2340.spacetraders.entity.Universe.Galaxy;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.EncounterScreenViewModel;
-import cs2340.spacetraders.viewmodels.ShipDisplayViewModel;
 
 /**
  * Activity for encountering a character
