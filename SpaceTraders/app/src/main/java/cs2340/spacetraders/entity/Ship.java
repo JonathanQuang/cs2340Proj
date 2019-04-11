@@ -1,5 +1,7 @@
 package cs2340.spacetraders.entity;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
@@ -87,6 +89,7 @@ public class Ship implements  Serializable{
      * Gets string representation of the information about the ship
      * @return  this ship's string representation
      */
+    @NonNull
     public String toString() {
         return "(Type) " + shipType + ", Health: " + health + " , Fuel: " + fuel;
     }

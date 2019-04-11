@@ -98,7 +98,7 @@ public class Market implements Serializable {
     }
 
     public boolean validQuantityToSell(String sellText) {
-        int quant = -1;
+        int quant = 0;
         try {
             quant = Integer.parseInt(sellText);
         } catch (Exception e) {

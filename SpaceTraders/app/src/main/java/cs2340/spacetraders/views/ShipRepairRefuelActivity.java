@@ -19,18 +19,12 @@ import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.RepairRefuelViewModel;
 
 public class ShipRepairRefuelActivity extends AppCompatActivity {
-    private FloatingActionButton menuButton;
-
     private TextView currentFuelNum;
-    private TextView maxFuelNum;
-    private AppCompatEditText fuelToBuyUserInput;
+    private EditText fuelToBuyUserInput;
     private RepairRefuelViewModel repairRefuelVM;
-    private Button refuelButton;
-    private TextView fuelUnitPrice;
 
     private TextView currentHealthNum;
-    private TextView maxHealthNum;
-    private AppCompatEditText healthToBuyUserInput;
+    private EditText healthToBuyUserInput;
     private Button repairButton;
     private TextView healthUnitPrice;
 
@@ -40,15 +34,15 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_repair_refuel_screen);
 
-        menuButton = findViewById(R.id.menuButton);
+        FloatingActionButton menuButton = findViewById(R.id.menuButton);
         currentFuelNum = findViewById(R.id.currentFuelNum);
-        maxFuelNum = findViewById(R.id.maxFuelNum);
+
         fuelToBuyUserInput = findViewById(R.id.fuelToBuyUserInput);
-        refuelButton = findViewById(R.id.refuelButton);
-        fuelUnitPrice = findViewById(R.id.fuelUnitPrice);
+        Button refuelButton = findViewById(R.id.refuelButton);
+        TextView fuelUnitPrice = findViewById(R.id.fuelUnitPrice);
 
         currentHealthNum = findViewById(R.id.currentHealthNum);
-        maxHealthNum = findViewById(R.id.maxHealthNum);
+        TextView maxHealthNum = findViewById(R.id.maxHealthNum);
         healthToBuyUserInput = findViewById(R.id.healthToBuyUserInput);
         repairButton = findViewById(R.id.repairButton);
         healthUnitPrice = findViewById(R.id.healthUnitPrice);
@@ -58,7 +52,7 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
         fuelUnitPrice.setText(Integer.toString(repairRefuelVM.getFuelUnitPrice()));
         healthUnitPrice.setText(Integer.toString(repairRefuelVM.getFuelUnitPrice()));
 
-
+        TextView maxFuelNum = findViewById(R.id.maxFuelNum);
         maxFuelNum.setText(Integer.toString(repairRefuelVM.getMaxFuel()));
         setFuelText(repairRefuelVM.getPlayerFuel());
 

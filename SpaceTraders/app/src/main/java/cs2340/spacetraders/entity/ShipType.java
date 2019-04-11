@@ -17,7 +17,7 @@ public enum ShipType {
     Grasshopper("GRASSHOPPER", 30, "Medium", 15, 100, 2, 2, 3, 3, 81000, 80),
     Termite("TERMITE", 60, "Large", 13, 150, 1, 2, 3, 3, 91000, 90);
 
-    /** the full string representation of the shiptype **/
+    /** the full string representation of the shipType **/
     private final String shipType;
     private final int cargoCapacity;
     private final String shipSize;
@@ -30,6 +30,7 @@ public enum ShipType {
     private final int price;
     private final int DEFAULT_DAMAGE;
     private final Random RANDOM = new Random();
+    //dont make these variables local for the sake of easy configuration for game balance
     private final int rangeToMaxFuelMultiplier = 10;
     private final int hullStrengthToMaxHPMultiplier = 1;
 
@@ -88,7 +89,6 @@ public enum ShipType {
      * Gets the string representation of the ship type
      * @return the string representation of the ship type
      */
-
     public ShipType randomShipType()  {
         return ShipType.values()[RANDOM.nextInt(ShipType.values().length)];
     }

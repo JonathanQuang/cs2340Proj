@@ -18,9 +18,6 @@ import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.ShipyardViewModel;
 
 public class ShipyardActivity extends AppCompatActivity {
-    private FloatingActionButton menuButton;
-
-    private Button shipmarketButton;
 
     private TableLayout weaponTable;
     private TableRow modelWeaponRow;
@@ -37,20 +34,21 @@ public class ShipyardActivity extends AppCompatActivity {
     private TextView creditCounter;
     private TextView equippedWeapons;
 
-    ShipyardViewModel shipyardVM;
+    private ShipyardViewModel shipyardVM;
 
     public ShipyardActivity() {
     }
 
     /**
      * called when viewing the shipyard
-     * @param savedInstanceState
+     * @param savedInstanceState standard parameter required by android, is automatically handled with
+     *                           startActivityForResult
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shipyard_screen);
 
-        menuButton = findViewById(R.id.menuButton);
+        FloatingActionButton menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(ShipyardActivity.this, MenuScreen.class);

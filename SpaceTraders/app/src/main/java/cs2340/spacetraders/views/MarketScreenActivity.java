@@ -42,7 +42,7 @@ public class MarketScreenActivity extends AppCompatActivity {
     private Button modelBuyButton;
     private Button modelSellButton;
     private LinearLayout modelLinearLayout;
-    private TextView planetNametext;
+    private TextView planetNameText;
     private MarketScreenViewModel marketScreenVM;
     private FloatingActionButton menuButton;
     private Inventory playerInventory;
@@ -62,7 +62,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         modelBuyButton = findViewById(R.id.modelBuyButton);
         modelSellButton = findViewById(R.id.modelSellButton);
         modelLinearLayout = findViewById(R.id.modelLinearLayout);
-        planetNametext = findViewById(R.id.planetName);
+        planetNameText = findViewById(R.id.planetName);
         menuButton = findViewById(R.id.menuButton);
 
         Planet currentPlanet = null;
@@ -71,7 +71,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         }
         planetInventory = currentPlanet.getInventory();
         playerInventory = Model.getInstance().getPlayer().getInventory();
-        planetNametext.setText(currentPlanet.getName().toString());
+        planetNameText.setText(currentPlanet.getName().toString());
         marketScreenVM = new MarketScreenViewModel(planetInventory, playerInventory);
         marketScreenVM.setPlayer(Model.getInstance().getPlayer());
         event = currentPlanet.getPlanetaryEvent();

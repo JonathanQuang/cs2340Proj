@@ -22,6 +22,9 @@ public enum WeaponTypes {
     private int charge;
     private String description;
 
+    //Note that there is a declaration redundancy for equipType and charge because in the future,
+    //we plan to have an equipment superclass (which will include WeaponTypes, GadgetTypes and ShieldTypes)
+    //in the future where charge isn't always -1 and equipType won't always be constant
     WeaponTypes(String equipName, String equipType, int buyprice, int sellprice, int power, int charge, String description) {
         this.equipName = equipName;
         this.equipType = equipType;
