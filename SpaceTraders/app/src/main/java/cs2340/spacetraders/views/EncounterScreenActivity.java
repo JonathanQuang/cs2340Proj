@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import cs2340.spacetraders.entity.DataStorage;
 import cs2340.spacetraders.entity.Game;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
+import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.entity.Travel.Encounterable;
 import cs2340.spacetraders.entity.Travel.Pirate;
 import cs2340.spacetraders.entity.Travel.Police;
@@ -21,6 +23,7 @@ import cs2340.spacetraders.entity.Universe.Galaxy;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.EncounterScreenViewModel;
+import cs2340.spacetraders.viewmodels.ShipDisplayViewModel;
 
 /**
  * Activity for encountering a character
@@ -37,6 +40,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
     private Galaxy galaxy = game.getGalaxy();
     private Ship playerShip;
     private Ship characterShip;
+    private ShipType playerShipType;
+    private ShipType characterShipType;
 
 
     @Override
@@ -51,9 +56,15 @@ public class EncounterScreenActivity extends AppCompatActivity {
         }
         player = model.getPlayer();
         playerShip = player.getShip();
+        playerShipType = playerShip.getShipType();
         encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
         character = encounterScreenVM.setCharacter();
-        characterShip = character.getShip();
+
+        if(character != null) {
+            characterShip = character.getShip();
+            characterShipType = characterShip.getShipType();
+        }
+
         if ( (character == null) || (totalEncounters >= 5) ) {
             setContentView(R.layout.encounter_screen);
             Button okButton = findViewById(R.id.encounterButton);
@@ -78,10 +89,15 @@ public class EncounterScreenActivity extends AppCompatActivity {
             final TextView encounterInfo = findViewById(R.id.encounterInfoText);
             final TextView encounterType = findViewById(R.id.encounterType);
             final TextView action = findViewById(R.id.action);
-
             encounterType.setText(character.createDialogue());
             playerInfo.setText(encounterScreenVM.playerInfo());
             encounterInfo.setText(encounterScreenVM.encounterInfo(character));
+            ImageView background = findViewById(R.id.imageView2);
+            background.setImageResource(R.drawable.starry_night);
+            ImageView playerShipImage = findViewById(R.id.playerShip);
+            ImageView encounterShipImage = findViewById(R.id.encounterShip);
+            playerShipImage.setImageResource(getShipDrawables()[playerShipType.ordinal()]);
+            encounterShipImage.setImageResource(getShipDrawables()[characterShipType.ordinal()]);
 
             fleeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -157,10 +173,15 @@ public class EncounterScreenActivity extends AppCompatActivity {
             final TextView encounterInfo = findViewById(R.id.encounterInfoText);
             final TextView encounterType = findViewById(R.id.encounterType);
             final TextView action = findViewById(R.id.action);
-
             encounterType.setText(character.createDialogue());
             playerInfo.setText(encounterScreenVM.playerInfo());
             encounterInfo.setText(encounterScreenVM.encounterInfo(character));
+            ImageView background = findViewById(R.id.imageView2);
+            background.setImageResource(R.drawable.starry_night);
+            ImageView playerShipImage = findViewById(R.id.playerShip);
+            ImageView encounterShipImage = findViewById(R.id.encounterShip);
+            playerShipImage.setImageResource(getShipDrawables()[playerShipType.ordinal()]);
+            encounterShipImage.setImageResource(getShipDrawables()[characterShipType.ordinal()]);
 
             fleeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -225,10 +246,15 @@ public class EncounterScreenActivity extends AppCompatActivity {
             final TextView encounterInfo = findViewById(R.id.encounterInfoText);
             final TextView encounterType = findViewById(R.id.encounterType);
             final TextView action = findViewById(R.id.action);
-
             encounterType.setText(character.createDialogue());
             playerInfo.setText(encounterScreenVM.playerInfo());
             encounterInfo.setText(encounterScreenVM.encounterInfo(character));
+            ImageView background = findViewById(R.id.imageView2);
+            background.setImageResource(R.drawable.starry_night);
+            ImageView playerShipImage = findViewById(R.id.playerShip);
+            ImageView encounterShipImage = findViewById(R.id.encounterShip);
+            playerShipImage.setImageResource(getShipDrawables()[playerShipType.ordinal()]);
+            encounterShipImage.setImageResource(getShipDrawables()[characterShipType.ordinal()]);
 
             fleeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -299,8 +325,24 @@ public class EncounterScreenActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Makes a toast with message
+     * @param toastMessage message
+     */
     private void easyToast(String toastMessage) {
         Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
     }
+
+    /**
+     * images of the ships
+     * @return the images
+     */
+    private int [] getShipDrawables() {
+        return new int[]{R.drawable.gnat_l, R.drawable.flea_l, R.drawable.beetle_l,
+                R.drawable.firefly_l,
+                R.drawable.bumblebee_l, R.drawable.grasshopper_l, R.drawable.hornet_l,
+                R.drawable.mosquito_l, R.drawable.termite_l};
+    }
+
 
 }

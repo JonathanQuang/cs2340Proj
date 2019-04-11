@@ -11,7 +11,7 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:scaleType="centerCrop"
         android:background="@android:drawable/editbox_dropdown_light_frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textColor="@color/colorAccent"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textColor="@color/colorAccent"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +105,7 @@
         app:layout_constraintVertical_bias="0.944" />
 
     <ImageView
-        android:id="@+id/playerShip"
+        android:id="@+id/encounterShip"
         android:layout_width="199dp"
         android:layout_height="249dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
@@ -117,7 +117,7 @@
         app:layout_constraintVertical_bias="0.383" />
 
     <ImageView
-        android:id="@+id/encounterShip"
+        android:id="@+id/playerShip"
         android:layout_width="198dp"
         android:layout_height="249dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
@@ -135,7 +135,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textColor="@color/colorAccent"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -153,7 +153,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textColor="@color/colorAccent"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
