@@ -1,10 +1,18 @@
-package cs2340.spacetraders.entity.Universe;
+package cs2340.spacetraders;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cs2340.spacetraders.entity.Universe.CelestialName;
+import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.entity.Universe.PoliticalSystem;
+import cs2340.spacetraders.entity.Universe.RelativePosition;
+import cs2340.spacetraders.entity.Universe.Resources;
+import cs2340.spacetraders.entity.Universe.TechLevel;
+import cs2340.spacetraders.entity.Universe.Wormhole;
 
 import static org.junit.Assert.assertTrue;
 
@@ -94,7 +102,7 @@ public class WormholeTest {
         assertTrue(wormhole.getShipportPlanet().equals(planetList.get(0)));
 
         wormhole = new Wormhole(planetList, new RelativePosition(15, 15));
-        assertTrue(wormhole.getShipportPlanet().equals(planetList.get(11)));
+        assertTrue(wormhole.getShipportPlanet().equals(planetList.get(10)));
 
         wormhole = new Wormhole(planetList, new RelativePosition(2, 2));
         assertTrue(wormhole.getShipportPlanet().equals(planetList.get(0)));
