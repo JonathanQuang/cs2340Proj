@@ -57,6 +57,8 @@ public class Ship implements  Serializable{
 
     public double getDamage() {return this.damage;}
 
+    public void changeDamage(double changeVal) {this.damage += changeVal;}
+
     public int getFuel() {
         return fuel;
     }

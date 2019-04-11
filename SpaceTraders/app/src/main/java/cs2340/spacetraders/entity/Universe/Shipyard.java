@@ -22,11 +22,13 @@ public class Shipyard implements  Serializable{
 
     public void executePurchase(WeaponTypes weapon) {
         playerShip.addWeapon(weapon);
+        playerShip.changeDamage(weapon.getPower());
         player.changeCredits(weapon.getBuyPrice() * -1);
     }
 
     public void executeSell(WeaponTypes weapon) {
         playerShip.removeWeapon(weapon);
+        playerShip.changeDamage(weapon.getPower() * -1.0);
         player.changeCredits(weapon.getSellPrice());
     }
 
