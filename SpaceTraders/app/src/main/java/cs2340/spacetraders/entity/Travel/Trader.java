@@ -1,7 +1,7 @@
 package cs2340.spacetraders.entity.Travel;
 
 import cs2340.spacetraders.entity.Inventory;
-import cs2340.spacetraders.entity.Ship;
+import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Universe.Planet;
 
 /**
@@ -10,6 +10,8 @@ import cs2340.spacetraders.entity.Universe.Planet;
 public class Trader extends Encounterable {
 
     private boolean hostile;
+    private Player player = getPlayer();
+    private Inventory playerInventory = player.getInventory();
 
     /**
      * Default constructor
@@ -34,18 +36,13 @@ public class Trader extends Encounterable {
     }
 
     @Override
-    public Ship getShip() {
-        return super.getShip();
-    }
-
-    @Override
     public String toString() {
         return "Trader";
     }
 
     @Override
     public String createDialogue() {
-        if (getPlayer().getCriminalStatus()) {
+        if (player.getCriminalStatus()) {
             return "Trader: Hostile";
         } else {
             return "Trader: Non-hostile";
@@ -54,20 +51,19 @@ public class Trader extends Encounterable {
 
     @Override
     public void surrenderResult() {
-        Inventory inventory = getPlayer().getInventory();
-        if (inventory.getCapacity() > 0) {
-            inventory.removeRandomGood();
+        if (playerInventory.getCapacity() > 0) {
+            playerInventory.removeRandomGood();
         } else {
-            getPlayer().changeCredits(-2000);
+            player.changeCredits(-2000);
         }
     }
 
     @Override
     public boolean setHostile() {
-        if (getPlayer().getCriminalStatus()) {
+        if (player.getCriminalStatus()) {
             hostile = true;
-            super.setIgnoreChance(0);
-            super.setAttackChance(0.9);
+            setIgnoreChance(0);
+            setAttackChance(0.9);
             return hostile;
         } else {
             return hostile;

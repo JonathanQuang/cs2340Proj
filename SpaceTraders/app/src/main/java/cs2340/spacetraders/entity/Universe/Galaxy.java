@@ -174,10 +174,10 @@ public class Galaxy implements Serializable {
         int y = position.getY();
         int r = position.getRectRadius();
 
-        for (int i = -r; i <= r; galaxyMap[y + r][x + i] = "#", i++) ;
-        for (int i = -r; i <= r; galaxyMap[y - r][x + i] = "#", i++) ;
-        for (int i = -r; i <= r; galaxyMap[y + i][x + r] = "#", i++) ;
-        for (int i = -r; i <= r; galaxyMap[y + i][x - r] = "#", i++) ;
+        for (int i = -r; i <= r; galaxyMap[y + r][x + i] = "#", i++);
+        for (int i = -r; i <= r; galaxyMap[y - r][x + i] = "#", i++);
+        for (int i = -r; i <= r; galaxyMap[y + i][x + r] = "#", i++);
+        for (int i = -r; i <= r; galaxyMap[y + i][x - r] = "#", i++);
         galaxyMap[y][x] = "O";
     }
 

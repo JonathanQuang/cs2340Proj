@@ -53,6 +53,7 @@ public class MarketScreenActivity extends AppCompatActivity {
      * called when player is viewing the market screen
      * @param savedInstanceState the saved instance
      */
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.market_screen);

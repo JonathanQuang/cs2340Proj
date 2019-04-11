@@ -2,6 +2,7 @@ package cs2340.spacetraders.entity.Travel;
 
 import java.util.Random;
 
+import cs2340.spacetraders.entity.Difficulty;
 import cs2340.spacetraders.entity.Game;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
@@ -14,15 +15,17 @@ import cs2340.spacetraders.model.Model;
 public abstract class Encounterable {
 
     private Random random = new Random();
-    private Game game = Model.getInstance().getGame();
-    private double difficultyMultiplier = game.getDifficulty().getMultipler();
+    private Model model = Model.getInstance();
+    private Game game = model.getGame();
+    private Difficulty difficulty = game.getDifficulty();
+    private double difficultyMultiplier = difficulty.getMultipler();
     private double fleeChance = 0.05;
     private double pursueChance = 0.1;
     private double ignoreChance;
     private double attackChance;
     private ShipType type = ShipType.Gnat;
     private Ship ship = new Ship(type.randomShipType());
-    private Player player = Model.getInstance().getPlayer();
+    private Player player = model.getPlayer();
 
     /**
      * Returns the character's ship

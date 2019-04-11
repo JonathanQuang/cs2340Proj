@@ -3,11 +3,13 @@ package cs2340.spacetraders.viewmodels;
 import java.util.Random;
 
 import cs2340.spacetraders.entity.Player;
+import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.Travel.Encounterable;
 import cs2340.spacetraders.entity.Travel.Pirate;
 import cs2340.spacetraders.entity.Travel.Police;
 import cs2340.spacetraders.entity.Travel.Trader;
 import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.entity.Universe.PoliticalSystem;
 import cs2340.spacetraders.model.Model;
 
 /**
@@ -15,10 +17,17 @@ import cs2340.spacetraders.model.Model;
  */
 public class EncounterScreenViewModel {
     private Planet planet;
-    private Player currentPlayer = Model.getInstance().getPlayer();
+    private Model model = Model.getInstance();
+    private Player currentPlayer = model.getPlayer();
     private Random random = new Random();
     private Encounterable character;
     private String action = "";
+    private Ship playerShip = currentPlayer.getShip();
+    private Ship characterShip;
+    private PoliticalSystem politicalSystem;
+    private String policeQuantity;
+    private String traderQuantity;
+    private String pirateQuantity;
 
     /**
      * Constructor for the model, based on the planet's information
@@ -26,14 +35,18 @@ public class EncounterScreenViewModel {
      */
     public EncounterScreenViewModel(Planet planet) {
         this.planet = planet;
+        this.politicalSystem = planet.getPoliticalSystem();
+        this.policeQuantity = politicalSystem.getPoliceQuantity();
+        this.pirateQuantity = politicalSystem.getPirateQuantity();
+        this.traderQuantity = politicalSystem.getTradersQuantity();
     }
 
     /**
      * Player attacks the character
      */
     public void playerAttack() {
-        character.takeDamage(currentPlayer.getShip().getDamage());
-        if (character.getShip().getHealth() <= 0) {
+        character.takeDamage(playerShip.getDamage());
+        if (characterShip.getHealth() <= 0) {
             character.characterDestruction();
         }
     }
@@ -45,10 +58,10 @@ public class EncounterScreenViewModel {
         if (random.nextDouble() < character.getIgnoreChance()) {
             action = character.toString() + " ignored you";
         } else if (random.nextDouble() < character.getFleeChance()) {
-            character.attack(character.getShip().getDamage());
+            character.attack(characterShip.getDamage());
             action = character.toString() + " fled";
         } else if (random.nextDouble() < character.getAttackChance()) {
-            character.attack(character.getShip().getDamage());
+            character.attack(characterShip.getDamage());
             action = character.toString() + " attacked you";
         } else {
             action = character.toString() + " watched you";
@@ -61,7 +74,7 @@ public class EncounterScreenViewModel {
      */
     public boolean pursueAction() {
         if (random.nextDouble() < character.getPursueChance()) {
-            character.attack(character.getShip().getDamage());
+            character.attack(characterShip.getDamage());
             action = character.toString() + " chased you down and attacked you";
             return true;
         } else {
@@ -76,7 +89,7 @@ public class EncounterScreenViewModel {
      */
     public String playerInfo() {
         return "Ship: " + currentPlayer.getShip() + "\n"
-                + "Health: " + currentPlayer.getShip().getHealth();
+                + "Health: " + playerShip.getHealth();
     }
 
     /**
@@ -86,7 +99,7 @@ public class EncounterScreenViewModel {
      */
     public String encounterInfo(Encounterable character) {
         return "Ship: " + character.getShip() + "\n"
-                + "Health: " + character.getShip().getHealth();
+                + "Health: " + characterShip.getHealth();
     }
 
     /**
@@ -102,15 +115,15 @@ public class EncounterScreenViewModel {
      * @return character
      */
     public Encounterable setCharacter() {
-        if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(
-                planet.getPoliceQuantity())) {
+        if (random.nextDouble() < politicalSystem.determineProbability(policeQuantity)) {
             this.character = new Police(planet);
-        } else if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(
-                planet.getPirateQuantity())) {
+            characterShip = character.getShip();
+        } else if (random.nextDouble() < politicalSystem.determineProbability(pirateQuantity)) {
             this.character = new Pirate();
-        } else if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(
-                planet.getTraderQuantity())) {
+            characterShip = character.getShip();
+        } else if (random.nextDouble() < politicalSystem.determineProbability(traderQuantity)) {
             this.character = new Trader(planet);
+            characterShip = character.getShip();
         } else {
             character = null;
         }

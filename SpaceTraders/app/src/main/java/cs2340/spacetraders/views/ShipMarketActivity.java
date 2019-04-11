@@ -15,6 +15,7 @@ public class ShipMarketActivity extends AppCompatActivity {
      * created when viewing all of the ships
      * @param savedInstanceState the saved state
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_market_screen);

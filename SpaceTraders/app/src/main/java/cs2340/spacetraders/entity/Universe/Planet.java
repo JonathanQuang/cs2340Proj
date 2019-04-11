@@ -181,6 +181,7 @@ public class Planet implements Serializable {
     /**
      * @return the string representation of the planet
      */
+    @Override
     public String toString() {
         return name.getName() + " is a " + size  + " planet at " + relativePosition
                 + " with a " + techLevel + " " + politicalSystem + " possessing a "

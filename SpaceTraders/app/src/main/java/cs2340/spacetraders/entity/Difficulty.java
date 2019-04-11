@@ -35,9 +35,6 @@ public enum Difficulty {
     public double getMultipler() { return multiplier; }
 
 
-    /**
-     * Gets the string representation of the game difficultly to print
-     * @return the string representation of the difficulty
-     */
+    @Override
     public String toString() { return difficulty; }
 }

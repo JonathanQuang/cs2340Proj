@@ -34,6 +34,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
      * called when the player is viewing a particular ship
      * @param savedInstanceState the saved state
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_display);

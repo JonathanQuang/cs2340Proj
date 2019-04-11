@@ -33,6 +33,7 @@ public class MenuScreen extends AppCompatActivity {
      * called when menu screen is viewed
      * @param savedInstanceState the saved instance
      */
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);

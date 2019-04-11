@@ -79,6 +79,7 @@ public class Player implements Serializable {
      * Gets a string representation of the player's attributes
      * @return a string representation of the player's attributes
      */
+    @Override
     public String toString() {
         String retStr = "";
         retStr += "Player name: " + name;

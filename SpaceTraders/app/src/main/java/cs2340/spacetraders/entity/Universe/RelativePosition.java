@@ -101,6 +101,7 @@ public class RelativePosition implements Serializable {
     /**
      * @return the string representation of the position
      */
+    @Override
     public String toString() {
         return "Pos(" + x + ", " + y + ")";
     }

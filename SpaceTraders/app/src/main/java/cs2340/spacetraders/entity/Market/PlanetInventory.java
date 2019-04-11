@@ -126,6 +126,7 @@ public class PlanetInventory implements Serializable {
     /**
      * @return the string representation of the planet inventory
      */
+    @Override
     public String toString() {
         String str = "";
         for (Good good: goodsCanSell.keySet()) {

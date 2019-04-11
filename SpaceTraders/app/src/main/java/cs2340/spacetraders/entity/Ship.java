@@ -145,6 +145,7 @@ public class Ship implements  Serializable{
      * Gets string representation of the information about the ship
      * @return  this ship's string representation
      */
+    @Override
     public String toString() {
         return "(Type) " + shipType + ", Health: " + health + " , Fuel: " + fuel;
     }

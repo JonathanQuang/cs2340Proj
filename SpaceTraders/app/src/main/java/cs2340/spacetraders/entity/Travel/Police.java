@@ -2,8 +2,9 @@ package cs2340.spacetraders.entity.Travel;
 
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
-import cs2340.spacetraders.entity.Ship;
+import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.entity.Universe.PoliticalSystem;
 
 /**
  * Concrete implementation of a Police character
@@ -13,16 +14,22 @@ public class Police extends Encounterable {
     private double bribeChance;
     private double searchChance;
     private boolean hostile;
+    private Player player = getPlayer();
+    private Inventory playerInventory = player.getInventory();
+    private PoliticalSystem politicalSystem;
+    private String briberyAcceptance;
+    private String smugglingAcceptance;
 
     /**
      * Default constructor
      * @param planet current planet being traveled to
      */
     public Police(Planet planet) {
-        bribeChance = planet.getPoliticalSystem().determineProbability(
-                planet.getPoliceBriberyAcceptance());
-        searchChance = planet.getPoliticalSystem().determineProbability(
-                planet.getPoliceSmugglingAcceptance());
+        politicalSystem = planet.getPoliticalSystem();
+        briberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
+        smugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
+        bribeChance = politicalSystem.determineProbability(briberyAcceptance);
+        searchChance = politicalSystem.determineProbability(smugglingAcceptance);
         if (hostile) {
             setIgnoreChance(0);
             setAttackChance(0.9);
@@ -38,7 +45,7 @@ public class Police extends Encounterable {
      */
     public String bribe() {
         if (getRandom() > bribeChance) {
-            getPlayer().changeCredits(-500);
+            player.changeCredits(-500);
             return " successfully ";
         } else {
             checkCargo();
@@ -51,7 +58,7 @@ public class Police extends Encounterable {
      */
     public void checkCargo() {
         if (getRandom() > searchChance) {
-            if (getPlayer().getInventory().containsIllegalGoods()) {
+            if (playerInventory.containsIllegalGoods()) {
                 confiscate();
             }
         }
@@ -61,20 +68,16 @@ public class Police extends Encounterable {
      * Takes the illegal goods and fines the player
      */
     public void confiscate() {
-        Inventory inventory = getPlayer().getInventory();
-        inventory.removeGood(Good.Firearms, inventory.getGoodAmount(Good.Firearms));
-        inventory.removeGood(Good.Narcotics, inventory.getGoodAmount(Good.Narcotics));
-        getPlayer().changeCredits(-1000);
-    }
-
-    @Override
-    public Ship getShip() {
-        return super.getShip();
+        int goodAmount = playerInventory.getGoodAmount(Good.Firearms);
+        playerInventory.removeGood(Good.Firearms, goodAmount);
+        goodAmount = playerInventory.getGoodAmount(Good.Narcotics);
+        playerInventory.removeGood(Good.Narcotics, goodAmount);
+        player.changeCredits(-1000);
     }
 
     @Override
     public String createDialogue() {
-        if (getPlayer().getCriminalStatus()) {
+        if (player.getCriminalStatus()) {
             return "Police: Hostile";
         } else {
             return "Police: Non-hostile";
@@ -88,7 +91,7 @@ public class Police extends Encounterable {
 
     @Override
     public boolean setHostile() {
-        if (getPlayer().getCriminalStatus()) {
+        if (player.getCriminalStatus()) {
             hostile = true;
             setIgnoreChance(0);
             setAttackChance(0.9);
