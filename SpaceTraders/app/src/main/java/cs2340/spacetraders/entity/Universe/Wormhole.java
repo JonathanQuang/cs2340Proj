@@ -27,6 +27,11 @@ public class Wormhole implements Serializable {
         findSpacePort();
     }
 
+    /**
+     * Constructor for wormhole given Galaxy object
+     * @param galaxy the parent galaxy
+     * @param position RelativePosition object to represent where the wormhole is
+     */
     public Wormhole(Galaxy galaxy, RelativePosition position) {
         this(galaxy.getPlanetList(), position);
     }

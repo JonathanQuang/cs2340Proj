@@ -91,14 +91,25 @@ public class Player implements Serializable {
         return retStr;
     }
 
+    /**
+     * Changes the criminal status of the player
+     * @param status player's criminal status
+     */
     public void setCriminalStatus(boolean status) {
         criminalStatus = status;
     }
 
+    /**
+     * Getter for the player's criminal status
+     * @return criminalStatus
+     */
     public boolean getCriminalStatus() {
         return criminalStatus;
     }
 
+    /**
+     * Action upon player's death
+     */
     public void death() {
 
     }
@@ -110,10 +121,18 @@ public class Player implements Serializable {
         return ship;
     }
 
+    /**
+     * Player's ship takes damage after getting attacked
+     * @param damage Damage taken
+     */
     public void takeDamage(double damage) {
         ship.takeDamage(damage);
     }
 
+    /**
+     * Getter for the player's health
+     * @return ship's health
+     */
     public double getHealth() {
         return ship.getHealth();
     }

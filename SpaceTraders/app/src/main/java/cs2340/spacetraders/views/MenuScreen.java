@@ -126,7 +126,8 @@ public class MenuScreen extends AppCompatActivity {
             Toast.makeText(getApplication(), "Saved Game", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(getApplication(), "Error Reading from Database", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplication(), "Error Reading from Database",
+                    Toast.LENGTH_LONG).show();
         }
         String msg = Base64.getEncoder().encodeToString(bos.toByteArray());
         myRef.setValue(msg);

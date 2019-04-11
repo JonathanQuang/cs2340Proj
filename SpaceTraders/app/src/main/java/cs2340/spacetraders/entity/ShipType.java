@@ -38,7 +38,8 @@ public enum ShipType {
      * @param shipType the ship type
      */
     ShipType(String shipType, int cargoCapacity, String shipSize, int range, int hullStrength,
-             int weaponSlots, int shieldSlots, int gadgetSlots, int crewQuarters, int price, int defaultDamage) {
+             int weaponSlots, int shieldSlots, int gadgetSlots, int crewQuarters,
+             int price, int defaultDamage) {
         this.shipType = shipType;
         this.cargoCapacity = cargoCapacity;
         this.shipSize = shipSize;

@@ -105,7 +105,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
     private void placePlanet(final Planet planet, int buttonID) {
         Button planet_button = findViewById(buttonID);
         int imageID = Model.getInstance().getPlanetImageIDs().get(planet.getResources());
-        int size = 25 + planet.getSizeAsInt() * 5;
+        int size = 25 + (planet.getSizeAsInt() * 5);
 
         makeCustomView(planet_button, imageID, size, planet.getRelativePosition());
 
@@ -135,7 +135,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
      */
     private void placeSystemRing(SolarSystem solarSystem, int ringID) {
         View ring = findViewById(ringID);
-        int size = 130 + (solarSystem.getCenter().getRectRadius() - 1) * 100;
+        int size = 130 + ((solarSystem.getCenter().getRectRadius() - 1) * 100);
         makeCustomView(ring, R.drawable.ring, size, solarSystem.getCenter());
     }
 
@@ -187,8 +187,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
         double probX = ((double) position.getX()) / mapSize.getX();
         double probY = ((double) position.getY()) / mapSize.getY();
 
-        view.setTranslationX((int) (screenWidth * probX - radius) + 20);
-        view.setTranslationY((int) (screenHeight * probY - radius) + 20);
+        view.setTranslationX((int) ((screenWidth * probX - radius) + 20));
+        view.setTranslationY((int) ((screenHeight * probY - radius) + 20));
     }
 
     /**

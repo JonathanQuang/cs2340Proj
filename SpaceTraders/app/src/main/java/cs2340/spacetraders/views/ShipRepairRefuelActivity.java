@@ -72,7 +72,8 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
                     String fuelUserInputStr = fuelEditable.toString();
                     fuelPurchased = Integer.parseInt(fuelUserInputStr);
                 } catch (NumberFormatException e) {
-                    Toast.makeText(getApplicationContext(), "Please enter a number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please enter a number",
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -99,7 +100,8 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
                     String healthUserInputStr = healthEditable.toString();
                     healthPurchased = Integer.parseInt(healthUserInputStr);
                 } catch (NumberFormatException e) {
-                    Toast.makeText(getApplicationContext(), "Please enter a number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please enter a number",
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
 

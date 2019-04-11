@@ -101,7 +101,8 @@ public class ShipDisplayActivity extends AppCompatActivity {
      * @return the images
      */
     private int [] getShipDrawables() {
-        return new int[]{R.drawable.gnat_l, R.drawable.flea_l, R.drawable.beetle_l, R.drawable.firefly_l,
+        return new int[]{R.drawable.gnat_l, R.drawable.flea_l, R.drawable.beetle_l,
+                         R.drawable.firefly_l,
                          R.drawable.bumblebee_l, R.drawable.grasshopper_l, R.drawable.hornet_l,
                          R.drawable.mosquito_l, R.drawable.termite_l};
     }

@@ -1,19 +1,14 @@
 package cs2340.spacetraders.views;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import cs2340.spacetraders.R;
-import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Travel.Encounterable;
 import cs2340.spacetraders.entity.Travel.Pirate;
@@ -28,18 +23,7 @@ import cs2340.spacetraders.viewmodels.EncounterScreenViewModel;
  */
 public class EncounterScreenActivity extends AppCompatActivity {
 
-    private Context mContext;
-    private Activity mActivity;
-
-    private Button mButton;
-
-    private PopupWindow mPopupWindow;
-
-    private LinearLayout modelLinearLayout;
-    private TextView planetNametext;
     private EncounterScreenViewModel encounterScreenVM;
-
-    private Inventory playerInventory;
     private Encounterable character;
     private Player player;
     private int totalEncounters;
@@ -48,7 +32,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        totalEncounters = Model.getDataStorage().getTotalEncounters();
+        totalEncounters = Model.getInstance().getGame().getDataStorage().getTotalEncounters();
 
         Planet currentPlanet = null;
         while(currentPlanet == null) {
@@ -58,7 +42,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
         encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
         character = encounterScreenVM.setCharacter();
 
-        if (character == null || totalEncounters >= 5) {
+        if ( (character == null) || (totalEncounters >= 5) ) {
             setContentView(R.layout.encounter_screen);
             Button okButton = findViewById(R.id.encounterButton);
 
@@ -67,13 +51,13 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(EncounterScreenActivity.this,
                             MarketScreenActivity.class);
-                    Model.getDataStorage().setTotalEncounters(0);
+                    Model.getInstance().getGame().getDataStorage().setTotalEncounters(0);
                     startActivityForResult(intent, 0);
                 }
             });
-        } else if (character instanceof Police && totalEncounters < 5) {
+        } else if ( (character instanceof Police) && (totalEncounters < 5) ) {
             setContentView(R.layout.police_popup);
-            Model.getDataStorage().setTotalEncounters(++totalEncounters);
+            Model.getInstance().getGame().getDataStorage().setTotalEncounters(++totalEncounters);
             Button attackButton = findViewById(R.id.attack_button);
             Button fleeButton = findViewById(R.id.flee_button);
             Button surrenderButton = findViewById(R.id.surrender_button);
@@ -151,9 +135,9 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     }
                 }
             });
-        } else if (character instanceof Pirate && totalEncounters < 5) {
+        } else if ( (character instanceof Pirate) && (totalEncounters < 5) ) {
             setContentView(R.layout.pirate_popup);
-            Model.getDataStorage().setTotalEncounters(++totalEncounters);
+            Model.getInstance().getGame().getDataStorage().setTotalEncounters(++totalEncounters);
             Button attackButton = findViewById(R.id.attack_button);
             Button fleeButton = findViewById(R.id.flee_button);
             Button surrenderButton = findViewById(R.id.surrender_button);
@@ -218,9 +202,9 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     }
                 }
             });
-        } else if (character instanceof Trader && totalEncounters < 5) {
+        } else if ( (character instanceof Trader) && (totalEncounters < 5) ) {
             setContentView(R.layout.trader_popup);
-            Model.getDataStorage().setTotalEncounters(++totalEncounters);
+            Model.getInstance().getGame().getDataStorage().setTotalEncounters(++totalEncounters);
             Button attackButton = findViewById(R.id.attack_button);
             Button fleeButton = findViewById(R.id.flee_button);
             Button surrenderButton = findViewById(R.id.surrender_button);

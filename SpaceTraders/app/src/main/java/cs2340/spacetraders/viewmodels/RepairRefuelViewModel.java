@@ -33,9 +33,9 @@ public class RepairRefuelViewModel {
     public String fuelError(double fuelToBuy) {
         if (fuelToBuy <= 0) {
            return "please enter a positive quantity";
-        } else if (fuelToBuy > playerShipType.getMaxFuel() - playerShip.getFuel()) {
+        } else if (fuelToBuy > (playerShipType.getMaxFuel() - playerShip.getFuel())) {
             return "buying more fuel than player ship can hold";
-        } else if (fuelToBuy * FUEL_UNIT_PRICE > player.getCredits()) {
+        } else if ((fuelToBuy * FUEL_UNIT_PRICE) > (player.getCredits())) {
             return "too poor, fuel costs " + FUEL_UNIT_PRICE + " here";
         }
         return null;
@@ -49,9 +49,9 @@ public class RepairRefuelViewModel {
     public String healthError(double healthToBuy) {
         if (healthToBuy <= 0) {
             return "can only repair positive quantities";
-        } else if (healthToBuy > playerShipType.getMaxHealth() - playerShip.getHealth()) {
+        } else if (healthToBuy > (playerShipType.getMaxHealth() - playerShip.getHealth())) {
             return "repairing more health than player ship has";
-        } else if (healthToBuy * HEALTH_UNIT_PRICE > player.getCredits()) {
+        } else if (healthToBuy * HEALTH_UNIT_PRICE > (player.getCredits())) {
             return "too poor, one HP costs " + HEALTH_UNIT_PRICE + " here";
         }
         return null;

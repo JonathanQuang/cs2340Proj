@@ -123,7 +123,8 @@ public class ShipyardActivity extends AppCompatActivity {
 
     }
 
-    private void attachWeaponBuyingEventListener(Button weaponBuyButton, final WeaponTypes WEAPON, final Button weaponSellButton) {
+    private void attachWeaponBuyingEventListener(Button weaponBuyButton, final WeaponTypes WEAPON,
+                                                 final Button weaponSellButton) {
         weaponBuyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,14 +135,16 @@ public class ShipyardActivity extends AppCompatActivity {
                     updateEquippedWeaponsList();
                     weaponSellButton.setEnabled(true);
                 } else {
-                    Toast.makeText(ShipyardActivity.this, purchaseErrorString, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShipyardActivity.this, purchaseErrorString,
+                            Toast.LENGTH_SHORT).show();
                 }
                 updateInfo(WEAPON);
             }
         });
     }
 
-    private void attachWeaponInfoEventListener(Button modelWeaponInfoButton, final WeaponTypes WEAPON) {
+    private void attachWeaponInfoEventListener(Button modelWeaponInfoButton,
+                                               final WeaponTypes WEAPON) {
         modelWeaponInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,7 +176,8 @@ public class ShipyardActivity extends AppCompatActivity {
         creditCounter.setText(Integer.toString(shipyardVM.getPlayerCredits()));
     }
 
-    private void attachSellButtonEventListener(final Button MODEL_SELL_BUTTON, final WeaponTypes WEAPON) {
+    private void attachSellButtonEventListener(final Button MODEL_SELL_BUTTON,
+                                               final WeaponTypes WEAPON) {
         MODEL_SELL_BUTTON.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

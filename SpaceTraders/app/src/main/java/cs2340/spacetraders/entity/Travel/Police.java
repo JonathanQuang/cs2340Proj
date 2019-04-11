@@ -19,8 +19,10 @@ public class Police extends Encounterable {
      * @param planet current planet being traveled to
      */
     public Police(Planet planet) {
-        bribeChance = planet.getPoliticalSystem().determineProbability(planet.getPoliceBriberyAcceptance());
-        searchChance = planet.getPoliticalSystem().determineProbability(planet.getPoliceSmugglingAcceptance());
+        bribeChance = planet.getPoliticalSystem().determineProbability(
+                planet.getPoliceBriberyAcceptance());
+        searchChance = planet.getPoliticalSystem().determineProbability(
+                planet.getPoliceSmugglingAcceptance());
         if (hostile) {
             setIgnoreChance(0);
             setAttackChance(0.9);

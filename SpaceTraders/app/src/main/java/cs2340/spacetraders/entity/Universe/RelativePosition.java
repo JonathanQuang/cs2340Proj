@@ -83,7 +83,7 @@ public class RelativePosition implements Serializable {
                 for (int j = -rectRadius; j <= rectRadius; j++) {
                     for (int k = -that.rectRadius; k <= that.rectRadius; k++) {
                         for (int l = -that.rectRadius; l <= that.rectRadius; l++) {
-                            if (x + i == that.x + k && y + j == that.y + l) {
+                            if ((x + i == that.x + k) && (y + j == that.y + l)) {
                                 return true;
                             }
                         }
@@ -92,9 +92,9 @@ public class RelativePosition implements Serializable {
             }
             return false;
         } else {
-            return (x == that.x && y == that.y)
-                    || (x == that.x && y - 1 == that.y) || (x == that.x && y + 1 == that.y)
-                    || (x - 1 == that.x && y == that.y) || (x + 1 == that.x && y == that.y);
+            return ((x == that.x && y == that.y))
+                    || ((x == that.x) && (y - 1 == that.y)) || ((x == that.x) && (y + 1 == that.y))
+                    || ((x - 1 == that.x) && (y == that.y)) || ((x + 1 == that.x) && (y == that.y));
         }
     }
 
