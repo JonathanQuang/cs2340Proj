@@ -16,9 +16,9 @@ import cs2340.spacetraders.entity.Difficulty;
 import cs2340.spacetraders.viewmodels.ConfigurationViewModel;
 
 /**
- * Beginning activity for configuring a new player
+ * Creates the configuration screen
  */
-public class ConfigurationActivity extends AppCompatActivity {
+public final class ConfigurationActivity extends AppCompatActivity {
 
     private TextView engineerView;
     private TextView fighterView;
@@ -57,7 +57,8 @@ public class ConfigurationActivity extends AppCompatActivity {
         setupIncrDecrButtons(pilotDecr, pilotIncr, pilotView);
 
         difficultySpinner = findViewById(R.id.difficultySpinner);
-        ArrayAdapter<Difficulty> adapter_standing = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Difficulty.values());
+        ArrayAdapter<Difficulty> adapter_standing = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, Difficulty.values());
         adapter_standing.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(adapter_standing);
 
@@ -66,15 +67,18 @@ public class ConfigurationActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = ((TextInputEditText) findViewById(R.id.playerNameInput)).getText().toString();
+                String name = ((TextInputEditText)
+                        findViewById(R.id.playerNameInput)).getText().toString();
                 int engineerStat = Integer.parseInt(engineerView.getText().toString());
                 int fighterStat = Integer.parseInt(fighterView.getText().toString());
                 int traderStat = Integer.parseInt(traderView.getText().toString());
                 int pilotStat = Integer.parseInt(pilotView.getText().toString());
                 Difficulty difficulty = (Difficulty) difficultySpinner.getSelectedItem();
 
-                if (viewModel.onOkay(name, engineerStat, fighterStat, traderStat, pilotStat, difficulty, pointsLeft)) {
-                    Intent intent = new Intent(ConfigurationActivity.this, MarketScreenActivity.class);
+                if (viewModel.onOkay(name, engineerStat, fighterStat, traderStat, pilotStat,
+                        difficulty, pointsLeft)) {
+                    Intent intent = new Intent(ConfigurationActivity.this,
+                            MarketScreenActivity.class);
                     startActivityForResult(intent,0);
                 }
             }

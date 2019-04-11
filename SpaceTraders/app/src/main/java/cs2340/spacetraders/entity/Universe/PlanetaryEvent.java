@@ -3,7 +3,7 @@ package cs2340.spacetraders.entity.Universe;
 import java.util.Random;
 
 /**
- * Enum for a random event that occurs on a planet
+ * A Enumeration of the possible large scale events that can happen to a planet
  */
 public enum PlanetaryEvent {
     Nothing("Nothing"),
@@ -18,13 +18,15 @@ public enum PlanetaryEvent {
     private final String increaseEvent;
     private final Random RANDOM = new Random();
 
+    /**
+     * @param increaseEvent the string representation of the planet event
+     */
     PlanetaryEvent(String increaseEvent) {
         this.increaseEvent = increaseEvent;
     }
 
     /**
-     * Getter for the event
-     * @return increaseEvent
+     * @return the string representation of the planet event
      */
     public String getIncreaseEvent() {
         return increaseEvent;
@@ -36,8 +38,7 @@ public enum PlanetaryEvent {
     }
 
     /**
-     * Returns a random event from the enum
-     * @return a random PlanetaryEvent enum type
+     * @return get random event
      */
     public PlanetaryEvent randomEvent()  {
         return PlanetaryEvent.values()[RANDOM.nextInt(PlanetaryEvent.values().length)];

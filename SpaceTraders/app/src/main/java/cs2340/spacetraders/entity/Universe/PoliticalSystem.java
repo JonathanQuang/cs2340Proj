@@ -1,7 +1,7 @@
 package cs2340.spacetraders.entity.Universe;
 
 /**
- * Enum for the types of political systems a planet may have
+ * A Enumeration of the possible political systems of a planet
  */
 public enum PoliticalSystem {
     Anarchy("High", "None", "Low", "None", "None"),
@@ -27,13 +27,16 @@ public enum PoliticalSystem {
     private String tradersQuantity;
     private String policeBriberyAcceptance;
     private String policeSmugglingAcceptance;
-//    private Good mainDesiredGood
 
-    PoliticalSystem() {
-    }
-
-
-    PoliticalSystem(String pirateQuantity, String policeQuantity, String tradersQuantity, String policeBriberyAcceptance,
+    /**
+     * @param pirateQuantity the pirate amount
+     * @param policeQuantity the police amount
+     * @param tradersQuantity the trader amount
+     * @param policeBriberyAcceptance the chance a policeman will accept a bride
+     * @param policeSmugglingAcceptance the chance a policeman will look for smuggled goods
+     */
+    PoliticalSystem(String pirateQuantity, String policeQuantity,
+                    String tradersQuantity, String policeBriberyAcceptance,
                     String policeSmugglingAcceptance) {
         this.pirateQuantity = pirateQuantity;
         this.policeQuantity = policeQuantity;
@@ -43,41 +46,37 @@ public enum PoliticalSystem {
 
     }
 
+
     /**
-     * Getter for the amount of pirates
-     * @return pirateQuantity
+     * @return the pirate amount
      */
     public String getPirateQuantity() {
         return pirateQuantity;
     }
 
     /**
-     * Getter for the amount of police
-     * @return policeQuantity
+     * @return the police amount
      */
     public String getPoliceQuantity() {
         return policeQuantity;
     }
 
     /**
-     * Getter for the amount of traders
-     * @return tradersQuantity
+     * @return the trader amount
      */
     public String getTradersQuantity() {
         return tradersQuantity;
     }
 
     /**
-     * Getter for the chance of police accepting bribes
-     * @return policeBriberyAcceptance
+     * @return the chance a policeman will accept a bride
      */
     public String getPoliceBriberyAcceptance() {
         return policeBriberyAcceptance;
     }
 
     /**
-     * Getter for the chance of police allowing illegal goods
-     * @return policeSmugglingAcceptance
+     * @return the chance a policeman will look for smuggled goods
      */
     public String getPoliceSmugglingAcceptance() {
         return policeSmugglingAcceptance;

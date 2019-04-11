@@ -22,7 +22,7 @@ public class ShipMarket implements Serializable {
     private void updateDiffMap() {
         ShipType[] shipTypeArray = ShipType.values();
         for (ShipType s : shipTypeArray) {
-            shipTypePriceDiffMap.put(s,new Integer(s.getPrice() - player.getShipTypePrice()));
+            shipTypePriceDiffMap.put(s,Integer.valueOf(s.getPrice() - player.getShipTypePrice()));
         }
     }
 

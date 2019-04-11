@@ -2,6 +2,9 @@ package cs2340.spacetraders.entity;
 
 import java.io.Serializable;
 
+/**
+ * The player playing the game
+ */
 public class Player implements Serializable {
 
     private final int  initialCredits = 1000;
@@ -45,8 +48,7 @@ public class Player implements Serializable {
     }
 
     /**
-     * Returns the player's credits
-     * @return player's credits
+     * @return the number of credit held by the player
      */
     public int getCredits() {return credits;}
 
@@ -56,12 +58,21 @@ public class Player implements Serializable {
      */
     public int getShipTypePrice() {return ship.getShipTypePrice();}
 
+    /**
+     * @param changeNum the number of credits to be changed
+     */
     public void changeCredits(int changeNum) {credits += changeNum;}
 
+    /**
+     * @param shipType the ship type being changed to
+     */
     public void setShipType(ShipType shipType) {
         ship.setShipType(shipType);
     }
 
+    /**
+     * @return the player's ship type
+     */
     public ShipType getShipType() {return ship.getShipType();}
 
     /**
@@ -92,6 +103,9 @@ public class Player implements Serializable {
 
     }
 
+    /**
+     * @return the player's ship
+     */
     public Ship getShip() {
         return ship;
     }

@@ -6,14 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/hireText"
+        android:id="@+id/shipMarketText"
         android:layout_width="190dp"
         android:layout_height="107dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="hire crew"
+        android:text="ship repair"
         android:textSize="100px"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,4 +36,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.056"
         app:srcCompat="@android:drawable/btn_star_big_on" />
+
 </android.support.constraint.ConstraintLayout>

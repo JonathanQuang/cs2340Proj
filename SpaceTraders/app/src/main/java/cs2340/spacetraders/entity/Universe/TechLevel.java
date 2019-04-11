@@ -1,7 +1,7 @@
 package cs2340.spacetraders.entity.Universe;
 
 /**
- * Enum for possible tech levels of a planet
+ * A Enumeration of the possible tech levels of a planet
  */
 public enum TechLevel {
     PreAgriculture("Pre-Agriculture"),
@@ -14,16 +14,16 @@ public enum TechLevel {
     HiTech("Hi-Tech");
 
     private final String techLevel;
-//    private Good[] interestedGoods;
-//    private Good[] disinterestedGoods;
 
+    /**
+     * @param techLevel the string representation of the tech level
+     */
     TechLevel(String techLevel) {
         this.techLevel = techLevel;
     }
 
     /**
-     * Getter for tech level
-     * @return techLevel
+     * @return a string representation of the tech level
      */
     public String getTechLevel() {
         return techLevel;

@@ -26,7 +26,8 @@ public class GalaxyMapViewModel {
     }
 
     public String popUpPlanetInfo() {
-        return "~~~Planet~~~\n" + currentPlanet.toString() + "\nFuel: " + currentPlayer.getShip().getFuel();
+        return "~~~Planet~~~\n" + currentPlanet.toString() + "\nFuel: "
+                + currentPlayer.getShip().getFuel();
     }
 
     public void setSelectedWormhole(Wormhole selectedWormhole) {
@@ -35,8 +36,10 @@ public class GalaxyMapViewModel {
 
     public String popUpWormHoleInfo() {
         return "~~~Wormhole~~~\n" + selectedWormhole.toString()
-                + "\n The Planet ship port it is: " + selectedWormhole.getShipportPlanet().getName()
-                + "\n The connect ship port it is: " + selectedWormhole.getConnectedWormhole().getShipportPlanet().getName();
+                + "\n The Planet ship port it is: "
+                + selectedWormhole.getShipportPlanet().getName()
+                + "\n The connect ship port it is: "
+                + selectedWormhole.getConnectedWormhole().getShipportPlanet().getName();
     }
 }
 

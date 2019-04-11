@@ -29,7 +29,10 @@ public class MenuScreen extends AppCompatActivity {
     private Button planetMarketButton;
     private Button saveGameButton;
 
-    @Override
+    /**
+     * called when menu screen is viewed
+     * @param savedInstanceState the saved instance
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);
@@ -107,6 +110,9 @@ public class MenuScreen extends AppCompatActivity {
         });
     }
 
+    /**
+     * to save the game state
+     */
     private void saveState() {
         FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();

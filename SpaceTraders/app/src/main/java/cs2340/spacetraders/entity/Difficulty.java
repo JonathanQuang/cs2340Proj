@@ -1,7 +1,7 @@
 package cs2340.spacetraders.entity;
 
 /**
- * Enum for the difficulty of the game
+ * The Difficulty of the game
  */
 public enum Difficulty {
     Beginner("Beginner", 0.25),

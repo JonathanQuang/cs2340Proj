@@ -11,7 +11,10 @@ import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.ShipType;
 
 public class ShipMarketActivity extends AppCompatActivity {
-    @Override
+    /**
+     * created when viewing all of the ships
+     * @param savedInstanceState the saved state
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_market_screen);
@@ -47,6 +50,11 @@ public class ShipMarketActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * to set-up the ship button
+     * @param button the button in consideration
+     * @param shipType ship type in consideration
+     */
     private void setupShipButton(ImageButton button, final ShipType shipType) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,4 +66,3 @@ public class ShipMarketActivity extends AppCompatActivity {
         });
     }
 }
-

@@ -12,6 +12,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * A structure-r of all the solar systems and planets
+ */
 public class Galaxy implements Serializable {
 
     private Map<String, Planet> planetNameMap;
@@ -70,7 +73,8 @@ public class Galaxy implements Serializable {
 
         String size = getSystemSize(planetNum);
         CelestialName systemName = getNonRepeatedCelestialName();
-        Log.d("Planet", "-----System " + systemName.getName() + " created at " + center + " with " + planetNum + " planets----");
+        Log.d("Planet", "-----System " + systemName.getName() + " created at "
+                + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
         return new SolarSystem(systemName, center, planetNum, size,this);
     }
@@ -195,10 +199,16 @@ public class Galaxy implements Serializable {
         return planetNameMap.containsKey(name) ? planetNameMap.get(name) : null;
     }
 
+    /**
+     * @return a random planet in the galaxy
+     */
     private Planet chooseRandomPlanet() {
         return planetList.get(rand.nextInt(planetList.size()));
     }
 
+    /**
+     * @return checks if current planet is null
+     */
     public boolean isGalaxyCreated() {
         return currentPlanet != null || currentPlanet.getInventory() != null;
     }
@@ -211,31 +221,52 @@ public class Galaxy implements Serializable {
         return galaxyMap;
     }
 
+    /**
+     * @return the Planet Name pairing Listing
+     */
     public Map<String, Planet> getPlanetNameMap() {
         return planetNameMap;
     }
 
+    /**
+     * @return the list of solar systems in the galaxy
+     */
     public List<SolarSystem> getSolarSystemList() {
         return solarSystemList;
     }
 
+    /**
+     * @return the current planet
+     */
     public Planet getCurrentPlanet() {
         return currentPlanet;
     }
 
+    /**
+     * @return all the planets in the galaxy
+     */
     public List<Planet> getPlanetList() {
         return planetList;
     }
 
 
+    /**
+     * @return the map size
+     */
     public RelativePosition getMapSize() {
         return mapSize;
     }
 
+    /**
+     * @param currentPlanet the planet that will be the current
+     */
     public void setCurrentPlanet(Planet currentPlanet) {
         this.currentPlanet = currentPlanet;
     }
 
+    /**
+     * @return all the wormhole pairings
+     */
     public List<Wormhole[]> getWormholePairList() {
         return wormholePairList;
     }

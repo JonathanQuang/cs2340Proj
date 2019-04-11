@@ -40,7 +40,11 @@ public class ShipyardActivity extends AppCompatActivity {
 
     public ShipyardActivity() {
     }
-    @Override
+
+    /**
+     * called when viewing the shipyard
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shipyard_screen);

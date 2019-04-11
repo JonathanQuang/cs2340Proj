@@ -8,22 +8,22 @@ import android.view.View;
 
 import cs2340.spacetraders.R;
 
-public class HireCrewActivity extends AppCompatActivity {
+public class ShipRepairActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
 
-    /** Called when player wants to hire crew
+    /**
+     * called when repairing the ship
      * @param savedInstanceState the saved instance
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hire_crew_screen);
+        setContentView(R.layout.ship_repair_screen);
 
         menuButton = findViewById(R.id.menuButton);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HireCrewActivity.this, MenuScreen.class);
+                Intent intent = new Intent(ShipRepairActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);
             }
         });

@@ -61,6 +61,9 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
         });
     }
 
+    /**
+     * to load the last instance of the game
+     */
     private void loadLastGame() {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -85,6 +88,11 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
         });
     }
 
+    /**
+     * to read the log messages and send log messages
+     * @param msg
+     * @return the read in message
+     */
     private Object readMessage(String msg) {
         try {
             byte[] bytes = Base64.getDecoder().decode(msg);
