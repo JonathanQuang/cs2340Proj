@@ -2,11 +2,14 @@ package cs2340.spacetraders.entity.Universe;
 
 import java.io.Serializable;
 import java.util.List;
-
 import cs2340.spacetraders.model.Model;
 
+/**
+ * A method of transportation within the galaxy connect to spaceports
+ */
+
 public class Wormhole implements Serializable {
-    private Galaxy galaxy;
+    private List<Planet> galaxy;
     private Wormhole connectedWormhole;
     private RelativePosition position;
     private Planet shipportPlanet;
@@ -16,19 +19,23 @@ public class Wormhole implements Serializable {
      * Constructor for wormhole given Relative Position Object
      *
      * @param position RelativePosition object to represent where the wormhole is
+     * @param galaxy the parent galaxy
      */
-    public Wormhole(Galaxy galaxy, RelativePosition position) {
+    public Wormhole(List<Planet> galaxy, RelativePosition position) {
         this.galaxy = galaxy;
         this.position = position;
         findSpacePort();
     }
 
+    public Wormhole(Galaxy galaxy, RelativePosition position) {
+        this(galaxy.getPlanetList(), position);
+    }
+
     private void findSpacePort() {
-        List<Planet> planetList = galaxy.getPlanetList();
-        Planet closestPlanet = planetList.get(0);
+        Planet closestPlanet = galaxy.get(0);
         double min = Integer.MAX_VALUE;
 
-        for (Planet otherPlanet: planetList) {
+        for (Planet otherPlanet: galaxy) {
             double dist = getDistance(otherPlanet);
             if (dist < min && !otherPlanet.isSpacePort()) {
                 min = dist;
@@ -48,7 +55,7 @@ public class Wormhole implements Serializable {
 
     /**
      * Given wormhole A and B
-     * A's womrhole pointer points to B, and B's pointer will point to A
+     * A's wormhole pointer points to B, and B's pointer will point to A
      *
      * @param otherWormHole the second wormhole to join the two wormholes
      */
@@ -57,6 +64,9 @@ public class Wormhole implements Serializable {
         otherWormHole.connectedWormhole = this;
     }
 
+    /**
+     * @return the wormhole position
+     */
     public RelativePosition getPosition() {
         return position;
     }
@@ -69,7 +79,8 @@ public class Wormhole implements Serializable {
             return false;
         }
         Wormhole targetHole = (Wormhole) o;
-        return this.position.getY() == targetHole.position.getY() && this.position.getX() == targetHole.position.getX();
+        return this.position.getY() == targetHole.position.getY()
+                && this.position.getX() == targetHole.position.getX();
     }
 
     @Override
@@ -77,6 +88,7 @@ public class Wormhole implements Serializable {
         return 3 * position.getY() + 7 * position.getX();
     }
 
+    @Override
     public String toString(){
         String retStr = "this wormhole is located at " + this.position;
         if (connectedWormhole == null) {
@@ -85,10 +97,16 @@ public class Wormhole implements Serializable {
         return retStr + " connected to a wormhole located at " + connectedWormhole.position;
     }
 
+    /**
+     * @return the planet that is this wormhole's spaceport
+     */
     public Planet getShipportPlanet() {
         return shipportPlanet;
     }
 
+    /**
+     * @return the wormhole connected to this one
+     */
     public Wormhole getConnectedWormhole() {
         return connectedWormhole;
     }

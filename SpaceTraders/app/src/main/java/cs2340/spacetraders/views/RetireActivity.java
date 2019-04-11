@@ -10,6 +10,11 @@ import cs2340.spacetraders.R;
 
 public class RetireActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
+
+    /**
+     * called when player is retiring
+     * @param savedInstanceState the saved game instance
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retire_screen);

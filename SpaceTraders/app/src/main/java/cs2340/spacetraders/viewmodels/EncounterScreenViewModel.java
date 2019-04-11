@@ -73,11 +73,14 @@ public class EncounterScreenViewModel {
     }
 
     public Encounterable setCharacter() {
-        if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(planet.getPoliceQuantity())) {
+        if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(
+                planet.getPoliceQuantity())) {
             this.character = new Police(planet);
-        } else if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(planet.getPirateQuantity())) {
+        } else if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(
+                planet.getPirateQuantity())) {
             this.character = new Pirate();
-        } else if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(planet.getTraderQuantity())) {
+        } else if (random.nextDouble() < planet.getPoliticalSystem().determineProbability(
+                planet.getTraderQuantity())) {
             this.character = new Trader(planet);
         } else {
             character = null;

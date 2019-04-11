@@ -30,6 +30,10 @@ public class ShipDisplayActivity extends AppCompatActivity {
     private TextView crewQuartersText;
     private static ShipType shipTypeVar;
 
+    /**
+     * called when the player is viewing a particular ship
+     * @param savedInstanceState the saved state
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_display);
@@ -66,10 +70,18 @@ public class ShipDisplayActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * to set the type of ship
+     * @param shipType the ship type
+     */
     public static void setShipType(ShipType shipType) {
         shipTypeVar = shipType;
     }
 
+    /**
+     * to set the info of the ship
+     * @param shipType ship type
+     */
     private void setupShipInfo(ShipType shipType) {
         nameText.setText("Name: " + shipType.getShipType());
         sizeText.setText("Size: " + shipType.getShipSize());
@@ -82,6 +94,10 @@ public class ShipDisplayActivity extends AppCompatActivity {
         crewQuartersText.setText("Crew Quarters: " + shipType.getCrewQuarters());
     }
 
+    /**
+     * images of the ships
+     * @return the images
+     */
     private int [] getShipDrawables() {
         return new int[]{R.drawable.gnat_l, R.drawable.flea_l, R.drawable.beetle_l, R.drawable.firefly_l,
                          R.drawable.bumblebee_l, R.drawable.grasshopper_l, R.drawable.hornet_l,

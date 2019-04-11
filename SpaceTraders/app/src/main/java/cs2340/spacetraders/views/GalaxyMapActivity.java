@@ -39,7 +39,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
     private RelativePosition mapSize;
     private Planet currentPlanet;
 
-    /** Called when the application starts. */
+    /** Called when the application starts.*/
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 placePlanet(planet, planetButtonIDs[i]);
                 if (planet.equals(currentPlanet)) {
                     Button curr_planet_button = findViewById(planetButtonIDs[i]);
-                    curr_planet_button.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.white_l));
+                    curr_planet_button.setBackground(ContextCompat.getDrawable(
+                            getApplicationContext(), R.drawable.white_l));
                 }
             } else { findViewById(planetButtonIDs[i]).setVisibility(View.GONE); }
         }
@@ -96,6 +97,11 @@ public class GalaxyMapActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * to place the planet on the map
+     * @param planet planet considered
+     * @param buttonID the ID of the planet button
+     */
     private void placePlanet(final Planet planet, int buttonID) {
         Button planet_button = findViewById(buttonID);
         int imageID = Model.getInstance().getPlanetImageIDs().get(planet.getResources());
@@ -111,18 +117,33 @@ public class GalaxyMapActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * to show the max radius you can travel to
+     * @param radiusOfTravel the max radius you can travel to
+     */
     private void placeRangeRing(int radiusOfTravel) {
         ImageView ring = findViewById(R.id.validRing);
         int size = 2 * (radiusOfTravel * 44);
         makeCustomView(ring, R.drawable.cyan_ring, size, currentPlanet.getRelativePosition());
     }
 
+    /**
+     * to place the ring outlining each solar system
+     * @param solarSystem the solar system in consideration
+     * @param ringID the ID of the ring
+     */
     private void placeSystemRing(SolarSystem solarSystem, int ringID) {
         View ring = findViewById(ringID);
         int size = 130 + (solarSystem.getCenter().getRectRadius() - 1) * 100;
         makeCustomView(ring, R.drawable.ring, size, solarSystem.getCenter());
     }
 
+    /**
+     * to place wormholes on the map
+     * @param wormhole wormhole in consideration
+     * @param wormholeID the ID of the wormhole
+     * @param wormholeImg the image used for it
+     */
     private void placeWormhole(final Wormhole wormhole, int wormholeID, int wormholeImg) {
         Button wormhole_button = findViewById(wormholeID);
         makeCustomView(wormhole_button, wormholeImg, 25, wormhole.getPosition());
@@ -135,6 +156,13 @@ public class GalaxyMapActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * to make the background and set the view
+     * @param view the view object
+     * @param imageID image used for background
+     * @param size the size of the layout
+     * @param position the position of layout
+     */
     private void makeCustomView(View view, int imageID, int size, RelativePosition position) {
         //Set Picture
         view.setBackground(ContextCompat.getDrawable(getApplicationContext(), imageID));
@@ -146,6 +174,12 @@ public class GalaxyMapActivity extends AppCompatActivity {
         setPositionOnScreen(view, position, params.height/2);
     }
 
+    /**
+     * to set the position on screen
+     * @param view the view object
+     * @param position position object
+     * @param radius the distance from the planet in consideration
+     */
     private void setPositionOnScreen(View view, RelativePosition position, int radius) {
         //Places based on proportion from (planet x to map width) is (screen x to screen width)
         double probX = ((double) position.getX()) / mapSize.getX();
@@ -155,8 +189,14 @@ public class GalaxyMapActivity extends AppCompatActivity {
         view.setTranslationY((int) (screenHeight * probY - radius) + 20);
     }
 
+    /**
+     * the button to show planetary information
+     * @param view the view object
+     * @param planet the planet in consideration
+     */
     private void onButtonShowPlanetInfoClick(View view, final Planet planet) {
-        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)
+                getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.planet_info_popup, null);
 
         TextView textView = popupView.findViewById(R.id.planetText);
@@ -181,15 +221,22 @@ public class GalaxyMapActivity extends AppCompatActivity {
         travelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (travel.travel(planet) == 0) {
-                    Intent intent = new Intent(GalaxyMapActivity.this, EncounterScreenActivity.class);
+                    Intent intent = new Intent(GalaxyMapActivity.this,
+                            EncounterScreenActivity.class);
                     startActivityForResult(intent,0);
                 }
             }
         });
     }
 
+    /**
+     * the button to show the wormhole options
+     * @param view the view object
+     * @param wormhole the wormhole in consideration
+     */
     private void onButtonShowWormHoleClick(View view, final Wormhole wormhole) {
-        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)
+                getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.wormhole_popup, null);
 
         TextView textView = popupView.findViewById(R.id.wormholeText);
@@ -220,6 +267,9 @@ public class GalaxyMapActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * to set the dimensions of the screen
+     */
     public void setScreenDimensions() {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -228,10 +278,18 @@ public class GalaxyMapActivity extends AppCompatActivity {
         screenHeight = size.y - 250;
     }
 
+    /**
+     * pixels used per unit
+     * @return
+     */
     public int getPixelPerUnit() {
         return(int) (1.0 / mapSize.getY() * screenHeight);
     }
 
+    /**
+     * getter for all the IDs of planet buttons
+     * @return all the IDs of planet buttons
+     */
     public int[] getPlanetButtonIDs() {
         return new int[]{
                 R.id.planet1, R.id.planet2, R.id.planet3, R.id.planet4, R.id.planet5,
@@ -261,6 +319,10 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 R.id.planet121, R.id.planet122, R.id.planet123};
     }
 
+    /**
+     * getter for all the IDs of rings
+     * @return all the IDs of rings
+     */
     public int[] getRingButtonIDs() {
         return new int[]{
                 R.id.ring1, R.id.ring2, R.id.ring3, R.id.ring4, R.id.ring5,
@@ -278,6 +340,10 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 R.id.ring61, R.id.ring62};
     }
 
+    /**
+     * getter for all the IDs of wormholes
+     * @return all the IDs of wormholes
+     */
     public int[][] getWormholeIDs() {
         return new int[][]{{R.id.wormhole1, R.id.wormhole2, R.drawable.wormhole},
                 { R.id.wormhole3, R.id.wormhole4, R.drawable.wormhole_green}};

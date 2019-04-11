@@ -1,5 +1,8 @@
 package cs2340.spacetraders.entity.Universe;
 
+/**
+ * A Enumeration of the possible political systems of a planet
+ */
 public enum PoliticalSystem {
     Anarchy("High", "None", "Low", "None", "None"),
     Capitalist_State("Low", "Some", "High", "None", "High"),
@@ -24,13 +27,16 @@ public enum PoliticalSystem {
     private String tradersQuantity;
     private String policeBriberyAcceptance;
     private String policeSmugglingAcceptance;
-//    private Good mainDesiredGood
 
-    PoliticalSystem() {
-    }
-
-
-    PoliticalSystem(String pirateQuantity, String policeQuantity, String tradersQuantity, String policeBriberyAcceptance,
+    /**
+     * @param pirateQuantity the pirate amount
+     * @param policeQuantity the police amount
+     * @param tradersQuantity the trader amount
+     * @param policeBriberyAcceptance the chance a policeman will accept a bride
+     * @param policeSmugglingAcceptance the chance a policeman will look for smuggled goods
+     */
+    PoliticalSystem(String pirateQuantity, String policeQuantity,
+                    String tradersQuantity, String policeBriberyAcceptance,
                     String policeSmugglingAcceptance) {
         this.pirateQuantity = pirateQuantity;
         this.policeQuantity = policeQuantity;
@@ -40,26 +46,46 @@ public enum PoliticalSystem {
 
     }
 
+
+    /**
+     * @return the pirate amount
+     */
     public String getPirateQuantity() {
         return pirateQuantity;
     }
 
+    /**
+     * @return the police amount
+     */
     public String getPoliceQuantity() {
         return policeQuantity;
     }
 
+    /**
+     * @return the trader amount
+     */
     public String getTradersQuantity() {
         return tradersQuantity;
     }
 
+    /**
+     * @return the chance a policeman will accept a bride
+     */
     public String getPoliceBriberyAcceptance() {
         return policeBriberyAcceptance;
     }
 
+    /**
+     * @return the chance a policeman will look for smuggled goods
+     */
     public String getPoliceSmugglingAcceptance() {
         return policeSmugglingAcceptance;
     }
 
+    /**
+     * @param quantity the string representation of the amount of a character
+     * @return the statistical proportion that character will be found
+     */
     public static double determineProbability(String quantity) {
         if (quantity.equals("None")) {
             return 0;

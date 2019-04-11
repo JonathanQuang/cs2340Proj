@@ -34,6 +34,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
      * @param traderStat the trader stats of the player
      * @param pilotStat the pilot stats of the player
      * @param difficulty the difficulty of the game
+     * @param pointsLeft the points left to assign
      * @return if player was properly created
      */
     public boolean onOkay(String name, int engineerStat, int fighterStat, int traderStat,
@@ -42,8 +43,8 @@ public class ConfigurationViewModel extends AndroidViewModel {
 //            Toast.makeText(getApplication(), "Name is Empty", Toast.LENGTH_LONG).show();
 //            return false;
 //        } else if (pointsLeft != 0) {
-//            Toast.makeText(getApplication(),
-//                   String.valueOf(pointsLeft) + " Skill Point Remaining", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplication(), String.valueOf(pointsLeft)
+//                            + " Skill Point Remaining", Toast.LENGTH_LONG).show();
 //                return false;
 //        }
         Log.d("debug", "Game Stared");
