@@ -10,9 +10,9 @@ import java.util.List;
  */
 
 public class Wormhole implements Serializable {
-    private List<Planet> galaxy;
+    private final List<Planet> galaxy;
     private Wormhole connectedWormhole;
-    private RelativePosition position;
+    private final RelativePosition position;
     private Planet shipportPlanet;
 
 

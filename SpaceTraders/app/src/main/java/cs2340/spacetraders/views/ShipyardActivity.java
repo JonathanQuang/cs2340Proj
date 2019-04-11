@@ -35,8 +35,6 @@ public class ShipyardActivity extends AppCompatActivity {
 
     private ShipyardViewModel shipyardVM;
 
-    public ShipyardActivity() {
-    }
 
     /**
      * called when viewing the shipyard
@@ -162,7 +160,7 @@ public class ShipyardActivity extends AppCompatActivity {
         sellNum.setText(Integer.toString(sellPrice));
 
 
-        powerNum.setText(power < 0 ? "NA" :  Integer.toString(power));
+        powerNum.setText(power < 0 ? ("NA") :  (Integer.toString(power)));
 
         if (charge < 0) {
             chargeNum.setText("NA");

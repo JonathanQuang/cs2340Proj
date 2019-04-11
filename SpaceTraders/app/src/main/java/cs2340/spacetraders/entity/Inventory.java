@@ -11,10 +11,10 @@ import cs2340.spacetraders.entity.Market.Good;
  * Class for an inventory that contains goods
  */
 public class Inventory implements Serializable {
-    private Map<Good, Integer> inventoryGoodCount;
-    private Map<Good, Double> averagePurchasePrice;
+    private final Map<Good, Integer> inventoryGoodCount;
+    private final Map<Good, Double> averagePurchasePrice;
     private int currCapacity;
-    private int maxCapacity;
+    private final int maxCapacity;
     private boolean containsIllegalGoods;
 
     /**
@@ -69,7 +69,7 @@ public class Inventory implements Serializable {
      * @return amount in inventory
      */
     public int getGoodAmount(Good good) {
-        return inventoryGoodCount.get(good) != null ? inventoryGoodCount.get(good) : 0;
+        return inventoryGoodCount.get(good) != null ? (inventoryGoodCount.get(good)) : (0);
     }
 
     /**
@@ -78,7 +78,7 @@ public class Inventory implements Serializable {
      * @return average price player purchased the good
      */
     public double getAvgPurchasePrice(Good good) {
-        return averagePurchasePrice.get(good) != null ? averagePurchasePrice.get(good) : 0;
+        return averagePurchasePrice.get(good) != null ? (averagePurchasePrice.get(good)) : (0);
     }
 
     /**
@@ -111,7 +111,7 @@ public class Inventory implements Serializable {
      * @return true or false
      */
     public boolean canBuyGood(int numGoods) {
-        return currCapacity + numGoods <= maxCapacity;
+        return currCapacity + numGoods <= (maxCapacity);
     }
 
     /**

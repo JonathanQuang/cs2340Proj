@@ -17,20 +17,20 @@ import java.util.Set;
  */
 public class Galaxy implements Serializable {
 
-    private Map<String, Planet> planetNameMap;
-    private List<Planet> planetList;
-    private List<RelativePosition> systemPositionList;
-    private Set<CelestialName> usedCelestialNames;
-    private List<SolarSystem> solarSystemList;
-    private RelativePosition mapSize;
-    private String[][] galaxyMap;
-    private Random rand = new Random();
-    private List<Wormhole[]> wormholePairList;
+    private final Map<String, Planet> planetNameMap;
+    private final List<Planet> planetList;
+    private final List<RelativePosition> systemPositionList;
+    private final Set<CelestialName> usedCelestialNames;
+    private final List<SolarSystem> solarSystemList;
+    private final RelativePosition mapSize;
+    private final String[][] galaxyMap;
+    private final Random rand = new Random();
+    private final List<Wormhole[]> wormholePairList;
     private Planet currentPlanet;
-    private int mapWidth = 25;
-    private int mapHeight = 37;
-    private int maxPlantsPerSystem = 6;
-    private int maxWormHolePairs = 2;
+    private final int mapWidth = 25;
+    private final int mapHeight = 37;
+    private final int maxPlantsPerSystem = 6;
+    private final int maxWormHolePairs = 2;
 
 
     /**
@@ -121,8 +121,8 @@ public class Galaxy implements Serializable {
         int attempts = 0;
         do {
             int r = (planetNum < 4) ? 1 : 2;
-            int x = rand.nextInt((mapSize.getX() - 2 * r)) + r;
-            int y = rand.nextInt(mapSize.getY() - 2 * r) + r;
+            int x = rand.nextInt((mapSize.getX() - (2 * r))) + r;
+            int y = rand.nextInt(mapSize.getY() - (2 * r)) + r;
             center = new RelativePosition(x, y, r, true);
             if (++attempts > 200) { return null; }
         } while (systemPositionList.contains(center) || !isValidCornerPoint(center));
@@ -139,7 +139,8 @@ public class Galaxy implements Serializable {
         int x = point.getX();
         int y = point.getY();
         int r = point.getRectRadius();
-        return (0 <= x - r) && (x + r < mapSize.getX()) && (0 <= y - r) && (y + r < mapSize.getY());
+        return (((0 <= (x - r)) && ((x + r) < mapSize.getX()))
+                && ((0 <= (y - r)) && ((y + r) < mapSize.getY())));
     }
 
     /**

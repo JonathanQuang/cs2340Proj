@@ -18,7 +18,7 @@ public class Ship implements  Serializable{
     private double health;
     private int fuel;
     private double damage;
-    private List<WeaponTypes> equippedWeapons;
+    private final List<WeaponTypes> equippedWeapons;
 
     /**
      * Initializes a ship

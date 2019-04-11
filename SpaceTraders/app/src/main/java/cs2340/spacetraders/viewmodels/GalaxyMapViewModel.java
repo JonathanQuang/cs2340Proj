@@ -10,8 +10,8 @@ import cs2340.spacetraders.model.Model;
 public class GalaxyMapViewModel {
 
     private Planet currentPlanet;
-    private List<Planet> planetList;
-    private Player currentPlayer;
+    private final List<Planet> planetList;
+    private final Player currentPlayer;
     private Wormhole selectedWormhole;
 
     public GalaxyMapViewModel(Planet currentPlanet, List<Planet> planetList) {

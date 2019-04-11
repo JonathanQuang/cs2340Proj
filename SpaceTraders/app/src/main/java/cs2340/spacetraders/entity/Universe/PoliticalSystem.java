@@ -22,11 +22,11 @@ public enum PoliticalSystem {
     Technocracy("Low", "High", "High", "High", "High"),
     Theocracy("Low", "High", "Some", "None", "Some");
 
-    private String pirateQuantity;
-    private String policeQuantity;
-    private String tradersQuantity;
-    private String policeBriberyAcceptance;
-    private String policeSmugglingAcceptance;
+    private final String pirateQuantity;
+    private final String policeQuantity;
+    private final String tradersQuantity;
+    private final String policeBriberyAcceptance;
+    private final String policeSmugglingAcceptance;
 
     /**
      * @param pirateQuantity the pirate amount

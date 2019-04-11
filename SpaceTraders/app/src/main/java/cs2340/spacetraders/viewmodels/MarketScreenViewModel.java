@@ -10,7 +10,7 @@ import cs2340.spacetraders.entity.Market.Market;
 public class MarketScreenViewModel {
 
 
-    private Market currentMarket;
+    private final Market currentMarket;
 
     public MarketScreenViewModel(PlanetInventory planetInventory, Inventory playerInventory) {
         currentMarket = new Market(planetInventory, playerInventory);
