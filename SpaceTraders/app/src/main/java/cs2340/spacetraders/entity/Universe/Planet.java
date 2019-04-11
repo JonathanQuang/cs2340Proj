@@ -63,11 +63,11 @@ public class Planet implements Serializable {
                 event = event.randomEvent();
             }
         }
-        Log.d("Mark", "Random Event");
+//        Log.d("Mark", "Random Event");
         tradersReturnRate = .10;
 
         makePlanetInventory();
-        Log.d("Mark", "Inventory Made");
+//        Log.d("Mark", "Inventory Made");
     }
 
     /**
