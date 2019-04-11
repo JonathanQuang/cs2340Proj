@@ -1,5 +1,8 @@
 package cs2340.spacetraders.entity.Universe;
 
+/**
+ * Enum for the types of political systems a planet may have
+ */
 public enum PoliticalSystem {
     Anarchy("High", "None", "Low", "None", "None"),
     Capitalist_State("Low", "Some", "High", "None", "High"),
@@ -40,34 +43,59 @@ public enum PoliticalSystem {
 
     }
 
+    /**
+     * Getter for the amount of pirates
+     * @return pirateQuantity
+     */
     public String getPirateQuantity() {
         return pirateQuantity;
     }
 
+    /**
+     * Getter for the amount of police
+     * @return policeQuantity
+     */
     public String getPoliceQuantity() {
         return policeQuantity;
     }
 
+    /**
+     * Getter for the amount of traders
+     * @return tradersQuantity
+     */
     public String getTradersQuantity() {
         return tradersQuantity;
     }
 
+    /**
+     * Getter for the chance of police accepting bribes
+     * @return policeBriberyAcceptance
+     */
     public String getPoliceBriberyAcceptance() {
         return policeBriberyAcceptance;
     }
 
+    /**
+     * Getter for the chance of police allowing illegal goods
+     * @return policeSmugglingAcceptance
+     */
     public String getPoliceSmugglingAcceptance() {
         return policeSmugglingAcceptance;
     }
 
-    public static double determineProbability(String quantity) {
-        if (quantity.equals("None")) {
+    /**
+     * Sets numeric probabilities for the String representations
+     * @param quantity given String
+     * @return double for probability
+     */
+    public double determineProbability(String quantity) {
+        if ("None".equals(quantity)) {
             return 0;
-        } else if (quantity.equals("Low")) {
+        } else if ("Low".equals(quantity)) {
             return 0.25;
-        } else if (quantity.equals("Some")) {
+        } else if ("Some".equals(quantity)) {
             return 0.5;
-        } else if (quantity.equals("High")) {
+        } else if ("High".equals(quantity)) {
             return 0.75;
         } else {
             return 1;

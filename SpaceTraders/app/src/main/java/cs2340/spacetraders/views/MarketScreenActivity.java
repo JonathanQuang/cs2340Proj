@@ -49,6 +49,7 @@ public class MarketScreenActivity extends AppCompatActivity {
     private PlanetInventory planetInventory;
     private PlanetaryEvent event;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.market_screen);
@@ -86,6 +87,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         }
 
         menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MarketScreenActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);
@@ -133,6 +135,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         final Button BUY_BUTTON = buyButton;
         final Button SELL_BUTTON = sellButton;
         buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 marketScreenVM.setGood(GOOD);
                 onButtonShowBuyPopupWindowClick(view, BUY_BUTTON, SELL_BUTTON);
@@ -159,6 +162,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         final Inventory PLAYER_INVENTORY = playerInventory;
         final Button SELL_BUTTON = sellButton;
         sellButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 marketScreenVM.setGood(GOOD);
                 onButtonShowSellPopupWindowClick(view, SELL_BUTTON);
@@ -199,6 +203,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();
                 return true;
@@ -206,12 +211,14 @@ public class MarketScreenActivity extends AppCompatActivity {
         });
 
         cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 popupWindow.dismiss();
             }
         });
 
         purchase_button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 EditText numToBuy = popupView.findViewById(R.id.buy);
                 if (marketScreenVM.validQuantityToBuy(numToBuy.getText().toString())) {
@@ -262,12 +269,14 @@ public class MarketScreenActivity extends AppCompatActivity {
         });
 
         cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 popupWindow.dismiss();
             }
         });
 
         sell_button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 EditText numToBuy = popupView.findViewById(R.id.sell);
                 if (marketScreenVM.validQuantityToSell(numToBuy.getText().toString())) {

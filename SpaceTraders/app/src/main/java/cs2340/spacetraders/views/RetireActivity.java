@@ -10,6 +10,7 @@ import cs2340.spacetraders.R;
 
 public class RetireActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retire_screen);
@@ -17,6 +18,7 @@ public class RetireActivity extends AppCompatActivity {
         menuButton = findViewById(R.id.menuButton);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RetireActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);

@@ -4,26 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import cs2340.spacetraders.R;
-import cs2340.spacetraders.entity.Difficulty;
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Travel.Encounterable;
@@ -34,6 +23,9 @@ import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.EncounterScreenViewModel;
 
+/**
+ * Activity for encountering a character
+ */
 public class EncounterScreenActivity extends AppCompatActivity {
 
     private Context mContext;
@@ -52,6 +44,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
     private Player player;
     private int totalEncounters;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -70,6 +63,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             Button okButton = findViewById(R.id.encounterButton);
 
             okButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
                     Model.getDataStorage().setTotalEncounters(0);
@@ -93,6 +87,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             encounterInfo.setText(encounterScreenVM.encounterInfo(character));
 
             fleeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     action.setText("You tried to flee");
                     if (encounterScreenVM.pursueAction()) {
@@ -107,6 +102,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             });
 
             surrenderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     character.surrenderResult();
                     easyToast("You surrendered");
@@ -116,6 +112,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             });
 
             bribeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     easyToast("You" + character.uniqueAction() + "bribe the officer");
                     Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
@@ -124,6 +121,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             });
 
             attackButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     action.setText("You attack");
                     encounterScreenVM.playerAttack();
@@ -163,6 +161,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             encounterInfo.setText(encounterScreenVM.encounterInfo(character));
 
             fleeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     action.setText("You tried to flee");
                     if (encounterScreenVM.pursueAction()) {
@@ -177,6 +176,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             });
 
             surrenderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     character.surrenderResult();
                     easyToast("You surrendered");
@@ -186,6 +186,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             });
 
             attackButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     action.setText("You attack");
                     encounterScreenVM.playerAttack();
@@ -224,6 +225,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             encounterInfo.setText(encounterScreenVM.encounterInfo(character));
 
             fleeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     action.setText("You tried to flee");
                     if (encounterScreenVM.pursueAction()) {
@@ -238,6 +240,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             });
 
             surrenderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     character.surrenderResult();
                     easyToast("You surrendered");
@@ -247,6 +250,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             });
 
             tradeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     character.uniqueAction();
                     easyToast("You successfully traded");
@@ -256,6 +260,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             });
 
             attackButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
                     action.setText("You attack");
                     encounterScreenVM.playerAttack();

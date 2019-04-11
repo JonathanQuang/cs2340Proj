@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.ShipType;
 
 public class ShipMarketActivity extends AppCompatActivity {
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_market_screen);
@@ -40,6 +39,7 @@ public class ShipMarketActivity extends AppCompatActivity {
         setupShipButton(fireflyButton, ShipType.Firefly);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShipMarketActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);
@@ -49,6 +49,7 @@ public class ShipMarketActivity extends AppCompatActivity {
 
     private void setupShipButton(ImageButton button, final ShipType shipType) {
         button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShipMarketActivity.this, ShipDisplayActivity.class);
                 ShipDisplayActivity.setShipType(shipType);

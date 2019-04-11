@@ -1,59 +1,48 @@
 package cs2340.spacetraders.entity.Travel;
 
 import cs2340.spacetraders.entity.Inventory;
-import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
-import cs2340.spacetraders.entity.ShipType;
-import cs2340.spacetraders.entity.Travel.Encounterable;
 import cs2340.spacetraders.entity.Universe.Planet;
 
+/**
+ * Concrete implementation of a trader character
+ */
 public class Trader extends Encounterable {
 
-    private boolean hostile = false;
+    private boolean hostile;
 
     /**
-     *
+     * Default constructor
+     * @param planet Planet being traveled to
      */
     public Trader(Planet planet) {
-        super();
         if (hostile) {
-            super.setAttackChance(0.9);
-            super.setIgnoreChance(0);
+            setAttackChance(0.9);
+            setIgnoreChance(0);
         } else {
-            super.setAttackChance(0);
-            super.setIgnoreChance(0);
+            setAttackChance(0);
+            setIgnoreChance(0);
         }
     }
 
     /**
-     *
+     * Trades with the player
+     * @return String trade results
      */
     public String trade() {
         return null;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Ship getShip() {
         return super.getShip();
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
         return "Trader";
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String createDialogue() {
         if (getPlayer().getCriminalStatus()) {

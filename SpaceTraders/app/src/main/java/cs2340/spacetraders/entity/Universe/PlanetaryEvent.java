@@ -1,10 +1,10 @@
 package cs2340.spacetraders.entity.Universe;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
+/**
+ * Enum for a random event that occurs on a planet
+ */
 public enum PlanetaryEvent {
     Nothing("Nothing"),
     Drought("Drought"),
@@ -22,14 +22,23 @@ public enum PlanetaryEvent {
         this.increaseEvent = increaseEvent;
     }
 
+    /**
+     * Getter for the event
+     * @return increaseEvent
+     */
     public String getIncreaseEvent() {
         return increaseEvent;
     }
 
+    @Override
     public String toString() {
         return increaseEvent;
     }
 
+    /**
+     * Returns a random event from the enum
+     * @return a random PlanetaryEvent enum type
+     */
     public PlanetaryEvent randomEvent()  {
         return PlanetaryEvent.values()[RANDOM.nextInt(PlanetaryEvent.values().length)];
     }

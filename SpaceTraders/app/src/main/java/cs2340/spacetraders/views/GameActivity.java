@@ -9,6 +9,7 @@ import cs2340.spacetraders.viewmodels.DefaultGameViewModel;
 
 public class GameActivity extends AppCompatActivity {
     private DefaultGameViewModel viewModel;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);

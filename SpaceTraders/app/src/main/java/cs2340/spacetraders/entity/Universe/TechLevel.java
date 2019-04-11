@@ -1,5 +1,8 @@
 package cs2340.spacetraders.entity.Universe;
 
+/**
+ * Enum for possible tech levels of a planet
+ */
 public enum TechLevel {
     PreAgriculture("Pre-Agriculture"),
     Agriculture("Agriculture"),
@@ -18,6 +21,10 @@ public enum TechLevel {
         this.techLevel = techLevel;
     }
 
+    /**
+     * Getter for tech level
+     * @return techLevel
+     */
     public String getTechLevel() {
         return techLevel;
     }

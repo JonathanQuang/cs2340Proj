@@ -3,7 +3,6 @@ package cs2340.spacetraders.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,8 +17,6 @@ import java.io.ObjectOutputStream;
 import java.util.Base64;
 
 import cs2340.spacetraders.R;
-import cs2340.spacetraders.entity.Ship;
-import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.model.Model;
 
 public class MenuScreen extends AppCompatActivity {
@@ -32,6 +29,7 @@ public class MenuScreen extends AppCompatActivity {
     private Button planetMarketButton;
     private Button saveGameButton;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);
@@ -45,6 +43,7 @@ public class MenuScreen extends AppCompatActivity {
         saveGameButton = findViewById(R.id.saveGame);
 
         shipMarketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, ShipMarketActivity.class);
                 startActivityForResult(intent, 0);
@@ -52,6 +51,7 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         shipyardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, ShipyardActivity.class);
                 startActivityForResult(intent, 0);
@@ -59,6 +59,7 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         shipRepairButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, ShipRepairRefuelActivity.class);
                 startActivityForResult(intent, 0);
@@ -66,6 +67,7 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         hireCrewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, HireCrewActivity.class);
                 startActivityForResult(intent, 0);
@@ -73,6 +75,7 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         starMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, GalaxyMapActivity.class);
                 startActivityForResult(intent, 0);
@@ -81,6 +84,7 @@ public class MenuScreen extends AppCompatActivity {
 
 
         planetMarketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, MarketScreenActivity.class);
                 startActivityForResult(intent, 0);
@@ -88,12 +92,14 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         saveGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 saveState();
             }
         });
 
         retireButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, RetireActivity.class);
                 startActivityForResult(intent, 0);

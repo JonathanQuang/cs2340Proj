@@ -4,16 +4,14 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.Difficulty;
-import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.model.Model;
 
+/**
+ * Model for Configuration player screen
+ */
 public class ConfigurationViewModel extends AndroidViewModel {
 
     public final int STARTING_POINTS = 16; //16
@@ -34,6 +32,7 @@ public class ConfigurationViewModel extends AndroidViewModel {
      * @param traderStat the trader stats of the player
      * @param pilotStat the pilot stats of the player
      * @param difficulty the difficulty of the game
+     * @param pointsLeft the number of stat points left
      * @return if player was properly created
      */
     public boolean onOkay(String name, int engineerStat, int fighterStat, int traderStat,

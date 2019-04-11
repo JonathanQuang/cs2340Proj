@@ -29,7 +29,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
     private TextView gadgetSlotsText;
     private TextView crewQuartersText;
     private static ShipType shipTypeVar;
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_display);
@@ -53,6 +53,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
         setupShipInfo(shipTypeVar);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShipDisplayActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);
@@ -60,6 +61,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
         });
 
         buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 //buying mechanism
             }

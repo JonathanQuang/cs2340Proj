@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -41,13 +40,14 @@ public class ShipyardActivity extends AppCompatActivity {
 
     public ShipyardActivity() {
     }
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shipyard_screen);
 
         menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShipyardActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);
@@ -121,6 +121,7 @@ public class ShipyardActivity extends AppCompatActivity {
 
     private void attachWeaponBuyingEventListener(Button weaponBuyButton, final WeaponTypes WEAPON, final Button weaponSellButton) {
         weaponBuyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 String purchaseErrorString = shipyardVM.weaponBuyError(WEAPON);
                 if (purchaseErrorString == null) {
@@ -138,6 +139,7 @@ public class ShipyardActivity extends AppCompatActivity {
 
     private void attachWeaponInfoEventListener(Button modelWeaponInfoButton, final WeaponTypes WEAPON) {
         modelWeaponInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 updateInfo(WEAPON);
             }
@@ -169,6 +171,7 @@ public class ShipyardActivity extends AppCompatActivity {
 
     private void attachSellButtonEventListener(final Button MODEL_SELL_BUTTON, final WeaponTypes WEAPON) {
         MODEL_SELL_BUTTON.setOnClickListener(new View.OnClickListener(){
+            @Override
             public void onClick(View view) {
                 shipyardVM.sellWeapon(WEAPON);
                 if (!(shipyardVM.containsWeaponType(WEAPON))) {

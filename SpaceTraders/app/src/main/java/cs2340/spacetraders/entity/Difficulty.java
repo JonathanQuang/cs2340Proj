@@ -1,5 +1,8 @@
 package cs2340.spacetraders.entity;
 
+/**
+ * Enum for the difficulty of the game
+ */
 public enum Difficulty {
     Beginner("Beginner", 0.25),
     Easy("Easy", 0.5),
@@ -25,6 +28,10 @@ public enum Difficulty {
      */
     public String getDifficulty() { return difficulty; }
 
+    /**
+     * Returns the difficulty multiplier
+     * @return multiplier
+     */
     public double getMultipler() { return multiplier; }
 
 

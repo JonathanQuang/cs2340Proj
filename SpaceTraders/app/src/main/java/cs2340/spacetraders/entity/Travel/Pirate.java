@@ -1,19 +1,17 @@
 package cs2340.spacetraders.entity.Travel;
 
 import cs2340.spacetraders.entity.Inventory;
-import cs2340.spacetraders.entity.Market.Good;
-import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
-import cs2340.spacetraders.entity.ShipType;
-import cs2340.spacetraders.entity.Travel.Encounterable;
-import cs2340.spacetraders.entity.Universe.Planet;
 
+/**
+ * Concrete implementation of a Pirate Character
+ */
 public class Pirate extends Encounterable {
 
     private boolean hostile = true;
 
     /**
-     *
+     * Default constructor
      */
     public Pirate() {
         super();
@@ -22,7 +20,7 @@ public class Pirate extends Encounterable {
     }
 
     /**
-     *
+     * Steals a random item or credits from the player
      */
     public void steal() {
         Inventory inventory = getPlayer().getInventory();
@@ -33,19 +31,11 @@ public class Pirate extends Encounterable {
         }
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Ship getShip() {
         return super.getShip();
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String createDialogue() {
         return "Pirate: Hostile";
@@ -66,10 +56,6 @@ public class Pirate extends Encounterable {
         return null;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
         return "Pirate";

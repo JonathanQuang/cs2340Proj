@@ -1,7 +1,5 @@
 package cs2340.spacetraders.viewmodels;
 
-import android.util.Log;
-
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;

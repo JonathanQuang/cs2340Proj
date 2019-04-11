@@ -104,6 +104,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         makeCustomView(planet_button, imageID, size, planet.getRelativePosition());
 
         planet_button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 galaxyMapVM.setCurrentPlanet(planet);
                 onButtonShowPlanetInfoClick(v, planet);
@@ -128,6 +129,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         makeCustomView(wormhole_button, wormholeImg, 25, wormhole.getPosition());
 
         wormhole_button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 galaxyMapVM.setSelectedWormhole(wormhole);
                 onButtonShowWormHoleClick(v, wormhole);
@@ -170,6 +172,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();
                 return true;
@@ -179,6 +182,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         Button travelButton = popupView.findViewById(R.id.travelButton);
         if (!travel.getValidPlanets().contains(planet)){ travelButton.setEnabled(false); }
         travelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 if (travel.travel(planet) == 0) {
                     Intent intent = new Intent(GalaxyMapActivity.this, EncounterScreenActivity.class);
@@ -203,6 +207,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();
                 return true;
@@ -212,6 +217,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         Button warpButton = popupView.findViewById(R.id.warpButton);
         if (currentPlanet != wormhole.getShipportPlanet()){ warpButton.setEnabled(false); }
         warpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 travel.wormHoleTravel(wormhole.getConnectedWormhole().getShipportPlanet());
                 Intent intent = new Intent(GalaxyMapActivity.this, MarketScreenActivity.class);

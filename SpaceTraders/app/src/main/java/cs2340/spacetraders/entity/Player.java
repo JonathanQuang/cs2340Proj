@@ -36,12 +36,24 @@ public class Player implements Serializable {
         this.criminalStatus = false;
     }
 
+    /**
+     * Return the player's inventory
+     * @return the player's inventory
+     */
     public Inventory getInventory() {
         return inventory;
     }
 
+    /**
+     * Returns the player's credits
+     * @return player's credits
+     */
     public int getCredits() {return credits;}
 
+    /**
+     * Returns ship price
+     * @return ship's shipType price
+     */
     public int getShipTypePrice() {return ship.getShipTypePrice();}
 
     public void changeCredits(int changeNum) {credits += changeNum;}

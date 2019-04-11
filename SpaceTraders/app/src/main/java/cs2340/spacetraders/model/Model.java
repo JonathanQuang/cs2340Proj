@@ -3,10 +3,7 @@ package cs2340.spacetraders.model;
 import android.util.Log;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import cs2340.spacetraders.R;
@@ -14,8 +11,6 @@ import cs2340.spacetraders.entity.Difficulty;
 import cs2340.spacetraders.entity.Game;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Universe.Resources;
-
-import static cs2340.spacetraders.entity.Universe.Resources.DESERT;
 
 public class Model implements Serializable {
 

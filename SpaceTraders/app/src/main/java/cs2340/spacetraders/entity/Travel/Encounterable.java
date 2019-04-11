@@ -8,6 +8,9 @@ import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.model.Model;
 
+/**
+ * Abstract class for encounterable characters while traveling to planets
+ */
 public abstract class Encounterable {
 
     private Random random = new Random();
@@ -15,95 +18,126 @@ public abstract class Encounterable {
     private double difficultyMultiplier = game.getDifficulty().getMultipler();
     private double fleeChance = 0.05;
     private double pursueChance = 0.1;
-    private double ignoreChance, attackChance;
+    private double ignoreChance;
+    private double attackChance;
     private ShipType type = ShipType.Gnat;
     private Ship ship = new Ship(type.randomShipType());
     private Player player = Model.getInstance().getPlayer();
 
     /**
-     *
-     * @return
+     * Returns the character's ship
+     * @return ship
      */
     public Ship getShip(){
         return ship;
     }
 
     /**
-     *
-     * @return
+     * Returns what the character says upon encounter
+     * @return Resulting dialogue
      */
     public abstract String createDialogue();
 
     /**
-     *
-     * @return
+     * Action the character does after the player surrenders
      */
     public abstract void surrenderResult();
 
     /**
-     *
-     * @return
+     * Changes the character's hostile status and action probabilities
+     * @return hostile status
      */
     public abstract boolean setHostile();
 
     /**
-     *
-     * @return
+     * Performs the character's unique action such as trading
+     * @return the unique action
      */
     public abstract String uniqueAction();
 
     /**
-     *
-     * @return
+     * Character attacks player, player takes damage
+     * @param damage Character ship's attack
      */
     public void attack(double damage){
         player.takeDamage(damage * difficultyMultiplier);
     }
 
+    /**
+     * Player attacks character, character takes damage
+     * @param damage Player ship's attack
+     */
     public void takeDamage(double damage){
         ship.takeDamage(damage / difficultyMultiplier);
     }
 
+    /**
+     * Gets a random double used later for probabilities
+     * @return random double
+     */
     public double getRandom() {
         return random.nextDouble();
     }
 
     /**
-     *
-     * @return
+     * Getter for fleeChance
+     * @return fleeChance
      */
     public double getFleeChance() {
         return fleeChance;
     }
 
     /**
-     *
-     * @return
+     * Getter for pursueChance
+     * @return pursueChance
      */
     public double getPursueChance() {
         return pursueChance;
     }
 
+    /**
+     * Getter for ignoreChance
+     * @return ignoreChance
+     */
     public double getIgnoreChance() {
         return ignoreChance;
     }
 
+    /**
+     * Setter for ignoreChance
+     * @param ignoreChance chance character ignores player
+     */
     public void setIgnoreChance(double ignoreChance) {
         this.ignoreChance = ignoreChance;
     }
 
+    /**
+     * Getter for attackChance
+     * @return attackChance
+     */
     public double getAttackChance() {
         return attackChance;
     }
 
+    /**
+     * Setter for attackChance
+     * @param attackChance chance character attacks the player
+     */
     public void setAttackChance(double attackChance) {
         this.attackChance = attackChance;
     }
 
+    /**
+     * Upon killing a character, reward the player
+     */
     public void characterDestruction() {
         player.changeCredits((int) (500 * difficultyMultiplier));
     }
 
+    /**
+     * Getter for the current player
+     * @return player
+     */
     public Player getPlayer() {
         return player;
     }
