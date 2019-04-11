@@ -71,7 +71,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
 
             okButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(EncounterScreenActivity.this, MarketScreenActivity.class);
+                    Intent intent = new Intent(EncounterScreenActivity.this,
+                            MarketScreenActivity.class);
                     Model.getDataStorage().setTotalEncounters(0);
                     startActivityForResult(intent, 0);
                 }
@@ -100,7 +101,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                         playerInfo.setText(encounterScreenVM.playerInfo());
                     } else {
                         easyToast(encounterScreenVM.getAction());
-                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
                     }
                 }
@@ -110,7 +112,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     character.surrenderResult();
                     easyToast("You surrendered");
-                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    Intent intent = new Intent(EncounterScreenActivity.this,
+                            EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);
                 }
             });
@@ -118,7 +121,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
             bribeButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     easyToast("You" + character.uniqueAction() + "bribe the officer");
-                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    Intent intent = new Intent(EncounterScreenActivity.this,
+                            EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);
                 }
             });
@@ -134,12 +138,14 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     encounterType.setText(character.createDialogue());
                     if (encounterScreenVM.getCharacter().getShip().getHealth() <= 0) {
                         easyToast("You won the battle");
-                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
                     } else if (player.getHealth() <= 0) {
                         easyToast("You died");
                         //death
-                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
                     } else {
                         encounterScreenVM.characterAction();
@@ -170,7 +176,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                         playerInfo.setText(encounterScreenVM.playerInfo());
                     } else {
                         easyToast(encounterScreenVM.getAction());
-                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
                     }
                 }
@@ -180,7 +187,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     character.surrenderResult();
                     easyToast("You surrendered");
-                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    Intent intent = new Intent(EncounterScreenActivity.this,
+                            EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);
                 }
             });
@@ -194,12 +202,14 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     encounterInfo.setText(encounterScreenVM.encounterInfo(character));
                     if (encounterScreenVM.getCharacter().getShip().getHealth() <= 0) {
                         easyToast("You won the battle");
-                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
                     } else if (player.getHealth() <= 0) {
                         easyToast("You died");
                         //death
-                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
                     } else {
                         encounterScreenVM.characterAction();
@@ -231,7 +241,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                         playerInfo.setText(encounterScreenVM.playerInfo());
                     } else {
                         easyToast(encounterScreenVM.getAction());
-                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
                     }
                 }
@@ -241,7 +252,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     character.surrenderResult();
                     easyToast("You surrendered");
-                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    Intent intent = new Intent(EncounterScreenActivity.this,
+                            EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);
                 }
             });
@@ -250,7 +262,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     character.uniqueAction();
                     easyToast("You successfully traded");
-                    Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                    Intent intent = new Intent(EncounterScreenActivity.this,
+                            EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);
                 }
             });
@@ -266,12 +279,14 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     encounterType.setText(character.createDialogue());
                     if (encounterScreenVM.getCharacter().getShip().getHealth() <= 0) {
                         easyToast("You won the battle");
-                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
                     } else if (player.getHealth() <= 0) {
                         easyToast("You died");
                         //death
-                        Intent intent = new Intent(EncounterScreenActivity.this, EncounterScreenActivity.class);
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
                         startActivityForResult(intent, 0);
                     } else {
                         encounterScreenVM.characterAction();

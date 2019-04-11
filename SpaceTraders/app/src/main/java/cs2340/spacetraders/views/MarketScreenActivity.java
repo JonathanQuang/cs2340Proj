@@ -206,10 +206,12 @@ public class MarketScreenActivity extends AppCompatActivity {
      * @param buyButton buy button in consideration
      * @param sellButton sell button in consideration
      */
-    private void onButtonShowBuyPopupWindowClick(View view, final Button buyButton, final Button sellButton) {
+    private void onButtonShowBuyPopupWindowClick(View view,
+                                                 final Button buyButton, final Button sellButton) {
         mContext = getApplicationContext();
 
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)
+                mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.buy_popup, null);
         TextView buyTest = popupView.findViewById(R.id.buyButtonText);
         buyTest.setText(marketScreenVM.popUpBuyStr());
@@ -269,7 +271,8 @@ public class MarketScreenActivity extends AppCompatActivity {
     private void onButtonShowSellPopupWindowClick(View view, final Button sellButton) {
         mContext = getApplicationContext();
 
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)
+                mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.sell_popup, null);
         TextView buyTest = popupView.findViewById(R.id.sellButtonText);
         buyTest.setText(marketScreenVM.popUpSellStr());

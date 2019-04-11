@@ -1,14 +1,14 @@
 package cs2340.spacetraders.entity.Universe;
 
-import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
+/**
+ * A structure-r to hold planets and their relative position in the galaxy
+ */
 public class SolarSystem implements Serializable {
     private Planet[] planetList;
     private List<RelativePosition> planetPositions;
@@ -18,7 +18,15 @@ public class SolarSystem implements Serializable {
     private Galaxy parentGalaxy;
     private Random rand;
 
-    public SolarSystem(CelestialName name, RelativePosition center, int planetNum, String size, Galaxy parentGalaxy) {
+    /**
+     * @param name the name of the solar system
+     * @param center the center of the solar system
+     * @param planetNum the number of planet in the solar system
+     * @param size the size of the solar system
+     * @param parentGalaxy the parent galaxy of the solar system
+     */
+    public SolarSystem(CelestialName name, RelativePosition center,
+                       int planetNum, String size, Galaxy parentGalaxy) {
         this.name = name;
         this.center = center;
         this.size = size;
@@ -46,7 +54,8 @@ public class SolarSystem implements Serializable {
         CelestialName celestialName = parentGalaxy.getNonRepeatedCelestialName();
         TechLevel techLevel = TechLevel.values()[rand.nextInt(TechLevel.values().length)];
         Resources resources = Resources.values()[rand.nextInt(Resources.values().length)];
-        PoliticalSystem politicalSystem = PoliticalSystem.values()[rand.nextInt(PoliticalSystem.values().length)];
+        PoliticalSystem politicalSystem =
+                PoliticalSystem.values()[rand.nextInt(PoliticalSystem.values().length)];
         RelativePosition point = getValidUnusedPoint();
         String size = getPlanetSize();
         parentGalaxy.getGalaxyMap()[point.getY()][point.getX()] = "*";
@@ -61,14 +70,19 @@ public class SolarSystem implements Serializable {
     public RelativePosition getValidUnusedPoint() {
         RelativePosition point;
         do {
-            int x = rand.nextInt(2 * center.getRectRadius() + 1) + center.getX() - center.getRectRadius();
-            int y = rand.nextInt(2 * center.getRectRadius() + 1) + center.getY() - center.getRectRadius();
+            int x = rand.nextInt(2 * center.getRectRadius() + 1)
+                    + center.getX() - center.getRectRadius();
+            int y = rand.nextInt(2 * center.getRectRadius() + 1)
+                    + center.getY() - center.getRectRadius();
             point = new RelativePosition(x, y);
         } while (planetPositions.contains(point));
         planetPositions.add(point);
         return point;
     }
 
+    /**
+     * @return a random string representation of a planet
+     */
     private String getPlanetSize() {
         int size = rand.nextInt(3);
         if (size == 0) {return "Small"; }
@@ -76,14 +90,16 @@ public class SolarSystem implements Serializable {
         else { return "Large"; }
     }
 
-    public String getSize() {
-        return size;
-    }
-
+    /**
+     * @return a list of the planet in the system
+     */
     public Planet[] getPlanetList() {
         return planetList;
     }
 
+    /**
+     * @return the center of the solar system
+     */
     public RelativePosition getCenter() {
         return center;
     }

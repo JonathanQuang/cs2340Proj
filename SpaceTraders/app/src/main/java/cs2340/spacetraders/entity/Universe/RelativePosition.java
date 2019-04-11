@@ -2,12 +2,20 @@ package cs2340.spacetraders.entity.Universe;
 
 import java.io.Serializable;
 
+/**
+ * Holds the specific of the square of influence of a celestial body
+ */
 public class RelativePosition implements Serializable {
     private int x;
     private int y;
     private int rectRadius;
     private boolean compareWithOverlap;
 
+    /**
+     * default radius to 0
+     * @param x the x-position of the system's center
+     * @param y the y-position of the system's center
+     */
     public RelativePosition(int x, int y) {
         this(x, y, 0);
     }
@@ -22,6 +30,12 @@ public class RelativePosition implements Serializable {
         this(x, y, rectRadius, false);
     }
 
+    /**
+     * @param x the x-position of the system's center
+     * @param y the y-position of the system's center
+     * @param rectRadius the rectangular radius around the system's center
+     * @param compareWithOverlap see if the areas can overlap
+     */
     public RelativePosition(int x, int y, int rectRadius, boolean compareWithOverlap) {
         this.x = x;
         this.y = y;
@@ -84,18 +98,30 @@ public class RelativePosition implements Serializable {
         }
     }
 
+    /**
+     * @return the string representation of the position
+     */
     public String toString() {
         return "Pos(" + x + ", " + y + ")";
     }
 
+    /**
+     * @return the x-position of the system's center
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * @return the y-position of the system's center
+     */
     public int getY() {
         return y;
     }
 
+    /**
+     * @return rectRadius the rectangular radius around the system's center
+     */
     public int getRectRadius() {
         return rectRadius;
     }
