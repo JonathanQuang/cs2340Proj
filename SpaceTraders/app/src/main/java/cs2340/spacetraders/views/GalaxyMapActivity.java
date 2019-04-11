@@ -65,7 +65,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 placePlanet(planet, planetButtonIDs[i]);
                 if (planet.equals(currentPlanet)) {
                     Button curr_planet_button = findViewById(planetButtonIDs[i]);
-                    curr_planet_button.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.white_l));
+                    curr_planet_button.setBackground(ContextCompat.getDrawable(
+                            getApplicationContext(), R.drawable.white_l));
                 }
             } else { findViewById(planetButtonIDs[i]).setVisibility(View.GONE); }
         }
@@ -194,7 +195,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
      * @param planet the planet in consideration
      */
     private void onButtonShowPlanetInfoClick(View view, final Planet planet) {
-        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)
+                getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.planet_info_popup, null);
 
         TextView textView = popupView.findViewById(R.id.planetText);
@@ -219,7 +221,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
         travelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (travel.travel(planet) == 0) {
-                    Intent intent = new Intent(GalaxyMapActivity.this, MarketScreenActivity.class);
+                    Intent intent = new Intent(GalaxyMapActivity.this,
+                            EncounterScreenActivity.class);
                     startActivityForResult(intent,0);
                 }
             }
@@ -232,7 +235,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
      * @param wormhole the wormhole in consideration
      */
     private void onButtonShowWormHoleClick(View view, final Wormhole wormhole) {
-        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)
+                getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.wormhole_popup, null);
 
         TextView textView = popupView.findViewById(R.id.wormholeText);

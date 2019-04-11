@@ -9,8 +9,12 @@ import java.util.Map;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
 import cs2340.spacetraders.model.Model;
 
+/**
+ * Allows the player to travel between planets
+ */
 public class Travel implements Serializable {
 
     private int FUEL_PER_UNIT_MOVED = 10;
@@ -19,23 +23,31 @@ public class Travel implements Serializable {
     private List<Planet> validPlanets;
     private Map<Planet, Integer> planetDistances;
     private Planet maxValidPlanetAway;
+    private PlanetaryEvent randomEvent;
 
+    /**
+     * @param player the main player
+     * @param currentPlanet the current player in the galaxy
+     */
     public Travel(Player player, Planet currentPlanet) {
         this.player = player;
         this.currentPlanet = currentPlanet;
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
+        randomEvent = this.currentPlanet.getPlanetaryEvent();
         findValidPlanets();
     }
 
+    /**
+     * @param planet the planet being tested if can travel to
+     * @return if the player has enough fuel to travel to that planet
+     */
     public boolean canTravelTo(Planet planet) {
         return validPlanets.contains(planet);
     }
 
     /**
-     * Travel to desired planet if it is a valid planet.
-     * (Maybe have to recalculate validPlanets if you can buy more fuel)
-     *
+     * Travel to desired planet if it is a valid planet
      * @param planet the planet you want to travel to
      * @return if successfully traveled to that planet (0 if success)
      */
@@ -46,8 +58,6 @@ public class Travel implements Serializable {
             int dist = planetDistances.get(planet);
             int fuelUsed = dist * FUEL_PER_UNIT_MOVED;
             ship.setFuel(fuel - fuelUsed);
-            System.out.println("ship.getFuel() = " + ship.getFuel());
-            //RUN_ENCOUNTERABLE()
             currentPlanet = planet;
             findValidPlanets();
             Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
@@ -56,12 +66,18 @@ public class Travel implements Serializable {
         return 1;
     }
 
+    /**
+     * @param planet the plant being traveled to with wormhole
+     */
     public void wormHoleTravel(Planet planet) {
         currentPlanet = planet;
         findValidPlanets();
         Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
     }
 
+    /**
+     * Find all the valid planets in fuel range
+     */
     private void findValidPlanets() {
         validPlanets.clear();
         planetDistances.clear();
@@ -83,19 +99,17 @@ public class Travel implements Serializable {
         }
     }
 
+    /**
+     * @return the radius of travel determined by how much fuel the player has
+     */
     public int radiusOfTravel() {
         return player.getShip().getFuel() / FUEL_PER_UNIT_MOVED;
     }
 
+    /**
+     * @return get a List of the valid planets
+     */
     public List<Planet> getValidPlanets() {
         return validPlanets;
-    }
-
-    public Planet getMaxValidPlanetAway() {
-        return maxValidPlanetAway;
-    }
-
-    public Map<Planet, Integer> getPlanetDistances() {
-        return planetDistances;
     }
 }
