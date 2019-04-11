@@ -1,15 +1,18 @@
 package cs2340.spacetraders.entity;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import cs2340.spacetraders.entity.Market.Good;
 
-public class Inventory {
+public class Inventory implements Serializable {
     private Map<Good, Integer> inventoryGoodCount;
     private Map<Good, Double> averagePurchasePrice;
     private int currCapacity;
     private int maxCapacity;
+    private boolean containsIllegalGoods = false;
 
     /**
      * Constructor
@@ -46,6 +49,10 @@ public class Inventory {
      */
     public int getCapacity() {
         return currCapacity;
+    }
+
+    public boolean containsIllegalGoods() {
+        return containsIllegalGoods;
     }
 
     public int getGoodAmount(Good good) {
@@ -86,5 +93,13 @@ public class Inventory {
     public void removeGood(Good good, int amount) {
         currCapacity -= amount;
         inventoryGoodCount.put(good, getGoodAmount(good) - amount);
+    }
+
+    public void removeRandomGood() {
+        Random random = new Random();
+        int ordinal = random.nextInt(inventoryGoodCount.size());
+        Good good = Good.values()[ordinal];
+        currCapacity -= getGoodAmount(good);
+        inventoryGoodCount.put(good, 0);
     }
 }

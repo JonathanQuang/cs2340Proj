@@ -1,18 +1,32 @@
 package cs2340.spacetraders.entity.Travel;
 
+import java.util.Random;
+
+import cs2340.spacetraders.entity.Game;
+import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
+import cs2340.spacetraders.entity.ShipType;
+import cs2340.spacetraders.model.Model;
 
 public abstract class Encounterable {
 
-    private double fleeChance = 0.25;
-    private double pursueChance = 0.5;
-    private double surrenderChance = 0.75;
+    private Random random = new Random();
+    private Game game = Model.getInstance().getGame();
+    private double difficultyMultiplier = game.getDifficulty().getMultipler();
+    private double fleeChance = 0.05;
+    private double pursueChance = 0.1;
+    private double ignoreChance, attackChance;
+    private ShipType type = ShipType.Gnat;
+    private Ship ship = new Ship(type.randomShipType());
+    private Player player = Model.getInstance().getPlayer();
 
     /**
      *
      * @return
      */
-    public abstract Ship getShip();
+    public Ship getShip(){
+        return ship;
+    }
 
     /**
      *
@@ -24,7 +38,35 @@ public abstract class Encounterable {
      *
      * @return
      */
-    public abstract int attack();
+    public abstract void surrenderResult();
+
+    /**
+     *
+     * @return
+     */
+    public abstract boolean setHostile();
+
+    /**
+     *
+     * @return
+     */
+    public abstract String uniqueAction();
+
+    /**
+     *
+     * @return
+     */
+    public void attack(double damage){
+        player.takeDamage(damage * difficultyMultiplier);
+    }
+
+    public void takeDamage(double damage){
+        ship.takeDamage(damage / difficultyMultiplier);
+    }
+
+    public double getRandom() {
+        return random.nextDouble();
+    }
 
     /**
      *
@@ -42,11 +84,28 @@ public abstract class Encounterable {
         return pursueChance;
     }
 
-    /**
-     *
-     * @return
-     */
-    public double getSurrenderChance() {
-        return surrenderChance;
+    public double getIgnoreChance() {
+        return ignoreChance;
     }
+
+    public void setIgnoreChance(double ignoreChance) {
+        this.ignoreChance = ignoreChance;
+    }
+
+    public double getAttackChance() {
+        return attackChance;
+    }
+
+    public void setAttackChance(double attackChance) {
+        this.attackChance = attackChance;
+    }
+
+    public void characterDestruction() {
+        player.changeCredits((int) (500 * difficultyMultiplier));
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
 }

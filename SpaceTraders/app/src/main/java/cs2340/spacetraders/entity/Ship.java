@@ -2,14 +2,17 @@ package cs2340.spacetraders.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
+import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
 
-public class Ship {
+public class Ship implements  Serializable{
 
     private ShipType shipType;
     private double health;
     private int fuel;
+    private double damage;
     private List<WeaponTypes> equippedWeapons;
 
     /**
@@ -19,6 +22,7 @@ public class Ship {
     public Ship(ShipType shipType){
         this.shipType = shipType;
         this.health = (double) shipType.getMaxHealth();
+        this.damage = shipType.getDefaultDamage();
         this.fuel = shipType.getMaxFuel();
         this.equippedWeapons = new ArrayList<WeaponTypes>();
     }
@@ -49,6 +53,10 @@ public class Ship {
         this.health = health;
     }
 
+    public void takeDamage(double damage) {this.health -= damage;}
+
+    public double getDamage() {return this.damage;}
+
     public int getFuel() {
         return fuel;
     }
@@ -78,6 +86,7 @@ public class Ship {
      * @return  this ship's string representation
      */
     public String toString() {
-        return "(Type) " + shipType;
+        return "(Type) " + shipType + ", Health: " + health + " , Fuel: " + fuel;
     }
 }
+

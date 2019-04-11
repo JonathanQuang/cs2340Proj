@@ -40,7 +40,7 @@ public enum PoliticalSystem {
 
     }
 
-    public String getPirateQuantiy() {
+    public String getPirateQuantity() {
         return pirateQuantity;
     }
 
@@ -52,11 +52,25 @@ public enum PoliticalSystem {
         return tradersQuantity;
     }
 
-    public String getPoliceBriberyAcceptence() {
+    public String getPoliceBriberyAcceptance() {
         return policeBriberyAcceptance;
     }
 
-    public String getPoliceSmugglingAcceptence() {
+    public String getPoliceSmugglingAcceptance() {
         return policeSmugglingAcceptance;
+    }
+
+    public static double determineProbability(String quantity) {
+        if (quantity.equals("None")) {
+            return 0;
+        } else if (quantity.equals("Low")) {
+            return 0.25;
+        } else if (quantity.equals("Some")) {
+            return 0.5;
+        } else if (quantity.equals("High")) {
+            return 0.75;
+        } else {
+            return 1;
+        }
     }
 }

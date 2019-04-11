@@ -1,5 +1,6 @@
 package cs2340.spacetraders.entity.Travel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,9 +9,10 @@ import java.util.Map;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
 import cs2340.spacetraders.model.Model;
 
-public class Travel {
+public class Travel implements Serializable {
 
     private int FUEL_PER_UNIT_MOVED = 10;
     private Player player;
@@ -18,12 +20,14 @@ public class Travel {
     private List<Planet> validPlanets;
     private Map<Planet, Integer> planetDistances;
     private Planet maxValidPlanetAway;
+    private PlanetaryEvent randomEvent;
 
     public Travel(Player player, Planet currentPlanet) {
         this.player = player;
         this.currentPlanet = currentPlanet;
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
+        randomEvent = this.currentPlanet.getPlanetaryEvent();
         findValidPlanets();
     }
 
@@ -45,7 +49,7 @@ public class Travel {
             int dist = planetDistances.get(planet);
             int fuelUsed = dist * FUEL_PER_UNIT_MOVED;
             ship.setFuel(fuel - fuelUsed);
-//            System.out.println("(fuel-fuelUsed) = " + (fuel-fuelUsed));
+            System.out.println("ship.getFuel() = " + ship.getFuel());
             //RUN_ENCOUNTERABLE()
             currentPlanet = planet;
             findValidPlanets();
@@ -53,6 +57,12 @@ public class Travel {
             return 0;
         }
         return 1;
+    }
+
+    public void wormHoleTravel(Planet planet) {
+        currentPlanet = planet;
+        findValidPlanets();
+        Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
     }
 
     private void findValidPlanets() {
@@ -90,5 +100,9 @@ public class Travel {
 
     public Map<Planet, Integer> getPlanetDistances() {
         return planetDistances;
+    }
+
+    public PlanetaryEvent getPlanetaryEvent() {
+        return randomEvent;
     }
 }

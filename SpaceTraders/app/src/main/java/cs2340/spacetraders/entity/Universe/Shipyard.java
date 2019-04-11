@@ -1,12 +1,16 @@
+
 package cs2340.spacetraders.entity.Universe;
 
 import java.util.List;
-
+import java.io.Serializable;
+import java.util.Map;
+import java.util.HashMap;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
+import cs2340.spacetraders.entity.ShipType;
 
-public class Shipyard {
+public class Shipyard implements  Serializable{
 
     private Ship playerShip;
     private Player player;
@@ -32,3 +36,4 @@ public class Shipyard {
 
 
 }
+

@@ -2,13 +2,14 @@ package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class SolarSystem {
+public class SolarSystem implements Serializable {
     private Planet[] planetList;
     private List<RelativePosition> planetPositions;
     private CelestialName name;
@@ -29,7 +30,7 @@ public class SolarSystem {
         planetList = new Planet[planetNum];
         for (int i = 0; i < planetList.length; i++) {
             planetList[i] = makePlanet(i);
-            Log.d("Planet ", planetList[i].toString());
+//            Log.d("Planet ", planetList[i].toString());
             parentGalaxy.getPlanetNameMap().put(planetList[i].getName().toString(), planetList[i]);
         }
 
@@ -70,11 +71,9 @@ public class SolarSystem {
 
     private String getPlanetSize() {
         int size = rand.nextInt(3);
-        String sizeStr = "";
-        if (size == 0) {sizeStr = "Small"; }
-        else if (size == 1) { sizeStr = "Medium"; }
-        else if (size == 2) { sizeStr = "Large"; }
-        return sizeStr;
+        if (size == 0) {return "Small"; }
+        else if (size == 1) { return"Medium"; }
+        else { return "Large"; }
     }
 
     public String getSize() {

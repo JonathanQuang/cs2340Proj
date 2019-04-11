@@ -1,66 +1,64 @@
 package cs2340.spacetraders.entity.Universe;
 
-public class Wormhole {
+import java.io.Serializable;
+import java.util.List;
+
+import cs2340.spacetraders.model.Model;
+
+public class Wormhole implements Serializable {
+    private Galaxy galaxy;
     private Wormhole connectedWormhole;
     private RelativePosition position;
-    private int id;
-    private static int idCounter;
+    private Planet shipportPlanet;
 
-    /**
-     * Constructor for wormhole given to integers representing position
-     *
-     * @param thisHoleX x coordinate of wormhole
-     * @param thisHoleY y coordinate of wormhole
-     */
-    public Wormhole(int thisHoleX, int thisHoleY) {
-        position = new RelativePosition(thisHoleX,thisHoleY);
-        id = ++idCounter;
-    }
 
     /**
      * Constructor for wormhole given Relative Position Object
      *
-     * @param pos RelativePosition object to represent where the wormhole is
+     * @param position RelativePosition object to represent where the wormhole is
      */
-    public Wormhole(RelativePosition pos) {
-        this(pos.getX(), pos.getY());
+    public Wormhole(Galaxy galaxy, RelativePosition position) {
+        this.galaxy = galaxy;
+        this.position = position;
+        findSpacePort();
     }
 
-    /**
-     * Given wormhole A and wormhole B (called routeToHere)
-     * A's connectedWormhole pointer is set to B
-     *
-     * @param routeToHere Wormhole to route to
-     */
-    private void setConnectingWormhole(Wormhole routeToHere) {
-        this.connectedWormhole = routeToHere;
+    private void findSpacePort() {
+        List<Planet> planetList = galaxy.getPlanetList();
+        Planet closestPlanet = planetList.get(0);
+        double min = Integer.MAX_VALUE;
+
+        for (Planet otherPlanet: planetList) {
+            double dist = getDistance(otherPlanet);
+            if (dist < min && !otherPlanet.isSpacePort()) {
+                min = dist;
+                closestPlanet = otherPlanet;
+            }
+        }
+
+        closestPlanet.makeSpaceport(this);
+        shipportPlanet = closestPlanet;
+    }
+
+    private double getDistance(Planet otherPlanet) {
+        return  Math.sqrt(
+                Math.pow(position.getX() - otherPlanet.getRelativePosition().getX(), 2)
+                + Math.pow(position.getY() - otherPlanet.getRelativePosition().getY(), 2));
     }
 
     /**
      * Given wormhole A and B
      * A's womrhole pointer points to B, and B's pointer will point to A
      *
-     * @param routeToHere the second wormhole to join the two wormholes
+     * @param otherWormHole the second wormhole to join the two wormholes
      */
-    public void joinWormholes(Wormhole routeToHere) {
-        this.connectedWormhole = routeToHere;
-        routeToHere.setConnectingWormhole(this);
+    public void joinWormholes(Wormhole otherWormHole) {
+        this.connectedWormhole = otherWormHole;
+        otherWormHole.connectedWormhole = this;
     }
 
-    /**
-     *
-     * @return this wormhole's x position
-     */
-    public int getX() {
-        return position.getX();
-    }
-
-    /**
-     *
-     * @return this wormhole's y position
-     */
-    public int getY() {
-        return position.getY();
+    public RelativePosition getPosition() {
+        return position;
     }
 
     @Override
@@ -85,5 +83,13 @@ public class Wormhole {
             return retStr + " but not connected to another wormhole";
         }
         return retStr + " connected to a wormhole located at " + connectedWormhole.position;
+    }
+
+    public Planet getShipportPlanet() {
+        return shipportPlanet;
+    }
+
+    public Wormhole getConnectedWormhole() {
+        return connectedWormhole;
     }
 }

@@ -1,8 +1,10 @@
 package cs2340.spacetraders.entity;
 
-public class Player {
+import java.io.Serializable;
 
-    private final int  initialCredits = 1000000;
+public class Player implements Serializable {
+
+    private final int  initialCredits = 1000;
 
     private String name;
     private int engineerStat;
@@ -12,6 +14,7 @@ public class Player {
     private int credits;
     private Ship ship;
     private Inventory inventory;
+    private boolean criminalStatus;
 
     /**
      * Makes a player with name, stats, and ship
@@ -30,6 +33,7 @@ public class Player {
         this.credits = initialCredits;
         this.ship = new Ship();
         this.inventory = new Inventory(ship.getCargoCapacity());
+        this.criminalStatus = false;
     }
 
     public Inventory getInventory() {
@@ -64,9 +68,27 @@ public class Player {
         return retStr;
     }
 
+    public void setCriminalStatus(boolean status) {
+        criminalStatus = status;
+    }
 
+    public boolean getCriminalStatus() {
+        return criminalStatus;
+    }
+
+    public void death() {
+
+    }
 
     public Ship getShip() {
         return ship;
+    }
+
+    public void takeDamage(double damage) {
+        ship.takeDamage(damage);
+    }
+
+    public double getHealth() {
+        return ship.getHealth();
     }
 }

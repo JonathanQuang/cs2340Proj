@@ -26,6 +26,7 @@ import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 import cs2340.spacetraders.entity.Universe.Planet;
+import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.MarketScreenViewModel;
 
@@ -46,6 +47,7 @@ public class MarketScreenActivity extends AppCompatActivity {
     private FloatingActionButton menuButton;
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
+    private PlanetaryEvent event;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         planetNametext.setText(currentPlanet.getName().toString());
         marketScreenVM = new MarketScreenViewModel(planetInventory, playerInventory);
         marketScreenVM.setPlayer(Model.getInstance().getPlayer());
+        event = currentPlanet.getPlanetaryEvent();
 
         int type = Model.getInstance().getPlanetImageIDs().get(currentPlanet.getResources());
         ImageView planetImage = (ImageView) findViewById(R.id.planetImage);
@@ -77,6 +80,11 @@ public class MarketScreenActivity extends AppCompatActivity {
             table.addView(generateTableRow(good));
         }
         table.removeView(table.getChildAt(1));
+
+        if (event != PlanetaryEvent.Nothing) {
+            easyToast("This planet is currently experiencing " + event.toString());
+        }
+
         menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MarketScreenActivity.this, MenuScreen.class);

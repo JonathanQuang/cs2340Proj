@@ -1,10 +1,11 @@
 package cs2340.spacetraders.entity.Market;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class PlanetInventory {
+public class PlanetInventory implements Serializable {
     private Map<Good, Integer> goodsBuyPrices;
     private Map<Good, Integer> goodsSellPrices;
     private Map<Good, Integer> goodsCount;

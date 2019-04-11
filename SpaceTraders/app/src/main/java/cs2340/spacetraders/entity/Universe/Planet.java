@@ -2,10 +2,12 @@ package cs2340.spacetraders.entity.Universe;
 
 import android.util.Log;
 
+import java.util.Random;
+import java.io.Serializable;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 
-public class Planet {
+public class Planet implements Serializable {
     private CelestialName name;
     private TechLevel techLevel;
     private Resources resources;
@@ -13,12 +15,17 @@ public class Planet {
     private RelativePosition relativePosition;
     private String size;
     private String policeQuantity;
-    private String pirateQuantit;
+    private String traderQuantity;
+    private String pirateQuantity;
+    private String policeBriberyAcceptance;
+    private String policeSmugglingAcceptance;
     private boolean isSpacePort;
     private PlanetInventory inventory;
     private PlanetaryEvent event;
     private double tradersReturnRate;
     private SolarSystem parentSolarSystem;
+    private final Random RANDOM = new Random();
+    private Wormhole connectWormHole;
 
     public Planet(CelestialName name, TechLevel techLevel, Resources resources,
                   PoliticalSystem politicalSystem, RelativePosition relativePosition,
@@ -29,18 +36,30 @@ public class Planet {
         this.politicalSystem = politicalSystem;
         this.relativePosition = relativePosition;
         this.size = size;
+        this.policeQuantity = politicalSystem.getPoliceQuantity();
+        this.pirateQuantity = politicalSystem.getPirateQuantity();
+        this.traderQuantity = politicalSystem.getTradersQuantity();
+        this.policeBriberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
+        this.policeSmugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
         this.parentSolarSystem = parentSolarSystem;
         inventory = new PlanetInventory();
-
         event = PlanetaryEvent.Nothing;
+
+        if (RANDOM.nextDouble() > 0.8) {
+            while (event == null || event == PlanetaryEvent.Nothing) {
+                event = event.randomEvent();
+            }
+        }
+        Log.d("Mark", "Random Event");
         tradersReturnRate = .10;
 
         makePlanetInventory();
-//        Log.d("Mark", "Inverntory Made");
+        Log.d("Mark", "Inverntory Made");
     }
 
-    public void makeSpaceport() {
+    public void makeSpaceport(Wormhole wormhole) {
         isSpacePort = true;
+        connectWormHole = wormhole;
     }
 
     public CelestialName getName() {
@@ -67,12 +86,28 @@ public class Planet {
         return size;
     }
 
+    public PlanetaryEvent getPlanetaryEvent() {
+        return event;
+    }
+
     public String getPoliceQuantity() {
         return policeQuantity;
     }
 
-    public String getPirateQuantit() {
-        return pirateQuantit;
+    public String getPirateQuantity() {
+        return pirateQuantity;
+    }
+
+    public String getTraderQuantity() {
+        return traderQuantity;
+    }
+
+    public String getPoliceBriberyAcceptance() {
+        return policeBriberyAcceptance;
+    }
+
+    public String getPoliceSmugglingAcceptance() {
+        return policeSmugglingAcceptance;
     }
 
     public boolean isSpacePort() {
