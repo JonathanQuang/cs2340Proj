@@ -34,6 +34,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
      * called when the player is viewing a particular ship
      * @param savedInstanceState the saved state
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_display);
@@ -57,6 +58,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
         setupShipInfo(shipTypeVar);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShipDisplayActivity.this, MenuScreen.class);
                 startActivityForResult(intent, 0);
@@ -64,6 +66,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
         });
 
         buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 //buying mechanism
             }
@@ -99,7 +102,8 @@ public class ShipDisplayActivity extends AppCompatActivity {
      * @return the images
      */
     private int [] getShipDrawables() {
-        return new int[]{R.drawable.gnat_l, R.drawable.flea_l, R.drawable.beetle_l, R.drawable.firefly_l,
+        return new int[]{R.drawable.gnat_l, R.drawable.flea_l, R.drawable.beetle_l,
+                         R.drawable.firefly_l,
                          R.drawable.bumblebee_l, R.drawable.grasshopper_l, R.drawable.hornet_l,
                          R.drawable.mosquito_l, R.drawable.termite_l};
     }

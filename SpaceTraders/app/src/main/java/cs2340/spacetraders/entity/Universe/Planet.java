@@ -59,7 +59,7 @@ public class Planet implements Serializable {
         event = PlanetaryEvent.Nothing;
 
         if (RANDOM.nextDouble() > 0.8) {
-            while (event == null || event == PlanetaryEvent.Nothing) {
+            while ((event == null) || (event == PlanetaryEvent.Nothing)) {
                 event = event.randomEvent();
             }
         }
@@ -181,6 +181,7 @@ public class Planet implements Serializable {
     /**
      * @return the string representation of the planet
      */
+    @Override
     public String toString() {
         return name.getName() + " is a " + size  + " planet at " + relativePosition
                 + " with a " + techLevel + " " + politicalSystem + " possessing a "
@@ -220,8 +221,8 @@ public class Planet implements Serializable {
      * @return the size representation of the planet
      */
     public int getSizeAsInt() {
-        if (size.equals("Small")) {return 0;}
-        if (size.equals("Medium")) {return 1;}
+        if ("Small".equals(size)) {return 0;}
+        if ("Medium".equals(size)) {return 1;}
         else {return 2;}
     }
 

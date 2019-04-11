@@ -33,6 +33,7 @@ public class MenuScreen extends AppCompatActivity {
      * called when menu screen is viewed
      * @param savedInstanceState the saved instance
      */
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);
@@ -46,6 +47,7 @@ public class MenuScreen extends AppCompatActivity {
         saveGameButton = findViewById(R.id.saveGame);
 
         shipMarketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, ShipMarketActivity.class);
                 startActivityForResult(intent, 0);
@@ -53,6 +55,7 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         shipyardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, ShipyardActivity.class);
                 startActivityForResult(intent, 0);
@@ -60,6 +63,7 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         shipRepairButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, ShipRepairRefuelActivity.class);
                 startActivityForResult(intent, 0);
@@ -67,6 +71,7 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         hireCrewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, HireCrewActivity.class);
                 startActivityForResult(intent, 0);
@@ -74,6 +79,7 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         starMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, GalaxyMapActivity.class);
                 startActivityForResult(intent, 0);
@@ -82,6 +88,7 @@ public class MenuScreen extends AppCompatActivity {
 
 
         planetMarketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, MarketScreenActivity.class);
                 startActivityForResult(intent, 0);
@@ -89,12 +96,14 @@ public class MenuScreen extends AppCompatActivity {
         });
 
         saveGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 saveState();
             }
         });
 
         retireButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuScreen.this, RetireActivity.class);
                 startActivityForResult(intent, 0);
@@ -118,7 +127,8 @@ public class MenuScreen extends AppCompatActivity {
             Toast.makeText(getApplication(), "Saved Game", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(getApplication(), "Error Reading from Database", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplication(), "Error Reading from Database",
+                    Toast.LENGTH_LONG).show();
         }
         String msg = Base64.getEncoder().encodeToString(bos.toByteArray());
         myRef.setValue(msg);

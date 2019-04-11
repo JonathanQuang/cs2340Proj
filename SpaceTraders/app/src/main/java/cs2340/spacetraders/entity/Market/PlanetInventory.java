@@ -35,13 +35,13 @@ public class PlanetInventory implements Serializable {
      */
     public void addToPlanetInventory(Good good, int buyPrice, int sellPrice, int count,
                                      boolean canBuy, boolean canSell) {
-        if (canBuy && buyPrice > 0) {
+        if ((canBuy) && (buyPrice > 0)) {
             goodsBuyPrices.put(good, buyPrice);
             goodsCanBuy.put(good, true);
             goodsCount.put(good, count);
         }
 
-        if (canSell && sellPrice > 0) {
+        if ((canSell) && (sellPrice > 0)) {
             goodsSellPrices.put(good, sellPrice);
             goodsCanSell.put(good, true);
         }
@@ -100,7 +100,7 @@ public class PlanetInventory implements Serializable {
      * @param good the good being purchased
      */
     public void purchaseGood(Good good) {
-        if (goodsCount.get(good) != null && goodsCount.get(good) != 0) {
+        if ((goodsCount.get(good) != null) && (goodsCount.get(good) != 0)) {
             int count = goodsCount.get(good) - 1;
             goodsCount.put(good, count);
             if(count == 0) {
@@ -114,7 +114,7 @@ public class PlanetInventory implements Serializable {
      * @param amountToRemove the amount of the good being bought
      */
     public void purchaseGood(Good good, int amountToRemove) {
-        if (goodsCount.get(good) != null && goodsCount.get(good) != 0) {
+        if ((goodsCount.get(good) != null) && (goodsCount.get(good) != 0)) {
             int count = goodsCount.get(good) - amountToRemove;
             goodsCount.put(good, count);
             if(count == 0) {
@@ -126,6 +126,7 @@ public class PlanetInventory implements Serializable {
     /**
      * @return the string representation of the planet inventory
      */
+    @Override
     public String toString() {
         String str = "";
         for (Good good: goodsCanSell.keySet()) {

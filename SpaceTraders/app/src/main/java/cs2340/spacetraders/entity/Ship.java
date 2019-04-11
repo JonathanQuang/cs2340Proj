@@ -9,6 +9,9 @@ import java.io.Serializable;
 import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
 
+/**
+ * Implementation of a ship
+ */
 public class Ship implements  Serializable{
 
     private ShipType shipType;
@@ -29,6 +32,9 @@ public class Ship implements  Serializable{
         this.equippedWeapons = new ArrayList<WeaponTypes>();
     }
 
+    /**
+     * Default no-args constructor
+     */
     public Ship() {
         this(ShipType.Gnat);
     }
@@ -49,40 +55,92 @@ public class Ship implements  Serializable{
         return shipType;
     }
 
+    /**
+     * Getter for health
+     * @return health
+     */
     public double getHealth() { return health; }
 
+    /**
+     * Setter for health
+     * @param health ship's health
+     */
     public void setHealth(double health) {
         this.health = health;
     }
 
+    /**
+     * Ship takes damage, subtract health
+     * @param damage damage taken
+     */
     public void takeDamage(double damage) {this.health -= damage;}
 
+    /**
+     * Getter for ship's attack power
+     * @return damage
+     */
     public double getDamage() {return this.damage;}
 
+    /**
+     * Changes the attack power of the ship
+     * @param changeVal amount to be changed
+     */
     public void changeDamage(double changeVal) {this.damage += changeVal;}
 
+    /**
+     * Getter for fuel
+     * @return fuel
+     */
     public int getFuel() {
         return fuel;
     }
 
+    /**
+     * Setter for fuel
+     * @param fuel new amount of fuel
+     */
     public void setFuel(int fuel) {
         this.fuel = fuel;
     }
 
+    /**
+     * Getter for maximum capacity
+     * @return ship's cargo capacity
+     */
     public int getCargoCapacity() {
         return shipType.getCargoCapacity();
     }
 
+    /**
+     * Getter for ship's price
+     * @return price of the ship
+     */
     public int getShipTypePrice() {return shipType.getPrice();}
 
+    /**
+     * Getter for the maximum number of weapons a ship can have
+     * @return number of weapon slots
+     */
     public int getShipTypeMaxWeaponSlots() {return  shipType.getWeaponSlots();}
 
+    /**
+     * Getter for a list of equipped weapons
+     * @return list of equipped weapons
+     */
     public List<WeaponTypes> getEquippedWeapons() {return equippedWeapons;}
 
+    /**
+     * Equip a new weapon to the ship
+     * @param weapon weapon to be equip
+     */
     public void addWeapon(WeaponTypes weapon) {
         equippedWeapons.add(weapon);
     }
 
+    /**
+     * Unequip a weapon
+     * @param weapon weapon to be removed
+     */
     public void removeWeapon(WeaponTypes weapon) {equippedWeapons.remove(weapon);}
 
     /**
@@ -90,6 +148,7 @@ public class Ship implements  Serializable{
      * @return  this ship's string representation
      */
     @NonNull
+    @Override
     public String toString() {
         return "(Type) " + shipType + ", Health: " + health + " , Fuel: " + fuel;
     }

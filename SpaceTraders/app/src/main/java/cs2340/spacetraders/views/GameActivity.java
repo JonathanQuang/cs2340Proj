@@ -14,6 +14,7 @@ public class GameActivity extends AppCompatActivity {
      * called when viewing the menu screen
      * @param savedInstanceState the saved instance
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);

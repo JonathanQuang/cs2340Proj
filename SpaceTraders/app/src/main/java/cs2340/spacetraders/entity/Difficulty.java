@@ -29,14 +29,12 @@ public enum Difficulty {
     public String getDifficulty() { return difficulty; }
 
     /**
-     * @return the difficult multiplier
+     * Returns the difficulty multiplier
+     * @return multiplier
      */
     public double getMultipler() { return multiplier; }
 
 
-    /**
-     * Gets the string representation of the game difficultly to print
-     * @return the string representation of the difficulty
-     */
+    @Override
     public String toString() { return difficulty; }
 }

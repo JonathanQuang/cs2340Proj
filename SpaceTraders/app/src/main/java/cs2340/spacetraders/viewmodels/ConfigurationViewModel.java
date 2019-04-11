@@ -4,16 +4,14 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.Difficulty;
-import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.model.Model;
 
+/**
+ * Model for Configuration player screen
+ */
 public class ConfigurationViewModel extends AndroidViewModel {
 
     public final int STARTING_POINTS = 16; //16

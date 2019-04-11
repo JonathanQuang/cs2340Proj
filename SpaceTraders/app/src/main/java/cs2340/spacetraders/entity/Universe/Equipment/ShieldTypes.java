@@ -1,9 +1,13 @@
 package cs2340.spacetraders.entity.Universe.Equipment;
 
+/**
+ * Enum for the types of shields under equipment
+ */
 public enum ShieldTypes {
     /*
     EnergyShield("Energy Shield", "Shield", 4950, 3750, 100, -1, "Absorbs energy directed at it"),
-    ReflectiveShield("Reflective Shield", "Shield", 19800, 15000, 200, -1, "Reflects energy in random directions");
+    ReflectiveShield("Reflective Shield", "Shield", 19800, 15000, 200, -1,
+    "Reflects energy in random directions");
 
     private String equipName;
     private String equipType;
@@ -18,7 +22,8 @@ public enum ShieldTypes {
     private String description;
 
 
-    public ShieldTypes(String equipName, String equipType, int buyprice, int sellprice, int power, int charge, String description) {
+    public ShieldTypes(String equipName, String equipType, int buyprice, int sellprice,
+    int power, int charge, String description) {
             this.equipName = equipName;
             this.equipType = equipType;
             this.buyprice = buyprice;

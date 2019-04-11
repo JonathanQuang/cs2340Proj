@@ -133,4 +133,3 @@ public enum Good implements Serializable {
         return count;
     }
 }
-
