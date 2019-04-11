@@ -17,18 +17,18 @@ import cs2340.spacetraders.model.Model;
  */
 public class Travel implements Serializable {
 
-    private int FUEL_PER_UNIT_MOVED = 10;
-    private Player player;
+    private final int FUEL_PER_UNIT_MOVED = 10;
+    private final Player player;
     private Planet currentPlanet;
-    private List<Planet> validPlanets;
-    private Map<Planet, Integer> planetDistances;
+    private final List<Planet> validPlanets;
+    private final Map<Planet, Integer> planetDistances;
     private Planet maxValidPlanetAway;
-    private List<Planet> planetList;
-    private PlanetaryEvent randomEvent;
+    private final List<Planet> planetList;
 
     /**
      * @param player the main player
      * @param currentPlanet the current player in the galaxy
+     * @param planetList the list of planets in the galaxy
      */
     public Travel(Player player, Planet currentPlanet, List<Planet> planetList) {
         this.player = player;
@@ -36,7 +36,7 @@ public class Travel implements Serializable {
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
         this.planetList = planetList;
-        randomEvent = this.currentPlanet.getPlanetaryEvent();
+        PlanetaryEvent randomEvent = this.currentPlanet.getPlanetaryEvent();
         findValidPlanets();
     }
 

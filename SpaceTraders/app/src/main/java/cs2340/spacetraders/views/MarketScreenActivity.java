@@ -30,6 +30,10 @@ import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.MarketScreenViewModel;
 
+/**
+ * This class is a concrete class that drives the
+ * MarketScreen UI
+ */
 public class MarketScreenActivity extends AppCompatActivity {
 
     private Context mContext;
@@ -37,17 +41,12 @@ public class MarketScreenActivity extends AppCompatActivity {
     private Button mButton;
     private PopupWindow mPopupWindow;
     private TableRow modelRow;
-    private TableLayout table;
     private TextView modelRowText;
     private Button modelBuyButton;
-    private Button modelSellButton;
     private LinearLayout modelLinearLayout;
-    private TextView planetNameText;
     private MarketScreenViewModel marketScreenVM;
-    private FloatingActionButton menuButton;
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
-    private PlanetaryEvent event;
 
     /**
      * called when player is viewing the market screen
@@ -58,13 +57,13 @@ public class MarketScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.market_screen);
         modelRow = findViewById(R.id.modelRow);
-        table = findViewById(R.id.table);
+        TableLayout table = findViewById(R.id.table);
         modelRowText = findViewById(R.id.modelRowText);
         modelBuyButton = findViewById(R.id.modelBuyButton);
-        modelSellButton = findViewById(R.id.modelSellButton);
+        Button modelSellButton = findViewById(R.id.modelSellButton);
         modelLinearLayout = findViewById(R.id.modelLinearLayout);
-        planetNameText = findViewById(R.id.planetName);
-        menuButton = findViewById(R.id.menuButton);
+        TextView planetNameText = findViewById(R.id.planetName);
+        FloatingActionButton menuButton = findViewById(R.id.menuButton);
 
         Planet currentPlanet = null;
         while(currentPlanet == null) {
@@ -75,7 +74,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         planetNameText.setText(currentPlanet.getName().toString());
         marketScreenVM = new MarketScreenViewModel(planetInventory, playerInventory);
         marketScreenVM.setPlayer(Model.getInstance().getPlayer());
-        event = currentPlanet.getPlanetaryEvent();
+        PlanetaryEvent event = currentPlanet.getPlanetaryEvent();
 
         int type = Model.getInstance().getPlanetImageIDs().get(currentPlanet.getResources());
         ImageView planetImage = (ImageView) findViewById(R.id.planetImage);

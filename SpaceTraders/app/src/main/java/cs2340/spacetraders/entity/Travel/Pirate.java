@@ -8,9 +8,8 @@ import cs2340.spacetraders.entity.Player;
  */
 public class Pirate extends Encounterable {
 
-    private boolean hostile = true;
-    private Player player = getPlayer();
-    private Inventory inventory = player.getInventory();
+    private final Player player = getPlayer();
+    private final Inventory inventory = player.getInventory();
 
     /**
      * Default constructor
@@ -44,6 +43,7 @@ public class Pirate extends Encounterable {
 
     @Override
     public boolean setHostile() {
+        boolean hostile = true;
         return hostile;
     }
 

@@ -14,8 +14,8 @@ import cs2340.spacetraders.entity.Player;
  */
 public class Market implements Serializable {
 
-    private PlanetInventory planetInventory;
-    private Inventory playerInventory;
+    private final PlanetInventory planetInventory;
+    private final Inventory playerInventory;
     private Good currentGood;
     private Player currentPlayer;
 
@@ -139,10 +139,7 @@ public class Market implements Serializable {
         if ((quant * planetInventory.getBuyPrice(currentGood)) > (currentPlayer.getCredits())) {
             return false;
         }
-        if (!(playerInventory.canBuyGood(quant))) {
-            return false;
-        }
-        return true;
+        return playerInventory.canBuyGood(quant);
     }
 
     /**

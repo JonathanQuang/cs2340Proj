@@ -30,6 +30,10 @@ import cs2340.spacetraders.entity.Universe.Wormhole;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.GalaxyMapViewModel;
 
+/**
+ * Concrete description of the GalaxyMapActivity that interacts
+ * with the Galaxy Map View
+ */
 public class GalaxyMapActivity extends AppCompatActivity {
 
     private GalaxyMapViewModel galaxyMapVM;
@@ -170,7 +174,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
         view.setBackground(ContextCompat.getDrawable(getApplicationContext(), imageID));
         //Set Size
         ViewGroup.LayoutParams params = view.getLayoutParams();
-        params.height = params.width = size;
+        params.height = size;
+        params.width = size;
         view.setLayoutParams(params);
         //Set Position
         setPositionOnScreen(view, position, params.height/2);
@@ -286,7 +291,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
 
     /**
      * pixels used per unit
-     * @return
+     * @return how many pixels correspond to one unit of map size.
      */
     public int getPixelPerUnit() {
         return(int) (1.0 / mapSize.getY() * screenHeight);

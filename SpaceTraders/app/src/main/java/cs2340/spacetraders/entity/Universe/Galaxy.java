@@ -17,20 +17,17 @@ import java.util.Set;
  */
 public class Galaxy implements Serializable {
 
-    private Map<String, Planet> planetNameMap;
-    private List<Planet> planetList;
-    private List<RelativePosition> systemPositionList;
-    private Set<CelestialName> usedCelestialNames;
-    private List<SolarSystem> solarSystemList;
-    private RelativePosition mapSize;
-    private String[][] galaxyMap;
-    private Random rand = new Random();
-    private List<Wormhole[]> wormholePairList;
+    private final Map<String, Planet> planetNameMap;
+    private final List<Planet> planetList;
+    private final List<RelativePosition> systemPositionList;
+    private final Set<CelestialName> usedCelestialNames;
+    private final List<SolarSystem> solarSystemList;
+    private final RelativePosition mapSize;
+    private final String[][] galaxyMap;
+    private final Random rand = new Random();
+    private final List<Wormhole[]> wormholePairList;
     private Planet currentPlanet;
-    private int mapWidth = 25;
-    private int mapHeight = 37;
-    private int maxPlantsPerSystem = 6;
-    private int maxWormHolePairs = 2;
+    private final int maxPlantsPerSystem = 6;
 
 
     /**
@@ -43,6 +40,8 @@ public class Galaxy implements Serializable {
         systemPositionList = new ArrayList<>();
         usedCelestialNames = new HashSet<>();
         wormholePairList = new ArrayList<Wormhole[]>();
+        int mapHeight = 37;
+        int mapWidth = 25;
         mapSize = new RelativePosition(mapWidth, mapHeight);
         galaxyMap = new String[mapHeight][mapWidth];
 
@@ -59,6 +58,7 @@ public class Galaxy implements Serializable {
         currentPlanet = chooseRandomPlanet();
         Log.d("Current Planet", currentPlanet.toString());
 
+        int maxWormHolePairs = 2;
         for (int i = 0; i < maxWormHolePairs; i++) { placeWormholePair(); }
         printMap();
     }

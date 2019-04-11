@@ -32,14 +32,11 @@ public class EncounterScreenActivity extends AppCompatActivity {
     private EncounterScreenViewModel encounterScreenVM;
     private Encounterable character;
     private Player player;
-    private int totalEncounters;
-    private Model model = Model.getInstance();
-    private Game game = model.getGame();
-    private DataStorage dataStorage = game.getDataStorage();
-    private Galaxy galaxy = game.getGalaxy();
-    private Ship playerShip;
+    private final Model model = Model.getInstance();
+    private final Game game = model.getGame();
+    private final DataStorage dataStorage = game.getDataStorage();
+    private final Galaxy galaxy = game.getGalaxy();
     private Ship characterShip;
-    private ShipType playerShipType;
     private ShipType characterShipType;
 
 
@@ -47,15 +44,15 @@ public class EncounterScreenActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        totalEncounters = dataStorage.getTotalEncounters();
+        int totalEncounters = dataStorage.getTotalEncounters();
 
         Planet currentPlanet = null;
         while(currentPlanet == null) {
             currentPlanet = galaxy.getCurrentPlanet();
         }
         player = model.getPlayer();
-        playerShip = player.getShip();
-        playerShipType = playerShip.getShipType();
+        Ship playerShip = player.getShip();
+        ShipType playerShipType = playerShip.getShipType();
         encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
         character = encounterScreenVM.setCharacter();
 

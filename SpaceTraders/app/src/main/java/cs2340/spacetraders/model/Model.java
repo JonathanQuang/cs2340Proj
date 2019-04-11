@@ -15,13 +15,13 @@ import cs2340.spacetraders.entity.Universe.Resources;
 /**
  * Base model for the entire game
  */
-public class Model implements Serializable {
+public final class Model implements Serializable {
 
     private Player player;
     private Game game;
-    private Map<Resources, Integer> planetImageIDs;
+    private final Map<Resources, Integer> planetImageIDs;
 
-    private static  Model instance = new Model();
+    private static final Model instance = new Model();
 
     /**
      * Getter for the instance of the model

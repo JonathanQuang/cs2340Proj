@@ -10,13 +10,11 @@ import java.util.Random;
  * A structure-r to hold planets and their relative position in the galaxy
  */
 public class SolarSystem implements Serializable {
-    private Planet[] planetList;
-    private List<RelativePosition> planetPositions;
-    private CelestialName name;
-    private RelativePosition center;
-    private String size;
-    private Galaxy parentGalaxy;
-    private Random rand;
+    private final Planet[] planetList;
+    private final List<RelativePosition> planetPositions;
+    private final RelativePosition center;
+    private final Galaxy parentGalaxy;
+    private final Random rand;
 
     /**
      * @param name the name of the solar system
@@ -27,9 +25,9 @@ public class SolarSystem implements Serializable {
      */
     public SolarSystem(CelestialName name, RelativePosition center,
                        int planetNum, String size, Galaxy parentGalaxy) {
-        this.name = name;
+        CelestialName name1 = name;
         this.center = center;
-        this.size = size;
+        String size1 = size;
         this.parentGalaxy = parentGalaxy;
         rand = new Random();
 

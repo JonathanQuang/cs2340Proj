@@ -6,10 +6,10 @@ import java.io.Serializable;
  * Holds the specific of the square of influence of a celestial body
  */
 public class RelativePosition implements Serializable {
-    private int x;
-    private int y;
-    private int rectRadius;
-    private boolean compareWithOverlap;
+    private final int x;
+    private final int y;
+    private final int rectRadius;
+    private final boolean compareWithOverlap;
 
     /**
      * default radius to 0

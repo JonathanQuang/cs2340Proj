@@ -8,8 +8,10 @@ import android.view.View;
 
 import cs2340.spacetraders.R;
 
+/**
+ * This is a concrete class that controls how the repair UI works
+ */
 public class ShipRepairActivity extends AppCompatActivity {
-    private FloatingActionButton menuButton;
 
     /**
      * called when repairing the ship
@@ -20,7 +22,7 @@ public class ShipRepairActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_repair_screen);
 
-        menuButton = findViewById(R.id.menuButton);
+        FloatingActionButton menuButton = findViewById(R.id.menuButton);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override

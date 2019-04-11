@@ -25,6 +25,9 @@ import java.util.Base64;
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.model.Model;
 
+/**
+ * Concrete class that controls how the MainMenu View behaves
+ */
 public class MainMenuActivity extends AppCompatActivity implements Serializable {
 
     public static final int ADD_PLAYER_REQUEST_ID = 1;
@@ -90,7 +93,7 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
 
     /**
      * to read the log messages and send log messages
-     * @param msg
+     * @param msg the string containing saved game data
      * @return the read in message
      */
     private Object readMessage(String msg) {

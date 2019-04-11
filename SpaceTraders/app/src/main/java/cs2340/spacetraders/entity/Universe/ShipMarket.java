@@ -13,8 +13,8 @@ import cs2340.spacetraders.entity.ShipType;
 public class ShipMarket implements Serializable {
 
 
-    private Player player;
-    private Map<ShipType, Integer> shipTypePriceDiffMap;
+    private final Player player;
+    private final Map<ShipType, Integer> shipTypePriceDiffMap;
 
     /**
      * Constructor for the ship market
@@ -40,10 +40,7 @@ public class ShipMarket implements Serializable {
      */
     public boolean checkCanTradeInShip(ShipType shipToGet) {
         //check if the player has enough money
-        if (player.getCredits() < shipTypePriceDiffMap.get(shipToGet)) {
-            return false;
-        }
-        return true;
+        return player.getCredits() >= shipTypePriceDiffMap.get(shipToGet);
     }
 
     /**

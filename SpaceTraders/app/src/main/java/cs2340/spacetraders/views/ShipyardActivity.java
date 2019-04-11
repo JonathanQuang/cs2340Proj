@@ -16,6 +16,9 @@ import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.ShipyardViewModel;
 
+/**
+ * Concrete class that controls how the Shipyard UI behaves
+ */
 public class ShipyardActivity extends AppCompatActivity {
 
     private TableLayout weaponTable;
@@ -35,6 +38,9 @@ public class ShipyardActivity extends AppCompatActivity {
 
     private ShipyardViewModel shipyardVM;
 
+    /**
+     * Constructor for this class
+     */
     public ShipyardActivity() {
     }
 

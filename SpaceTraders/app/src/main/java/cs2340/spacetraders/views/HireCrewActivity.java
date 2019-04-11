@@ -8,8 +8,11 @@ import android.view.View;
 
 import cs2340.spacetraders.R;
 
+/**
+ * HireCrewActivity runs the actions relevant
+ * to the HireCrew UI
+ */
 public class HireCrewActivity extends AppCompatActivity {
-    private FloatingActionButton menuButton;
 
     /** Called when player wants to hire crew
      * @param savedInstanceState the saved instance
@@ -19,7 +22,7 @@ public class HireCrewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hire_crew_screen);
 
-        menuButton = findViewById(R.id.menuButton);
+        FloatingActionButton menuButton = findViewById(R.id.menuButton);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,23 +11,20 @@ import cs2340.spacetraders.entity.Universe.PoliticalSystem;
  */
 public class Police extends Encounterable {
 
-    private double bribeChance;
-    private double searchChance;
+    private final double bribeChance;
+    private final double searchChance;
     private boolean hostile;
-    private Player player = getPlayer();
-    private Inventory playerInventory = player.getInventory();
-    private PoliticalSystem politicalSystem;
-    private String briberyAcceptance;
-    private String smugglingAcceptance;
+    private final Player player = getPlayer();
+    private final Inventory playerInventory = player.getInventory();
 
     /**
      * Default constructor
      * @param planet current planet being traveled to
      */
     public Police(Planet planet) {
-        politicalSystem = planet.getPoliticalSystem();
-        briberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
-        smugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
+        PoliticalSystem politicalSystem = planet.getPoliticalSystem();
+        String briberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
+        String smugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
         bribeChance = politicalSystem.determineProbability(briberyAcceptance);
         searchChance = politicalSystem.determineProbability(smugglingAcceptance);
         if (hostile) {

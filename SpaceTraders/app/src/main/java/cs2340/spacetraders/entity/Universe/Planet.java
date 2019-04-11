@@ -12,24 +12,22 @@ import cs2340.spacetraders.entity.Market.PlanetInventory;
  * and other attributes
  */
 public class Planet implements Serializable {
-    private CelestialName name;
-    private TechLevel techLevel;
-    private Resources resources;
-    private PoliticalSystem politicalSystem;
-    private RelativePosition relativePosition;
-    private String size;
-    private String policeQuantity;
-    private String traderQuantity;
-    private String pirateQuantity;
-    private String policeBriberyAcceptance;
-    private String policeSmugglingAcceptance;
+    private final CelestialName name;
+    private final TechLevel techLevel;
+    private final Resources resources;
+    private final PoliticalSystem politicalSystem;
+    private final RelativePosition relativePosition;
+    private final String size;
+    private final String policeQuantity;
+    private final String traderQuantity;
+    private final String pirateQuantity;
+    private final String policeBriberyAcceptance;
+    private final String policeSmugglingAcceptance;
     private boolean isSpacePort;
-    private PlanetInventory inventory;
+    private final PlanetInventory inventory;
     private PlanetaryEvent event;
-    private double tradersReturnRate;
-    private SolarSystem parentSolarSystem;
-    private final Random RANDOM = new Random();
-    private Wormhole connectWormHole;
+    private final double tradersReturnRate;
+    private final SolarSystem parentSolarSystem;
 
     /**
      * @param name the name of the planet
@@ -58,6 +56,7 @@ public class Planet implements Serializable {
         inventory = new PlanetInventory();
         event = PlanetaryEvent.Nothing;
 
+        Random RANDOM = new Random();
         if (RANDOM.nextDouble() > 0.8) {
             while ((event == null) || (event == PlanetaryEvent.Nothing)) {
                 event = event.randomEvent();
@@ -75,7 +74,7 @@ public class Planet implements Serializable {
      */
     public void makeSpaceport(Wormhole wormhole) {
         isSpacePort = true;
-        connectWormHole = wormhole;
+        Wormhole connectWormHole = wormhole;
     }
 
 

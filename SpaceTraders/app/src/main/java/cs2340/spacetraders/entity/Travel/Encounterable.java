@@ -19,11 +19,9 @@ public abstract class Encounterable {
     private Game game = model.getGame();
     private Difficulty difficulty = game.getDifficulty();
     private double difficultyMultiplier = difficulty.getMultipler();
-    private double fleeChance = 0.05;
-    private double pursueChance = 0.1;
     private double ignoreChance;
     private double attackChance;
-    private ShipType type = ShipType.Gnat;
+    private final ShipType type = ShipType.Gnat;
     private Ship ship = new Ship(type.randomShipType());
     private Player player = model.getPlayer();
 
@@ -87,6 +85,7 @@ public abstract class Encounterable {
      * @return fleeChance
      */
     public double getFleeChance() {
+        double fleeChance = 0.05;
         return fleeChance;
     }
 
@@ -95,6 +94,7 @@ public abstract class Encounterable {
      * @return pursueChance
      */
     public double getPursueChance() {
+        double pursueChance = 0.1;
         return pursueChance;
     }
 

@@ -19,15 +19,10 @@ import java.util.Base64;
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.model.Model;
 
+/**
+ * Controls the MenuScreen UI
+ */
 public class MenuScreen extends AppCompatActivity {
-    private Button shipMarketButton;
-    private Button shipyardButton;
-    private Button shipRepairButton;
-    private Button hireCrewButton;
-    private Button starMapButton;
-    private Button retireButton;
-    private Button planetMarketButton;
-    private Button saveGameButton;
 
     /**
      * called when menu screen is viewed
@@ -37,14 +32,14 @@ public class MenuScreen extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);
-        shipMarketButton = findViewById(R.id.shipMarketButton);
-        shipyardButton = findViewById(R.id.shipyardButton);
-        shipRepairButton = findViewById(R.id.shipRepairButton);
-        hireCrewButton = findViewById(R.id.hireCrewButton);
-        starMapButton = findViewById(R.id.starMapButton);
-        retireButton = findViewById(R.id.retire_button);
-        planetMarketButton = findViewById(R.id.planetMarketButton);
-        saveGameButton = findViewById(R.id.saveGame);
+        Button shipMarketButton = findViewById(R.id.shipMarketButton);
+        Button shipyardButton = findViewById(R.id.shipyardButton);
+        Button shipRepairButton = findViewById(R.id.shipRepairButton);
+        Button hireCrewButton = findViewById(R.id.hireCrewButton);
+        Button starMapButton = findViewById(R.id.starMapButton);
+        Button retireButton = findViewById(R.id.retire_button);
+        Button planetMarketButton = findViewById(R.id.planetMarketButton);
+        Button saveGameButton = findViewById(R.id.saveGame);
 
         shipMarketButton.setOnClickListener(new View.OnClickListener() {
             @Override

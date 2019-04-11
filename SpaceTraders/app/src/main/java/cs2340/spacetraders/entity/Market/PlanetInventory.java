@@ -8,11 +8,11 @@ import java.util.Map;
  * A structure-r for the planet's inventory
  */
 public class PlanetInventory implements Serializable {
-    private Map<Good, Integer> goodsBuyPrices;
-    private Map<Good, Integer> goodsSellPrices;
-    private Map<Good, Integer> goodsCount;
-    private Map<Good, Boolean> goodsCanSell;
-    private Map<Good, Boolean> goodsCanBuy;
+    private final Map<Good, Integer> goodsBuyPrices;
+    private final Map<Good, Integer> goodsSellPrices;
+    private final Map<Good, Integer> goodsCount;
+    private final Map<Good, Boolean> goodsCanSell;
+    private final Map<Good, Boolean> goodsCanBuy;
 
     /**
      * Initializes the instances variables of PlanetInventory

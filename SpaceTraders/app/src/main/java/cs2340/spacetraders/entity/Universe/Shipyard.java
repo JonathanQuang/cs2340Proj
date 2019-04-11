@@ -12,8 +12,8 @@ import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
  */
 public class Shipyard implements  Serializable{
 
-    private Ship playerShip;
-    private Player player;
+    private final Ship playerShip;
+    private final Player player;
 
     /**
      * Constructor for the shipyard
