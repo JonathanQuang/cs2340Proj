@@ -62,6 +62,8 @@ public class Galaxy implements Serializable {
         printMap();
     }
 
+
+
     /**
      * Makes a solar system that randomizes all its attributes
      */
@@ -270,4 +272,6 @@ public class Galaxy implements Serializable {
     public List<Wormhole[]> getWormholePairList() {
         return wormholePairList;
     }
+
+
 }

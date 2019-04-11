@@ -55,7 +55,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         mapSize = galaxy.getMapSize();
         currentPlanet = galaxy.getCurrentPlanet();
         List<Planet> planetList = galaxy.getPlanetList();
-        travel = new Travel(Model.getInstance().getPlayer(), currentPlanet);
+        travel = new Travel(Model.getInstance().getPlayer(), currentPlanet, planetList);
         galaxyMapVM = new GalaxyMapViewModel(currentPlanet, planetList);
 
         //Place All Plants

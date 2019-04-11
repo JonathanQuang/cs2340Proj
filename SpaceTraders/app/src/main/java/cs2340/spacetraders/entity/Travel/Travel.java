@@ -23,17 +23,19 @@ public class Travel implements Serializable {
     private List<Planet> validPlanets;
     private Map<Planet, Integer> planetDistances;
     private Planet maxValidPlanetAway;
+    private List<Planet> planetList;
     private PlanetaryEvent randomEvent;
 
     /**
      * @param player the main player
      * @param currentPlanet the current player in the galaxy
      */
-    public Travel(Player player, Planet currentPlanet) {
+    public Travel(Player player, Planet currentPlanet, List<Planet> planetList) {
         this.player = player;
         this.currentPlanet = currentPlanet;
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
+        this.planetList = planetList;
         randomEvent = this.currentPlanet.getPlanetaryEvent();
         findValidPlanets();
     }
@@ -78,21 +80,18 @@ public class Travel implements Serializable {
     /**
      * Find all the valid planets in fuel range
      */
-    private void findValidPlanets() {
+    public void findValidPlanets() {
         validPlanets.clear();
         planetDistances.clear();
-        int maxDistance = radiusOfTravel();
-        List<Planet> planetList = Model.getInstance().getGame().getGalaxy().getPlanetList();
+        int radiusOfTravel = radiusOfTravel();
+        int maxPlanetDistance = 0;
 
-        //Brute Force
-        int max = 0;
         for (Planet otherPlanet: planetList) {
             int dist = (int) currentPlanet.getPlanetDistance(otherPlanet);
-            if (dist <= maxDistance && otherPlanet != currentPlanet) {
+            if (dist <= radiusOfTravel && otherPlanet != currentPlanet) {
                 validPlanets.add(otherPlanet);
                 planetDistances.put(otherPlanet, dist);
-
-                if (dist > max) {
+                if (dist > maxPlanetDistance) {
                     maxValidPlanetAway = otherPlanet;
                 }
             }
@@ -111,5 +110,19 @@ public class Travel implements Serializable {
      */
     public List<Planet> getValidPlanets() {
         return validPlanets;
+    }
+
+    /**
+     * @return gets max planet away in fuel range
+     */
+    public Planet getMaxValidPlanetAway() {
+        return maxValidPlanetAway;
+    }
+
+    /**
+     * @return gets map of valid planet distances
+     */
+    public Map<Planet, Integer> getPlanetDistances() {
+        return planetDistances;
     }
 }
