@@ -1,6 +1,5 @@
 package cs2340.spacetraders.entity.Market;
 
-import java.io.Serializable;
 import java.util.Random;
 
 import cs2340.spacetraders.entity.Universe.PlanetaryEvent;

@@ -50,8 +50,8 @@ public class ShipyardActivity extends AppCompatActivity {
 
     /**
      * called when viewing the shipyard
-     * @param savedInstanceState standard parameter required by android, is automatically handled with
-     *                           startActivityForResult
+     * @param savedInstanceState standard parameter required by android, is automatically
+     *                           handled with startActivityForResult
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

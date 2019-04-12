@@ -21,6 +21,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_screen);
 
-        DefaultGameViewModel viewModel = ViewModelProviders.of(this).get(DefaultGameViewModel.class);
+        DefaultGameViewModel viewModel =
+                ViewModelProviders.of(this).get(DefaultGameViewModel.class);
     }
 }

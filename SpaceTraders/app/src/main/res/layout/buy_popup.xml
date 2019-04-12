@@ -44,7 +44,8 @@
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.022"
-        tools:text="Testing Buy PopUp" />
+        tools:text="Testing Buy PopUp"
+        tools:ignore="PxUsage" />
 
     <Button
         android:id="@+id/cancel_button"
@@ -83,6 +84,7 @@
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.804"
+        tools:ignore="LabelFor" />
 
 </android.support.constraint.ConstraintLayout>
