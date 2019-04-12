@@ -88,8 +88,8 @@ public abstract class Encounterable {
      * @return fleeChance
      */
     public double getFleeChance() {
-        double fleeChance = 0.05;
-        return fleeChance;
+        //double fleeChance = 0.05;
+        return 0.05;
     }
 
     /**
@@ -97,8 +97,8 @@ public abstract class Encounterable {
      * @return pursueChance
      */
     public double getPursueChance() {
-        double pursueChance = 0.1;
-        return pursueChance;
+        //double pursueChance = 0.1;
+        return 0.1;
     }
 
     /**

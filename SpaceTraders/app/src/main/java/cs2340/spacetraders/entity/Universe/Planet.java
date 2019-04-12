@@ -75,7 +75,6 @@ public class Planet implements Serializable {
      */
     public void makeSpaceport(Wormhole wormhole) {
         isSpacePort = true;
-        Wormhole connectWormHole = wormhole;
     }
 
 

@@ -33,8 +33,7 @@ public class Player implements Serializable {
         this.fighterStat = fighterStat;
         this.traderStat = traderStat;
         this.pilotStat = pilotStat;
-        int initialCredits = 100000;
-        this.credits = initialCredits;
+        this.credits = 100000;
         this.ship = new Ship();
         this.inventory = new Inventory(ship.getCargoCapacity());
         this.criminalStatus = false;

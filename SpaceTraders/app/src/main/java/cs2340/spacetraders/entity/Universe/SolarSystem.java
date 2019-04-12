@@ -29,7 +29,6 @@ public class SolarSystem implements Serializable {
                        int planetNum, String size, Galaxy parentGalaxy) {
         this.name = name;
         this.center = center;
-        String size1 = size;
         this.parentGalaxy = parentGalaxy;
         rand = new Random();
 

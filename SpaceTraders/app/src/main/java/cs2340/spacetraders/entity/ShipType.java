@@ -44,7 +44,6 @@ public enum ShipType {
         this.hullStrength = hullStrength;
         this.weaponSlots = weaponSlots;
         this.shieldSlots = shieldSlots;
-        int gadgetSlots1 = gadgetSlots;
         this.crewQuarters = crewQuarters;
         this.price = price;
         this.DEFAULT_DAMAGE = defaultDamage;

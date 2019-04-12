@@ -53,7 +53,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
             currentPlanet = galaxy.getCurrentPlanet();
         }
         player = model.getPlayer();
-        Ship playerShip = player.getShip();
+        playerShip = player.getShip();
         ShipType playerShipType = playerShip.getShipType();
         encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
         character = encounterScreenVM.setCharacter();

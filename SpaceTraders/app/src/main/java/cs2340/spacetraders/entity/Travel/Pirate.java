@@ -45,8 +45,7 @@ public class Pirate extends Encounterable {
 
     @Override
     public boolean setHostile() {
-        boolean hostile = true;
-        return hostile;
+        return true;
     }
 
     @Override

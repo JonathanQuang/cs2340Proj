@@ -65,10 +65,8 @@ public enum Good {
         this.basePrice = basePrice;
         this.priceIncrease = priceIncrease;
         //min price offered by trader
-        int minPrice1 = minPrice;
         this.maxProductionLevel = maxLevel;
         //max price offered by trader
-        int maxPrice1 = maxPrice;
         this.variance = variance;
         this.minProduceLevel = minProduceLevel;
         this.minUseLevel = minUseLevel;

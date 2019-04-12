@@ -55,7 +55,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
         ImageView shipImage = findViewById(R.id.shipImage);
 
         ShipDisplayViewModel shipmarketVM = new ShipDisplayViewModel(
-                Model.getInstance().getPlayer());
+                model.getPlayer());
         shipmarketVM = new ShipDisplayViewModel(model.getPlayer());
         shipImage.setImageResource(getShipDrawables()[shipTypeVar.ordinal()]);
         setupShipInfo(shipTypeVar);
