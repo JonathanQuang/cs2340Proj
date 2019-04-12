@@ -101,7 +101,8 @@ public final class ConfigurationActivity extends AppCompatActivity {
                 int points = Integer.parseInt(viewFinal.getText().toString());
                 if (points == 0) {return;}
                 viewFinal.setText(String.valueOf(points - 1));
-                pointsLeftFinal.setText("Skill Points Available: " + String.valueOf(++pointsLeft));
+                String put = "Skill Points Available: " + String.valueOf(++pointsLeft);
+                pointsLeftFinal.setText(put);
             }
         });
 
@@ -111,7 +112,8 @@ public final class ConfigurationActivity extends AppCompatActivity {
                 int points = Integer.parseInt(viewFinal.getText().toString());
                 if (pointsLeft == 0) {return;}
                 viewFinal.setText(String.valueOf(points + 1));
-                pointsLeftFinal.setText("Skill Points Available: " + String.valueOf(--pointsLeft));
+                String put = "Skill Points Available: " + String.valueOf(--pointsLeft);
+                pointsLeftFinal.setText(put);
             }
         });
     }

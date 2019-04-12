@@ -90,7 +90,7 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
 
     /**
      * to read the log messages and send log messages
-     * @param msg
+     * @param msg the message in concern
      * @return the read in message
      */
     private Object readMessage(String msg) {

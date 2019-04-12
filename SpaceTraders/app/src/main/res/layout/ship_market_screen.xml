@@ -145,6 +145,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
         <ImageButton
+            android:contentDescription="flea"
             android:id="@+id/fleaButton"
             android:layout_width="200px"
             android:layout_height="200px"
@@ -162,6 +163,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageButton
+            android:contentDescription="gnat"
             android:id="@+id/gnatButton"
             android:layout_width="200px"
             android:layout_height="200px"
@@ -179,6 +181,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
+        android:contentDescription="mosquito"
         android:id="@+id/mosquitoButton"
         android:layout_width="200px"
         android:layout_height="200px"
@@ -196,6 +199,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
+        android:contentDescription="firefly"
         android:id="@+id/fireflyButton"
         android:layout_width="200px"
         android:layout_height="200px"
@@ -213,6 +217,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
+        android:contentDescription="bumblebee"
         android:id="@+id/bumblebeeButton"
         android:layout_width="200px"
         android:layout_height="200px"
@@ -230,6 +235,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
+        android:contentDescription="beetle"
         android:id="@+id/beetleButton"
         android:layout_width="200px"
         android:layout_height="200px"
@@ -247,6 +253,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
+        android:contentDescription="hornet"
         android:id="@+id/hornetButton"
         android:layout_width="200px"
         android:layout_height="200px"
@@ -264,6 +271,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
+        android:contentDescription="grasshopper"
         android:id="@+id/grasshopperButton"
         android:layout_width="200px"
         android:layout_height="200px"
@@ -281,6 +289,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
+        android:contentDescription="termite"
         android:id="@+id/termiteButton"
         android:layout_width="200px"
         android:layout_height="200px"

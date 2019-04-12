@@ -78,7 +78,7 @@ public class MarketScreenActivity extends AppCompatActivity {
         event = currentPlanet.getPlanetaryEvent();
 
         int type = Model.getInstance().getPlanetImageIDs().get(currentPlanet.getResources());
-        ImageView planetImage = (ImageView) findViewById(R.id.planetImage);
+        ImageView planetImage = findViewById(R.id.planetImage);
         planetImage.setImageResource(type);
 
         for (Good good: Good.values()) {

@@ -286,7 +286,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
 
     /**
      * pixels used per unit
-     * @return
+     * @return the number of pixels used per unit
      */
     public int getPixelPerUnit() {
         return(int) (1.0 / mapSize.getY() * screenHeight);

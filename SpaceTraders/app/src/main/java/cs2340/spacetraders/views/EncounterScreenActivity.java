@@ -101,7 +101,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
             fleeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    action.setText("You tried to flee");
+                    String put = "You tried to flee";
+                    action.setText(put);
                     if (encounterScreenVM.pursueAction()) {
                         easyToast(encounterScreenVM.getAction());
                         playerInfo.setText(encounterScreenVM.playerInfo());
@@ -118,7 +119,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     character.surrenderResult();
-                    easyToast("You surrendered");
+                    String put = "You surrendered";
+                    easyToast(put);
                     Intent intent = new Intent(EncounterScreenActivity.this,
                             EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);

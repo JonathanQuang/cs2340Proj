@@ -16,6 +16,7 @@
         tools:layout_editor_absoluteY="173dp">
 
         <ImageView
+            android:contentDescription="the background"
             android:id="@+id/spaceTradersBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -784,6 +785,7 @@
 
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring1"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -791,6 +793,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring2"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -798,6 +801,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring3"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -805,6 +809,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring4"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -812,6 +817,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring5"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -819,6 +825,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring6"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -826,6 +833,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring7"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -833,6 +841,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring8"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -840,6 +849,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring9"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -847,6 +857,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring10"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -854,6 +865,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring11"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -861,6 +873,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring12"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -868,6 +881,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring13"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -875,6 +889,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring14"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -882,6 +897,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring15"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -889,6 +905,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring16"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -896,6 +913,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring17"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -903,6 +921,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring18"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -910,6 +929,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring19"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -917,6 +937,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring20"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -924,6 +945,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring21"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -931,6 +953,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring22"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -938,6 +961,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring23"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -945,6 +969,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring24"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -952,6 +977,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring25"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -959,6 +985,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring26"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -966,6 +993,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring27"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -973,6 +1001,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring28"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -980,6 +1009,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring29"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -987,6 +1017,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring30"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -994,6 +1025,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring31"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1001,6 +1033,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring32"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1008,6 +1041,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring33"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1015,6 +1049,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring34"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1022,6 +1057,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring35"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1029,6 +1065,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring36"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1036,6 +1073,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring37"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1043,6 +1081,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring38"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1050,6 +1089,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring39"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1057,6 +1097,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring40"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1064,6 +1105,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring41"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1071,6 +1113,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring42"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1078,6 +1121,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring43"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1085,6 +1129,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring44"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1092,6 +1137,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring45"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1099,6 +1145,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring46"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1106,6 +1153,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring47"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1113,6 +1161,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring48"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1120,6 +1169,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring49"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1127,6 +1177,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring50"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1134,6 +1185,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring51"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1141,6 +1193,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring52"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1148,6 +1201,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring53"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1155,6 +1209,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring54"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1162,6 +1217,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring55"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1169,6 +1225,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring56"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1176,6 +1233,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring57"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1183,6 +1241,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring58"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1190,6 +1249,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring59"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1197,6 +1257,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring60"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1204,6 +1265,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring61"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1211,6 +1273,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/ring62"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -1218,6 +1281,7 @@
         tools:ignore="MissingConstraints"/>
 
     <ImageView
+        android:contentDescription="ring"
         android:id="@+id/validRing"
         android:layout_width="100dp"
         android:layout_height="100dp"
