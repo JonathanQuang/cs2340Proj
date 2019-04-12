@@ -22,14 +22,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cs2340.spacetraders.R;
+import cs2340.spacetraders.entity.Game;
 import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
+import cs2340.spacetraders.entity.Player;
+import cs2340.spacetraders.entity.Universe.CelestialName;
+import cs2340.spacetraders.entity.Universe.Galaxy;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.MarketScreenViewModel;
 
+/**
+ * This class is a concrete class that drives the
+ * MarketScreen UI
+ */
 public class MarketScreenActivity extends AppCompatActivity {
 
     private Context mContext;
@@ -37,18 +45,19 @@ public class MarketScreenActivity extends AppCompatActivity {
     private Button mButton;
     private PopupWindow mPopupWindow;
     private TableRow modelRow;
-    private TableLayout table;
     private TextView modelRowText;
     private Button modelBuyButton;
-    private Button modelSellButton;
     private LinearLayout modelLinearLayout;
-    private TextView planetNameText;
     private MarketScreenViewModel marketScreenVM;
-    private FloatingActionButton menuButton;
     private Inventory playerInventory;
     private PlanetInventory planetInventory;
     private PlanetaryEvent event;
-
+    private final Model model = Model.getInstance();
+    private final Game game = model.getGame();
+    private final Galaxy galaxy = game.getGalaxy();
+    private final Player player = model.getPlayer();
+    private Planet currentPlanet;
+    private CelestialName planetName;
     /**
      * called when player is viewing the market screen
      * @param savedInstanceState the saved instance
@@ -58,27 +67,28 @@ public class MarketScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.market_screen);
         modelRow = findViewById(R.id.modelRow);
-        table = findViewById(R.id.table);
+        TableLayout table = findViewById(R.id.table);
         modelRowText = findViewById(R.id.modelRowText);
         modelBuyButton = findViewById(R.id.modelBuyButton);
-        modelSellButton = findViewById(R.id.modelSellButton);
+        Button modelSellButton = findViewById(R.id.modelSellButton);
         modelLinearLayout = findViewById(R.id.modelLinearLayout);
-        planetNameText = findViewById(R.id.planetName);
-        menuButton = findViewById(R.id.menuButton);
+        TextView planetNameText = findViewById(R.id.planetName);
+        FloatingActionButton menuButton = findViewById(R.id.menuButton);
 
-        Planet currentPlanet = null;
         while(currentPlanet == null) {
-                currentPlanet = Model.getInstance().getGame().getGalaxy().getCurrentPlanet();
+                currentPlanet = galaxy.getCurrentPlanet();
         }
+        planetName = currentPlanet.getName();
         planetInventory = currentPlanet.getInventory();
-        playerInventory = Model.getInstance().getPlayer().getInventory();
-        planetNameText.setText(currentPlanet.getName().toString());
+        playerInventory = player.getInventory();
+        planetNameText.setText(planetName.toString());
         marketScreenVM = new MarketScreenViewModel(planetInventory, playerInventory);
-        marketScreenVM.setPlayer(Model.getInstance().getPlayer());
+
+        marketScreenVM.setPlayer(player);
         event = currentPlanet.getPlanetaryEvent();
 
-        int type = Model.getInstance().getPlanetImageIDs().get(currentPlanet.getResources());
-        ImageView planetImage = findViewById(R.id.planetImage);
+        int type = model.getPlanetImageIDs().get(currentPlanet.getResources());
+        ImageView planetImage = (ImageView) findViewById(R.id.planetImage);
         planetImage.setImageResource(type);
 
         for (Good good: Good.values()) {

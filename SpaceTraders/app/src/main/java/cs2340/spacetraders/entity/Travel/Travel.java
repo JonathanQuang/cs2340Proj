@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cs2340.spacetraders.entity.Game;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
+import cs2340.spacetraders.entity.Universe.Galaxy;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
 import cs2340.spacetraders.model.Model;
@@ -25,11 +27,15 @@ public class Travel implements Serializable {
     private Planet maxValidPlanetAway;
     private final List<Planet> planetList;
     private final PlanetaryEvent randomEvent;
+    private Ship playerShip;
+    private final Model model = Model.getInstance();
+    private final Game game = model.getGame();
+    private final Galaxy galaxy = game.getGalaxy();
 
     /**
      * @param player the main player
      * @param currentPlanet the current player in the galaxy
-     * @param planetList the planet list
+     * @param planetList the list of planets in the galaxy
      */
     public Travel(Player player, Planet currentPlanet, List<Planet> planetList) {
         this.player = player;
@@ -37,8 +43,9 @@ public class Travel implements Serializable {
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
         this.planetList = planetList;
-        randomEvent = this.currentPlanet.getPlanetaryEvent();
+        this.randomEvent = this.currentPlanet.getPlanetaryEvent();
         findValidPlanets();
+        this.playerShip = player.getShip();
     }
 
     /**
@@ -55,15 +62,14 @@ public class Travel implements Serializable {
      * @return if successfully traveled to that planet (0 if success)
      */
     public int travel(Planet planet) {
-        Ship ship = player.getShip();
         if (canTravelTo(planet)) {
-            int fuel = ship.getFuel();
+            int fuel = playerShip.getFuel();
             int dist = planetDistances.get(planet);
             int fuelUsed = dist * FUEL_PER_UNIT_MOVED;
-            ship.setFuel(fuel - fuelUsed);
+            playerShip.setFuel(fuel - fuelUsed);
             currentPlanet = planet;
             findValidPlanets();
-            Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
+            galaxy.setCurrentPlanet(planet);
             return 0;
         }
         return 1;
@@ -75,7 +81,7 @@ public class Travel implements Serializable {
     public void wormHoleTravel(Planet planet) {
         currentPlanet = planet;
         findValidPlanets();
-        Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
+        galaxy.setCurrentPlanet(planet);
     }
 
     /**
@@ -103,7 +109,8 @@ public class Travel implements Serializable {
      * @return the radius of travel determined by how much fuel the player has
      */
     public int radiusOfTravel() {
-        return player.getShip().getFuel() / FUEL_PER_UNIT_MOVED;
+        playerShip = player.getShip();
+        return playerShip.getFuel() / FUEL_PER_UNIT_MOVED;
     }
 
     /**

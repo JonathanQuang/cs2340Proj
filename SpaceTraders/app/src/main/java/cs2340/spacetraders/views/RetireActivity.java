@@ -8,8 +8,10 @@ import android.view.View;
 
 import cs2340.spacetraders.R;
 
+/**
+ * RetireActivity controls how the RetireActivity UI behaves
+ */
 public class RetireActivity extends AppCompatActivity {
-    private FloatingActionButton menuButton;
 
     /**
      * called when player is retiring
@@ -20,7 +22,7 @@ public class RetireActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retire_screen);
 
-        menuButton = findViewById(R.id.menuButton);
+        FloatingActionButton menuButton = findViewById(R.id.menuButton);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override

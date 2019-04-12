@@ -25,14 +25,10 @@ public enum ShipType {
     private final int hullStrength;
     private final int weaponSlots;
     private final int shieldSlots;
-    private final int gadgetSlots;
     private final int crewQuarters;
     private final int price;
     private final int DEFAULT_DAMAGE;
     private final Random RANDOM = new Random();
-    //dont make these variables local for the sake of easy configuration for game balance
-    private final int rangeToMaxFuelMultiplier = 10;
-    private final int hullStrengthToMaxHPMultiplier = 1;
 
     /**
      * Initializes string ship type of enum
@@ -48,7 +44,7 @@ public enum ShipType {
         this.hullStrength = hullStrength;
         this.weaponSlots = weaponSlots;
         this.shieldSlots = shieldSlots;
-        this.gadgetSlots = gadgetSlots;
+        int gadgetSlots1 = gadgetSlots;
         this.crewQuarters = crewQuarters;
         this.price = price;
         this.DEFAULT_DAMAGE = defaultDamage;
@@ -124,13 +120,17 @@ public enum ShipType {
      * Getter for the max health
      * @return int of hull strength times multiplier
      */
-    public int getMaxHealth() {return hullStrength * hullStrengthToMaxHPMultiplier;}
+    public int getMaxHealth() {
+        int hullStrengthToMaxHPMultiplier = 1;
+        return hullStrength * hullStrengthToMaxHPMultiplier;}
 
     /**
      * Getter for max fuel
      * @return int of maximum fuel that can be carried
      */
-    public int getMaxFuel() {return range * rangeToMaxFuelMultiplier;}
+    public int getMaxFuel() {//dont make these variables local for the sake of easy configuration for game balance
+        int rangeToMaxFuelMultiplier = 10;
+        return range * rangeToMaxFuelMultiplier;}
 
     /**
      * Returns a random shipType

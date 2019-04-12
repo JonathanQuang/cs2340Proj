@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,10 +15,10 @@ import cs2340.spacetraders.entity.ShipType;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.ShipDisplayViewModel;
 
+/**
+ * Concrete class that controls how ShipDisplay UI behaves
+ */
 public class ShipDisplayActivity extends AppCompatActivity {
-
-    private ShipDisplayViewModel shipmarketVM;
-    private TextView modelCreditsText;
 
     private TextView nameText;
     private TextView sizeText;
@@ -29,6 +30,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
     private TextView gadgetSlotsText;
     private TextView crewQuartersText;
     private static ShipType shipTypeVar;
+    private final Model model = Model.getInstance();
 
     /**
      * called when the player is viewing a particular ship
@@ -41,7 +43,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
 
         FloatingActionButton menuButton = findViewById(R.id.menuButton);
         Button buyButton = findViewById(R.id.buyButton);
-        modelCreditsText = findViewById(R.id.modelCreditsText);
+        TextView modelCreditsText = findViewById(R.id.modelCreditsText);
         nameText = findViewById(R.id.nameText);
         sizeText = findViewById(R.id.sizeText);
         cargoBayText = findViewById(R.id.cargoBayText);
@@ -53,7 +55,8 @@ public class ShipDisplayActivity extends AppCompatActivity {
         crewQuartersText = findViewById(R.id.crewQuartersText);
         ImageView shipImage = findViewById(R.id.shipImage);
 
-        shipmarketVM = new ShipDisplayViewModel(Model.getInstance().getPlayer());
+        ShipDisplayViewModel shipmarketVM = new ShipDisplayViewModel(Model.getInstance().getPlayer());
+        shipmarketVM = new ShipDisplayViewModel(model.getPlayer());
         shipImage.setImageResource(getShipDrawables()[shipTypeVar.ordinal()]);
         setupShipInfo(shipTypeVar);
 

@@ -58,6 +58,7 @@ public class Planet implements Serializable {
         inventory = new PlanetInventory();
         event = PlanetaryEvent.Nothing;
 
+        Random RANDOM = new Random();
         if (RANDOM.nextDouble() > 0.8) {
             while ((event == null) || (event == PlanetaryEvent.Nothing)) {
                 event = event.randomEvent();
@@ -75,7 +76,7 @@ public class Planet implements Serializable {
      */
     public void makeSpaceport(Wormhole wormhole) {
         isSpacePort = true;
-        connectWormHole = wormhole;
+        Wormhole connectWormHole = wormhole;
     }
 
 

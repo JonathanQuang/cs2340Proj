@@ -10,6 +10,9 @@ import android.widget.ImageButton;
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.ShipType;
 
+/**
+ * This class controls how the ShipMarket UI behaves
+ */
 public class ShipMarketActivity extends AppCompatActivity {
     /**
      * created when viewing all of the ships

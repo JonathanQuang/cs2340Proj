@@ -139,10 +139,7 @@ public class Market implements Serializable {
         if ((quant * planetInventory.getBuyPrice(currentGood)) > (currentPlayer.getCredits())) {
             return false;
         }
-        if (!(playerInventory.canBuyGood(quant))) {
-            return false;
-        }
-        return true;
+        return playerInventory.canBuyGood(quant);
     }
 
     /**

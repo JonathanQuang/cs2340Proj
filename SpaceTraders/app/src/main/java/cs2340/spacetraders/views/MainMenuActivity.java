@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -25,10 +26,14 @@ import java.util.Base64;
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.model.Model;
 
+/**
+ * Concrete class that controls how the MainMenu View behaves
+ */
 public class MainMenuActivity extends AppCompatActivity implements Serializable {
 
     public static final int ADD_PLAYER_REQUEST_ID = 1;
     private DatabaseReference myRef;
+    private final Model model = Model.getInstance();
 
     /** Called when the application starts. */
     @Override
@@ -73,8 +78,8 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
                 Toast.makeText(getApplication(), "Loaded Game", Toast.LENGTH_LONG).show();
                 if (previousGame != null) {
                     //Set up Model
-                    Model.getInstance().setPlayer(previousGame.getPlayer());
-                    Model.getInstance().setGame(previousGame.getGame());
+                    model.setPlayer(previousGame.getPlayer());
+                    model.setGame(previousGame.getGame());
 
                     Intent intent = new Intent(MainMenuActivity.this, MarketScreenActivity.class);
                     startActivityForResult(intent, ADD_PLAYER_REQUEST_ID);
@@ -90,7 +95,7 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
 
     /**
      * to read the log messages and send log messages
-     * @param msg the message in concern
+     * @param msg the string containing saved game data
      * @return the read in message
      */
     private Object readMessage(String msg) {
