@@ -77,7 +77,7 @@ public class PlanetInventory implements Serializable {
      * @return how much of that good in the planet's inventory
      */
     public int getGoodCount(Good good) {
-        return goodsCount.get(good) != null ? goodsCount.get(good) : 0;
+        return goodsCount.get(good) != null ? (goodsCount.get(good)) : (0);
     }
 
     /**
@@ -85,7 +85,7 @@ public class PlanetInventory implements Serializable {
      * @return how much the good costs
      */
     public int getBuyPrice(Good good) {
-        return goodsBuyPrices.get(good) != null ? goodsBuyPrices.get(good) : 0;
+        return goodsBuyPrices.get(good) != null ? (goodsBuyPrices.get(good)) : (0);
     }
 
     /**
@@ -93,7 +93,7 @@ public class PlanetInventory implements Serializable {
      * @return how much the good costs
      */
     public int getSellPrice(Good good) {
-        return goodsSellPrices.get(good) != null ? goodsSellPrices.get(good) : 0;
+        return goodsSellPrices.get(good) != null ? (goodsSellPrices.get(good)) : (0);
     }
 
     /**

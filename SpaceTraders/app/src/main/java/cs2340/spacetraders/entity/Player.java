@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class Player implements Serializable {
 
+
+    private final int  initialCredits = 100000;
     private final String name;
     private final int engineerStat;
     private final int fighterStat;

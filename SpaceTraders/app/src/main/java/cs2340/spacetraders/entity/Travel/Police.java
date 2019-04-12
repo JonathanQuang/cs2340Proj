@@ -16,17 +16,22 @@ public class Police extends Encounterable {
     private boolean hostile;
     private final Player player = getPlayer();
     private final Inventory playerInventory = player.getInventory();
+    private final PoliticalSystem politicalSystem;
+    private final String briberyAcceptance;
+    private final String smugglingAcceptance;
+
+
 
     /**
      * Default constructor
      * @param planet current planet being traveled to
      */
     public Police(Planet planet) {
-        PoliticalSystem politicalSystem = planet.getPoliticalSystem();
-        String briberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
-        String smugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
-        bribeChance = politicalSystem.determineProbability(briberyAcceptance);
-        searchChance = politicalSystem.determineProbability(smugglingAcceptance);
+        this.politicalSystem = planet.getPoliticalSystem();
+        this.briberyAcceptance = politicalSystem.getPoliceBriberyAcceptance();
+        this.smugglingAcceptance = politicalSystem.getPoliceSmugglingAcceptance();
+        this.bribeChance = politicalSystem.determineProbability(briberyAcceptance);
+        this.searchChance = politicalSystem.determineProbability(smugglingAcceptance);
         if (hostile) {
             setIgnoreChance(0);
             setAttackChance(0.9);

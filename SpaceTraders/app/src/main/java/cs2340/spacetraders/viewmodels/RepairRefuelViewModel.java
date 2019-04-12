@@ -88,7 +88,7 @@ public class RepairRefuelViewModel {
             return "can only repair positive quantities";
         } else if (healthToBuy > (playerShipType.getMaxHealth() - playerShip.getHealth())) {
             return "repairing more health than player ship has";
-        } else if (healthToBuy * HEALTH_UNIT_PRICE > (player.getCredits())) {
+        } else if (((healthToBuy * HEALTH_UNIT_PRICE) > (player.getCredits()))) {
             return "too poor, one HP costs " + HEALTH_UNIT_PRICE + " here";
         }
         return null;

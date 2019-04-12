@@ -15,6 +15,8 @@ public class SolarSystem implements Serializable {
     private final RelativePosition center;
     private final Galaxy parentGalaxy;
     private final Random rand;
+    private final CelestialName name;
+    private RelativePosition point;
 
     /**
      * @param name the name of the solar system
@@ -25,7 +27,7 @@ public class SolarSystem implements Serializable {
      */
     public SolarSystem(CelestialName name, RelativePosition center,
                        int planetNum, String size, Galaxy parentGalaxy) {
-        CelestialName name1 = name;
+        this.name = name;
         this.center = center;
         String size1 = size;
         this.parentGalaxy = parentGalaxy;
@@ -54,7 +56,7 @@ public class SolarSystem implements Serializable {
         Resources resources = Resources.values()[rand.nextInt(Resources.values().length)];
         PoliticalSystem politicalSystem =
                 PoliticalSystem.values()[rand.nextInt(PoliticalSystem.values().length)];
-        RelativePosition point = getValidUnusedPoint();
+        point = getValidUnusedPoint();
         String size = getPlanetSize();
         parentGalaxy.getGalaxyMap()[point.getY()][point.getX()] = "*";
 
@@ -68,10 +70,10 @@ public class SolarSystem implements Serializable {
     public RelativePosition getValidUnusedPoint() {
         RelativePosition point;
         do {
-            int x = rand.nextInt(2 * center.getRectRadius() + 1)
-                    + center.getX() - center.getRectRadius();
+            int x = ((rand.nextInt((2 * center.getRectRadius()) + 1))
+                    + (center.getX() - center.getRectRadius()));
             int y = rand.nextInt(2 * center.getRectRadius() + 1)
-                    + center.getY() - center.getRectRadius();
+                    + (center.getY() - center.getRectRadius());
             point = new RelativePosition(x, y);
         } while (planetPositions.contains(point));
         planetPositions.add(point);

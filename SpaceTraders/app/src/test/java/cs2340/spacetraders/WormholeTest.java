@@ -16,6 +16,7 @@ import cs2340.spacetraders.entity.Universe.Wormhole;
 
 import static org.junit.Assert.assertTrue;
 
+@SuppressWarnings("ALL")
 public class WormholeTest {
     private List<Planet> planetList;
     private List<Planet> planetList2;

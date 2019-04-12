@@ -28,7 +28,12 @@ public class Galaxy implements Serializable {
     private final List<Wormhole[]> wormholePairList;
     private Planet currentPlanet;
     private final int maxPlantsPerSystem = 6;
-
+    private final int mapWidth = 25;
+    private final int mapHeight = 37;
+    private final int maxWormHolePairs = 2;
+    private CelestialName systemName;
+    private RelativePosition center;
+    private RelativePosition position;
 
     /**
      * Initializes Galaxy and creates solarSystem until there are no more names left.
@@ -75,7 +80,7 @@ public class Galaxy implements Serializable {
         if (center == null) { return null; }
 
         String size = getSystemSize(planetNum);
-        CelestialName systemName = getNonRepeatedCelestialName();
+        systemName = getNonRepeatedCelestialName();
         Log.d("Planet", "-----System " + systemName.getName() + " created at "
                 + center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
@@ -87,15 +92,17 @@ public class Galaxy implements Serializable {
      */
     private void placeWormholePair(){
         SolarSystem solarsystem1 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
+        center = solarsystem1.getCenter();
         int attempt = 0;
-        while (solarsystem1.getCenter().getRectRadius() < 2) {
+        while (center.getRectRadius() < 2) {
             solarsystem1 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
             if (++attempt > 500) { return; }
         }
 
         SolarSystem solarsystem2 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
         attempt = 0;
-        while ( (solarsystem2.getCenter().getRectRadius() < 2) || (solarsystem2 == solarsystem1) ) {
+        center = solarsystem2.getCenter();
+        while ( (center.getRectRadius() < 2) || (solarsystem2 == solarsystem1) ) {
             solarsystem2 = solarSystemList.get(rand.nextInt(solarSystemList.size()));
             if (++attempt > 500) { return; }
         }
@@ -105,9 +112,10 @@ public class Galaxy implements Serializable {
 
         w1.joinWormholes(w2);
         wormholePairList.add(new Wormhole[]{w1, w2});
-
-        galaxyMap[w1.getPosition().getY()][w1.getPosition().getX()] = "@";
-        galaxyMap[w2.getPosition().getY()][w2.getPosition().getX()] = "@";
+        position = w1.getPosition();
+        galaxyMap[position.getY()][position.getX()] = "@";
+        position = w2.getPosition();
+        galaxyMap[position.getY()][position.getX()] = "@";
     }
 
     /**
@@ -121,8 +129,8 @@ public class Galaxy implements Serializable {
         int attempts = 0;
         do {
             int r = (planetNum < 4) ? 1 : 2;
-            int x = rand.nextInt((mapSize.getX() - 2 * r)) + r;
-            int y = rand.nextInt(mapSize.getY() - 2 * r) + r;
+            int x = rand.nextInt((mapSize.getX() - (2 * r))) + r;
+            int y = rand.nextInt(mapSize.getY() - (2 * r)) + r;
             center = new RelativePosition(x, y, r, true);
             if (++attempts > 200) { return null; }
         } while (systemPositionList.contains(center) || !isValidCornerPoint(center));
@@ -139,7 +147,8 @@ public class Galaxy implements Serializable {
         int x = point.getX();
         int y = point.getY();
         int r = point.getRectRadius();
-        return (0 <= x - r) && (x + r < mapSize.getX()) && (0 <= y - r) && (y + r < mapSize.getY());
+        return (((0 <= (x - r)) && ((x + r) < mapSize.getX()))
+                && ((0 <= (y - r)) && ((y + r) < mapSize.getY())));
     }
 
     /**

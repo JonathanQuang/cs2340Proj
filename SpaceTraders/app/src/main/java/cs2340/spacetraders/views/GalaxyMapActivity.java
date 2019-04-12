@@ -21,6 +21,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cs2340.spacetraders.R;
+import cs2340.spacetraders.entity.Game;
 import cs2340.spacetraders.entity.Travel.Travel;
 import cs2340.spacetraders.entity.Universe.Galaxy;
 import cs2340.spacetraders.entity.Universe.Planet;
@@ -42,6 +43,10 @@ public class GalaxyMapActivity extends AppCompatActivity {
     private int screenWidth;
     private RelativePosition mapSize;
     private Planet currentPlanet;
+    private final Model model = Model.getInstance();
+    private final Game game = model.getGame();
+    private Galaxy galaxy;
+    private RelativePosition center;
 
     /** Called when the application starts.*/
     @SuppressLint("ClickableViewAccessibility")
@@ -55,16 +60,16 @@ public class GalaxyMapActivity extends AppCompatActivity {
         setScreenDimensions();
 
         //Get info for Planets
-        Galaxy galaxy = Model.getInstance().getGame().getGalaxy();
+        galaxy = game.getGalaxy();
         mapSize = galaxy.getMapSize();
         currentPlanet = galaxy.getCurrentPlanet();
         List<Planet> planetList = galaxy.getPlanetList();
-        travel = new Travel(Model.getInstance().getPlayer(), currentPlanet, planetList);
+        travel = new Travel(model.getPlayer(), currentPlanet, planetList);
         galaxyMapVM = new GalaxyMapViewModel(currentPlanet, planetList);
 
         //Place All Plants
         for (int i = 0; i < planetButtonIDs.length; i++) {
-            Planet planet = i < planetList.size() ? planetList.get(i) : null;
+            Planet planet = i < planetList.size() ? (planetList.get(i)) : (null);
             if (planet != null) {
                 placePlanet(planet, planetButtonIDs[i]);
                 if (planet.equals(currentPlanet)) {
@@ -81,7 +86,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         //Circle All Systems
         List<SolarSystem> solarSystemsList = galaxy.getSolarSystemList();
         for (int i = 0; i < ringIDs.length; i++) {
-            SolarSystem solarSystem = i < solarSystemsList.size() ? solarSystemsList.get(i) : null;
+            SolarSystem solarSystem = i < solarSystemsList.size() ? (solarSystemsList.get(i)) : (null);
             if (solarSystem != null) {
                 placeSystemRing(solarSystem, ringIDs[i]);
             } else { findViewById(ringIDs[i]).setVisibility(View.GONE);}
@@ -90,7 +95,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         //Place Wormholes
         List<Wormhole[]> wormholePairList = galaxy.getWormholePairList();
         for (int i = 0; i < wormholeIDs.length; i++) {
-            Wormhole[] wormhole = i < wormholePairList.size() ? wormholePairList.get(i) : null;
+            Wormhole[] wormhole = i < wormholePairList.size() ? (wormholePairList.get(i)) : (null);
             if (wormhole != null) {
                 placeWormhole(wormhole[0], wormholeIDs[i][0], wormholeIDs[i][2]);
                 placeWormhole(wormhole[1], wormholeIDs[i][1], wormholeIDs[i][2]);
@@ -108,7 +113,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
      */
     private void placePlanet(final Planet planet, int buttonID) {
         Button planet_button = findViewById(buttonID);
-        int imageID = Model.getInstance().getPlanetImageIDs().get(planet.getResources());
+        int imageID = model.getPlanetImageIDs().get(planet.getResources());
         int size = 25 + (planet.getSizeAsInt() * 5);
 
         makeCustomView(planet_button, imageID, size, planet.getRelativePosition());
@@ -139,7 +144,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
      */
     private void placeSystemRing(SolarSystem solarSystem, int ringID) {
         View ring = findViewById(ringID);
-        int size = 130 + ((solarSystem.getCenter().getRectRadius() - 1) * 100);
+        center = solarSystem.getCenter();
+        int size = 130 + ((center.getRectRadius() - 1) * 100);
         makeCustomView(ring, R.drawable.ring, size, solarSystem.getCenter());
     }
 
@@ -192,8 +198,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
         double probX = ((double) position.getX()) / mapSize.getX();
         double probY = ((double) position.getY()) / mapSize.getY();
 
-        view.setTranslationX((int) ((screenWidth * probX - radius) + 20));
-        view.setTranslationY((int) ((screenHeight * probY - radius) + 20));
+        view.setTranslationX((int) ((screenWidth * probX) - (radius - 20)));
+        view.setTranslationY((int) ((screenHeight * probY) - (radius - 20)));
     }
 
     /**
@@ -271,7 +277,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
         warpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                travel.wormHoleTravel(wormhole.getConnectedWormhole().getShipportPlanet());
+                Wormhole connectWormhole = wormhole.getConnectedWormhole();
+                travel.wormHoleTravel(connectWormhole.getShipportPlanet());
                 Intent intent = new Intent(GalaxyMapActivity.this, MarketScreenActivity.class);
                 startActivityForResult(intent,0);
             }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
 
     public static final int ADD_PLAYER_REQUEST_ID = 1;
     private DatabaseReference myRef;
+    private final Model model = Model.getInstance();
 
     /** Called when the application starts. */
     @Override
@@ -76,8 +78,8 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
                 Toast.makeText(getApplication(), "Loaded Game", Toast.LENGTH_LONG).show();
                 if (previousGame != null) {
                     //Set up Model
-                    Model.getInstance().setPlayer(previousGame.getPlayer());
-                    Model.getInstance().setGame(previousGame.getGame());
+                    model.setPlayer(previousGame.getPlayer());
+                    model.setGame(previousGame.getGame());
 
                     Intent intent = new Intent(MainMenuActivity.this, MarketScreenActivity.class);
                     startActivityForResult(intent, ADD_PLAYER_REQUEST_ID);

@@ -28,6 +28,8 @@ public class Planet implements Serializable {
     private PlanetaryEvent event;
     private final double tradersReturnRate;
     private final SolarSystem parentSolarSystem;
+    private final Random RANDOM = new Random();
+    private Wormhole connectWormHole;
 
     /**
      * @param name the name of the planet

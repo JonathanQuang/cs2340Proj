@@ -14,6 +14,7 @@ public class Wormhole implements Serializable {
     private Wormhole connectedWormhole;
     private final RelativePosition position;
     private Planet shipportPlanet;
+    private RelativePosition otherPlanetPosition;
 
 
     /**
@@ -54,9 +55,10 @@ public class Wormhole implements Serializable {
     }
 
     private double getDistance(Planet otherPlanet) {
+        this.otherPlanetPosition = otherPlanet.getRelativePosition();
         return  Math.sqrt(
-                Math.pow(position.getX() - otherPlanet.getRelativePosition().getX(), 2)
-                + Math.pow(position.getY() - otherPlanet.getRelativePosition().getY(), 2));
+                Math.pow(position.getX() - otherPlanetPosition.getX(), 2)
+                + Math.pow(position.getY() - otherPlanetPosition.getY(), 2));
     }
 
     /**
