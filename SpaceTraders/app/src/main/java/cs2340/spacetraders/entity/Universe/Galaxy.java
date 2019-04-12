@@ -61,7 +61,7 @@ public class Galaxy implements Serializable {
 
         planetList = new ArrayList<Planet>(planetNameMap.values());
         currentPlanet = chooseRandomPlanet();
-        Log.d("Current Planet", currentPlanet.toString());
+        //Log.d("Current Planet", currentPlanet.toString());
 
         int maxWormHolePairs = 2;
         for (int i = 0; i < maxWormHolePairs; i++) { placeWormholePair(); }
@@ -75,14 +75,14 @@ public class Galaxy implements Serializable {
      */
     private SolarSystem makeSolarSystem() {
         int planetNum = rand.nextInt(maxPlantsPerSystem) + 1;
-        Log.d("Planet", "Getting new system's center position");
+        //Log.d("Planet", "Getting new system's center position");
         RelativePosition center = getValidSystemPoint(planetNum);
         if (center == null) { return null; }
 
         String size = getSystemSize(planetNum);
         systemName = getNonRepeatedCelestialName();
-        Log.d("Planet", "-----System " + systemName.getName() + " created at "
-                + center + " with " + planetNum + " planets----");
+        //Log.d("Planet", "-----System " + systemName.getName() + " created at "
+                //+ center + " with " + planetNum + " planets----");
         placeSystemOnMap(center);
         return new SolarSystem(systemName, center, planetNum, size,this);
     }
@@ -196,9 +196,9 @@ public class Galaxy implements Serializable {
      * Prints the galaxy map
      */
     private void printMap() {
-        Log.d("Planet", "-----MAP-----");
+        //Log.d("Planet", "-----MAP-----");
         for (int i = 0; i < galaxyMap.length; i++) {
-            Log.d("Planet", Arrays.toString(galaxyMap[i]));
+            //Log.d("Planet", Arrays.toString(galaxyMap[i]));
         }
     }
 
