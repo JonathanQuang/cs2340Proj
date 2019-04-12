@@ -27,7 +27,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class TravelTest {
     private Player player;
-    private Ship ship;
     private List<Planet> planetList;
     private CelestialName[] celestialNames;
     private Travel travel;
@@ -37,7 +36,7 @@ public class TravelTest {
     @Before
     public void setUp() throws Exception {
         player = new Player("Daniel", 0, 0, 0, 0);
-        ship = player.getShip();
+        Ship ship = player.getShip();
         planetList = new ArrayList<Planet>();
         celestialNames = CelestialName.values();
     }

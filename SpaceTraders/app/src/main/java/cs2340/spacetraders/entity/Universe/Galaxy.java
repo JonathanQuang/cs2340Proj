@@ -27,14 +27,13 @@ public class Galaxy implements Serializable {
     private final Random rand = new Random();
     private final List<Wormhole[]> wormholePairList;
     private Planet currentPlanet;
+    private final int maxPlantsPerSystem = 6;
     private final int mapWidth = 25;
     private final int mapHeight = 37;
-    private final int maxPlantsPerSystem = 6;
     private final int maxWormHolePairs = 2;
     private CelestialName systemName;
     private RelativePosition center;
     private RelativePosition position;
-
 
     /**
      * Initializes Galaxy and creates solarSystem until there are no more names left.
@@ -46,6 +45,8 @@ public class Galaxy implements Serializable {
         systemPositionList = new ArrayList<>();
         usedCelestialNames = new HashSet<>();
         wormholePairList = new ArrayList<Wormhole[]>();
+        int mapHeight = 37;
+        int mapWidth = 25;
         mapSize = new RelativePosition(mapWidth, mapHeight);
         galaxyMap = new String[mapHeight][mapWidth];
 
@@ -62,6 +63,7 @@ public class Galaxy implements Serializable {
         currentPlanet = chooseRandomPlanet();
         Log.d("Current Planet", currentPlanet.toString());
 
+        int maxWormHolePairs = 2;
         for (int i = 0; i < maxWormHolePairs; i++) { placeWormholePair(); }
         printMap();
     }

@@ -26,6 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/planetImage" />
 
     <ImageView
+        android:contentDescription="planet"
         android:id="@+id/planetImage"
         android:layout_width="233dp"
         android:layout_height="233dp"
@@ -76,7 +77,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="UselessParent">
 
                     <TextView
                         android:id="@+id/textView"
@@ -177,6 +179,7 @@
         app:srcCompat="@android:drawable/btn_star_big_on" />
 
     <ImageView
+        android:contentDescription="arrow"
         android:id="@+id/arrow"
         android:layout_width="40dp"
         android:layout_height="18dp"

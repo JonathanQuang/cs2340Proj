@@ -1,6 +1,5 @@
 package cs2340.spacetraders.entity.Market;
 
-import java.io.Serializable;
 import java.util.Random;
 
 import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
@@ -10,7 +9,7 @@ import cs2340.spacetraders.entity.Universe.TechLevel;
 /**
  * A enum with all the good a planet can have
  */
-public enum Good implements Serializable {
+public enum Good {
     Water("Water", 30, 3, 30, 50, 4, 2, 0, 0, PlanetaryEvent.Drought,
             Resources.LOTSOFWATER, Resources.DESERT),
     Furs("Furs", 250, 10, 230, 280, 10, 0, 0, 0, PlanetaryEvent.Cold,
@@ -35,8 +34,6 @@ public enum Good implements Serializable {
     private final String goodName;
     private final int basePrice; //base price
     private final int priceIncrease; // price increase per level
-    private final int minPrice; //min price offered by trader
-    private final int maxPrice; //max price offered by trader
     private final int variance; //how much the price can vary
     private final int maxProductionLevel; //tech level which produces most of this item
     private final int minProduceLevel; //min tech level to produce this resource
@@ -67,9 +64,11 @@ public enum Good implements Serializable {
         this.goodName = goodName;
         this.basePrice = basePrice;
         this.priceIncrease = priceIncrease;
-        this.minPrice = minPrice;
+        //min price offered by trader
+        int minPrice1 = minPrice;
         this.maxProductionLevel = maxLevel;
-        this.maxPrice = maxPrice;
+        //max price offered by trader
+        int maxPrice1 = maxPrice;
         this.variance = variance;
         this.minProduceLevel = minProduceLevel;
         this.minUseLevel = minUseLevel;

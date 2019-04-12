@@ -8,6 +8,7 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:contentDescription="wormhole"
         android:id="@+id/imageViewWormhole"
         android:layout_width="350dp"
         android:layout_height="213dp"

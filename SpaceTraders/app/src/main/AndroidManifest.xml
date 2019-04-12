@@ -41,6 +41,10 @@
         </activity>
         <activity android:name=".views.EncounterScreenActivity">
         </activity>
+        <activity android:name=".views.RetireActivity">
+        </activity>
+        <activity android:name=".views.ShipRepairActivity">
+        </activity>
     </application>
 
 </manifest>

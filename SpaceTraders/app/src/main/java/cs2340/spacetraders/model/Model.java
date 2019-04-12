@@ -15,7 +15,7 @@ import cs2340.spacetraders.entity.Universe.Resources;
 /**
  * Base model for the entire game
  */
-public class Model implements Serializable {
+public final class Model implements Serializable {
 
     private Player player;
     private Game game;

@@ -27,6 +27,7 @@ public abstract class Encounterable {
     private final Ship ship = new Ship(type.randomShipType());
     private final Player player = model.getPlayer();
 
+
     /**
      * Returns the character's ship
      * @return ship
@@ -87,6 +88,7 @@ public abstract class Encounterable {
      * @return fleeChance
      */
     public double getFleeChance() {
+        double fleeChance = 0.05;
         return fleeChance;
     }
 
@@ -95,6 +97,7 @@ public abstract class Encounterable {
      * @return pursueChance
      */
     public double getPursueChance() {
+        double pursueChance = 0.1;
         return pursueChance;
     }
 

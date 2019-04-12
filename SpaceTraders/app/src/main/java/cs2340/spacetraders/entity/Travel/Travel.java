@@ -35,7 +35,7 @@ public class Travel implements Serializable {
     /**
      * @param player the main player
      * @param currentPlanet the current player in the galaxy
-     * @param planetList the planet list
+     * @param planetList the list of planets in the galaxy
      */
     public Travel(Player player, Planet currentPlanet, List<Planet> planetList) {
         this.player = player;
@@ -43,7 +43,7 @@ public class Travel implements Serializable {
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
         this.planetList = planetList;
-        randomEvent = this.currentPlanet.getPlanetaryEvent();
+        this.randomEvent = this.currentPlanet.getPlanetaryEvent();
         findValidPlanets();
         this.playerShip = player.getShip();
     }

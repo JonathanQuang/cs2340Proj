@@ -7,8 +7,8 @@ import java.io.Serializable;
  */
 public class Player implements Serializable {
 
-    private final int  initialCredits = 100000;
 
+    private final int  initialCredits = 100000;
     private final String name;
     private final int engineerStat;
     private final int fighterStat;
@@ -33,6 +33,7 @@ public class Player implements Serializable {
         this.fighterStat = fighterStat;
         this.traderStat = traderStat;
         this.pilotStat = pilotStat;
+        int initialCredits = 100000;
         this.credits = initialCredits;
         this.ship = new Ship();
         this.inventory = new Inventory(ship.getCargoCapacity());

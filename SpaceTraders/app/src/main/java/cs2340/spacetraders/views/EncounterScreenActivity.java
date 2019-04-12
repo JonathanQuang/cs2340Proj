@@ -39,7 +39,6 @@ public class EncounterScreenActivity extends AppCompatActivity {
     private final Galaxy galaxy = game.getGalaxy();
     private Ship playerShip;
     private Ship characterShip;
-    private ShipType playerShipType;
     private ShipType characterShipType;
 
 
@@ -47,15 +46,15 @@ public class EncounterScreenActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        totalEncounters = dataStorage.getTotalEncounters();
+        int totalEncounters = dataStorage.getTotalEncounters();
 
         Planet currentPlanet = null;
         while(currentPlanet == null) {
             currentPlanet = galaxy.getCurrentPlanet();
         }
         player = model.getPlayer();
-        playerShip = player.getShip();
-        playerShipType = playerShip.getShipType();
+        Ship playerShip = player.getShip();
+        ShipType playerShipType = playerShip.getShipType();
         encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
         character = encounterScreenVM.setCharacter();
 
@@ -101,7 +100,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
             fleeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    action.setText("You tried to flee");
+                    String put = "You tried to flee";
+                    action.setText(put);
                     if (encounterScreenVM.pursueAction()) {
                         easyToast(encounterScreenVM.getAction());
                         playerInfo.setText(encounterScreenVM.playerInfo());
@@ -118,7 +118,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     character.surrenderResult();
-                    easyToast("You surrendered");
+                    String put = "You surrendered";
+                    easyToast(put);
                     Intent intent = new Intent(EncounterScreenActivity.this,
                             EncounterScreenActivity.class);
                     startActivityForResult(intent, 0);

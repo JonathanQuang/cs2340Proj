@@ -4,6 +4,9 @@ import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.ShipType;
 
+/**
+ * concrete class Viewmodel for RepairRefuel activity
+ */
 public class RepairRefuelViewModel {
     private final Ship playerShip;
     private final ShipType playerShipType;
@@ -11,25 +14,51 @@ public class RepairRefuelViewModel {
     private final int HEALTH_UNIT_PRICE = 20;
     private final Player player;
 
-
+    /**
+     * constructor for this class
+     * @param player is the Player object representing the user
+     */
     public RepairRefuelViewModel(Player player) {
         this.player = player;
         playerShip = player.getShip();
         playerShipType = playerShip.getShipType();
     }
 
+    /**
+     * @return the max possible health the player's ship can have
+     */
     public double getMaxHealth() {return (double) playerShipType.getMaxHealth();}
 
+    /**
+     * @return the max fuel the player's ship can hold
+     */
     public int getMaxFuel() {return playerShipType.getMaxFuel();}
 
+    /**
+     * @return the player's ship's current health
+     */
     public double getPlayerHealth() {return playerShip.getHealth();}
 
+    /**
+     * @return the player's ship's current fuel
+     */
     public int getPlayerFuel() {return playerShip.getFuel();}
 
+    /**
+     * @return the cost of 1 unit of fuel
+     */
     public int getFuelUnitPrice() {return FUEL_UNIT_PRICE;}
 
+    /**
+     * @return the cost of 1 unit of health
+     */
     public int getHealthUnitPrice() {return HEALTH_UNIT_PRICE;}
 
+    /**
+     * @param fuelToBuy the amount of fuel the user wishes to purchase
+     * @return a string telling the user what is wrong with the amount of fuel they want to buy
+     * or null if there is no error
+     */
     public String fuelError(double fuelToBuy) {
         if (fuelToBuy <= 0) {
            return "please enter a positive quantity";
@@ -41,11 +70,19 @@ public class RepairRefuelViewModel {
         return null;
     }
 
+    /**
+     * @param fuelToBuy the amount of fuel the user has purchased
+     */
     public void purchaseFuel(int fuelToBuy) {
         player.changeCredits(-1 * fuelToBuy * FUEL_UNIT_PRICE);
         playerShip.setFuel(playerShip.getFuel() + fuelToBuy);
     }
 
+    /**
+     * @param healthToBuy the amount of health the user wishes to purchase
+     * @return a string telling the user what is wrong with the amount of health they want to buy
+     * or null if there is no error
+     */
     public String healthError(double healthToBuy) {
         if (healthToBuy <= 0) {
             return "can only repair positive quantities";
@@ -57,11 +94,17 @@ public class RepairRefuelViewModel {
         return null;
     }
 
+    /**
+     * @param healthToBuy the amount of health the user has purchased
+     */
     public void repairHealth(int healthToBuy) {
         player.changeCredits(-1 * healthToBuy * HEALTH_UNIT_PRICE);
         playerShip.setHealth(healthToBuy + playerShip.getHealth());
     }
 
+    /**
+     * @return the number of credits the player has
+     */
     public int getPlayerCredits() {
         return player.getCredits();
     }

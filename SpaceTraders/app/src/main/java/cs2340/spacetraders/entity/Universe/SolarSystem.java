@@ -12,11 +12,10 @@ import java.util.Random;
 public class SolarSystem implements Serializable {
     private final Planet[] planetList;
     private final List<RelativePosition> planetPositions;
-    private final CelestialName name;
     private final RelativePosition center;
-    private final String size;
     private final Galaxy parentGalaxy;
     private final Random rand;
+    private final CelestialName name;
     private RelativePosition point;
 
     /**
@@ -30,7 +29,7 @@ public class SolarSystem implements Serializable {
                        int planetNum, String size, Galaxy parentGalaxy) {
         this.name = name;
         this.center = center;
-        this.size = size;
+        String size1 = size;
         this.parentGalaxy = parentGalaxy;
         rand = new Random();
 

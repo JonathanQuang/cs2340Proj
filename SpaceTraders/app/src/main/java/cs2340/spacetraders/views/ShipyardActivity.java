@@ -17,6 +17,9 @@ import cs2340.spacetraders.entity.Universe.RelativePosition;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.ShipyardViewModel;
 
+/**
+ * Concrete class that controls how the Shipyard UI behaves
+ */
 public class ShipyardActivity extends AppCompatActivity {
 
     private TableLayout weaponTable;
@@ -40,9 +43,15 @@ public class ShipyardActivity extends AppCompatActivity {
 
 
     /**
+     * Constructor for this class
+     */
+    public ShipyardActivity() {
+    }
+
+    /**
      * called when viewing the shipyard
-     * @param savedInstanceState standard parameter required by android, is automatically handled with
-     *                           startActivityForResult
+     * @param savedInstanceState standard parameter required by android, is automatically
+     *                           handled with startActivityForResult
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

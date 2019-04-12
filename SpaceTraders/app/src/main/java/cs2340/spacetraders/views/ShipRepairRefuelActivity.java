@@ -15,6 +15,9 @@ import cs2340.spacetraders.R;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.RepairRefuelViewModel;
 
+/**
+ * Controls how the ship repair and refuelling UI works
+ */
 public class ShipRepairRefuelActivity extends AppCompatActivity {
     private TextView currentFuelNum;
     private EditText fuelToBuyUserInput;
@@ -22,8 +25,6 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
     private final Model model = Model.getInstance();
     private TextView currentHealthNum;
     private EditText healthToBuyUserInput;
-    private Button repairButton;
-    private TextView healthUnitPrice;
 
     private TextView currentCredits;
     @Override
@@ -41,8 +42,8 @@ public class ShipRepairRefuelActivity extends AppCompatActivity {
         currentHealthNum = findViewById(R.id.currentHealthNum);
         TextView maxHealthNum = findViewById(R.id.maxHealthNum);
         healthToBuyUserInput = findViewById(R.id.healthToBuyUserInput);
-        repairButton = findViewById(R.id.repairButton);
-        healthUnitPrice = findViewById(R.id.healthUnitPrice);
+        Button repairButton = findViewById(R.id.repairButton);
+        TextView healthUnitPrice = findViewById(R.id.healthUnitPrice);
 
 
         repairRefuelVM = new RepairRefuelViewModel(model.getPlayer());
