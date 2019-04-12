@@ -128,7 +128,8 @@ public enum ShipType {
      * Getter for max fuel
      * @return int of maximum fuel that can be carried
      */
-    public int getMaxFuel() {//dont make these variables local for the sake of easy configuration for game balance
+    public int getMaxFuel() {
+        //dont make these variables local for the sake of easy configuration for game balance
         int rangeToMaxFuelMultiplier = 10;
         return range * rangeToMaxFuelMultiplier;}
 

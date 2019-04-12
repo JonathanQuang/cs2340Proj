@@ -86,7 +86,8 @@ public class GalaxyMapActivity extends AppCompatActivity {
         //Circle All Systems
         List<SolarSystem> solarSystemsList = galaxy.getSolarSystemList();
         for (int i = 0; i < ringIDs.length; i++) {
-            SolarSystem solarSystem = i < solarSystemsList.size() ? (solarSystemsList.get(i)) : (null);
+            SolarSystem solarSystem =
+                    i < solarSystemsList.size() ? (solarSystemsList.get(i)) : (null);
             if (solarSystem != null) {
                 placeSystemRing(solarSystem, ringIDs[i]);
             } else { findViewById(ringIDs[i]).setVisibility(View.GONE);}
