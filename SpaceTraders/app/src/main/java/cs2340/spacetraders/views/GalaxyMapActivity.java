@@ -43,6 +43,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
     private final Game game = model.getGame();
     private Galaxy galaxy;
     private RelativePosition center;
+    private Wormhole connectWormhole;
 
     /** Called when the application starts.*/
     @SuppressLint("ClickableViewAccessibility")
@@ -272,7 +273,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
         warpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Wormhole connectWormhole = wormhole.getConnectedWormhole();
+                connectWormhole = wormhole.getConnectedWormhole();
                 travel.wormHoleTravel(connectWormhole.getShipportPlanet());
                 Intent intent = new Intent(GalaxyMapActivity.this, MarketScreenActivity.class);
                 startActivityForResult(intent,0);

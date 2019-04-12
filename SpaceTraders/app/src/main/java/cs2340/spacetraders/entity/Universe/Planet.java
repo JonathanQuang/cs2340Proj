@@ -1,7 +1,6 @@
 package cs2340.spacetraders.entity.Universe;
 
 
-import android.util.Log;
 import java.util.Random;
 import java.io.Serializable;
 import cs2340.spacetraders.entity.Market.Good;
