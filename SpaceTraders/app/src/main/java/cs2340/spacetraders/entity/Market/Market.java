@@ -70,7 +70,7 @@ public class Market implements Serializable {
     }
 
     public boolean validQuantityToBuy(String buyText) {
-        int quant = -1;
+        int quant;
         try {
             quant = Integer.parseInt(buyText);
         } catch (Exception e) {
@@ -98,7 +98,11 @@ public class Market implements Serializable {
     }
 
     public boolean validQuantityToSell(String sellText) {
+<<<<<<< Updated upstream
         int quant = -1;
+=======
+        int quant;
+>>>>>>> Stashed changes
         try {
             quant = Integer.parseInt(sellText);
         } catch (Exception e) {

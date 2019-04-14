@@ -18,6 +18,7 @@ import cs2340.spacetraders.viewmodels.ConfigurationViewModel;
 /**
  * Creates the configuration screen
  */
+@SuppressWarnings("ChainedMethodCall")
 public final class ConfigurationActivity extends AppCompatActivity {
 
     private TextView engineerView;

@@ -39,7 +39,8 @@ public class SolarSystem implements Serializable {
         for (int i = 0; i < planetList.length; i++) {
             planetList[i] = makePlanet(i);
 //            Log.d("Planet ", planetList[i].toString());
-            parentGalaxy.getPlanetNameMap().put(planetList[i].getName().toString(), planetList[i]);
+            CelestialName planetName = planetList[i].getName();
+            parentGalaxy.getPlanetNameMap().put(planetName.toString(), planetList[i]);
         }
 
     }

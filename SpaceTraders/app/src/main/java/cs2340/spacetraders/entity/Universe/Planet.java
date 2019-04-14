@@ -1,7 +1,11 @@
 package cs2340.spacetraders.entity.Universe;
 
 
+<<<<<<< Updated upstream
 import android.util.Log;
+=======
+import java.util.List;
+>>>>>>> Stashed changes
 import java.util.Random;
 import java.io.Serializable;
 import cs2340.spacetraders.entity.Market.Good;
@@ -191,7 +195,8 @@ public class Planet implements Serializable {
      * Makes the planet's inventory
      */
     public void makePlanetInventory() {
-        for (Good good: Good.values()) {
+        Good[] goodList = Good.values();
+        for (Good good: goodList) {
             boolean canBuy = good.canBuyFrom(techLevel);
             boolean canSell = good.canSellTo(techLevel);
             int buyPrice = good.calcBuyPrice(techLevel, resources, event);

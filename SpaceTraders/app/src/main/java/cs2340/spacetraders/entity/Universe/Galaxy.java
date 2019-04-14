@@ -1,7 +1,5 @@
 package cs2340.spacetraders.entity.Universe;
 
-import android.util.Log;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;

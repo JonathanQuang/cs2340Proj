@@ -101,7 +101,7 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
             in.close();
             Log.d("Loading Game", "Model Read!!! = " + o);
             return o;
-        } catch (IOException | ClassNotFoundException | NullPointerException e) {
+        } catch (IOException | ClassNotFoundException e) {
                 Log.d("Loading Game", "Failed to load value.", e);
         }
         return null;

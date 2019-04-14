@@ -23,8 +23,17 @@ public class Travel implements Serializable {
     private List<Planet> validPlanets;
     private Map<Planet, Integer> planetDistances;
     private Planet maxValidPlanetAway;
+<<<<<<< Updated upstream
     private List<Planet> planetList;
     private PlanetaryEvent randomEvent;
+=======
+    private final List<Planet> planetList;
+    private final PlanetaryEvent randomEvent;
+    private Ship playerShip;
+    private final Model model;
+    private Game game;
+    private Galaxy galaxy;
+>>>>>>> Stashed changes
 
     /**
      * @param player the main player
@@ -36,7 +45,12 @@ public class Travel implements Serializable {
         validPlanets = new ArrayList<>();
         planetDistances = new HashMap<>();
         this.planetList = planetList;
+<<<<<<< Updated upstream
         randomEvent = this.currentPlanet.getPlanetaryEvent();
+=======
+        model = Model.getInstance();
+        this.randomEvent = this.currentPlanet.getPlanetaryEvent();
+>>>>>>> Stashed changes
         findValidPlanets();
     }
 
@@ -54,7 +68,12 @@ public class Travel implements Serializable {
      * @return if successfully traveled to that planet (0 if success)
      */
     public int travel(Planet planet) {
+<<<<<<< Updated upstream
         Ship ship = player.getShip();
+=======
+        game = model.getGame();
+        galaxy = game.getGalaxy();
+>>>>>>> Stashed changes
         if (canTravelTo(planet)) {
             int fuel = ship.getFuel();
             int dist = planetDistances.get(planet);
@@ -72,6 +91,8 @@ public class Travel implements Serializable {
      * @param planet the plant being traveled to with wormhole
      */
     public void wormHoleTravel(Planet planet) {
+        game = model.getGame();
+        galaxy = game.getGalaxy();
         currentPlanet = planet;
         findValidPlanets();
         Model.getInstance().getGame().getGalaxy().setCurrentPlanet(planet);
