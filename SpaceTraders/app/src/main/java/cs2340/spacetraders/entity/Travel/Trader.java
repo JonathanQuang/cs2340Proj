@@ -20,10 +20,14 @@ public class Trader extends Encounterable {
     public Trader(Planet planet) {
         if (hostile) {
             setAttackChance(0.9);
+            setPursueChance(0.5);
+            setFleeChance(0.1);
+            setUniqueChance(0);
             setIgnoreChance(0);
         } else {
+            setUniqueChance(0.9);
             setAttackChance(0);
-            setIgnoreChance(0);
+            setIgnoreChance(0.1);
         }
     }
 
@@ -32,7 +36,7 @@ public class Trader extends Encounterable {
      * @return String trade results
      */
     public String trade() {
-        return null;
+        return " would like to trade";
     }
 
     @Override
@@ -42,6 +46,7 @@ public class Trader extends Encounterable {
 
     @Override
     public String createDialogue() {
+        setHostile();
         if (player.getCriminalStatus()) {
             return "Trader: Hostile";
         } else {
@@ -62,8 +67,11 @@ public class Trader extends Encounterable {
     public boolean setHostile() {
         if (player.getCriminalStatus()) {
             hostile = true;
-            setIgnoreChance(0);
             setAttackChance(0.9);
+            setPursueChance(0.5);
+            setFleeChance(0.1);
+            setUniqueChance(0);
+            setIgnoreChance(0);
             return hostile;
         } else {
             return hostile;

@@ -28,6 +28,7 @@ public class EncounterScreenViewModel {
     private final String policeQuantity;
     private final String traderQuantity;
     private final String pirateQuantity;
+    private boolean ignore = false;
 
     /**
      * Constructor for the model, based on the planet's information
@@ -55,16 +56,19 @@ public class EncounterScreenViewModel {
      * The character performs an action
      */
     public void characterAction() {
-        if (random.nextDouble() < character.getIgnoreChance()) {
-            action = character.toString() + " ignored you";
+        if (random.nextDouble() < character.getUniqueChance()) {
+            action = character.uniqueAction();
+        } else if (random.nextDouble() < character.getIgnoreChance()) {
+            action = " ignored you";
+            ignore = true;
         } else if (random.nextDouble() < character.getFleeChance()) {
-            character.attack(characterShip.getDamage());
-            action = character.toString() + " fled";
+            action = " fled";
         } else if (random.nextDouble() < character.getAttackChance()) {
             character.attack(characterShip.getDamage());
-            action = character.toString() + " attacked you";
+            action = " attacked you";
         } else {
-            action = character.toString() + " watched you";
+            action = " was stunned";
+            ignore = true;
         }
     }
 
@@ -75,10 +79,10 @@ public class EncounterScreenViewModel {
     public boolean pursueAction() {
         if (random.nextDouble() < character.getPursueChance()) {
             character.attack(characterShip.getDamage());
-            action = character.toString() + " chased you down and attacked you";
+            action = " chased you down and attacked you";
             return true;
         } else {
-            action = character.toString() + " let you go";
+            action = " let you go";
             return false;
         }
     }
@@ -144,5 +148,9 @@ public class EncounterScreenViewModel {
      */
     public String getAction() {
         return action;
+    }
+
+    public boolean isIgnore() {
+        return ignore;
     }
 }
