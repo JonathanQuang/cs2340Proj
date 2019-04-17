@@ -63,16 +63,16 @@ public abstract class Encounterable {
      * Character attacks player, player takes damage
      * @param damage Character ship's attack
      */
-    public void attack(double damage){
-        player.takeDamage(damage * difficultyMultiplier);
+    public void attack(int damage){
+        player.takeDamage((int) (damage * difficultyMultiplier));
     }
 
     /**
      * Player attacks character, character takes damage
      * @param damage Player ship's attack
      */
-    public void takeDamage(double damage){
-        ship.takeDamage(damage / difficultyMultiplier);
+    public void takeDamage(int damage){
+        ship.takeDamage((int) (damage / difficultyMultiplier));
     }
 
     /**

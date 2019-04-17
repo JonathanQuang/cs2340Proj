@@ -15,9 +15,9 @@ import cs2340.spacetraders.entity.Universe.Equipment.WeaponTypes;
 public class Ship implements  Serializable{
 
     private ShipType shipType;
-    private double health;
+    private int health;
     private int fuel;
-    private double damage;
+    private int damage;
     private final List<WeaponTypes> equippedWeapons;
 
     /**
@@ -26,7 +26,7 @@ public class Ship implements  Serializable{
      */
     public Ship(ShipType shipType){
         this.shipType = shipType;
-        this.health = (double) shipType.getMaxHealth();
+        this.health = shipType.getMaxHealth();
         this.damage = shipType.getDefaultDamage();
         this.fuel = shipType.getMaxFuel();
         this.equippedWeapons = new ArrayList<WeaponTypes>();
@@ -59,13 +59,13 @@ public class Ship implements  Serializable{
      * Getter for health
      * @return health
      */
-    public double getHealth() { return health; }
+    public int getHealth() { return health; }
 
     /**
      * Setter for health
      * @param health ship's health
      */
-    public void setHealth(double health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
@@ -73,19 +73,19 @@ public class Ship implements  Serializable{
      * Ship takes damage, subtract health
      * @param damage damage taken
      */
-    public void takeDamage(double damage) {this.health -= damage;}
+    public void takeDamage(int damage) {this.health -= damage;}
 
     /**
      * Getter for ship's attack power
      * @return damage
      */
-    public double getDamage() {return this.damage;}
+    public int getDamage() {return this.damage;}
 
     /**
      * Changes the attack power of the ship
      * @param changeVal amount to be changed
      */
-    public void changeDamage(double changeVal) {this.damage += changeVal;}
+    public void changeDamage(int changeVal) {this.damage += changeVal;}
 
     /**
      * Getter for fuel

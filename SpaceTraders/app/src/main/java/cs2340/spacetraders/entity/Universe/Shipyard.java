@@ -41,7 +41,7 @@ public class Shipyard implements  Serializable{
      */
     public void executeSell(WeaponTypes weapon) {
         playerShip.removeWeapon(weapon);
-        playerShip.changeDamage(weapon.getPower() * -1.0);
+        playerShip.changeDamage(weapon.getPower() * -1);
         player.changeCredits(weapon.getSellPrice());
     }
 

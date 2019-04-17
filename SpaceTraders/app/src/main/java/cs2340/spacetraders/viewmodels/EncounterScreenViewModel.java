@@ -88,7 +88,7 @@ public class EncounterScreenViewModel {
      * @return String representation of stats
      */
     public String playerInfo() {
-        return "Ship: " + currentPlayer.getShip() + "\n"
+        return "Ship: " + currentPlayer.getShip().getShipType() + "\n"
                 + "Health: " + playerShip.getHealth();
     }
 
@@ -98,7 +98,7 @@ public class EncounterScreenViewModel {
      * @return String representation of stats
      */
     public String encounterInfo(Encounterable character) {
-        return "Ship: " + character.getShip() + "\n"
+        return "Ship: " + character.getShip().getShipType() + "\n"
                 + "Health: " + characterShip.getHealth();
     }
 

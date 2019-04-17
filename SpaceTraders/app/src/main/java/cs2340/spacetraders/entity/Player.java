@@ -126,7 +126,7 @@ public class Player implements Serializable {
      * Player's ship takes damage after getting attacked
      * @param damage Damage taken
      */
-    public void takeDamage(double damage) {
+    public void takeDamage(int damage) {
         ship.takeDamage(damage);
     }
 
@@ -134,7 +134,7 @@ public class Player implements Serializable {
      * Getter for the player's health
      * @return ship's health
      */
-    public double getHealth() {
+    public int getHealth() {
         return ship.getHealth();
     }
 }
