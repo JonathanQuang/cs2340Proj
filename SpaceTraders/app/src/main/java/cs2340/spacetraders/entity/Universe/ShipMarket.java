@@ -74,4 +74,12 @@ public class ShipMarket implements Serializable {
         return shipTypePriceDiffMap.get(shipType);
     }
 
+    public boolean weaponsCannotBeMoveToNewShip(ShipType shipType) {
+        return player.getShip().getEquippedWeapons().size() > shipType.getWeaponSlots();
+    }
+
+    public boolean cargoCannotBeMovedToNewShip(ShipType shipType) {
+        return player.getInventory().getCapacity() > shipType.getCargoCapacity();
+    }
+
 }
