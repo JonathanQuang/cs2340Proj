@@ -3,6 +3,7 @@ package cs2340.spacetraders.views;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ import cs2340.spacetraders.entity.Universe.CelestialName;
 import cs2340.spacetraders.entity.Universe.Galaxy;
 import cs2340.spacetraders.entity.Universe.Planet;
 import cs2340.spacetraders.entity.Universe.PlanetaryEvent;
+import cs2340.spacetraders.entity.Universe.Resources;
 import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.MarketScreenViewModel;
 
@@ -58,6 +60,8 @@ public class MarketScreenActivity extends AppCompatActivity {
     private final Player player = model.getPlayer();
     private Planet currentPlanet;
     private CelestialName planetName;
+    private Resources resources;
+    private MediaPlayer mediaPlayer = Model.getMediaPlayer();
     /**
      * called when player is viewing the market screen
      * @param savedInstanceState the saved instance
@@ -78,6 +82,11 @@ public class MarketScreenActivity extends AppCompatActivity {
         while(currentPlanet == null) {
                 currentPlanet = galaxy.getCurrentPlanet();
         }
+        resources = currentPlanet.getResources();
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), getPlanetMusic()[resources.ordinal()]);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
         planetName = currentPlanet.getName();
         planetInventory = currentPlanet.getInventory();
         playerInventory = player.getInventory();
@@ -104,6 +113,7 @@ public class MarketScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MarketScreenActivity.this, MenuScreen.class);
+                mediaPlayer.stop();
                 startActivityForResult(intent, 0);
             }
         });
@@ -350,4 +360,11 @@ public class MarketScreenActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {}
+
+    private int [] getPlanetMusic() {
+        return new int[]{R.raw.no_special_resources, R.raw.mineral_rich, R.raw.no_special_resources,
+                R.raw.desert, R.raw.lots_of_water, R.raw.no_special_resources, R.raw.no_special_resources,
+                R.raw.rich_fauna, R.raw.lifeless, R.raw.weird_mushrooms, R.raw.lots_of_water,
+                R.raw.artistic, R.raw.war_like,};
+    }
 }

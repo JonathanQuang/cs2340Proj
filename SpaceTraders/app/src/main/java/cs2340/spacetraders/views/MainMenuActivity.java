@@ -1,6 +1,7 @@
 package cs2340.spacetraders.views;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -33,12 +34,17 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
     public static final int ADD_PLAYER_REQUEST_ID = 1;
     private DatabaseReference myRef;
     private final Model model = Model.getInstance();
+    private MediaPlayer mediaPlayer = Model.getMediaPlayer();
 
     /** Called when the application starts. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.loading_screen);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
         //Set up Firebase
         FirebaseApp.initializeApp(this);
@@ -51,6 +57,7 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenuActivity.this, ConfigurationActivity.class);
+                mediaPlayer.stop();
                 startActivityForResult(intent, ADD_PLAYER_REQUEST_ID);
             }
         });
@@ -81,6 +88,7 @@ public class MainMenuActivity extends AppCompatActivity implements Serializable 
                     model.setGame(previousGame.getGame());
 
                     Intent intent = new Intent(MainMenuActivity.this, MarketScreenActivity.class);
+                    mediaPlayer.stop();
                     startActivityForResult(intent, ADD_PLAYER_REQUEST_ID);
                 }
             }

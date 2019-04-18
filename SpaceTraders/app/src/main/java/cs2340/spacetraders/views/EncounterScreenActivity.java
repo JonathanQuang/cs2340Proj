@@ -2,6 +2,7 @@ package cs2340.spacetraders.views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -62,11 +63,15 @@ public class EncounterScreenActivity extends AppCompatActivity {
     private ShipType playerShipType;
     private Handler handlerUI = new Handler();
     private Context mContext;
+    private MediaPlayer mediaPlayer = Model.getMediaPlayer();
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.combat_music);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
         int totalEncounters = dataStorage.getTotalEncounters();
 
@@ -96,6 +101,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     Intent intent = new Intent(EncounterScreenActivity.this,
                             MarketScreenActivity.class);
                     dataStorage.setTotalEncounters(0);
+                    mediaPlayer.stop();
                     startActivityForResult(intent, 0);
                 }
             });
@@ -109,6 +115,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     easyToast("You" + ((Police) character).bribe() + "bribe the officer");
                     Intent intent = new Intent(EncounterScreenActivity.this,
                             EncounterScreenActivity.class);
+                    mediaPlayer.stop();
                     startActivityForResult(intent, 0);
                 }
             });
@@ -122,6 +129,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 easyToast(character.toString() + " fled the battle");
                 Intent intent = new Intent(EncounterScreenActivity.this,
                         EncounterScreenActivity.class);
+                mediaPlayer.stop();
                 startActivityForResult(intent, 0);
             }
 
@@ -138,6 +146,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 easyToast(character.toString() + " fled the battle");
                 Intent intent = new Intent(EncounterScreenActivity.this,
                         EncounterScreenActivity.class);
+                mediaPlayer.stop();
                 startActivityForResult(intent, 0);
             }
 
@@ -163,6 +172,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 easyToast(character.toString() + " fled the battle");
                 Intent intent = new Intent(EncounterScreenActivity.this,
                         EncounterScreenActivity.class);
+                mediaPlayer.stop();
                 startActivityForResult(intent, 0);
             }
 
@@ -184,6 +194,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     easyToast(character.toString() + encounterScreenVM.getAction());
                     Intent intent = new Intent(EncounterScreenActivity.this,
                             EncounterScreenActivity.class);
+                    mediaPlayer.stop();
                     startActivityForResult(intent, 0);
                 }
             }
@@ -199,6 +210,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 easyToast("You surrendered");
                 Intent intent = new Intent(EncounterScreenActivity.this,
                         EncounterScreenActivity.class);
+                mediaPlayer.stop();
                 startActivityForResult(intent, 0);
             }
         };
@@ -220,12 +232,14 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     easyToast("You won the battle");
                     Intent intent = new Intent(EncounterScreenActivity.this,
                             EncounterScreenActivity.class);
+                    mediaPlayer.stop();
                     startActivityForResult(intent, 0);
                 } else if (player.getHealth() <= 0) {
                     easyToast("You died");
                     //death
                     Intent intent = new Intent(EncounterScreenActivity.this,
                             EncounterScreenActivity.class);
+                    mediaPlayer.stop();
                     startActivityForResult(intent, 0);
                 } else {
                     handlerUI.postDelayed(new Runnable() {
@@ -237,6 +251,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                                 easyToast(character.toString() + " fled the battle");
                                 Intent intent = new Intent(EncounterScreenActivity.this,
                                         EncounterScreenActivity.class);
+                                mediaPlayer.stop();
                                 startActivityForResult(intent, 0);
                             }
 
@@ -338,6 +353,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 easyToast("You chose not to trade");
                 Intent intent = new Intent(EncounterScreenActivity.this,
                         EncounterScreenActivity.class);
+                mediaPlayer.stop();
                 startActivityForResult(intent, 0);
                 popupWindow.dismiss();
             }
@@ -356,6 +372,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 easyToast("You successfully traded");
                 Intent intent = new Intent(EncounterScreenActivity.this,
                         EncounterScreenActivity.class);
+                mediaPlayer.stop();
                 startActivityForResult(intent, 0);
                 popupWindow.dismiss();
             }

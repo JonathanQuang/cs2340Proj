@@ -3,6 +3,7 @@ package cs2340.spacetraders.views;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +49,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
     private Galaxy galaxy;
     private RelativePosition center;
     private Wormhole connectWormhole;
+    private MediaPlayer mediaPlayer  = Model.getMediaPlayer();
 
     /** Called when the application starts.*/
     @SuppressLint("ClickableViewAccessibility")
@@ -55,6 +57,10 @@ public class GalaxyMapActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.galaxy_map);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.galaxy_map);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
         int[] planetButtonIDs = getPlanetButtonIDs();
         int[] ringIDs = getRingButtonIDs();
         int[][] wormholeIDs = getWormholeIDs();
@@ -240,6 +246,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 if (travel.travel(planet) == 0) {
                     Intent intent = new Intent(GalaxyMapActivity.this,
                             EncounterScreenActivity.class);
+                    mediaPlayer.stop();
                     startActivityForResult(intent,0);
                 }
             }
@@ -282,6 +289,7 @@ public class GalaxyMapActivity extends AppCompatActivity {
                 connectWormhole = wormhole.getConnectedWormhole();
                 travel.wormHoleTravel(connectWormhole.getShipportPlanet());
                 Intent intent = new Intent(GalaxyMapActivity.this, MarketScreenActivity.class);
+                mediaPlayer.stop();
                 startActivityForResult(intent,0);
             }
         });
