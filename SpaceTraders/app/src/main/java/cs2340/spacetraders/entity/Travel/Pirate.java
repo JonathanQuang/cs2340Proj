@@ -28,7 +28,7 @@ public class Pirate extends Encounterable {
     public void steal() {
         if (inventory.getCapacity() > 0) {
             inventory.removeRandomGood();
-        } else {
+        } else if (player.getCredits() >= 2000) {
             player.changeCredits(-2000);
         }
     }

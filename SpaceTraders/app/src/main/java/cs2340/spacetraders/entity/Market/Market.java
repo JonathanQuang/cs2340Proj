@@ -8,6 +8,7 @@ import cs2340.spacetraders.entity.Inventory;
 import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Market.PlanetInventory;
 import cs2340.spacetraders.entity.Player;
+import cs2340.spacetraders.model.Model;
 
 /**
  * Implementation of a market
@@ -27,6 +28,7 @@ public class Market implements Serializable {
     public Market(PlanetInventory planetInventory, Inventory playerInventory) {
         this.planetInventory = planetInventory;
         this.playerInventory = playerInventory;
+        currentPlayer = Model.getInstance().getPlayer();
     }
 
     /**

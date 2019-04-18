@@ -134,4 +134,5 @@ public class Inventory implements Serializable {
         currCapacity -= getGoodAmount(good);
         inventoryGoodCount.put(good, 0);
     }
+
 }

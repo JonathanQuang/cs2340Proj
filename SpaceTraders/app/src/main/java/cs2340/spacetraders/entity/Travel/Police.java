@@ -50,7 +50,7 @@ public class Police extends Encounterable {
      * @return String success or failure
      */
     public String bribe() {
-        if (getRandom() > bribeChance) {
+        if (player.getCredits() >= 500 && getRandom() > bribeChance) {
             player.changeCredits(-500);
             return " successfully ";
         } else {
@@ -78,7 +78,9 @@ public class Police extends Encounterable {
         playerInventory.removeGood(Good.Firearms, goodAmount);
         goodAmount = playerInventory.getGoodAmount(Good.Narcotics);
         playerInventory.removeGood(Good.Narcotics, goodAmount);
-        player.changeCredits(-1000);
+        if (player.getCredits() >= 1000) {
+            player.changeCredits(-1000);
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package cs2340.spacetraders.entity.Market;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * A structure-r for the planet's inventory
@@ -134,5 +135,10 @@ public class PlanetInventory implements Serializable {
             str += getBuyPrice(good) + ", " + getSellPrice(good) + ") ~~" ;
         }
         return str;
+    }
+
+    public Good randomGood()  {
+        Random random = new Random();
+        return Good.values()[random.nextInt(Good.values().length)];
     }
 }

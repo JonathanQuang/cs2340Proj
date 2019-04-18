@@ -1,18 +1,27 @@
 package cs2340.spacetraders.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.DataStorage;
 import cs2340.spacetraders.entity.Game;
+import cs2340.spacetraders.entity.Market.Good;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.ShipType;
@@ -52,6 +61,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
     private TextView action;
     private ShipType playerShipType;
     private Handler handlerUI = new Handler();
+    private Context mContext;
 
 
     @Override
@@ -141,10 +151,8 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     character.uniqueAction();
-                    easyToast("You successfully traded");
-                    Intent intent = new Intent(EncounterScreenActivity.this,
-                            EncounterScreenActivity.class);
-                    startActivityForResult(intent, 0);
+                    encounterScreenVM.setGood(((Trader) character).getRandomGood());
+                    onButtonShowBuyPopupWindowClick(v);
                 }
             });
 
@@ -295,6 +303,63 @@ public class EncounterScreenActivity extends AppCompatActivity {
                 R.drawable.firefly_l,
                 R.drawable.bumblebee_l, R.drawable.grasshopper_l, R.drawable.hornet_l,
                 R.drawable.mosquito_l, R.drawable.termite_l};
+    }
+
+    private void onButtonShowBuyPopupWindowClick(View view) {
+        mContext = getApplicationContext();
+
+        LayoutInflater inflater = (LayoutInflater)
+                mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View popupView = inflater.inflate(R.layout.buy_popup, null);
+        TextView buyTest = popupView.findViewById(R.id.buyButtonText);
+        buyTest.setText(encounterScreenVM.popUpBuyStr());
+
+        Button cancel_button = popupView.findViewById(R.id.cancel_button);
+        Button purchase_button = popupView.findViewById(R.id.purchase_button);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        popupWindow.setElevation(5.0f);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+        cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                easyToast("You chose not to trade");
+                Intent intent = new Intent(EncounterScreenActivity.this,
+                        EncounterScreenActivity.class);
+                startActivityForResult(intent, 0);
+                popupWindow.dismiss();
+            }
+        });
+
+        purchase_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText numToBuy = popupView.findViewById(R.id.buy);
+                if (encounterScreenVM.validQuantityToBuy(numToBuy.getText().toString())) {
+                    encounterScreenVM.buyGood(Integer.parseInt(numToBuy.getText().toString()));
+                } else {
+                    easyToast("Invalid Quantity or you are too poor");
+                    return;
+                }
+                easyToast("You successfully traded");
+                Intent intent = new Intent(EncounterScreenActivity.this,
+                        EncounterScreenActivity.class);
+                startActivityForResult(intent, 0);
+                popupWindow.dismiss();
+            }
+        });
     }
 
 
