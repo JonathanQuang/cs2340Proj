@@ -2,9 +2,11 @@ package cs2340.spacetraders.views;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.Difficulty;
+import cs2340.spacetraders.model.Model;
 import cs2340.spacetraders.viewmodels.ConfigurationViewModel;
 
 /**
@@ -27,11 +30,15 @@ public final class ConfigurationActivity extends AppCompatActivity {
     private Spinner difficultySpinner;
     private ConfigurationViewModel viewModel;
     private int pointsLeft;
+    private MediaPlayer mediaPlayer = Model.getMediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_player);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.loading_screen);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
         pointsLeft = viewModel.STARTING_POINTS;
@@ -79,6 +86,7 @@ public final class ConfigurationActivity extends AppCompatActivity {
                         difficulty, pointsLeft)) {
                     Intent intent = new Intent(ConfigurationActivity.this,
                             MarketScreenActivity.class);
+                    mediaPlayer.stop();
                     startActivityForResult(intent,0);
                 }
             }

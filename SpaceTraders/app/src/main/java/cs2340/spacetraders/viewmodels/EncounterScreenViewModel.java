@@ -2,6 +2,8 @@ package cs2340.spacetraders.viewmodels;
 
 import java.util.Random;
 
+import cs2340.spacetraders.entity.Market.Good;
+import cs2340.spacetraders.entity.Market.Market;
 import cs2340.spacetraders.entity.Player;
 import cs2340.spacetraders.entity.Ship;
 import cs2340.spacetraders.entity.Travel.Encounterable;
@@ -28,6 +30,9 @@ public class EncounterScreenViewModel {
     private final String policeQuantity;
     private final String traderQuantity;
     private final String pirateQuantity;
+    private boolean ignore = false;
+    private Market currentMarket;
+
 
     /**
      * Constructor for the model, based on the planet's information
@@ -55,16 +60,19 @@ public class EncounterScreenViewModel {
      * The character performs an action
      */
     public void characterAction() {
-        if (random.nextDouble() < character.getIgnoreChance()) {
-            action = character.toString() + " ignored you";
+        if (random.nextDouble() < character.getUniqueChance()) {
+            action = character.uniqueAction();
+        } else if (random.nextDouble() < character.getIgnoreChance()) {
+            action = " ignored you";
+            ignore = true;
         } else if (random.nextDouble() < character.getFleeChance()) {
-            character.attack(characterShip.getDamage());
-            action = character.toString() + " fled";
+            action = " fled";
         } else if (random.nextDouble() < character.getAttackChance()) {
             character.attack(characterShip.getDamage());
-            action = character.toString() + " attacked you";
+            action = " attacked you";
         } else {
-            action = character.toString() + " watched you";
+            action = " was stunned";
+            ignore = true;
         }
     }
 
@@ -75,10 +83,10 @@ public class EncounterScreenViewModel {
     public boolean pursueAction() {
         if (random.nextDouble() < character.getPursueChance()) {
             character.attack(characterShip.getDamage());
-            action = character.toString() + " chased you down and attacked you";
+            action = " chased you down and attacked you";
             return true;
         } else {
-            action = character.toString() + " let you go";
+            action = " let you go";
             return false;
         }
     }
@@ -88,7 +96,7 @@ public class EncounterScreenViewModel {
      * @return String representation of stats
      */
     public String playerInfo() {
-        return "Ship: " + currentPlayer.getShip() + "\n"
+        return "Ship: " + currentPlayer.getShip().getShipType() + "\n"
                 + "Health: " + playerShip.getHealth();
     }
 
@@ -98,7 +106,7 @@ public class EncounterScreenViewModel {
      * @return String representation of stats
      */
     public String encounterInfo(Encounterable character) {
-        return "Ship: " + character.getShip() + "\n"
+        return "Ship: " + character.getShip().getShipType() + "\n"
                 + "Health: " + characterShip.getHealth();
     }
 
@@ -122,7 +130,8 @@ public class EncounterScreenViewModel {
             this.character = new Pirate();
             characterShip = character.getShip();
         } else if (random.nextDouble() < politicalSystem.determineProbability(traderQuantity)) {
-            this.character = new Trader(planet);
+            this.character = new Trader();
+            currentMarket = new Market(((Trader) character).getTraderInventory(), currentPlayer.getInventory());
             characterShip = character.getShip();
         } else {
             character = null;
@@ -144,5 +153,33 @@ public class EncounterScreenViewModel {
      */
     public String getAction() {
         return action;
+    }
+
+    public boolean isIgnore() {
+        return ignore;
+    }
+
+    public String popUpBuyStr() {
+        return "Planet " + currentMarket.getCurrentGood().toString() + " Supply: "
+                + currentMarket.getCurrentGoodCountInPlanet() + "\n"
+                + "Buying Price: $" + currentMarket.getPlanetBuyPrice() + "\n"
+                //+ "Quantity Purchasing: ---" + "\n"
+                //+ "Total Cost: ---" + "\n";
+                + "You currently have " + currentMarket.getCurrentGoodCountInPlayer() + " "
+                + currentMarket.getGoodName() + "\n"
+                + "You have " + currentMarket.getPlayerCredits() + " credits" + "\n"
+                + "Type below amount purchase";
+    }
+
+    public boolean validQuantityToBuy(String buyText) {
+        return currentMarket.validQuantityToBuy(buyText);
+    }
+
+    public void buyGood(int amount) {
+        currentMarket.buyGood(amount);
+    }
+
+    public void setGood(Good currentGood) {
+        currentMarket.setGood(currentGood);
     }
 }

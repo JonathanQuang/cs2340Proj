@@ -38,6 +38,8 @@ public enum Good {
     private final int maxProductionLevel; //tech level which produces most of this item
     private final int minProduceLevel; //min tech level to produce this resource
     private final int minUseLevel; //min tech level to use this resource
+    private final int minPrice;
+    private final int maxPrice;
     private final PlanetaryEvent priceIncreaseEvent;
     private final Resources lowPriceEnv;
     private final Resources highPriceEnv;
@@ -64,9 +66,9 @@ public enum Good {
         this.goodName = goodName;
         this.basePrice = basePrice;
         this.priceIncrease = priceIncrease;
-        //min price offered by trader
+        this.minPrice = minPrice;
         this.maxProductionLevel = maxLevel;
-        //max price offered by trader
+        this.maxPrice = maxPrice;
         this.variance = variance;
         this.minProduceLevel = minProduceLevel;
         this.minUseLevel = minUseLevel;
@@ -82,6 +84,10 @@ public enum Good {
      */
     public String getGoodName() {
         return goodName;
+    }
+
+    public int getTraderPrice() {
+        return (minPrice + maxPrice + variance) / (rand.nextInt(2) + 1);
     }
 
     /**

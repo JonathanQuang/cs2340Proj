@@ -17,9 +17,9 @@ public class Pirate extends Encounterable {
      * Default constructor
      */
     public Pirate() {
-        super();
-        super.setAttackChance(0.9);
-        super.setIgnoreChance(0);
+        setAttackChance(0.9);
+        setPursueChance(0.5);
+        setFleeChance(0.1);
     }
 
     /**
@@ -28,7 +28,7 @@ public class Pirate extends Encounterable {
     public void steal() {
         if (inventory.getCapacity() > 0) {
             inventory.removeRandomGood();
-        } else {
+        } else if (player.getCredits() >= 2000) {
             player.changeCredits(-2000);
         }
     }

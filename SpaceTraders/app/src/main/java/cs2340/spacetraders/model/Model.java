@@ -1,5 +1,6 @@
 package cs2340.spacetraders.model;
 
+import android.media.MediaPlayer;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -22,12 +23,21 @@ public final class Model implements Serializable {
     private final Map<Resources, Integer> planetImageIDs;
 
     private static final Model instance = new Model();
+    private static MediaPlayer mediaPlayer;
 
     /**
      * Getter for the instance of the model
      * @return instance
      */
     public static Model getInstance() { return instance; }
+
+    public static void setMediaPlayer(MediaPlayer mediaPlayer) {
+        Model.mediaPlayer = mediaPlayer;
+    }
+
+    public static MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
 
     private Model() {
         planetImageIDs = new HashMap<>();

@@ -19,8 +19,9 @@ public abstract class Encounterable {
     private final Game game = model.getGame();
     private final Difficulty difficulty = game.getDifficulty();
     private final double difficultyMultiplier = difficulty.getMultipler();
-    private final double fleeChance = 0.05;
-    private final double pursueChance = 0.1;
+    private double fleeChance;
+    private double pursueChance;
+    private double uniqueActionChance;
     private double ignoreChance;
     private double attackChance;
     private final ShipType type = ShipType.Gnat;
@@ -63,16 +64,16 @@ public abstract class Encounterable {
      * Character attacks player, player takes damage
      * @param damage Character ship's attack
      */
-    public void attack(double damage){
-        player.takeDamage(damage * difficultyMultiplier);
+    public void attack(int damage){
+        player.takeDamage((int) (damage * difficultyMultiplier));
     }
 
     /**
      * Player attacks character, character takes damage
      * @param damage Player ship's attack
      */
-    public void takeDamage(double damage){
-        ship.takeDamage(damage / difficultyMultiplier);
+    public void takeDamage(int damage){
+        ship.takeDamage((int) (damage / difficultyMultiplier));
     }
 
     /**
@@ -88,8 +89,11 @@ public abstract class Encounterable {
      * @return fleeChance
      */
     public double getFleeChance() {
-        //double fleeChance = 0.05;
-        return 0.05;
+        return fleeChance;
+    }
+
+    public void setFleeChance(double fleeChance) {
+        this.fleeChance = fleeChance;
     }
 
     /**
@@ -97,8 +101,11 @@ public abstract class Encounterable {
      * @return pursueChance
      */
     public double getPursueChance() {
-        //double pursueChance = 0.1;
-        return 0.1;
+        return pursueChance;
+    }
+
+    public void setPursueChance(double pursueChance) {
+        this.pursueChance = pursueChance;
     }
 
     /**
@@ -115,6 +122,14 @@ public abstract class Encounterable {
      */
     public void setIgnoreChance(double ignoreChance) {
         this.ignoreChance = ignoreChance;
+    }
+
+    public double getUniqueChance() {
+        return uniqueActionChance;
+    }
+
+    public void setUniqueChance(double uniqueActionChance) {
+        this.uniqueActionChance = uniqueActionChance;
     }
 
     /**

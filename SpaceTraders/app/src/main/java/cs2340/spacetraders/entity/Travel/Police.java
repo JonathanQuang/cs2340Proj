@@ -35,8 +35,12 @@ public class Police extends Encounterable {
         if (hostile) {
             setIgnoreChance(0);
             setAttackChance(0.9);
+            setPursueChance(0.75);
+            setFleeChance(0.1);
+            setUniqueChance(0);
         } else {
-            setIgnoreChance(searchChance);
+            setUniqueChance(searchChance);
+            setIgnoreChance(1 - searchChance);
             setAttackChance(0);
         }
     }
@@ -46,7 +50,7 @@ public class Police extends Encounterable {
      * @return String success or failure
      */
     public String bribe() {
-        if (getRandom() > bribeChance) {
+        if (player.getCredits() >= 500 && getRandom() > bribeChance) {
             player.changeCredits(-500);
             return " successfully ";
         } else {
@@ -74,11 +78,14 @@ public class Police extends Encounterable {
         playerInventory.removeGood(Good.Firearms, goodAmount);
         goodAmount = playerInventory.getGoodAmount(Good.Narcotics);
         playerInventory.removeGood(Good.Narcotics, goodAmount);
-        player.changeCredits(-1000);
+        if (player.getCredits() >= 1000) {
+            player.changeCredits(-1000);
+        }
     }
 
     @Override
     public String createDialogue() {
+        setHostile();
         if (player.getCriminalStatus()) {
             return "Police: Hostile";
         } else {
@@ -97,6 +104,9 @@ public class Police extends Encounterable {
             hostile = true;
             setIgnoreChance(0);
             setAttackChance(0.9);
+            setPursueChance(0.75);
+            setFleeChance(0.1);
+            setUniqueChance(0);
             return hostile;
         } else {
             return hostile;
@@ -105,7 +115,7 @@ public class Police extends Encounterable {
 
     @Override
     public String uniqueAction() {
-        return bribe();
+        return " would like to search your ship";
     }
 
     @Override

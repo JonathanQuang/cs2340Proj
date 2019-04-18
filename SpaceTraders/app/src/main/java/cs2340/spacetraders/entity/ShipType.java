@@ -53,7 +53,7 @@ public enum ShipType {
      * Getter for the ship's default damage
      * @return DEFAULT_DAMAGE
      */
-    public double getDefaultDamage() {return DEFAULT_DAMAGE;}
+    public int getDefaultDamage() {return DEFAULT_DAMAGE;}
 
     /**
      * Getter for the ship's size
