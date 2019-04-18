@@ -67,13 +67,21 @@ public class ShipDisplayViewModel {
      * @param shipType the ShipType the player wishes to buy
      * @return a string with a message telling the player whether
      * the trade was a success or they didn't have enough money to buy the ship
+     * returns null if the player trade is successful
+     *
      */
-    public String playerCanTradeMessage(ShipType shipType) {
-        if (shipMarket.checkCanTradeInShip(shipType)) {
-            updateShipMarket(shipType);
-            return "Trade Successful";
+    public String playerCanTradeErrorMessage(ShipType shipType) {
+        if (!(shipMarket.checkCanTradeInShip(shipType))) {
+            return "Not enough money";
         }
-        return "Not enough money";
+        if (shipMarket.weaponsCannotBeMoveToNewShip(shipType)) {
+            return "You have more weapons than this ship can hold";
+        }
+        if (shipMarket.cargoCannotBeMovedToNewShip(shipType)) {
+            return "You have more cargo than this ship can hold";
+        }
+        updateShipMarket(shipType);
+        return null;
     }
 
 }

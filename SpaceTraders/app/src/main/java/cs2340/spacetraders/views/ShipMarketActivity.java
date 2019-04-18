@@ -45,6 +45,8 @@ public class ShipMarketActivity extends AppCompatActivity {
         setupShipButton(termiteButton, ShipType.Termite);
         setupShipButton(fireflyButton, ShipType.Firefly);
 
+        
+
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

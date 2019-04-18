@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cs2340.spacetraders.R;
 import cs2340.spacetraders.entity.ShipType;
@@ -28,7 +29,10 @@ public class ShipDisplayActivity extends AppCompatActivity {
     private TextView shieldSlotsText;
     private TextView gadgetSlotsText;
     private TextView crewQuartersText;
+    private TextView modelCreditsText;
+    private TextView playerCreditsText;
     private static ShipType shipTypeVar;
+    private ShipDisplayViewModel shipmarketVM;
     private final Model model = Model.getInstance();
 
     /**
@@ -42,7 +46,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
 
         FloatingActionButton menuButton = findViewById(R.id.menuButton);
         Button buyButton = findViewById(R.id.buyButton);
-        TextView modelCreditsText = findViewById(R.id.modelCreditsText);
+        modelCreditsText = findViewById(R.id.modelCreditsText);
         nameText = findViewById(R.id.nameText);
         sizeText = findViewById(R.id.sizeText);
         cargoBayText = findViewById(R.id.cargoBayText);
@@ -52,10 +56,9 @@ public class ShipDisplayActivity extends AppCompatActivity {
         shieldSlotsText = findViewById(R.id.shieldSlotsText);
         gadgetSlotsText = findViewById(R.id.gadgetSlotsText);
         crewQuartersText = findViewById(R.id.crewQuartersText);
+        playerCreditsText = findViewById(R.id.playerCreditsText);
         ImageView shipImage = findViewById(R.id.shipImage);
 
-        ShipDisplayViewModel shipmarketVM = new ShipDisplayViewModel(
-                model.getPlayer());
         shipmarketVM = new ShipDisplayViewModel(model.getPlayer());
         shipImage.setImageResource(getShipDrawables()[shipTypeVar.ordinal()]);
         setupShipInfo(shipTypeVar);
@@ -68,12 +71,37 @@ public class ShipDisplayActivity extends AppCompatActivity {
             }
         });
 
+        setCreditsText();
+        updatePlayerCredits();
+
         buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //buying mechanism
+                String toastText = shipmarketVM.playerCanTradeErrorMessage(shipTypeVar);
+                if (toastText == null) {
+                    Toast.makeText(getApplicationContext(), "Ship successfully traded", Toast.LENGTH_SHORT).show();
+                    setCreditsText();
+                    updatePlayerCredits();
+                } else {
+                    Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+    }
+
+    private void setCreditsText() {
+        int shipCost = shipmarketVM.getShipMarketDiffMap().get(shipTypeVar);
+        if (shipCost < 0) {
+            modelCreditsText.setText("You will make " + (-1 * shipCost) + " credits after trading your ship in");
+        } else {
+            modelCreditsText.setText("It will cost you " + shipCost + " credits after trading your ship in");
+        }
+    }
+
+    private void updatePlayerCredits() {
+        playerCreditsText.setText("You have " + model.getPlayer().getCredits() + " credits");
     }
 
     /**
@@ -93,7 +121,7 @@ public class ShipDisplayActivity extends AppCompatActivity {
         sizeText.setText("Size: " + shipType.getShipSize());
         cargoBayText.setText("Cargo Bays: " + shipType.getCargoCapacity());
         rangeText.setText("Range: " + shipType.getRange());
-        hullStrengthText.setText("Hull Strength" + shipType.getHullStrength());
+        hullStrengthText.setText("Hull Strength: " + shipType.getHullStrength());
         weaponSlotsText.setText("Weapon slots: " + shipType.getWeaponSlots());
         shieldSlotsText.setText("Shield Slots: " + shipType.getShieldSlots());
         gadgetSlotsText.setText("Gadget Slots: " + shipType.getGadgetSlots());
