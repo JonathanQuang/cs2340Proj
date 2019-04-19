@@ -76,7 +76,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
         int totalEncounters = dataStorage.getTotalEncounters();
 
         Planet currentPlanet = null;
-        while(currentPlanet == null) {
+        while (currentPlanet == null) {
             currentPlanet = galaxy.getCurrentPlanet();
         }
         player = model.getPlayer();
@@ -85,13 +85,13 @@ public class EncounterScreenActivity extends AppCompatActivity {
         encounterScreenVM = new EncounterScreenViewModel(currentPlanet);
         character = encounterScreenVM.setCharacter();
 
-        if(character != null) {
+        if (character != null) {
             characterShip = character.getShip();
             characterShipType = characterShip.getShipType();
             dataStorage.setTotalEncounters(++totalEncounters);
         }
 
-        if ( (character == null) || (totalEncounters >= 5) ) {
+        if ((character == null) || (totalEncounters >= 5)) {
             setContentView(R.layout.encounter_screen);
             Button okButton = findViewById(R.id.encounterButton);
 
@@ -105,7 +105,17 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     startActivityForResult(intent, 0);
                 }
             });
-        } else if ( (character instanceof Police) && (totalEncounters < 5) ) {
+
+            handlerUI.postDelayed(new Runnable() {
+                public void run() {
+                    Intent intent = new Intent(EncounterScreenActivity.this,
+                            MarketScreenActivity.class);
+                    dataStorage.setTotalEncounters(0);
+                    mediaPlayer.stop();
+                    startActivityForResult(intent, 0);
+                }
+            }, 2000);
+        } else if ((character instanceof Police) && (totalEncounters < 5)) {
             setContentView(R.layout.police_popup);
             setUp();
             modelUniqueButton = findViewById(R.id.bribe_button);
@@ -119,40 +129,46 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     startActivityForResult(intent, 0);
                 }
             });
+            handlerUI.postDelayed(new Runnable() {
+                public void run() {
+                    encounterScreenVM.characterAction();
+                    action.setText(character.toString() + encounterScreenVM.getAction());
 
-            encounterScreenVM.characterAction();
-            action.setText(character.toString() + encounterScreenVM.getAction());
+                    if (action.getText().equals(character.toString() + character.uniqueAction())) {
+                        character.setPursueChance(1);
+                    } else if (encounterScreenVM.getAction().equals(" fled")) {
+                        easyToast(character.toString() + " fled the battle");
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
+                        mediaPlayer.stop();
+                        startActivityForResult(intent, 0);
+                    }
 
-            if (action.getText().equals(character.toString() + character.uniqueAction())) {
-                character.setPursueChance(1);
-            } else if (encounterScreenVM.getAction().equals(" fled")) {
-                easyToast(character.toString() + " fled the battle");
-                Intent intent = new Intent(EncounterScreenActivity.this,
-                        EncounterScreenActivity.class);
-                mediaPlayer.stop();
-                startActivityForResult(intent, 0);
-            }
+                    update();
+                }
+            }, 2000);
 
-            update();
-
-        } else if ( (character instanceof Pirate) && (totalEncounters < 5) ) {
+        } else if ((character instanceof Pirate) && (totalEncounters < 5)) {
             setContentView(R.layout.pirate_popup);
             setUp();
+            handlerUI.postDelayed(new Runnable() {
+                public void run() {
+                    encounterScreenVM.characterAction();
+                    action.setText(character.toString() + encounterScreenVM.getAction());
 
-            encounterScreenVM.characterAction();
-            action.setText(character.toString() + encounterScreenVM.getAction());
+                    if (encounterScreenVM.getAction().equals(" fled")) {
+                        easyToast(character.toString() + " fled the battle");
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
+                        mediaPlayer.stop();
+                        startActivityForResult(intent, 0);
+                    }
 
-            if (encounterScreenVM.getAction().equals(" fled")) {
-                easyToast(character.toString() + " fled the battle");
-                Intent intent = new Intent(EncounterScreenActivity.this,
-                        EncounterScreenActivity.class);
-                mediaPlayer.stop();
-                startActivityForResult(intent, 0);
-            }
+                    update();
+                }
+            }, 2000);
 
-            update();
-
-        } else if ( (character instanceof Trader) && (totalEncounters < 5) ) {
+        } else if ((character instanceof Trader) && (totalEncounters < 5)) {
             setContentView(R.layout.trader_popup);
             setUp();
             modelUniqueButton = findViewById(R.id.trade_button);
@@ -164,19 +180,22 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     onButtonShowBuyPopupWindowClick(v);
                 }
             });
+            handlerUI.postDelayed(new Runnable() {
+                public void run() {
+                    encounterScreenVM.characterAction();
+                    action.setText(character.toString() + encounterScreenVM.getAction());
 
-            encounterScreenVM.characterAction();
-            action.setText(character.toString() + encounterScreenVM.getAction());
+                    if (encounterScreenVM.getAction().equals(" fled")) {
+                        easyToast(character.toString() + " fled the battle");
+                        Intent intent = new Intent(EncounterScreenActivity.this,
+                                EncounterScreenActivity.class);
+                        mediaPlayer.stop();
+                        startActivityForResult(intent, 0);
+                    }
 
-            if (encounterScreenVM.getAction().equals(" fled")) {
-                easyToast(character.toString() + " fled the battle");
-                Intent intent = new Intent(EncounterScreenActivity.this,
-                        EncounterScreenActivity.class);
-                mediaPlayer.stop();
-                startActivityForResult(intent, 0);
-            }
-
-            update();
+                    update();
+                }
+            }, 2000);
         }
 
     }
@@ -238,7 +257,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
                     easyToast("You died");
                     //death
                     Intent intent = new Intent(EncounterScreenActivity.this,
-                            EncounterScreenActivity.class);
+                            RetireActivity.class);
                     mediaPlayer.stop();
                     startActivityForResult(intent, 0);
                 } else {
@@ -291,6 +310,15 @@ public class EncounterScreenActivity extends AppCompatActivity {
         encounterInfo.setText(encounterScreenVM.encounterInfo(character));
         encounterType.setText(character.createDialogue());
 
+        if (player.getHealth() <= 0) {
+            easyToast("You died");
+            //death
+            Intent intent = new Intent(EncounterScreenActivity.this,
+                    RetireActivity.class);
+            mediaPlayer.stop();
+            startActivityForResult(intent, 0);
+        }
+
         if (!(character instanceof Pirate)) {
             if (character.setHostile()) {
                 modelUniqueButton.setEnabled(false);
@@ -303,6 +331,7 @@ public class EncounterScreenActivity extends AppCompatActivity {
 
     /**
      * Makes a toast with message
+     *
      * @param toastMessage message
      */
     private void easyToast(String toastMessage) {
@@ -311,9 +340,10 @@ public class EncounterScreenActivity extends AppCompatActivity {
 
     /**
      * images of the ships
+     *
      * @return the images
      */
-    private int [] getShipDrawables() {
+    private int[] getShipDrawables() {
         return new int[]{R.drawable.gnat_l, R.drawable.flea_l, R.drawable.beetle_l,
                 R.drawable.firefly_l,
                 R.drawable.bumblebee_l, R.drawable.grasshopper_l, R.drawable.hornet_l,

@@ -44,6 +44,7 @@ public class EncounterScreenViewModel {
         this.policeQuantity = politicalSystem.getPoliceQuantity();
         this.pirateQuantity = politicalSystem.getPirateQuantity();
         this.traderQuantity = politicalSystem.getTradersQuantity();
+        character = null;
     }
 
     /**
@@ -96,8 +97,15 @@ public class EncounterScreenViewModel {
      * @return String representation of stats
      */
     public String playerInfo() {
-        return "Ship: " + currentPlayer.getShip().getShipType() + "\n"
-                + "Health: " + playerShip.getHealth();
+        if (playerShip.getHealth() > 0) {
+            return "Ship: " + currentPlayer.getShip().getShipType() + "\n"
+                    + "Health: " + playerShip.getHealth();
+        }
+        else {
+            return "Ship: " + currentPlayer.getShip().getShipType() + "\n"
+                    + "Health: 0";
+        }
+
     }
 
     /**
@@ -106,8 +114,14 @@ public class EncounterScreenViewModel {
      * @return String representation of stats
      */
     public String encounterInfo(Encounterable character) {
-        return "Ship: " + character.getShip().getShipType() + "\n"
+        if (characterShip.getHealth() > 0) {
+            return "Ship: " + character.getShip().getShipType() + "\n"
                 + "Health: " + characterShip.getHealth();
+        } else {
+            return "Ship: " + character.getShip().getShipType() + "\n"
+                    + "Health: 0";
+        }
+
     }
 
     /**
@@ -123,18 +137,19 @@ public class EncounterScreenViewModel {
      * @return character
      */
     public Encounterable setCharacter() {
-        if (random.nextDouble() < politicalSystem.determineProbability(policeQuantity)) {
-            this.character = new Police(planet);
-            characterShip = character.getShip();
-        } else if (random.nextDouble() < politicalSystem.determineProbability(pirateQuantity)) {
-            this.character = new Pirate();
-            characterShip = character.getShip();
-        } else if (random.nextDouble() < politicalSystem.determineProbability(traderQuantity)) {
-            this.character = new Trader();
-            currentMarket = new Market(((Trader) character).getTraderInventory(), currentPlayer.getInventory());
-            characterShip = character.getShip();
-        } else {
-            character = null;
+        for (int i = 0; i < 5; i++) {
+            int testing = random.nextInt(3);
+            if (testing == 0 && random.nextDouble() < politicalSystem.determineProbability(policeQuantity)) {
+                this.character = new Police(planet);
+                characterShip = character.getShip();
+            } else if (testing == 1 && random.nextDouble() < politicalSystem.determineProbability(pirateQuantity)) {
+                this.character = new Pirate();
+                characterShip = character.getShip();
+            } else if (testing == 2 && random.nextDouble() < politicalSystem.determineProbability(traderQuantity)) {
+                this.character = new Trader();
+                currentMarket = new Market(((Trader) character).getTraderInventory(), currentPlayer.getInventory());
+                characterShip = character.getShip();
+            }
         }
         return character;
     }
