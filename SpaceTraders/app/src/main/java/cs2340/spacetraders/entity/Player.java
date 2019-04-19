@@ -137,4 +137,12 @@ public class Player implements Serializable {
     public int getHealth() {
         return ship.getHealth();
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int[] getClassPoints() {
+        return new int[]{engineerStat,  fighterStat,  traderStat,  pilotStat};
+    }
 }

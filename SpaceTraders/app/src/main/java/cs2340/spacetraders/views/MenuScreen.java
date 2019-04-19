@@ -35,7 +35,6 @@ public class MenuScreen extends AppCompatActivity {
         Button shipMarketButton = findViewById(R.id.shipMarketButton);
         Button shipyardButton = findViewById(R.id.shipyardButton);
         Button shipRepairButton = findViewById(R.id.shipRepairButton);
-        Button hireCrewButton = findViewById(R.id.hireCrewButton);
         Button starMapButton = findViewById(R.id.starMapButton);
         Button retireButton = findViewById(R.id.retire_button);
         Button planetMarketButton = findViewById(R.id.planetMarketButton);
@@ -65,13 +64,6 @@ public class MenuScreen extends AppCompatActivity {
             }
         });
 
-        hireCrewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuScreen.this, HireCrewActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
 
         starMapButton.setOnClickListener(new View.OnClickListener() {
             @Override

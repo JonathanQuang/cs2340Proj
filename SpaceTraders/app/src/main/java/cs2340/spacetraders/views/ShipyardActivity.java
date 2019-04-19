@@ -29,10 +29,7 @@ public class ShipyardActivity extends AppCompatActivity {
     private TextView modelWeaponName;
     private Button modelSellButton;
 
-    private TextView buyNum;
-    private TextView sellNum;
-    private TextView powerNum;
-    private TextView chargeNum;
+    private TextView weaponInfo;
 
     private TextView creditCounter;
     private TextView equippedWeapons;
@@ -74,16 +71,14 @@ public class ShipyardActivity extends AppCompatActivity {
         modelWeaponName = findViewById(R.id.modelWeaponName);
         modelSellButton = findViewById(R.id.modelSellButton);
 
-        buyNum = findViewById(R.id.buyNum);
-        sellNum = findViewById(R.id.sellNum);
-        powerNum = findViewById(R.id.powerNum);
-        chargeNum = findViewById(R.id.chargeNum);
+        weaponInfo = findViewById(R.id.weapon_info);
 
         creditCounter = findViewById(R.id.creditCounter);
         equippedWeapons = findViewById(R.id.equippedWeapons);
         shipyardVM = new ShipyardViewModel(model.getPlayer());
         updateCreditCounter();
 
+        setupInfo();
         weaponTable.removeViewAt(0);
         generateWeaponTable();
         updateEquippedWeaponsList();
@@ -123,10 +118,10 @@ public class ShipyardActivity extends AppCompatActivity {
         attachWeaponBuyingEventListener(weaponBuyButton, weapon, sellButton);
         weaponBuyButton.setText("BUY");
 
-        tablerow.addView(weaponBuyButton);
-        tablerow.addView(weaponInfoButton);
         tablerow.addView(weaponName);
+        tablerow.addView(weaponBuyButton);
         tablerow.addView(sellButton);
+        tablerow.addView(weaponInfoButton);
 
         return tablerow;
 
@@ -168,17 +163,23 @@ public class ShipyardActivity extends AppCompatActivity {
         final int power = WEAPON.getPower();
         final int charge = WEAPON.getCharge();
 
-        buyNum.setText(Integer.toString(buyPrice));
-        sellNum.setText(Integer.toString(sellPrice));
-
-
-        powerNum.setText(power < 0 ? ("NA") :  (Integer.toString(power)));
-
-        if (charge < 0) {
-            chargeNum.setText("NA");
-        } else {
-            chargeNum.setText(Integer.toString(charge));
+        String infoStr = "";
+        Object[] infoData = new Object[]{buyPrice, sellPrice, power < 0 ? "NA" : power, charge < 0 ? "NA" : charge};
+        String[] infoLabels = new String[]{"Buy Price:", "Sell Price:", "Power:      ", "Charge:    "};
+        for (int i = 0; i < infoLabels.length; i++) {
+            infoStr += infoLabels[i] + " \t\t\t" + infoData[i] + "\n";
         }
+        weaponInfo.setText(infoStr);
+    }
+
+    private void setupInfo() {
+        String infoStr = "";
+        Object[] infoData = new Object[]{"NA", "NA", "NA", "NA"};
+        String[] infoLabels = new String[]{"Buy Price:", "Sell Price:", "Power:      ", "Charge:    "};
+        for (int i = 0; i < infoLabels.length; i++) {
+            infoStr += infoLabels[i] + " \t\t\t" + infoData[i] + "\n";
+        }
+        weaponInfo.setText(infoStr);
     }
 
     private void updateCreditCounter() {
