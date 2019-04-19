@@ -16,7 +16,6 @@
         tools:layout_editor_absoluteY="173dp">
 
         <ImageView
-            android:contentDescription="the background"
             android:id="@+id/spaceTradersBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -27,8 +26,9 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
-            android:background="@drawable/galaxy_background"
             android:layout_marginBottom="0dp"
+            android:background="@drawable/starry_night"
+            android:contentDescription="the background"
             android:visibility="visible" />
     </RelativeLayout>
 
