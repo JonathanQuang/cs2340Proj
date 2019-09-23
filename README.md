@@ -1,13 +1,11 @@
-
+<img src="https://i.imgur.com/9MJP2Vx.png">
 
 ## What is this project?
 This is an Android recreation of the 2002 game Space Traders by Pieter Spronck. The general gist of the game
 is to travel from planet to planet buying and selling resources to earn money. With that money, you can 
 buy better ships, weapons, and other upgrades to assist you in any troubles you might run into.
 
-
 ## Features
-
 1. Random encounter system
 2. Procedurally generated planets
 3. Buy and sell resources for profit
